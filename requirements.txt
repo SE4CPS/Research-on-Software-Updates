@@ -1,1 +1,8 @@
 textblob
+vaderSentiment
+requests
+matplotlib
+wordcloud
+scikit-learn
+pandas
+numpy

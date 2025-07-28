@@ -3,6 +3,8 @@ import requests
 import matplotlib.pyplot as plt
 import json
 from wordcloud import WordCloud
+import re
+from collections import Counter
 
 url = "https://releasetrain.io/api/reddit"
 
@@ -66,7 +68,6 @@ for label, count in large_label_counts.items():
     percent = (count / large_sample_size) * 100
     print(f"  {label}: {count} ({percent:.2f}%)")
 
-# --- Update each Reddit post with sentiment results ---
 # print("\nStarting update of Reddit posts with sentiment results...")
 # update_count = 0
 # for post in reddit_data:
@@ -95,10 +96,9 @@ for label, count in large_label_counts.items():
 #             print(f"❌ Failed to update post {post_id}. Status code: {response.status_code}")
 #             print(f"Response: {response.text}")
 #     except Exception as e:
-#         print(f"❌ Exception updating post {post_id}: {e}")
+#             print(f"❌ Exception updating post {post_id}: {e}")
 # print(f"\nTotal posts updated: {update_count}")
 
-# --- Plot bar chart of sentiment distribution ---
 # labels = list(large_label_counts.keys())
 # counts = [large_label_counts[label] for label in labels]
 # plt.figure(figsize=(7, 5))
@@ -112,13 +112,26 @@ for label, count in large_label_counts.items():
 # plt.savefig('sentiment_distribution_bar_chart.png')
 # plt.show()
 
+
+positive_titles = []
+neutral_titles = []
 negative_titles = []
+
 for post in reddit_data:
     title = post['title']
     sentiment_scores = analyzer.polarity_scores(title)
     compound = sentiment_scores['compound']
-    if compound <= -0.05:  
+    if compound >= 0.05:
+        positive_titles.append(title)
+    elif compound <= -0.05:
         negative_titles.append(title)
+    else:
+        neutral_titles.append(title)
+
+print(f"\n📊 Sentiment breakdown:")
+print(f"  Positive titles: {len(positive_titles)}")
+print(f"  Neutral titles: {len(neutral_titles)}")
+print(f"  Negative titles: {len(negative_titles)}")
 
 company_product_names = [
     'chrome', 'google', 'wordpress', 'microsoft', 'apple', 'windows', 'linux', 'android', 'ios',
@@ -137,17 +150,83 @@ def remove_company_names(text):
     filtered_words = [w for w in words if w.lower() not in company_product_names]
     return ' '.join(filtered_words)
 
+def extract_words_from_text(text):
+    """Extract individual words from text, cleaning and filtering them"""
+    clean_text = re.sub(r'[^a-zA-Z0-9\s]', '', text.lower())
+    words = clean_text.split()
+    
+    stop_words = set(['the', 'and', 'to', 'of', 'a', 'in', 'for', 'is', 'on', 'that', 'with', 'as', 'by', 'are', 'this', 'it', 'an', 'be', 'from', 'at', 'or', 'which', 'was', 'has', 'have', 'can', 'not', 'we', 'more', 'but', 'our', 'also', 'will', 'all', 'been', 'their', 'about', 'other', 'its', 'one', 'you', 'had', 'new', 'get', 'go', 'up', 'out', 'do', 'my', 'me', 'so', 'what', 'just', 'like', 'very', 'know', 'take', 'see', 'come', 'think', 'look', 'want', 'give', 'use', 'find', 'tell', 'ask', 'work', 'seem', 'feel', 'try', 'leave', 'call'])
+    
+    filtered_words = [word for word in words if word not in stop_words and word not in company_product_names and len(word) > 2]
+    return filtered_words
+
+def generate_wordcloud_for_sentiment(titles, sentiment_type, filename):
+    """Generate word cloud for a specific sentiment type"""
+    if not titles:
+        print(f"No {sentiment_type.lower()} titles found to generate word cloud.")
+        return set()
+    
+    combined_text = ' '.join(titles)
+    filtered_text = remove_company_names(combined_text)
+    
+    words = extract_words_from_text(filtered_text)
+    word_set = set(words)
+    
+    if word_set:
+        wordcloud = WordCloud(width=800, height=400, background_color='white', 
+                            max_words=100, colormap='viridis').generate(filtered_text)
+        
+        plt.figure(figsize=(10, 5))
+        plt.imshow(wordcloud, interpolation='bilinear')
+        plt.axis('off')
+        plt.title(f'{sentiment_type} Sentiment Reddit Posts')
+        plt.tight_layout()
+        plt.savefig(filename, dpi=300, bbox_inches='tight')
+        plt.close()
+        print(f"✅ Generated {sentiment_type} word cloud: {filename}")
+        return word_set
+    else:
+        print(f"No words found for {sentiment_type} sentiment after filtering.")
+        return set()
+
+print("\n🎨 Generating word clouds for positive and neutral sentiments...")
+positive_words = generate_wordcloud_for_sentiment(positive_titles, "Positive", "positive_sentiment_wordcloud.png")
+neutral_words = generate_wordcloud_for_sentiment(neutral_titles, "Neutral", "neutral_sentiment_wordcloud.png")
+
+print("\n🧹 Cleaning negative sentiment list by removing overlapping words...")
 if negative_titles:
-    limited_titles = negative_titles[:100]
-    negative_text = ' '.join(limited_titles)
-    filtered_text = remove_company_names(negative_text)
-    wordcloud = WordCloud(width=600, height=300, background_color='white').generate(filtered_text)
-    plt.figure(figsize=(8, 4))
-    plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis('off')
-    plt.title('Negative Sentiment Reddit Posts')
-    plt.tight_layout()
-    plt.savefig('negative_sentiment_wordcloud.png')
-    # plt.show()  
+    all_positive_neutral_words = positive_words.union(neutral_words)
+    
+    negative_text = ' '.join(negative_titles)
+    filtered_negative_text = remove_company_names(negative_text)
+    negative_words = extract_words_from_text(filtered_negative_text)
+    
+    original_negative_count = len(negative_words)
+    cleaned_negative_words = [word for word in negative_words if word not in all_positive_neutral_words]
+    removed_count = original_negative_count - len(cleaned_negative_words)
+    
+    print(f"  Original negative words: {original_negative_count}")
+    print(f"  Words removed (overlapping with positive/neutral): {removed_count}")
+    print(f"  Cleaned negative words: {len(cleaned_negative_words)}")
+    
+    if cleaned_negative_words:
+        cleaned_negative_text = ' '.join(cleaned_negative_words)
+        wordcloud = WordCloud(width=800, height=400, background_color='white', 
+                            max_words=100, colormap='Reds').generate(cleaned_negative_text)
+        
+        plt.figure(figsize=(10, 5))
+        plt.imshow(wordcloud, interpolation='bilinear')
+        plt.axis('off')
+        plt.title('Negative Sentiment Reddit Posts')
+        plt.tight_layout()
+        plt.savefig('negative_sentiment_wordcloud.png', dpi=300, bbox_inches='tight')
+        plt.close()
+        print("✅ Generated cleaned negative word cloud: negative_sentiment_wordcloud.png")
+        
+        removed_words = [word for word in negative_words if word in all_positive_neutral_words]
+        if removed_words:
+            print(f"\n📝 Examples of removed words (found in positive/neutral): {', '.join(removed_words[:10])}")
+    else:
+        print("❌ No words remaining in negative list after cleaning.")
 else:
-    print('No negative sentiment titles found to generate a word cloud.')
+    print('No negative sentiment titles found to process.')
