@@ -1,0 +1,402 @@
+{
+  "total_posts_analyzed": 3471,
+  "total_negative_posts": 513,
+  "top_20_negative_posts": [
+    {
+      "title": "Confused",
+      "url": "https://reddit.com/r/Wordpress/comments/1mhc433/confused/",
+      "subreddit": "Wordpress",
+      "author": "Agreeable_Mountain13",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 1.0,
+        "neu": 0.0,
+        "pos": 0.0,
+        "compound": -0.3182
+      },
+      "compound_score": -0.3182,
+      "negative_score": 1.0,
+      "positive_score": 0.0,
+      "neutral_score": 0.0,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "RAC Failure",
+      "url": "https://reddit.com/r/oracle/comments/1mn9oie/rac_failure/",
+      "subreddit": "oracle",
+      "author": "TheCodingStream",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.767,
+        "neu": 0.233,
+        "pos": 0.0,
+        "compound": -0.5106
+      },
+      "compound_score": -0.5106,
+      "negative_score": 0.767,
+      "positive_score": 0.0,
+      "neutral_score": 0.233,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Menu problems",
+      "url": "https://reddit.com/r/Wordpress/comments/1mlk4w1/menu_problems/",
+      "subreddit": "Wordpress",
+      "author": "yolomike1",
+      "existing_tag": "Help Request",
+      "existing_tags": [
+        "Help Request"
+      ],
+      "sentiment_scores": {
+        "neg": 0.73,
+        "neu": 0.27,
+        "pos": 0.0,
+        "compound": -0.4019
+      },
+      "compound_score": -0.4019,
+      "negative_score": 0.73,
+      "positive_score": 0.0,
+      "neutral_score": 0.27,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Domain error?",
+      "url": "https://reddit.com/r/github/comments/1might4/domain_error/",
+      "subreddit": "github",
+      "author": "Zemi-_-",
+      "existing_tag": "Discussion",
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.73,
+        "neu": 0.27,
+        "pos": 0.0,
+        "compound": -0.4019
+      },
+      "compound_score": -0.4019,
+      "negative_score": 0.73,
+      "positive_score": 0.0,
+      "neutral_score": 0.27,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Error 0xc000014",
+      "url": "https://reddit.com/r/Ventoy/comments/1mhe6x0/error_0xc000014/",
+      "subreddit": "Ventoy",
+      "author": "Electronic_Echidna15",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.73,
+        "neu": 0.27,
+        "pos": 0.0,
+        "compound": -0.4019
+      },
+      "compound_score": -0.4019,
+      "negative_score": 0.73,
+      "positive_score": 0.0,
+      "neutral_score": 0.27,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Connection problem",
+      "url": "https://reddit.com/r/rustdesk/comments/1mhamts/connection_problem/",
+      "subreddit": "rustdesk",
+      "author": "Adventurous_Code_119",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.73,
+        "neu": 0.27,
+        "pos": 0.0,
+        "compound": -0.4019
+      },
+      "compound_score": -0.4019,
+      "negative_score": 0.73,
+      "positive_score": 0.0,
+      "neutral_score": 0.27,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Emergency fund",
+      "url": "https://reddit.com/r/Bitcoin/comments/1mlixg3/emergency_fund/",
+      "subreddit": "Bitcoin",
+      "author": "zeeshiscanning",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.722,
+        "neu": 0.278,
+        "pos": 0.0,
+        "compound": -0.3818
+      },
+      "compound_score": -0.3818,
+      "negative_score": 0.722,
+      "positive_score": 0.0,
+      "neutral_score": 0.278,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "no tumbnales",
+      "url": "https://reddit.com/r/immich/comments/1mmhcxa/no_tumbnales/",
+      "subreddit": "immich",
+      "author": "robin050992",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.688,
+        "neu": 0.312,
+        "pos": 0.0,
+        "compound": -0.296
+      },
+      "compound_score": -0.296,
+      "negative_score": 0.688,
+      "positive_score": 0.0,
+      "neutral_score": 0.312,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "connection refused",
+      "url": "https://reddit.com/r/immich/comments/1mjd4la/connection_refused/",
+      "subreddit": "immich",
+      "author": "roijackers_1987",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.688,
+        "neu": 0.312,
+        "pos": 0.0,
+        "compound": -0.296
+      },
+      "compound_score": -0.296,
+      "negative_score": 0.688,
+      "positive_score": 0.0,
+      "neutral_score": 0.312,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Felt evil today",
+      "url": "https://reddit.com/r/MacOS/comments/1mi6l5h/felt_evil_today/",
+      "subreddit": "MacOS",
+      "author": "Wooden_Milk6872",
+      "existing_tag": "Creative",
+      "existing_tags": [
+        "Creative"
+      ],
+      "sentiment_scores": {
+        "neg": 0.688,
+        "neu": 0.312,
+        "pos": 0.0,
+        "compound": -0.6597
+      },
+      "compound_score": -0.6597,
+      "negative_score": 0.688,
+      "positive_score": 0.0,
+      "neutral_score": 0.312,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Is Valkey dead?",
+      "url": "https://reddit.com/r/redis/comments/1mkmi5a/is_valkey_dead/",
+      "subreddit": "redis",
+      "author": "kamikazer",
+      "existing_tag": "Discussion",
+      "existing_tags": [
+        "Discussion"
+      ],
+      "sentiment_scores": {
+        "neg": 0.683,
+        "neu": 0.317,
+        "pos": 0.0,
+        "compound": -0.6486
+      },
+      "compound_score": -0.6486,
+      "negative_score": 0.683,
+      "positive_score": 0.0,
+      "neutral_score": 0.317,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Is blogging dead?",
+      "url": "https://reddit.com/r/Wordpress/comments/1mid4hg/is_blogging_dead/",
+      "subreddit": "Wordpress",
+      "author": "Technical-Ad-9526",
+      "existing_tag": "Discussion",
+      "existing_tags": [
+        "Discussion"
+      ],
+      "sentiment_scores": {
+        "neg": 0.683,
+        "neu": 0.317,
+        "pos": 0.0,
+        "compound": -0.6486
+      },
+      "compound_score": -0.6486,
+      "negative_score": 0.683,
+      "positive_score": 0.0,
+      "neutral_score": 0.317,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Complete Studio Series 86 Devastator",
+      "url": "https://reddit.com/r/transformers/comments/1mi5w7g/complete_studio_series_86_devastator/",
+      "subreddit": "transformers",
+      "author": "Standard-Ad8385",
+      "existing_tag": "Discussion / Opinion",
+      "existing_tags": [
+        "Discussion / Opinion"
+      ],
+      "sentiment_scores": {
+        "neg": 0.681,
+        "neu": 0.319,
+        "pos": 0.0,
+        "compound": -0.7506
+      },
+      "compound_score": -0.7506,
+      "negative_score": 0.681,
+      "positive_score": 0.0,
+      "neutral_score": 0.319,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Worst Transforrmer names",
+      "url": "https://reddit.com/r/transformers/comments/1mhlyz0/worst_transforrmer_names/",
+      "subreddit": "transformers",
+      "author": "Organic_Camera6467",
+      "existing_tag": "Discussion / Opinion",
+      "existing_tags": [
+        "Discussion / Opinion"
+      ],
+      "sentiment_scores": {
+        "neg": 0.672,
+        "neu": 0.328,
+        "pos": 0.0,
+        "compound": -0.6249
+      },
+      "compound_score": -0.6249,
+      "negative_score": 0.672,
+      "positive_score": 0.0,
+      "neutral_score": 0.328,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "I hate Nest",
+      "url": "https://reddit.com/r/Nest/comments/1misnpf/i_hate_nest/",
+      "subreddit": "Nest",
+      "author": "Chippysquid",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.649,
+        "neu": 0.351,
+        "pos": 0.0,
+        "compound": -0.5719
+      },
+      "compound_score": -0.5719,
+      "negative_score": 0.649,
+      "positive_score": 0.0,
+      "neutral_score": 0.351,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "selfie mocker",
+      "url": "https://reddit.com/r/Magisk/comments/1mg2y1o/selfie_mocker/",
+      "subreddit": "Magisk",
+      "author": "gamezo_laura",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.643,
+        "neu": 0.357,
+        "pos": 0.0,
+        "compound": -0.2023
+      },
+      "compound_score": -0.2023,
+      "negative_score": 0.643,
+      "positive_score": 0.0,
+      "neutral_score": 0.357,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "502 Bad Gateway",
+      "url": "https://reddit.com/r/Wordpress/comments/1mhjwhs/502_bad_gateway/",
+      "subreddit": "Wordpress",
+      "author": "dollarbilly-all",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.636,
+        "neu": 0.364,
+        "pos": 0.0,
+        "compound": -0.5423
+      },
+      "compound_score": -0.5423,
+      "negative_score": 0.636,
+      "positive_score": 0.0,
+      "neutral_score": 0.364,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Poor image quality",
+      "url": "https://reddit.com/r/rustdesk/comments/1mhf79i/poor_image_quality/",
+      "subreddit": "rustdesk",
+      "author": "Adventurous_Code_119",
+      "existing_tag": null,
+      "existing_tags": [],
+      "sentiment_scores": {
+        "neg": 0.608,
+        "neu": 0.392,
+        "pos": 0.0,
+        "compound": -0.4767
+      },
+      "compound_score": -0.4767,
+      "negative_score": 0.608,
+      "positive_score": 0.0,
+      "neutral_score": 0.392,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Prepare for Devastation!",
+      "url": "https://reddit.com/r/transformers/comments/1ml681y/prepare_for_devastation/",
+      "subreddit": "transformers",
+      "author": "DatabaseMiserable252",
+      "existing_tag": "New Purchases",
+      "existing_tags": [
+        "New Purchases"
+      ],
+      "sentiment_scores": {
+        "neg": 0.607,
+        "neu": 0.393,
+        "pos": 0.0,
+        "compound": -0.4753
+      },
+      "compound_score": -0.4753,
+      "negative_score": 0.607,
+      "positive_score": 0.0,
+      "neutral_score": 0.393,
+      "sentiment_label": "Negative"
+    },
+    {
+      "title": "Strange problem with page loading",
+      "url": "https://reddit.com/r/chrome/comments/1mh8v47/strange_problem_with_page_loading/",
+      "subreddit": "chrome",
+      "author": "BartxPolska",
+      "existing_tag": "Troubleshooting | Windows",
+      "existing_tags": [
+        "Troubleshooting | Windows"
+      ],
+      "sentiment_scores": {
+        "neg": 0.6,
+        "neu": 0.4,
+        "pos": 0.0,
+        "compound": -0.5423
+      },
+      "compound_score": -0.5423,
+      "negative_score": 0.6,
+      "positive_score": 0.0,
+      "neutral_score": 0.4,
+      "sentiment_label": "Negative"
+    }
+  ]
+}
