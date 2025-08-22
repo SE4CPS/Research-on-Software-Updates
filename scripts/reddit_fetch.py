@@ -28,11 +28,15 @@ print("\n🧠 Sentiment Analysis on Top 10 Titles (for threshold verification):\
 
 sample_size = 10
 sample_results = []
-
+min_post = None
+min = 999
 for i, post in enumerate(reddit_data[:sample_size]):
     title = post['title']
     sentiment_scores = analyzer.polarity_scores(title)
     compound = sentiment_scores['compound']
+    if compound < min:
+        min = compound
+        min_post = post
     if compound >= 0.05:
         label = "Positive"
     elif compound <= -0.05:
@@ -42,7 +46,8 @@ for i, post in enumerate(reddit_data[:sample_size]):
     sample_results.append((title, compound, label))
     print(f"{i+1}. {title}")
     print(f"   Sentiment: {label} (Compound Score: {compound:.2f})\n")
-
+print(f"Min compound score: {min}")
+print(min_post['url'])
 label_counts = {"Positive": 0, "Negative": 0, "Neutral": 0}
 for _, _, label in sample_results:
     label_counts[label] += 1
