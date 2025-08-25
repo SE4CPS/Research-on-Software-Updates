@@ -1,0 +1,59 @@
+POSITIVE POSTS:
+
+Positive 1 (Rust):
+   Title: Is the *Nom* crate a good option for parsing a complex syntax?
+   URL: https://reddit.com/r/rust/comments/1mt1kf1/is_the_nom_crate_a_good_option_for_parsing_a/
+   Sentiment Score: 0.898
+   Comments: 24
+
+Positive 2 (Linux):
+   Title: I'm using Linux Mint now daily for the last 4 months and I start to love the flexibility...
+   URL: https://reddit.com/r/linux/comments/1mrxkfd/im_using_linux_mint_now_daily_for_the_last_4/
+   Sentiment Score: 0.869
+   Comments: 39
+
+Positive 3 (WordPress):
+   Title: WP Rocket, is it still the best option?
+   URL: https://reddit.com/r/Wordpress/comments/1mtq0bi/wp_rocket_is_it_still_the_best_option/
+   Sentiment Score: 0.786
+   Comments: 19
+
+NEGATIVE POSTS:
+
+Negative 1 (Django):
+   Title: Dreaded Django mistake
+   URL: https://reddit.com/r/django/comments/1mql9p0/dreaded_django_mistake/
+   Sentiment Score: -0.727
+   Comments: 12
+
+Negative 2 (IBM):
+   Title: Why is AskIBM so crappy?
+   URL: https://reddit.com/r/IBM/comments/1msecmu/why_is_askibm_so_crappy/
+   Sentiment Score: -0.682
+   Comments: 22
+
+Negative 3 (ComfyUI):
+   Title: Are you in dependecies hell everytime you use new workflow you found on internet?
+   URL: https://reddit.com/r/comfyui/comments/1mqqs0f/are_you_in_dependecies_hell_everytime_you_use_new/
+   Sentiment Score: -0.681
+   Comments: 54
+
+NEUTRAL POSTS:
+
+Neutral 1 (Kdenlive):
+   Title: Kdenlive 25.08 released with over 300 commits of bug fixes and polishing
+   URL: https://reddit.com/r/linux/comments/1mtpflw/kdenlive_2508_released_with_over_300_commits_of/
+   Sentiment Score: 0.026
+   Comments: 14
+
+Neutral 2 (Neovim):
+   Title: How to prevent split windows from inheriting window options from origin window
+   URL: https://reddit.com/r/neovim/comments/1mrlrmm/how_to_prevent_split_windows_from_inheriting/
+   Sentiment Score: 0.026
+   Comments: 18
+
+Neutral 3 (Rust):
+   Title: [Media] Simple optimization (not so safe)
+   URL: https://reddit.com/r/rust/comments/1mq4woz/media_simple_optimization_not_so_safe/
+   Sentiment Score: -0.006
+   Comments: 10
