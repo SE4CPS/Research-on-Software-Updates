@@ -1,0 +1,131 @@
+POSITIVE POSTS:
+
+Positive 1 (Rust):
+   Title: Is the *Nom* crate a good option for parsing a complex syntax?
+   URL: https://reddit.com/r/rust/comments/1mt1kf1/is_the_nom_crate_a_good_option_for_parsing_a/
+   Sentiment Score: 0.898
+   Comments: 24 (API) / 63 (Current - thread has grown)
+   Author Sentiment Trajectory: [0.4, -0.2, 0.3, 0.1, -0.1, 0.6, 0.2, 0.2, 0.2, 0.8, 0.1, 0.9, 0.7]
+   Reply Trajectory: [-0.1, -0.05, 0.03, 0.08, 0.16, 0.15, 0.17, 0.18, 0.20, 0.22, 0.21, 0.23, 0.22, 0.25, 0.24, 0.26, 0.25, 0.28, 0.29, 0.30, 0.31, 0.30, 0.29, 0.26, 0.27, 0.28, 0.28, 0.28, 0.27, 0.28, 0.28, 0.27, 0.27, 0.28, 0.29, 0.30, 0.29, 0.28, 0.28, 0.30, 0.30, 0.31, 0.32, 0.32, 0.34, 0.34, 0.35, 0.36, 0.36, 0.36, 0.37]
+   
+   MANUAL ANALYSIS:
+   - Author (JKasonB) replies: 12
+   - Other users' comments: 51
+   - Total current comments: 63
+   - Original API count: 24 (thread has grown since data collection)
+
+Positive 2 (Linux):
+   Title: I'm using Linux Mint now daily for the last 4 months and I start to love the flexibility...
+   URL: https://reddit.com/r/linux/comments/1mrxkfd/im_using_linux_mint_now_daily_for_the_last_4/
+   Sentiment Score: 0.869
+   Comments: 39 (API) / 49 (Current - thread has grown)
+   Author Sentiment Trajectory: [0.7]
+   Reply Trajectory: [0.8, 0.7, 0.75, 0.6, 0.85, 0.8, 0.9, 0.85, 0.3, 0.6, 0.1, 0.2, 0.3, 0.4, 0.35, 0.5, 0.4, 0.45, 0.55, 0.5, 0.6, 0.4, 0.45, 0.65, 0.9, 0.7, 0.85, 0.75, 0.7, 0.8, 0.85, 0.9, 0.8, 0.2, 0.6, 0.1, 0.0, 0.75, 0.0, 0.4, 0.3, 0.2, 0.15, 0.1, 0.8]
+   
+   MANUAL ANALYSIS:
+   - Author (jf_administration) replies: 0
+   - Other users' comments: 49
+   - Total current comments: 49
+   - Original API count: 39 (thread has grown since data collection)
+
+Positive 3 (WordPress):
+   Title: WP Rocket, is it still the best option?
+   URL: https://reddit.com/r/Wordpress/comments/1mtq0bi/wp_rocket_is_it_still_the_best_option/
+   Sentiment Score: 0.786
+   Comments: 19 (API) / 35 (Current - thread has grown)
+   Author Sentiment Trajectory: [-0.2, 0.1]
+   Reply Trajectory: [0.3, 0.4, 0.5, -0.2, 0.6, 0.2, -0.3, 0.1, -0.4, 0.7, 0.1, 0.2, 0.4, 0.3, 0.1, 0.5, 0.6, 0.8, 0.2, 0.1, 0.2, 0.9, -0.2, 0.4, 0.2, 0.1, 0.3, 0.0, 0.4, 0.1, 0.3, 0.2, 0.1, 0.8]
+   
+   MANUAL ANALYSIS:
+   - Author (scottieb_) replies: 1
+   - Other users' comments: 34
+   - Total current comments: 35
+   - Original API count: 19 (thread has grown since data collection)
+
+NEGATIVE POSTS:
+
+Negative 1 (Django):
+   Title: Dreaded Django mistake
+   URL: https://reddit.com/r/django/comments/1mql9p0/dreaded_django_mistake/
+   Sentiment Score: -0.727
+   Comments: 13 (Current - thread has grown)
+   Author Sentiment Trajectory: [-0.8, -0.6, -0.4]
+   Reply Trajectory: [-0.3, 0.4, 0.3, 0.8, 0.5, 0.9, 0.1, 0.2, 0.1, 0.0]
+   
+   MANUAL ANALYSIS:
+   - Author (Glittering-Ad4182) replies: 3
+   - Other users' comments: 10
+   - Total current comments: 13
+   - Original API count: 12 (thread has grown since data collection)
+
+Negative 2 (IBM):
+   Title: Why is AskIBM so crappy?
+   URL: https://reddit.com/r/IBM/comments/1msecmu/why_is_askibm_so_crappy/
+   Sentiment Score: -0.682
+   Comments: 26 (Current - thread has grown)
+   Author Sentiment Trajectory: [-0.7]
+   Reply Trajectory: [-0.8, 0.2, 0.1, -0.4, -0.3, -0.6, -0.2, 0.4, -0.5, -0.3, -0.9, -0.4, -0.8, -0.5, -0.7, 0.0, 0.2, 0.1, -0.4, -0.6, -0.2, 0.1, 0.2, -0.5, -0.8, -0.6]
+   
+   MANUAL ANALYSIS:
+   - Author (Illustrious_Vast_191) replies: 0
+   - Other users' comments: 26
+   - Total current comments: 26
+   - Original API count: 22 (thread has grown since data collection)
+
+Negative 3 (ComfyUI):
+   Title: Are you in dependecies hell everytime you use new workflow you found on internet?
+   URL: https://reddit.com/r/comfyui/comments/1mqqs0f/are_you_in_dependecies_hell_everytime_you_use_new/
+   Sentiment Score: -0.681
+   Comments: 60 (Current - thread has grown)
+   Author Sentiment Trajectory: [-0.8, -0.2, 0.3, 0.5, -0.4, -0.5, 0.1, -0.3, -0.7, 0.2, 0.4, 0.4]
+   Reply Trajectory: [0.6, 0.8, 0.7, 0.4, 0.3, 0.6, 0.5, 0.3, 0.4, 0.2, 0.5, 0.7, 0.6, 0.4, 0.8, 0.3, 0.5, 0.4, 0.6, -0.2, 0.7, 0.5, 0.8, 0.6, 0.4, 0.3, 0.5, 0.7, 0.6, 0.4, 0.8, 0.5, 0.6, 0.7, 0.5, 0.4, 0.6, 0.3, 0.8, 0.5, 0.7, 0.6, 0.4, 0.5, 0.3, 0.6, 0.4, 0.2, 0.5]
+   
+   MANUAL ANALYSIS:
+   - Author (mzkworks) replies: 11
+   - Other users' comments: 49
+   - Total current comments: 60
+   - Original API count: 54 (thread has grown since data collection)
+
+NEUTRAL POSTS:
+
+Neutral 1 (Kdenlive):
+   Title: Kdenlive 25.08 released with over 300 commits of bug fixes and polishing
+   URL: https://reddit.com/r/linux/comments/1mtpflw/kdenlive_2508_released_with_over_300_commits_of/
+   Sentiment Score: 0.026
+   Comments: 15 (Current - thread has grown)
+   Author Sentiment Trajectory: [0.0]
+   Reply Trajectory: [0.1, 0.2, -0.2, -0.4, 0.0, -0.3, -0.3, 0.1, -0.7, 0.0, -0.8, -0.5, 0.0, 0.1, 0.0]
+   
+   MANUAL ANALYSIS:
+   - Author (r_r_d) replies: 0
+   - Other users' comments: 15
+   - Total current comments: 15
+   - Original API count: 14 (thread has grown since data collection)
+
+Neutral 2 (Neovim):
+   Title: How to prevent split windows from inheriting window options from origin window
+   URL: https://reddit.com/r/neovim/comments/1mrlrmm/how_to_prevent_split_windows_from_inheriting/
+   Sentiment Score: 0.026
+   Comments: 18 (Current - same as before)
+   Author Sentiment Trajectory: [0.0, 0.0, 0.4, 0.5, 0.2, 0.1, 0.0]
+   Reply Trajectory: [0.6, -0.1, 0.8, 0.3, 0.8, 0.2, 0.7, 0.9, 0.6, 0.2, 0.5, 0.6]
+   
+   MANUAL ANALYSIS:
+   - Author (Lavinraj) replies: 6
+   - Other users' comments: 12
+   - Total current comments: 18
+   - Original API count: 18 (no change)
+
+Neutral 3 (Rust):
+   Title: [Media] Simple optimization (not so safe)
+   URL: https://reddit.com/r/rust/comments/1mq4woz/media_simple_optimization_not_so_safe/
+   Sentiment Score: -0.006
+   Comments: 29 (Current - thread has grown significantly)
+   Author Sentiment Trajectory: [0.0, 0.6, 0.4, 0.2, 0.1, 0.0, 0.1, 0.3, 0.2, 0.3]
+   Reply Trajectory: [0.8, 0.2, 0.6, -0.1, 0.1, 0.5, 0.2, 0.8, 0.9, 0.1, 0.8, 0.7, 0.9, 0.6, 0.0, 0.5, 0.6, 0.8, 0.7]
+   
+   MANUAL ANALYSIS:
+   - Author (dtutubalin) replies: 9
+   - Other users' comments: 20
+   - Total current comments: 29
+   - Original API count: 10 (thread has grown significantly since data collection)
