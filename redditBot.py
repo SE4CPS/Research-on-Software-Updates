@@ -5,8 +5,8 @@ from datetime import datetime
 import re
 
 # 🔹 Reddit API Credentials
-CLIENT_ID = "d9v_G93sPXd5eYfDe4PR0g"
-CLIENT_SECRET = "ZD0Rd39NKYmukKl0UUC-4N_n8XULvA"
+CLIENT_ID = ""
+CLIENT_SECRET = ""
 USER_AGENT = "script:releasetrain:v1.0 (by u/Cultural_Let_6867)"
 API_BASE_URL = "https://releasetrain.io/api"
 
