@@ -1,0 +1,122 @@
+categories_component = {
+    "legal": [
+        "license", "GPL", "MIT", "Apache License", "BSD", "copyright", "terms of service", 
+        "EULA", "patent", "intellectual property", "trademark", "act", "DMCA", "compliance", 
+        "open source", "permissive license", "copyleft", "derivative works", "contract", 
+        "agreement", "litigation", "liability", "fair use", "copyright infringement"
+    ],
+    "privacy": [
+        "GDPR", "CCPA", "privacy policy", "data protection", "user consent", "cookies", 
+        "personal data", "anonymization", "right to be forgotten", "PII", "data breach", 
+        "privacy by design", "HIPAA", "data minimization", "third-party data", "tracking", 
+        "surveillance", "behavioral analytics", "data retention", "opt-out", "cookie banner"
+    ],
+    "safety": [
+        "compliance", "safety standards", "ISO", "NIST", "OSHA", "incident response", 
+        "product safety", "physical security", "hazard", "critical infrastructure", 
+        "safety compliance", "quality assurance", "workplace safety", "incident management", 
+        "disaster recovery", "business continuity", "risk assessment", "public safety", 
+        "automotive safety", "aviation safety", "safety-critical systems", "fire safety"
+    ],
+    "security": [
+        "cybersecurity", "credential", "token", "encryption", "vulnerability", "CVE", 
+        "malware", "ransomware", "penetration testing", "secure coding", "firewall", 
+        "zero trust", "IAM", "phishing", "data exfiltration", "APT", "supply chain attack", 
+        "exploit", "buffer overflow", "MITRE ATT&CK", "NIST Cybersecurity Framework", 
+        "SOC2", "SIEM", "hacking", "black hat", "white hat", "penetration test", "security audit", 
+        "insider threat", "zero-day", "patch management", "application security", 
+        "red team", "blue team", "threat intelligence", "data leak", "DDoS", "SOC", "SIEM", 
+        "XSS", "CSRF", "man-in-the-middle attack", "TLS", "HTTPS", "WAF", "endpoint security"
+    ],
+    "compliance": [
+        "PCI DSS", "SOX", "HIPAA", "FISMA", "ISO 27001", "ISO 9001", "SOC 1", "SOC 2", 
+        "GDPR compliance", "CCPA compliance", "audit log", "regulatory compliance", 
+        "financial compliance", "compliance risk", "compliance management", "internal audit"
+    ],
+    "fraud": [
+        "fraud detection", "fraud prevention", "identity theft", "credit card fraud", 
+        "phishing scam", "social engineering", "money laundering", "deepfake", "fake identity", 
+        "credential stuffing", "data fraud", "account takeover", "fraud analytics", "malvertising"
+    ],
+    "trust_and_safety": [
+        "user verification", "content moderation", "misinformation", "disinformation", 
+        "platform abuse", "hate speech detection", "spam filtering", "bot detection", 
+        "account security", "user protection", "CSAM detection", "abuse prevention"
+    ],
+    "identity_and_access": [
+        "authentication", "authorization", "MFA", "2FA", "SSO", "OAuth", "SAML", "JWT", 
+        "RBAC", "ABAC", "biometric authentication", "federated identity", "identity provider", 
+        "user provisioning", "directory service", "LDAP", "passwordless login"
+    ],
+    "risk_management": [
+        "risk assessment", "threat modeling", "security posture", "business continuity", 
+        "risk mitigation", "incident response planning", "forensic analysis", "compliance risk", 
+        "financial risk", "operational risk", "third-party risk", "risk scoring", "threat detection"
+    ],
+    "forensics": [
+        "digital forensics", "evidence collection", "incident investigation", "log analysis", 
+        "malware analysis", "memory forensics", "disk forensics", "network forensics", 
+        "cybercrime investigation", "law enforcement", "chain of custody", "threat attribution"
+    ],
+    "cloud_security": [
+        "cloud security", "CSPM", "CASB", "cloud encryption", "SaaS security", "IaaS security", 
+        "cloud access control", "zero trust architecture", "hybrid cloud", "data sovereignty", 
+        "multi-cloud security", "serverless security", "API security", "cloud compliance"
+    ]
+}
+
+categories_component = {
+    "gpt": ["GPT", "GPT model", "OpenAI", "LLM", "GPT-2", "GPT-3", "GPT-4", "NLP", "ChatGPT", "Transformer", "Language Model", "AI"],
+    "bitcoin": ["bitcoin", "ethereum", "crypto", "cryptocurrency", "blockchain", "cryptographic", "mining", "wallet", "defi", "altcoin", "NFT"],
+    "browser": ["browser", "chrome", "firefox", "edge", "safari", "opera", "chromium", "brave", "vivaldi", "web browser", "extensions", "bookmark"],
+    "database": ["database", "sql", "nosql", "key-value store", "mongodb", "postgresql", "cassandra", "mysql", "rdbms", "dbms", "sqlite"],
+    "os": ["os", "ios", "android", "red hat", "windows", "linux", "ubuntu", "macos", "centos", "kernel", "fedora", "linux-dist", "apple", "phone", "operating system", "wayland", "grub", "boot", "nvidia"],
+    "server": ["server", "jenkins", "nginx", "apache", "tomcat", "web server", "application server", "http server", "staging environment"],
+    "ide": ["ide", "vim", "vscode", "pycharm", "eclipse", "command line", "shell", "command", "editor", "integrated development environment"],
+    "api": ["api", "swagger", "rest", "graphql", "soap", "application programming interface", "endpoint", "api gateway", "websockets"],
+    "framework": ["pytorch", "framework", "react", "vue", "angular", "django", "spring", "rails", "laravel", "frameworks", "asp", "ktor"],
+    "library": ["library", "jquery", "react router", "redux", "library", "toolkit", "libs", "lib"],
+    "language": ["language", "python", "python3", "javascript", "java", "c#", "ruby", "script", "programming language", "coding language", "scripting language", "scala", ".net", "typescript"],
+    "versioning": ["versioning", "version management", "git", "svn", "mercurial", "version control", "github", "branching", "merging", "release notes"],
+    "app": ["app", "wordpress", "drupal", "joomla", "application", "web app", "mobile app", "game", "pygame"],
+    "repository": ["repository", "repositories", "package", "package manager", "repo", "version control", "npm", "nuget", "maven", "pypi", "cran", "github", "gitlab", "bitbucket", "dependency", "pnpm"],
+    "cloud": ["cloud", "aws", "azure", "cloud computing", "lambda", "azure functions", "app engine", "gcp", "sap"],
+    "containerization": ["container", "docker", "kubernetes", "docker swarm", "openshift", "container orchestration", "containers"],
+    "testing": ["testing", "unit testing", "integration testing", "test automation", "selenium", "junit", "pytest", "tdd", "test driven development"],
+    "mobile": ["mobile", "mobile app", "react native", "swift", "kotlin", "ios", "android", "mobile development"],
+    "web": ["web", "webpage", "website", "html", "css", "javascript", "web development", "vue.js", "node.js", "bootstrap", "web design", "frontend", "backend", "nextjs"],
+    "data": ["data", "big data", "data analytics", "data science", "hadoop", "spark", "pandas", "data engineering", "data analysis", "table", "import wizard"],
+    "agile": ["agile", "scrum", "kanban", "agile methodology", "jira", "trello", "scrum master", "agile development"],
+    "devops": ["devops", "continuous integration", "continuous deployment", "devops practices", "jenkins pipeline", "ansible", "docker compose", "ci/cd", "infrastructure as code"],
+    "firmware": ["firmware", "firmwares", "embedded", "flash"],
+    "design": ["design", "ui", "ux", "user experience", "frontend", "interface", "figma", "theme", "css styling"],
+    "game": ["game", "gaming", "game engine", "unity", "unreal", "godot", "roblox"],
+}
+
+categories_component = {
+    "gpt": ["GPT", "OpenAI", "ChatGPT", "LLM", "AI"],
+    "bitcoin": ["bitcoin", "crypto", "blockchain"],
+    "browser": ["browser", "chrome", "firefox", "safari"],
+    "database": ["database", "sql", "mysql", "mongodb"],
+    "os": ["os", "linux", "windows", "kernel"],
+    "server": ["server", "apache", "nginx", "tomcat"],
+    "ide": ["vscode", "pycharm", "ide"],
+    "api": ["api", "rest", "graphql"],
+    "framework": ["framework", "django", "spring"],
+    "library": ["library", "jquery", "redux"],
+    "language": ["language", "python", "php", "java"],
+    "versioning": ["git", "versioning"],
+    "app": ["app", "wordpress"],
+    "repository": ["repository", "npm", "maven"],
+    "cloud": ["cloud", "aws", "azure"],
+    "containerization": ["docker", "kubernetes"],
+    "testing": ["testing", "pytest", "unittest"],
+    "mobile": ["mobile", "ios", "android"],
+    "web": ["web", "html", "css", "javascript"],
+    "data": ["data", "pandas", "spark"],
+    "agile": ["agile", "scrum", "kanban"],
+    "devops": ["devops", "ci/cd", "jenkins"],
+    "firmware": ["firmware", "embedded"],
+    "design": ["design", "ui", "ux"],
+    "game": ["game", "unity", "unreal"],
+}
