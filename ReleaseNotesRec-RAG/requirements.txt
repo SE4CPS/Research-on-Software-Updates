@@ -1,0 +1,9 @@
+pandas
+requests
+streamlit
+datasets
+sentence-transformers
+faiss-cpu
+torch
+python-dotenv
+openai
