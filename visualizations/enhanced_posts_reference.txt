@@ -1,0 +1,144 @@
+================================================================================
+ENHANCED AUTOMATED SENTIMENT ANALYSIS - REDDIT POSTS REFERENCE
+================================================================================
+
+LEGEND:
+- Solid lines: Author sentiment trajectories
+- Dashed lines: Community sentiment trajectories
+- Numbers in parentheses: Comment counts
+
+
+POSITIVE POSTS:
+--------------------------------------------------------------------------------
+
+Positive 1 (immich):
+  Title: v2.0.0 - Stable Release of Immich
+  URL: https://reddit.com/r/immich/comments/1nvkk44/v200_stable_release_of_immich/
+  Title Sentiment Score: 0.296
+  Total Comments: 218
+  Author Replies: 3
+  Community Comments: 182
+  Author Trajectory Length: 3
+  Community Trajectory Length: 182
+  Overall Quality Score: 3.079
+  Author Reliability: 0.660
+  Community Reliability: 0.636
+
+
+Positive 2 (linux):
+  Title: Linux desktop is attracting new users, and that's good, but we must be critical of everything that needs improvement
+  URL: https://reddit.com/r/linux/comments/1ns8qzz/linux_desktop_is_attracting_new_users_and_thats/
+  Title Sentiment Score: 0.619
+  Total Comments: 221
+  Author Replies: 14
+  Community Comments: 94
+  Author Trajectory Length: 14
+  Community Trajectory Length: 94
+  Overall Quality Score: 2.084
+  Author Reliability: 0.655
+  Community Reliability: 0.616
+
+
+Positive 3 (MacOS):
+  Title: "Apple deeply cares about the Mac."
+  URL: https://reddit.com/r/MacOS/comments/1nwainr/apple_deeply_cares_about_the_mac/
+  Title Sentiment Score: 0.509
+  Total Comments: 184
+  Author Replies: 3
+  Community Comments: 114
+  Author Trajectory Length: 3
+  Community Trajectory Length: 114
+  Overall Quality Score: 2.046
+  Author Reliability: 0.600
+  Community Reliability: 0.629
+
+
+NEGATIVE POSTS:
+--------------------------------------------------------------------------------
+
+Negative 1 (transformers):
+  Title: What purchases do you regret making in your collecting journey, and why?
+  URL: https://reddit.com/r/transformers/comments/1ntwutd/what_purchases_do_you_regret_making_in_your/
+  Title Sentiment Score: -0.421
+  Total Comments: 232
+  Author Replies: 10
+  Community Comments: 171
+  Author Trajectory Length: 10
+  Community Trajectory Length: 171
+  Overall Quality Score: 3.130
+  Author Reliability: 0.716
+  Community Reliability: 0.611
+
+
+Negative 2 (Bitcoin):
+  Title: "Bitcoin is a scam and you will regret buying it!"
+  URL: https://reddit.com/r/Bitcoin/comments/1nu5k1s/bitcoin_is_a_scam_and_you_will_regret_buying_it/
+  Title Sentiment Score: -0.778
+  Total Comments: 226
+  Author Replies: 4
+  Community Comments: 155
+  Author Trajectory Length: 4
+  Community Trajectory Length: 155
+  Overall Quality Score: 2.657
+  Author Reliability: 0.431
+  Community Reliability: 0.628
+
+
+Negative 3 (MacOS):
+  Title: Every time someone complains about Launchpad
+  URL: https://reddit.com/r/MacOS/comments/1nstieo/every_time_someone_complains_about_launchpad/
+  Title Sentiment Score: -0.382
+  Total Comments: 197
+  Author Replies: 4
+  Community Comments: 121
+  Author Trajectory Length: 4
+  Community Trajectory Length: 121
+  Overall Quality Score: 2.173
+  Author Reliability: 0.531
+  Community Reliability: 0.661
+
+
+NEUTRAL POSTS:
+--------------------------------------------------------------------------------
+
+Neutral 1 (comfyui):
+  Title: on a scale of 1-10 how legit this seems?
+  URL: https://reddit.com/r/comfyui/comments/1nxsj2c/on_a_scale_of_110_how_legit_this_seems/
+  Title Sentiment Score: 0.000
+  Total Comments: 214
+  Author Replies: 74
+  Community Comments: 98
+  Author Trajectory Length: 74
+  Community Trajectory Length: 98
+  Overall Quality Score: 3.945
+  Author Reliability: 0.664
+  Community Reliability: 0.610
+
+
+Neutral 2 (transformers):
+  Title: My latest build project. Do I get to call myself Prime now?
+  URL: https://reddit.com/r/transformers/comments/1nwc7w9/my_latest_build_project_do_i_get_to_call_myself/
+  Title Sentiment Score: 0.000
+  Total Comments: 275
+  Author Replies: 10
+  Community Comments: 183
+  Author Trajectory Length: 10
+  Community Trajectory Length: 183
+  Overall Quality Score: 3.308
+  Author Reliability: 0.677
+  Community Reliability: 0.638
+
+
+Neutral 3 (Bitcoin):
+  Title: Anyone actually buying right now?
+  URL: https://reddit.com/r/Bitcoin/comments/1nx2cy7/anyone_actually_buying_right_now/
+  Title Sentiment Score: 0.000
+  Total Comments: 309
+  Author Replies: 4
+  Community Comments: 186
+  Author Trajectory Length: 4
+  Community Trajectory Length: 186
+  Overall Quality Score: 3.156
+  Author Reliability: 0.569
+  Community Reliability: 0.663
+
