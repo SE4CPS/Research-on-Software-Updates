@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "title": "Microsoft Patch Tuesday - September 2025",
+      "date": "2025-09-10T00:00:00Z",
+      "url": "https://msrc.microsoft.com/update-guide/releaseNote/2025-Sep",
+      "summary": "Security patches for Windows 10 and 11, addressing 5 zero-day vulnerabilities."
+    }
+  ]
+}
