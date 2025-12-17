@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codesnip"
+version = "0.1.0"
+description = "AI-based PR analyzer and release notes generator"
+authors = [{ name="Your Name", email="your@email.com" }]
+dependencies = ["click", "requests", "openai", "pytest", "coverage", "pylint", "bandit", "psutil"]
+readme = "README.md"
+
+[project.scripts]
+codesnip = "codesnip.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["codesnip*"]
