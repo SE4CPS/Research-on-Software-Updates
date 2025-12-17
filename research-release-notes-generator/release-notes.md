@@ -1,5 +1,40 @@
 # 📅 Release Notes - Version 1.0.0
 
+## 🛠️ Installation
+
+### Prerequisites
+- Python 3.7 or higher
+- Git
+
+### Installation Steps
+
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd research-release-notes-generator
+   ```
+
+2. **Install the package:**
+   ```bash
+   pip install -e .
+   ```
+
+3. **Verify installation:**
+   ```bash
+   codesnip --help
+   ```
+
+### Dependencies
+The following dependencies will be automatically installed:
+- `click` - CLI framework
+- `requests` - HTTP library
+- `openai` - OpenAI API client
+- `pytest` - Testing framework
+- `coverage` - Code coverage tool
+- `pylint` - Code quality checker
+- `bandit` - Security linter
+- `psutil` - System and process utilities
+
 ## 🚀 Features
 - **PR #4**: Updated `main.py` to enhance application startup logging.
 
