@@ -8,7 +8,7 @@ def create_complete_sentiment_visualization():
     Create comprehensive sentiment trajectory visualization for all Reddit posts.
     Shows author sentiment vs replies sentiment over time for 9 selected posts across 3 categories.
     """
-    
+        
     posts_data = {
         'Positive 1 (Rust)': {
             'author_sentiment_trajectory': [0.4, -0.2, 0.3, 0.1, -0.1, 0.6, 0.2, 0.2, 0.2, 0.8, 0.1, 0.9, 0.7],
