@@ -7,9 +7,9 @@ The platform ingests ecosystem signals (GitHub, CVE/NVD, Reddit), enriches and c
 
 ## Quick Links
 
-- 🌐 **Live:** <https://releasetrain.io/>
-- 💻 **Client:** <https://github.com/SE4CPS/releasetrain-client>
-- 📋 **Project Board:** <https://github.com/orgs/SE4CPS/projects/24>
+-  **Live:** <https://releasetrain.io/>
+-  **Client:** <https://github.com/SE4CPS/releasetrain-client>
+-  **Project Board:** <https://github.com/orgs/SE4CPS/projects/24>
 
 ---
 
@@ -41,7 +41,7 @@ graph LR
     AZ["gpt-4o"] <--> RAG
   end
 
-  E <--> Agent["🤖 Agentic AI (LLM+API+DB+Rules)"]
+  E <--> Agent[" Agentic AI (LLM+API+DB+Rules)"]
   Agent <--> D
   Agent <--> F["f) Backend API (Express)"]
 
