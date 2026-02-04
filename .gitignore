@@ -6,6 +6,9 @@ __pycache__/
 *$py.class
 *.so
 
+!llm-abstain/
+!llm-abstain/*.py
+
 # ----------------------------
 # Virtual environments
 # ----------------------------
