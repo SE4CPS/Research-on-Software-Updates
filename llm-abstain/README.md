@@ -76,7 +76,7 @@ pip install -r requirements.txt
 pip install langchain-google-genai google-generativeai
 ```
 
-4️⃣ Set environment variable
+4️⃣ Set environment variable (file name .venv)
 ```bash
 setx GOOGLE_API_KEY "your_api_key_here"
 ```
