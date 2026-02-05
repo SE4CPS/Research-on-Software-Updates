@@ -12,8 +12,6 @@ LLM-Abstain uses **Google Gemini** models (Gemini Flash / Gemini Pro) via **Lang
 - Git
 - Gemini API Key:  
   https://ai.google.dev/
-- Gemini Models Overview:  
-  https://ai.google.dev/models/gemini
 - LangChain Google GenAI Integration:  
   https://python.langchain.com/docs/integrations/llms/google_genai/
 
