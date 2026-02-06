@@ -1,4 +1,4 @@
-# Agent Prototype
+# Initial Stage - Agent Prototype
 
 A LangChain-based AI agent that uses an Ollama LLM backend to process natural language queries and invoke tools to retrieve information.
 
