@@ -1,0 +1,29 @@
+# Render Blueprint: deploy API + static frontend
+# https://render.com/docs/blueprint-spec
+#
+# After first deploy, confirm VITE_API_URL matches your API service URL (Render shows it).
+# If the API URL changes, update VITE_API_URL on the static site and redeploy.
+
+services:
+  - type: web
+    name: releasehub-api
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: .
+    buildCommand: npm install
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+
+  - type: web
+    name: releasehub-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      # Replace with your API service URL after releasehub-api is created (no trailing slash)
+      - key: VITE_API_URL
+        sync: false

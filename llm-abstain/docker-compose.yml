@@ -1,0 +1,34 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      # Optional: Gemini phrasing (see README)
+      # GEMINI_API_KEY: ${GEMINI_API_KEY}
+      # GEMINI_MODEL: gemini-1.5-flash
+      # GEMINI_TIMEOUT_MS: "12000"
+      # Optional: Redis for last-prompts list
+      # REDIS_URL: redis://redis:6379
+    # depends_on:
+    #   - redis
+
+  # Optional Redis (uncomment in api environment + depends_on to use)
+  # redis:
+  #   image: redis:7-alpine
+  #   ports:
+  #     - "6379:6379"
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ""
+    ports:
+      - "8080:80"
+    depends_on:
+      - api

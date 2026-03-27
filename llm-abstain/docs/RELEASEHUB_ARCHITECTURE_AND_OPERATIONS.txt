@@ -1,0 +1,217 @@
+================================================================================
+RELEASEHUB — FULL SYSTEM ARCHITECTURE, TECH STACK, RATIONALE,
+PROBLEMS ENCOUNTERED, DEBUGGING & TROUBLESHOOTING
+================================================================================
+Document version: 1.0
+Repository: ReleaseHub (Node API + React UI + ReleaseTrain integration)
+================================================================================
+
+--------------------------------------------------------------------------------
+1. DOCKER — IS IT INCLUDED?
+--------------------------------------------------------------------------------
+
+Yes. The repository ships with container support for local and deployment-style
+runs:
+
+  • docker-compose.yml     — Orchestrates API + web (optional Redis commented)
+  • Dockerfile             — Root: Node 22 Alpine, runs Express API (port 3000)
+  • frontend/Dockerfile    — Multi-stage: Vite build → nginx:alpine (port 80)
+  • frontend/nginx.conf    — SPA routing; reverse proxy /answer and /api/* → api:3000
+
+Typical full stack (from repo root):
+
+  docker compose up --build
+
+  • Web UI:  http://localhost:8080  (browser hits same origin; nginx proxies API)
+  • API:     http://localhost:3000  (direct)
+
+Optional Redis: uncomment redis service and REDIS_URL in docker-compose.yml for
+last-prompt list and analytics event persistence (see section 5).
+
+Further detail: docs/DOCKER.md
+
+
+--------------------------------------------------------------------------------
+2. LLMs — ARE THEY IN THIS CODEBASE?
+--------------------------------------------------------------------------------
+
+Yes — the running ReleaseHub application can call Google Gemini for an optional
+phrasing layer when `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) is set.
+
+  • Root package.json dependencies include `@google/generative-ai` in addition
+    to core backend packages.
+  • Retrieval and decision logic remain deterministic: parse question → route
+    patch vs OS flow → fetch ReleaseTrain HTTP APIs → match documents.
+  • Gemini only rewrites successful answer text; it does not decide facts.
+  • If Gemini fails, times out, or misses required literals, fallback returns
+    the original deterministic answer text.
+
+The repo documents LLM safeguards in docs/GOOD_PRACTICES.md: ReleaseTrain as
+source of truth, timeout/fallback behavior, and API keys via environment vars.
+
+A separate research/README narrative (e.g. Streamlit + Gemini for formatting)
+describes an optional stack that is not wired into this Node/React ReleaseHub
+server code path.
+
+
+--------------------------------------------------------------------------------
+3. SYSTEM ARCHITECTURE (HIGH LEVEL)
+--------------------------------------------------------------------------------
+
+  [User] → React SPA (Vite build, optional Nginx in Docker)
+                │
+                │  POST /answer  { question | prompt | q }
+                │  GET  /api/*   (analytics, vendors, component proxy, debug)
+                ▼
+  [Express API]  src/server.js
+                │
+                ├── Intent & parsing
+                │     • parsePatchVendor (“patch for X …”)
+                │     • parseDateToYYYYMMDD (MM-DD-YYYY / MM/DD/YYYY)
+                │     • resolveVendorFromQuestion (vendor list + boundary-safe match)
+                │     • isOsVersionIntent / trivial-query guards → abstain if vague
+                │
+                ├── Patch flow → ReleaseTrain patch search (vendor / channel=patch)
+                ├── Linux-in-text flow → patch search for linux
+                │
+                └── OS flow → fetchOSComponents()
+                      → findOSByProductAndDate() → formatOSResponse()
+
+  [External] ReleaseTrain (public JSON)
+                • https://releasetrain.io/api/component?q=os
+                • https://releasetrain.io/api/v/search?… (patch channel, vendor q)
+                • https://releasetrain.io/api/c/names
+
+  [Optional] Redis
+                • Last prompts list; optional write-through list for analytics
+                  events (survives restart when configured)
+
+
+--------------------------------------------------------------------------------
+4. TECH STACK (WHAT AND WHY)
+--------------------------------------------------------------------------------
+
+Backend
+  • Node.js (ES modules) — Single runtime, native fetch, easy deploy.
+  • Express — Minimal HTTP routing for /answer and /api/*.
+  • redis (optional client) — Lightweight cache/lists without a full DB for demos.
+
+Frontend
+  • React — Component model for chat + sidebar + analytics panel.
+  • Vite — Fast dev server, production build; env VITE_API_URL for API origin.
+
+Container / edge
+  • Docker + Compose — Reproducible API + UI; nginx same-origin proxy avoids CORS
+    issues in the browser when VITE_API_URL is empty in the built image.
+
+Why not a database for core answers?
+  • Release data is authoritative from ReleaseTrain; duplicating it is out of scope
+    for this design. Analytics are in-memory with optional Redis backing for events.
+
+Why deterministic logic instead of LLM?
+  • Reduces hallucinated version numbers; abstains when evidence is missing;
+    aligns with “evidence-based” release intelligence goals.
+
+
+--------------------------------------------------------------------------------
+5. KEY API SURFACES (BACKEND)
+--------------------------------------------------------------------------------
+
+  POST /answer
+      Body: { "question": "..." } (also accepts prompt, q)
+      Returns: answer text, status (answer | abstain | error), version, vendor,
+      structured fields, optional _debugFormation in dev/debug scenarios.
+
+  GET /api/analytics/summary
+      In-memory (and optionally Redis-hydrated) event summary for dashboard KPIs.
+
+  GET /api/vendors
+      Proxies vendor names from ReleaseTrain /api/c/names.
+
+  GET /api/component?q=os
+      Fetches OS components (demo/proxy shape; not the main user Q&A path).
+
+  GET /api/debug/trace?question=…&fetch=1
+      Explains parsing branch and optionally calls ReleaseTrain (slow).
+
+
+--------------------------------------------------------------------------------
+6. PROBLEMS ENCOUNTERED, FIXES, AND LESSONS
+--------------------------------------------------------------------------------
+
+6.1 Vague or gibberish queries returning real OS data (e.g. “hhhh” → Flutter)
+    Cause:
+      • Intent was too loose (generic keywords like “version” / “release”).
+      • Vendor resolution used naive substring match (short tokens inside noise).
+      • Default product “android” plus findOSByProductAndDate fallback to the
+        first component when no row matched — Flutter tags include “android”.
+    Fix:
+      • Stricter isOsVersionIntent (vendor phrase / date / explicit OS terms).
+      • resolveVendorFromQuestion uses boundary-aware matching; longest vendor win.
+      • Early abstain for trivial repetition (same character repeated).
+      • findOSByProductAndDate returns null when no product match (no random doc).
+
+6.2 Off-topic text treated as OS intent
+    Tightened isOsVersionIntent so random English without OS/vendor/date does
+    not enter the OS pipeline → abstain.
+
+6.3 Patch queries and vendor list
+    Patch-for-vendor flows validate against /api/c/names; product-specific rules
+    (e.g. Linux vs non-Linux) documented in server comments and DATA_SCHEMA docs.
+
+6.4 Analytics and “today” semantics
+    Day keys use local calendar date (not only UTC ISO date) where required for
+    “today” KPIs and top vendors.
+
+6.5 Redis optional
+    Without REDIS_URL, last prompts and optional analytics persistence are skipped;
+    server still answers; logs may warn — not fatal.
+
+6.6 Deployment / git
+    Divergent histories with remote required explicit merge or force-with-lease
+    strategy; always coordinate before force-pushing shared branches.
+
+6.7 Docker / nginx
+    Nginx must proxy /answer and /api to the API service; invalid config lines
+    break container startup — validate nginx.conf after edits.
+
+
+--------------------------------------------------------------------------------
+7. DEBUGGING & TROUBLESHOOTING
+--------------------------------------------------------------------------------
+
+7.1 Environment
+    • Set DEBUG=1 when starting the API for verbose server logs (if implemented
+      in server.js console paths).
+    • Ensure frontend points to the API: VITE_API_URL or same-origin nginx proxy.
+
+7.2 Trace a single question
+    curl -s "http://localhost:3000/api/debug/trace?question=YOUR_TEXT"
+    Add &fetch=1 to include live ReleaseTrain counts (slower).
+
+7.3 Common failures
+    • 502 from /answer — ReleaseTrain down, network block, or thrown error in
+      fetch; check server stderr.
+    • Empty analytics — no events yet or Redis not connected; KPIs show zeros /
+      skeleton states in UI.
+    • CORS in dev — use Vite proxy or align origins; Docker UI uses nginx proxy.
+
+7.4 Docs index
+    • docs/DEBUGGING_DATA_EXTRACTION.md — parsing and branch selection
+    • docs/DATA_SCHEMA_OS.md, docs/DATA_SCHEMA_LINUX_PATCH.md — field shapes
+    • docs/SYSTEM_ARCHITECTURE_AND_TEST_PROMPTS.txt — test prompts & curl
+    • docs/DEPLOY.md — Render, Railway, Fly, VPS notes
+
+
+--------------------------------------------------------------------------------
+8. QUICK LOCAL RUN (NO DOCKER)
+--------------------------------------------------------------------------------
+
+  Terminal 1:  npm install && npm run dev     # API :3000
+  Terminal 2:  cd frontend && npm install && npm run dev
+               # optional frontend/.env: VITE_API_URL=http://localhost:3000
+
+
+================================================================================
+END OF DOCUMENT
+================================================================================
