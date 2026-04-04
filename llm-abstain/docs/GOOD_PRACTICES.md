@@ -1,10 +1,8 @@
 # Good practices — ReleaseHub
 
-## LLM / Gemini
+## LLM / Claude (when you add an LLM layer)
 
-**Implemented in this repo:** optional **Gemini phrasing** for `POST /answer` when `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) is set (see root `README.md`). Retrieval and abstain logic stay deterministic; the LLM only rewrites successful answer text, with **timeout + literal-check fallback** to the original string.
-
-These practices still apply if you extend the LLM (e.g. parsing) or add another provider.
+These apply if you integrate **Claude** or any other LLM for parsing or summarization.
 
 1. **Source of truth**  
    Never treat the model as authoritative for **version numbers**, **patch IDs**, **CVEs**, or **release dates**. Only values returned from **ReleaseTrain** (via your existing OS/patch logic) should be shown as factual product data.
@@ -16,13 +14,13 @@ These practices still apply if you extend the LLM (e.g. parsing) or add another 
    Prefer the LLM output as **structured JSON** (intent, vendor, date, normalized question) and then run your **deterministic** `parsePatchVendor` / `parseDateToYYYYMMDD` / `findOSByProductAndDate` path — or validate LLM output against your rules before calling ReleaseTrain.
 
 4. **Timeouts**  
-   Set a **hard timeout** (e.g. 10–30s) on calls to Gemini (or any LLM API). On timeout or HTTP errors, **fall back** to rule-based parsing and `POST /answer` behavior without the LLM.
+   Set a **hard timeout** (e.g. 10–30s) on calls to Anthropic (or any LLM API). On timeout or HTTP errors, **fall back** to rule-based parsing and `POST /answer` behavior without the LLM.
 
 5. **Fallback**  
    If the LLM returns invalid JSON or empty fields, **fall back** to the user’s raw question through the existing non-LLM pipeline.
 
 6. **Secrets**  
-   Store `GEMINI_API_KEY` / `GOOGLE_API_KEY` (or equivalent) in **environment variables** or a secrets manager. **Never** commit API keys to git. Add `.env` to `.gitignore` if you use local env files.
+   Store `ANTHROPIC_API_KEY` (or equivalent) in **environment variables** or a secrets manager. **Never** commit API keys to git. Add `.env` to `.gitignore` if you use local env files.
 
 7. **Privacy & compliance**  
    Sending user questions to a third-party API may include **PII or confidential text**. Document this in your README; offer an **on-device / local model** option if required.

@@ -1,10 +1,4 @@
-/**
- * Data schema for OS components from ReleaseTrain.
- * API: https://releasetrain.io/api/component?q=os
- *
- * In versionSearchTags, the first value of the array contains the "os" keyword.
- * Example: ["os", "android", "production", "2025[29]0213", "16.0.0"]
- */
+
 export const OS_COMPONENT_SCHEMA = {
   _id: String,
   versionId: String,
@@ -25,7 +19,6 @@ export const OS_COMPONENT_SCHEMA = {
   versionPredictedComponentType: String,
   classification: Object,
 };
-
 /**
  * Shape response for "What is the version of OS Android on 2-02-2026?"
  * - Main: versionNumber (last value, e.g. last segment or full "16.0.0")
@@ -33,22 +26,30 @@ export const OS_COMPONENT_SCHEMA = {
  */
 export function formatOSResponse(doc) {
   if (!doc) return null;
+
   const versionNumber = doc.versionNumber ?? '';
-  // Main display: versionNumber (full). "Slice the last value" = optional last segment, e.g. "16.0.0" -> "0"
-  const segments = versionNumber.split('.');
-  const lastValue = segments.length > 1 ? segments.pop() : versionNumber;
+  const segments = String(versionNumber).split('.');
+  const lastValue =
+    segments.length > 1 ? segments[segments.length - 1] : versionNumber;
+
   return {
     main: versionNumber,
     lastValue,
-    versionNumber: versionNumber,
+    versionNumber,
     additional: {
+      versionProductName: doc.versionProductName ?? '',
+      productType: doc.versionProductType ?? '',
+      versionNumber,
+      releaseNoteUrl: doc.versionReleaseNotes ?? '',
+      releaseDate: doc.versionReleaseDate ?? '',
+      releaseType: doc.versionReleaseChannel ?? '',
       versionReleaseNotes: doc.versionReleaseNotes ?? '',
       versionProductLicense: doc.versionProductLicense ?? '',
     },
     raw: {
-      versionProductName: doc.versionProductName,
-      versionReleaseDate: doc.versionReleaseDate,
-      versionSearchTags: doc.versionSearchTags,
+      versionProductName: doc.versionProductName ?? '',
+      versionReleaseDate: doc.versionReleaseDate ?? '',
+      versionSearchTags: doc.versionSearchTags ?? [],
     },
   };
 }

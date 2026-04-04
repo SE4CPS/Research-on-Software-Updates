@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const API_BASE = 'http://127.0.0.1:3001';
 const MAX_CHAT_ITEMS = 3;
 const VENDORS_API = `${API_BASE}/api/vendors`;
 const ANALYTICS_BASE = `${API_BASE}/api/analytics/summary`;
@@ -36,10 +36,12 @@ function cleanRedundantAnswerText(rawAnswer, structured) {
   const hasVersion = Boolean(structured?.version);
   const hasUrl = Boolean(structured?.url);
   const hasNotes = Boolean(structured?.notes);
+
   const lines = text
     .split('\n')
     .map((l) => l.trim())
     .filter(Boolean);
+
   const filtered = lines.filter((line) => {
     if (hasVersion && /^patch\s*version\s*:/i.test(line)) return false;
     if (hasVersion && /^version\s*:/i.test(line)) return false;
@@ -47,24 +49,8 @@ function cleanRedundantAnswerText(rawAnswer, structured) {
     if (hasNotes && /^release\s*notes?\s*:/i.test(line)) return false;
     return true;
   });
-  return filtered.join('\n').trim();
-}
 
-function buildDebugView(rawResponse) {
-  const sourceUrl = rawResponse?.sourceUrl || rawResponse?.additional?.versionUrl || '';
-  const versionSearchTags = Array.isArray(rawResponse?.versionSearchTags)
-    ? rawResponse.versionSearchTags
-    : [];
-  const vendor = String(rawResponse?.vendor || '').trim() || 'Unknown';
-  const status = String(rawResponse?.status || '').trim() || 'unknown';
-  const isVendorFound = Number(rawResponse?.isVendorFound) === 1 ? 1 : 0;
-  return {
-    sourceUrl,
-    versionSearchTags,
-    vendor,
-    status,
-    isVendorFound,
-  };
+  return filtered.join('\n').trim();
 }
 
 export default function App() {
@@ -81,6 +67,7 @@ export default function App() {
   const [aboutPanelOpen, setAboutPanelOpen] = useState(true);
   const [vendorsPanelOpen, setVendorsPanelOpen] = useState(true);
   const [queryTipsPanelOpen, setQueryTipsPanelOpen] = useState(true);
+
   const todayTopVendors = buildTodayTopVendors(analytics?.recent);
   const todayTopVendorMax = todayTopVendors.length > 0
     ? Math.max(...todayTopVendors.map((v) => v.count), 1)
@@ -108,12 +95,14 @@ export default function App() {
 
   useEffect(() => {
     let cancelled = false;
+
     async function loadList(url) {
       const res = await fetch(url);
       if (!res.ok) return null;
       const data = await res.json();
       return Array.isArray(data) ? data : (data?.names ?? data?.data ?? []);
     }
+
     (async () => {
       try {
         let list = await loadList(VENDORS_API);
@@ -131,17 +120,23 @@ export default function App() {
         if (!cancelled) setVendorsLoading(false);
       }
     })();
-    return () => { cancelled = true; };
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
     let mounted = true;
+
     (async () => {
       if (mounted) await loadAnalytics();
     })();
+
     const interval = setInterval(() => {
       if (mounted) loadAnalytics();
     }, 30000);
+
     return () => {
       mounted = false;
       clearInterval(interval);
@@ -160,8 +155,9 @@ export default function App() {
       const res = await fetch(`${API_BASE}/answer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: trimmed })
+        body: JSON.stringify({ question: trimmed }),
       });
+
       if (!res.ok) {
         let detail = '';
         try {
@@ -173,38 +169,55 @@ export default function App() {
             const t = await res.text();
             if (t && t.length < 200) detail = ` — ${t.slice(0, 200)}`;
           } catch {
-            /* ignore */
+            // ignore
           }
         }
         throw new Error(`Backend error: ${res.status}${detail}`);
       }
+
       const data = await res.json();
-      const structured = {
+
+     
+
+      const isMultiRecord = Array.isArray(data.records) && data.records.length > 0;
+
+const structured = isMultiRecord
+  ? {
+      mode: 'records',
+      records: data.records,
+      answer: data.answer || '',
+      vendor: data.vendor || '',
+    }
+  : {
+      mode: 'single',
+      version: data.version || data.main || '',
+      vendor: data.vendor || data.additional?.vendorName || '',
+      notes: data.additional?.versionReleaseNotes || '',
+      license: data.additional?.versionProductLicense || '',
+      url: data.sourceUrl || data.additional?.versionUrl || data.additional?.releaseNoteUrl || '',
+      releaseDate: data.additional?.releaseDate || '',
+      releaseType: data.additional?.releaseType || '',
+      answer: cleanRedundantAnswerText(data.answer, {
         version: data.version || data.main || '',
-        vendor: data.vendor || '',
+        url: data.sourceUrl || data.additional?.versionUrl || data.additional?.releaseNoteUrl || '',
         notes: data.additional?.versionReleaseNotes || '',
-        license: data.additional?.versionProductLicense || '',
-        url: data.additional?.versionUrl || '',
-      };
-      const entry = {
-        prompt: trimmed,
-        response: {
-          answer: cleanRedundantAnswerText(data.answer, structured),
-          version: structured.version,
-          vendor: structured.vendor,
-          notes: structured.notes,
-          license: structured.license,
-          url: structured.url,
-        },
-        rawResponse: data
-      };
+      }),
+    };
+
+const entry = {
+  prompt: trimmed,
+  response: structured,
+  rawResponse: data,
+};
+
+
       setChat((prev) => [...prev, entry].slice(-MAX_CHAT_ITEMS));
       await loadAnalytics();
     } catch (e) {
       setError(e.message || 'Unexpected error.');
       setChat((prev) => [
         ...prev,
-        { prompt: trimmed, response: null, error: e.message, rawResponse: null }
+        { prompt: trimmed, response: null, error: e.message, rawResponse: null },
       ].slice(-MAX_CHAT_ITEMS));
     } finally {
       setLoading(false);
@@ -246,6 +259,7 @@ export default function App() {
               </div>
             </details>
           </div>
+
           <div className="nav-sidebar-section">
             <h2 className="nav-sidebar-title nav-sidebar-title-yellow">ANALYTICS DASHBOARD</h2>
             <div
@@ -263,6 +277,7 @@ export default function App() {
                     </span>
                   </div>
                 ) : null}
+
                 {!analytics && analyticsLoading ? (
                   <div className="dashboard-kpi-grid dashboard-kpi-grid-2x2" aria-hidden>
                     {[
@@ -300,42 +315,41 @@ export default function App() {
                     <p className="nav-vendors-empty">Analytics unavailable. Check API and try Refresh.</p>
                   </>
                 ) : (
-                  <>
-                    <div className="dashboard-kpi-grid dashboard-kpi-grid-2x2">
-                      <div className="dashboard-kpi-card dashboard-kpi-card--answer dashboard-kpi-card--static">
-                        <span className="dashboard-kpi-card-label">Queries answered</span>
-                        <span className="dashboard-kpi-card-value">
-                          {analytics.queriesAnswered ?? analytics.respondedCount ?? 0}
-                        </span>
-                        <span className="dashboard-kpi-card-hint">Answer responses</span>
-                      </div>
-                      <div className="dashboard-kpi-card dashboard-kpi-card--abstain dashboard-kpi-card--static">
-                        <span className="dashboard-kpi-card-label">Abstain responses</span>
-                        <span className="dashboard-kpi-card-value">
-                          {analytics.queriesAbstain ?? analytics.abstainCountKpi ?? 0}
-                        </span>
-                        <span className="dashboard-kpi-card-hint">Abstain / I don&apos;t know</span>
-                      </div>
-                      <div className="dashboard-kpi-card dashboard-kpi-card--patch dashboard-kpi-card--static">
-                        <span className="dashboard-kpi-card-label">Patch-related queries</span>
-                        <span className="dashboard-kpi-card-value">{analytics.patchQueryCount ?? 0}</span>
-                        <span className="dashboard-kpi-card-hint">Patch flow</span>
-                      </div>
-                      <div className="dashboard-kpi-card dashboard-kpi-card--os dashboard-kpi-card--static">
-                        <span className="dashboard-kpi-card-label">OS version queries</span>
-                        <span className="dashboard-kpi-card-value">
-                          {analytics.osVersionQueryCount ?? analytics.osQueryCount ?? 0}
-                        </span>
-                        <span className="dashboard-kpi-card-hint">OS / versions flow</span>
-                      </div>
+                  <div className="dashboard-kpi-grid dashboard-kpi-grid-2x2">
+                    <div className="dashboard-kpi-card dashboard-kpi-card--answer dashboard-kpi-card--static">
+                      <span className="dashboard-kpi-card-label">Queries answered</span>
+                      <span className="dashboard-kpi-card-value">
+                        {analytics.queriesAnswered ?? analytics.respondedCount ?? 0}
+                      </span>
+                      <span className="dashboard-kpi-card-hint">Answer responses</span>
                     </div>
-                  </>
+                    <div className="dashboard-kpi-card dashboard-kpi-card--abstain dashboard-kpi-card--static">
+                      <span className="dashboard-kpi-card-label">Abstain responses</span>
+                      <span className="dashboard-kpi-card-value">
+                        {analytics.queriesAbstain ?? analytics.abstainCountKpi ?? 0}
+                      </span>
+                      <span className="dashboard-kpi-card-hint">Abstain / I don&apos;t know</span>
+                    </div>
+                    <div className="dashboard-kpi-card dashboard-kpi-card--patch dashboard-kpi-card--static">
+                      <span className="dashboard-kpi-card-label">Patch-related queries</span>
+                      <span className="dashboard-kpi-card-value">{analytics.patchQueryCount ?? 0}</span>
+                      <span className="dashboard-kpi-card-hint">Patch flow</span>
+                    </div>
+                    <div className="dashboard-kpi-card dashboard-kpi-card--os dashboard-kpi-card--static">
+                      <span className="dashboard-kpi-card-label">OS version queries</span>
+                      <span className="dashboard-kpi-card-value">
+                        {analytics.osVersionQueryCount ?? analytics.osQueryCount ?? 0}
+                      </span>
+                      <span className="dashboard-kpi-card-hint">OS / versions flow</span>
+                    </div>
+                  </div>
                 )}
               </div>
 
-                  {analytics ? (
-                    <section className="dashboard-section-block dashboard-insights-block" aria-label="Dashboard insights">
+              {analytics ? (
+                <section className="dashboard-section-block dashboard-insights-block" aria-label="Dashboard insights">
                   <div className="dashboard-block-title">TOP 3 VENDORS</div>
+
                   {todayTopVendors.length > 0 && (
                     <div className="dashboard-chart-block">
                       <ul className="dashboard-hbar-list">
@@ -358,6 +372,7 @@ export default function App() {
                       </ul>
                     </div>
                   )}
+
                   {(analytics.topReasons || []).length > 0 && (
                     <div className="dashboard-chart-block">
                       <div className="dashboard-chart-title">Abstain reasons</div>
@@ -371,6 +386,7 @@ export default function App() {
                       </ul>
                     </div>
                   )}
+
                   {(analytics.recent || []).length > 0 && (
                     <details className="dashboard-recent">
                       <summary className="dashboard-recent-summary">Recent events</summary>
@@ -388,19 +404,18 @@ export default function App() {
                       </ul>
                     </details>
                   )}
-                    </section>
-                  ) : null}
+                </section>
+              ) : null}
             </div>
           </div>
+
           <div className="nav-sidebar-section">
             <details
               className="nav-vendors-collapsible"
               open={vendorsPanelOpen}
               onToggle={(e) => setVendorsPanelOpen(e.currentTarget.open)}
             >
-              <summary className="nav-vendors-collapsible-summary">
-                System Vendors
-              </summary>
+              <summary className="nav-vendors-collapsible-summary">System Vendors</summary>
               <div className="nav-vendors-collapsible-body">
                 {vendorsLoading ? (
                   <p className="nav-vendors-loading">Loading…</p>
@@ -418,6 +433,7 @@ export default function App() {
               </div>
             </details>
           </div>
+
           <div className="nav-sidebar-section">
             <details
               className="nav-tips-collapsible"
@@ -427,16 +443,16 @@ export default function App() {
               <summary className="nav-tips-collapsible-summary">Query Tips</summary>
               <div className="nav-tips-collapsible-body">
                 <ol className="nav-vendors-list nav-numbered-list" aria-label="Query tips">
-                  <li className="nav-vendor-item">
-                    <strong className="nav-tip-label">For updates:</strong> use dates as MM-DD-YYYY.
-                  </li>
-                  <li className="nav-vendor-item">
-                    <strong className="nav-tip-label">For Patches:</strong> use wording like patch for Linux on 02-14-2026.
-                  </li>
-                  <li className="nav-vendor-item">
-                    <strong className="nav-tip-label">For Operating Systems:</strong> include product names like Android, iOS, Windows, or linux-dist.
-                  </li>
-                </ol>
+  <li className="nav-vendor-item">
+    <strong className="nav-tip-label">For patch details:</strong> use wording like patch details for Chrome on 2026-04-03.
+  </li>
+  <li className="nav-vendor-item">
+    <strong className="nav-tip-label">For platforms:</strong> you can also ask for tags like mac, ios, or linux when they exist in release tags.
+  </li>
+  <li className="nav-vendor-item">
+    <strong className="nav-tip-label">For Operating Systems:</strong> include product names like Android, iOS, Windows, or linux-dist.
+  </li>
+</ol>
               </div>
             </details>
           </div>
@@ -474,85 +490,149 @@ export default function App() {
                   <p className="chat-prompt-text">{entry.prompt}</p>
                 </div>
               </div>
+
               <div className="chat-response-free">
                 <span className="chat-response-label">Release Master</span>
-                {entry.error ? (
-                  <p className="chat-response-error">{entry.error}</p>
-                ) : entry.response ? (
-                  <div className="chat-response-card">
-                    <div className="chat-main-answer">
-                      <span className="chat-main-answer-label">Main Answer</span>
-                      <p className="chat-main-answer-value">{entry.response.version || entry.response.answer}</p>
-                    </div>
-                    <p className="chat-response-text">{entry.response.answer}</p>
-                    <dl className="chat-response-meta">
-                      {entry.response.version && (
-                        <>
-                          <dt>Version:</dt>
-                          <dd>{entry.response.version}</dd>
-                        </>
-                      )}
-                      {entry.response.url && (
-                        <>
-                          <dt className="chat-response-meta-newline">Details:</dt>
-                          <dd>
-                            <a href={entry.response.url} target="_blank" rel="noreferrer">
-                              {entry.response.url}
-                            </a>
-                          </dd>
-                        </>
-                      )}
-                      {entry.response.notes && (
-                        <>
-                          <dt className="chat-response-meta-newline">Release notes:</dt>
-                          <dd>
-                            {entry.response.notes.startsWith('http') ? (
-                              <a href={entry.response.notes} target="_blank" rel="noreferrer">
-                                {entry.response.notes}
-                              </a>
-                            ) : (
-                              <span className="chat-response-notes-text">{entry.response.notes}</span>
-                            )}
-                          </dd>
-                        </>
-                      )}
-                      {entry.response.license && (
-                        <>
-                          <dt>License</dt>
-                          <dd>{entry.response.license}</dd>
-                        </>
-                      )}
-                    </dl>
-                  </div>
-                ) : null}
+
+               {entry.error ? (
+  <p className="chat-response-error">{entry.error}</p>
+) : entry.response ? (
+  entry.response.mode === 'records' ? (
+    <div className="chat-response-card">
+      <div className="chat-main-answer">
+        <span className="chat-main-answer-label">Number of Records</span>
+        <p className="chat-main-answer-value">{entry.response.records.length}</p>
+      </div>
+
+      {entry.response.records.map((record) => (
+        <div key={record.index} className="chat-response-record">
+          <p className="chat-response-text"><strong>#{record.index}</strong></p>
+
+          <dl className="chat-response-meta">
+            {record.versionProductName && (
+              <>
+                <dt>Vendor:</dt>
+                <dd>{record.versionProductName}</dd>
+              </>
+            )}
+
+            {record.versionNumber && (
+              <>
+                <dt>Version:</dt>
+                <dd>{record.versionNumber}</dd>
+              </>
+            )}
+
+            {record.releaseDate && (
+              <>
+                <dt>Release date:</dt>
+                <dd>{record.releaseDate}</dd>
+              </>
+            )}
+
+            {record.releaseType && (
+              <>
+                <dt>Release type:</dt>
+                <dd>{record.releaseType}</dd>
+              </>
+            )}
+
+            {record.releaseNoteUrl && (
+              <>
+                <dt className="chat-response-meta-newline">Release notes:</dt>
+                <dd>
+                  {String(record.releaseNoteUrl).startsWith('http') ? (
+                    <a href={record.releaseNoteUrl} target="_blank" rel="noreferrer">
+                      {record.releaseNoteUrl}
+                    </a>
+                  ) : (
+                    <span className="chat-response-notes-text">{record.releaseNoteUrl}</span>
+                  )}
+                </dd>
+              </>
+            )}
+          </dl>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="chat-response-card">
+      <div className="chat-main-answer">
+        <span className="chat-main-answer-label">Latest Version</span>
+        <p className="chat-main-answer-value">{entry.response.version || entry.response.answer}</p>
+      </div>
+
+      <p className="chat-response-text">{entry.response.answer}</p>
+
+      <dl className="chat-response-meta">
+        {entry.response.version && (
+          <>
+            <dt>Version:</dt>
+            <dd>{entry.response.version}</dd>
+          </>
+        )}
+
+        {entry.response.releaseDate && (
+          <>
+            <dt>Release date:</dt>
+            <dd>{entry.response.releaseDate}</dd>
+          </>
+        )}
+
+        {entry.response.releaseType && (
+          <>
+            <dt>Release type:</dt>
+            <dd>{entry.response.releaseType}</dd>
+          </>
+        )}
+
+        {entry.response.url && (
+          <>
+            <dt className="chat-response-meta-newline">Details:</dt>
+            <dd>
+              <a href={entry.response.url} target="_blank" rel="noreferrer">
+                {entry.response.url}
+              </a>
+            </dd>
+          </>
+        )}
+
+        {entry.response.notes && (
+          <>
+            <dt className="chat-response-meta-newline">Release notes:</dt>
+            <dd>
+              {String(entry.response.notes).startsWith('http') ? (
+                <a href={entry.response.notes} target="_blank" rel="noreferrer">
+                  {entry.response.notes}
+                </a>
+              ) : (
+                <span className="chat-response-notes-text">{entry.response.notes}</span>
+              )}
+            </dd>
+          </>
+        )}
+
+        {entry.response.license && (
+          <>
+            <dt>License:</dt>
+            <dd>{entry.response.license}</dd>
+          </>
+        )}
+      </dl>
+    </div>
+  )
+) : null}
+
                 {showDebug && entry.rawResponse != null && (
                   <details className="chat-debug-details">
-                    <summary className="chat-debug-summary">Debug details</summary>
-                    {(() => {
-                      const debugView = buildDebugView(entry.rawResponse);
-                      return (
-                        <div className="chat-debug-pre">
-                          <p><strong>Source API:</strong>{' '}
-                            {debugView.sourceUrl ? (
-                              <a href={debugView.sourceUrl} target="_blank" rel="noreferrer">
-                                {debugView.sourceUrl}
-                              </a>
-                            ) : (
-                              <span>N/A</span>
-                            )}
-                          </p>
-                          <p><strong>versionSearchTags:</strong> {debugView.versionSearchTags.length > 0 ? debugView.versionSearchTags.join(', ') : '[]'}</p>
-                          <p><strong>Vendor:</strong> {debugView.vendor}</p>
-                          <p><strong>Status:</strong> {debugView.status}</p>
-                          <p><strong>isVendorFound:</strong> {debugView.isVendorFound}</p>
-                        </div>
-                      );
-                    })()}
+                    <summary className="chat-debug-summary">Debug: raw response</summary>
+                    <pre className="chat-debug-pre">{JSON.stringify(entry.rawResponse, null, 2)}</pre>
                   </details>
                 )}
               </div>
             </div>
           ))}
+
           {loading && (
             <div className="chat-exchange">
               <div className="chat-prompt">
@@ -594,6 +674,7 @@ export default function App() {
               {loading ? '…' : 'Ask'}
             </button>
           </div>
+
           <div className="example-row">
             <label className="example-pill chat-debug-toggle">
               <input
@@ -604,6 +685,8 @@ export default function App() {
               <span>Debug response</span>
             </label>
           </div>
+
+          {error ? <p className="chat-response-error">{error}</p> : null}
         </section>
       </main>
     </div>

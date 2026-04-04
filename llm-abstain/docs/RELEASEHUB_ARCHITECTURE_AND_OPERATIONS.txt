@@ -35,19 +35,19 @@ Further detail: docs/DOCKER.md
 2. LLMs — ARE THEY IN THIS CODEBASE?
 --------------------------------------------------------------------------------
 
-Yes — the running ReleaseHub application can call Google Gemini for an optional
-phrasing layer when `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) is set.
+No — the running ReleaseHub application does NOT call OpenAI, Anthropic, Google
+Gemini, or any other LLM API.
 
-  • Root package.json dependencies include `@google/generative-ai` in addition
-    to core backend packages.
-  • Retrieval and decision logic remain deterministic: parse question → route
-    patch vs OS flow → fetch ReleaseTrain HTTP APIs → match documents.
-  • Gemini only rewrites successful answer text; it does not decide facts.
-  • If Gemini fails, times out, or misses required literals, fallback returns
-    the original deterministic answer text.
+  • Root package.json dependencies: express, redis only.
+  • Answers are produced by deterministic logic: parse question → route patch
+    vs OS flow → fetch ReleaseTrain HTTP APIs → match documents → format JSON.
+  • Abstention (“I don’t know…”) is rule-based when intent is unclear, vendor or
+    patch evidence is missing, or APIs fail.
 
-The repo documents LLM safeguards in docs/GOOD_PRACTICES.md: ReleaseTrain as
-source of truth, timeout/fallback behavior, and API keys via environment vars.
+The repo includes docs/GOOD_PRACTICES.md with guidance for *if* you later add
+an LLM (e.g. optional phrasing layer): never treat the model as source of truth
+for version numbers; ground output in ReleaseTrain; timeouts and fallbacks;
+secrets in env vars — not in images.
 
 A separate research/README narrative (e.g. Streamlit + Gemini for formatting)
 describes an optional stack that is not wired into this Node/React ReleaseHub
