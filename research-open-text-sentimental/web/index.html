@@ -3,303 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Sentiment Trajectory Analysis</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <title>Comparative VADER Sentiment Dashboard</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top, #1a1a1a 0%, #0a0a0a 55%, #000 100%);
+            color: #fde68a;
         }
-
         .container {
-            max-width: 1400px;
+            max-width: 1320px;
             margin: 0 auto;
             padding: 20px;
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .hero {
+            background: linear-gradient(135deg, #111 0%, #1c1c1c 50%, #2b2b2b 100%);
+            color: #fde68a;
+            padding: 22px;
+            border-radius: 14px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+            margin-bottom: 18px;
+            border: 2px solid #facc15;
         }
-
-        .header h1 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            font-weight: 300;
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 1.9rem;
+            font-weight: 700;
         }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
+        .hero p {
+            margin: 0;
+            opacity: 0.95;
         }
-
-        .chart-section {
-            background: white;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .toolbar {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(160px, 1fr));
+            gap: 10px;
+            background: #111;
+            border-radius: 12px;
+            padding: 12px;
+            border: 2px solid #facc15;
+            box-shadow: inset 0 0 0 1px #3a3a3a;
+            margin-bottom: 18px;
+        }
+        .field label {
+            display: block;
+            font-size: 0.8rem;
+            color: #facc15;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .field select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #facc15;
+            border-radius: 8px;
+            background: #1b1b1b;
+            color: #fef08a;
+        }
+        .section-title {
+            margin: 4px 0 10px;
+            font-size: 1.2rem;
+            color: #fde68a;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 14px;
+        }
+        .card {
+            background: #101010;
+            border: 2px solid #facc15;
+            border-radius: 12px;
             overflow: hidden;
-        }
-
-        .chart-header {
-            background: #f8f9fa;
-            padding: 20px;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .chart-header h2 {
-            color: #495057;
-            font-size: 1.4em;
-            margin-bottom: 5px;
-        }
-
-        .chart-header p {
-            color: #6c757d;
-            font-size: 0.9em;
-        }
-
-        .chart-container {
-            position: relative;
-            height: 500px;
-            padding: 20px;
-        }
-
-        .sentiment-zones {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .zone {
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8em;
-            font-weight: 500;
-            margin-bottom: 5px;
-            opacity: 0.8;
-        }
-
-        .zone.positive {
-            background-color: rgba(144, 238, 144, 0.7);
-            color: #2d5a2d;
-        }
-
-        .zone.neutral {
-            background-color: rgba(211, 211, 211, 0.7);
-            color: #555;
-        }
-
-        .zone.negative {
-            background-color: rgba(255, 182, 193, 0.7);
-            color: #8b0000;
-        }
-
-        .controls {
-            background: #f8f9fa;
-            padding: 15px 20px;
-            border-top: 1px solid #e9ecef;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.32), inset 0 0 0 1px #3a3a3a;
             display: flex;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
+            flex-direction: column;
         }
-
-        .control-group {
+        .card-head {
+            padding: 12px 14px;
+            background: #181818;
+            border-bottom: 1px solid #facc15;
+        }
+        .card-head h3 {
+            margin: 0 0 4px;
+            font-size: 1rem;
+            color: #fef08a;
+        }
+        .meta {
+            font-size: 0.78rem;
+            color: #facc15;
+            font-weight: 600;
+        }
+        .card-body {
+            padding: 12px;
+        }
+        .viz {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #facc15;
+            cursor: zoom-in;
+            background: #000;
+        }
+        .caption {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #fde68a;
+            line-height: 1.45;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 999px;
+            margin-right: 6px;
+            margin-top: 4px;
+            background: #000;
+            color: #facc15;
+            border: 1px solid #facc15;
+            font-weight: 600;
+        }
+        .footer-note {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: #facc15;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 24, 39, 0.85);
+            z-index: 999;
+            padding: 18px;
+        }
+        .modal.open { display: block; }
+        .modal-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 2px solid #facc15;
+            border-radius: 12px;
+            padding: 10px;
+            background: #111;
+        }
+        .modal-top {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
+            color: #fff;
+            margin-bottom: 10px;
+            gap: 12px;
         }
-
-        .control-group label {
-            font-size: 0.9em;
-            color: #495057;
-            font-weight: 500;
+        .modal-top h4 {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.35;
+            color: #fde68a;
         }
-
-        .control-group select,
-        .control-group input {
-            padding: 5px 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-
-        .btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
+        .close-btn {
+            border: 1px solid #facc15;
+            background: transparent;
+            color: #facc15;
+            border-radius: 8px;
+            padding: 6px 10px;
             cursor: pointer;
-            font-size: 0.9em;
-            transition: background-color 0.2s;
         }
-
-        .btn:hover {
-            background: #0056b3;
+        #modalImage {
+            width: 100%;
+            border-radius: 10px;
+            background: #000;
+            border: 1px solid #facc15;
         }
-
-        .btn.secondary {
-            background: #6c757d;
-        }
-
-        .btn.secondary:hover {
-            background: #545b62;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #6c757d;
-        }
-
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 4px;
-            margin: 20px;
-            border: 1px solid #f5c6cb;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
-            .chart-container {
-                height: 400px;
-                padding: 10px;
-            }
-            
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .control-group {
-                justify-content: space-between;
-            }
+        @media (max-width: 900px) {
+            .toolbar { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Enhanced Sentiment Trajectory Analysis</h1>
-            <p>Author vs Community Comments - Quality-Filtered Posts with Reliability Metrics</p>
-        </div>
+        <header class="hero">
+            <h1>Comparative VADER Sentiment Dashboard</h1>
+            <p>
+                Interactive review of baseline and improved methods across
+                <strong>minScore=0.5</strong> and <strong>maxScore=0.5</strong> endpoint datasets.
+            </p>
+        </header>
 
-        <div id="loading" class="loading">
-            <h3>Loading sentiment data...</h3>
-            <p>Please wait while we process the Reddit post analysis.</p>
-        </div>
-
-        <div id="error" class="error" style="display: none;">
-            <h4>Error Loading Data</h4>
-            <p id="error-message"></p>
-        </div>
-
-        <div id="charts-container" style="display: none;">
-            <!-- Positive Posts Chart -->
-            <div class="chart-section">
-                <div class="chart-header">
-                    <h2>Positive Posts</h2>
-                    <p>Sentiment trajectories for posts with positive sentiment scores</p>
-                </div>
-                <div class="chart-container">
-                    <div class="sentiment-zones">
-                        <div class="zone positive">Positive Zone</div>
-                        <div class="zone neutral">Neutral Zone</div>
-                        <div class="zone negative">Negative Zone</div>
-                    </div>
-                    <canvas id="positiveChart"></canvas>
-                </div>
-                <div class="controls">
-                    <div class="control-group">
-                        <label for="positiveFilter">Show Posts:</label>
-                        <select id="positiveFilter" multiple>
-                        </select>
-                    </div>
-                    <button class="btn" onclick="resetZoom('positiveChart')">Reset Zoom</button>
-                    <button class="btn secondary" onclick="toggleLegend('positiveChart')">Toggle Legend</button>
-                </div>
+        <section class="toolbar">
+            <div class="field">
+                <label for="endpointFilter">Endpoint Scope</label>
+                <select id="endpointFilter">
+                    <option value="all">All</option>
+                    <option value="min">minScore_0.5 only</option>
+                    <option value="max">maxScore_0.5 only</option>
+                </select>
             </div>
-
-            <!-- Negative Posts Chart -->
-            <div class="chart-section">
-                <div class="chart-header">
-                    <h2>Negative Posts</h2>
-                    <p>Sentiment trajectories for posts with negative sentiment scores</p>
-                </div>
-                <div class="chart-container">
-                    <div class="sentiment-zones">
-                        <div class="zone positive">Positive Zone</div>
-                        <div class="zone neutral">Neutral Zone</div>
-                        <div class="zone negative">Negative Zone</div>
-                    </div>
-                    <canvas id="negativeChart"></canvas>
-                </div>
-                <div class="controls">
-                    <div class="control-group">
-                        <label for="negativeFilter">Show Posts:</label>
-                        <select id="negativeFilter" multiple>
-                        </select>
-                    </div>
-                    <button class="btn" onclick="resetZoom('negativeChart')">Reset Zoom</button>
-                    <button class="btn secondary" onclick="toggleLegend('negativeChart')">Toggle Legend</button>
-                </div>
+            <div class="field">
+                <label for="kindFilter">Visualization Type</label>
+                <select id="kindFilter">
+                    <option value="all">All</option>
+                    <option value="trend">Trend</option>
+                    <option value="label">Label Distribution</option>
+                </select>
             </div>
-
-            <!-- Neutral Posts Chart -->
-            <div class="chart-section">
-                <div class="chart-header">
-                    <h2>Neutral Posts</h2>
-                    <p>Sentiment trajectories for posts with neutral sentiment scores</p>
-                </div>
-                <div class="chart-container">
-                    <div class="sentiment-zones">
-                        <div class="zone positive">Positive Zone</div>
-                        <div class="zone neutral">Neutral Zone</div>
-                        <div class="zone negative">Negative Zone</div>
-                    </div>
-                    <canvas id="neutralChart"></canvas>
-                </div>
-                <div class="controls">
-                    <div class="control-group">
-                        <label for="neutralFilter">Show Posts:</label>
-                        <select id="neutralFilter" multiple>
-                        </select>
-                    </div>
-                    <button class="btn" onclick="resetZoom('neutralChart')">Reset Zoom</button>
-                    <button class="btn secondary" onclick="toggleLegend('neutralChart')">Toggle Legend</button>
-                </div>
+            <div class="field">
+                <label for="methodFilter">Method Scope</label>
+                <select id="methodFilter">
+                    <option value="all">All</option>
+                    <option value="baseline">Baseline Combined-Text Method</option>
+                    <option value="engagement">Per-Comment Aggregation (High-Engagement Sample)</option>
+                    <option value="random">Per-Comment Aggregation (Random Sample)</option>
+                    <option value="compare">Formal Comparative Plots (v1 vs v2)</option>
+                </select>
             </div>
+        </section>
+
+        <h2 class="section-title">Visual Storyboard</h2>
+        <section class="grid" id="dashboardGrid"></section>
+
+        <p class="footer-note">
+            Tip: Click any visualization to open it in a larger view.
+        </p>
+    </div>
+
+    <div class="modal" id="imageModal" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-top">
+                <h4 id="modalTitle"></h4>
+                <button class="close-btn" id="closeModal">Close</button>
+            </div>
+            <img id="modalImage" src="" alt="Visualization full view">
         </div>
     </div>
 
-    <script src="js/data-loader.js"></script>
-    <script src="js/chart-config.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        const visuals = [
+            {
+                title: "Baseline Combined-Text Method: Post-to-Post Sentiment Trend (Raw and Smoothed)",
+                endpoint: "both",
+                kind: "trend",
+                method: "baseline",
+                path: "../tps_gds_classification/outputs/vader_endpoint_comparison/raw_smoothed_post_trend.png",
+                explain: "This is the original baseline where title, description, body, and all comments are merged into one text per post. It shows high volatility and stronger extremes because long comment threads can dominate the final sentiment score."
+            },
+            {
+                title: "Per-Comment Aggregation (Random Sample): Post-to-Post Sentiment Trend (Raw and Smoothed)",
+                endpoint: "both",
+                kind: "trend",
+                method: "random",
+                path: "../tps_gds_classification/outputs/vader_endpoint_comparison_v2/random_n/raw_smoothed_post_trend.png",
+                explain: "This improved method scores each comment separately and then aggregates comment sentiment before combining with post text. The random sample acts as a sensitivity check to confirm patterns are not only from highly engaged posts."
+            },
+            {
+                title: "Per-Comment Aggregation (High-Engagement Sample): Post-to-Post Sentiment Trend (Raw and Smoothed)",
+                endpoint: "both",
+                kind: "trend",
+                method: "engagement",
+                path: "../tps_gds_classification/outputs/vader_endpoint_comparison_v2/engagement_top_n/raw_smoothed_post_trend.png",
+                explain: "This improved method uses top-engagement posts while reducing long-thread bias through per-comment aggregation. It provides a cleaner trend for highly discussed posts in each endpoint."
+            },
+            {
+                title: "Formal Comparative Trend Analysis — minScore_0.5",
+                endpoint: "min",
+                kind: "trend",
+                method: "compare",
+                path: "../tps_gds_classification/outputs/vader_endpoint_comparison_compare_v1_v2/minScore_0.5_trend_compare.png",
+                explain: "Compares three methods for minScore_0.5: baseline merged-text, improved high-engagement, and improved random. The key signal is how smoothing changes method-to-method and whether trend direction is consistent."
+            },
+            {
+                title: "Formal Comparative Label Distribution — minScore_0.5",
+                endpoint: "min",
+                kind: "label",
+                method: "compare",
+                path: "../tps_gds_classification/outputs/vader_endpoint_comparison_compare_v1_v2/minScore_0.5_label_distribution_compare.png",
+                explain: "Shows Positive/Neutral/Negative percentages for each method on minScore_0.5. It highlights how the improved method introduces a more balanced neutral share compared to the baseline."
+            },
+            {
+                title: "Formal Comparative Trend Analysis — maxScore_0.5",
+                endpoint: "max",
+                kind: "trend",
+                method: "compare",
+                path: "../tps_gds_classification/outputs/vader_endpoint_comparison_compare_v1_v2/maxScore_0.5_trend_compare.png",
+                explain: "Compares method behavior for maxScore_0.5. It helps confirm that the endpoint remains relatively more positive while the improved method reduces over-amplified sentiment spikes."
+            },
+            {
+                title: "Formal Comparative Label Distribution — maxScore_0.5",
+                endpoint: "max",
+                kind: "label",
+                method: "compare",
+                path: "../tps_gds_classification/outputs/vader_endpoint_comparison_compare_v1_v2/maxScore_0.5_label_distribution_compare.png",
+                explain: "Compares class percentages across methods for maxScore_0.5. It supports the conclusion that this endpoint tends to retain a stronger positive share."
+            }
+        ];
+
+        const endpointFilter = document.getElementById("endpointFilter");
+        const kindFilter = document.getElementById("kindFilter");
+        const methodFilter = document.getElementById("methodFilter");
+        const grid = document.getElementById("dashboardGrid");
+
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalTitle = document.getElementById("modalTitle");
+        const closeModal = document.getElementById("closeModal");
+
+        function tag(text) {
+            return `<span class="badge">${text}</span>`;
+        }
+
+        function methodLabel(v) {
+            if (v === "baseline") return "Baseline";
+            if (v === "engagement") return "V2 High-Engagement";
+            if (v === "random") return "V2 Random";
+            return "v1 vs v2 Comparison";
+        }
+
+        function endpointLabel(v) {
+            if (v === "min") return "minScore_0.5";
+            if (v === "max") return "maxScore_0.5";
+            return "Both endpoints";
+        }
+
+        function render() {
+            const e = endpointFilter.value;
+            const k = kindFilter.value;
+            const m = methodFilter.value;
+
+            const filtered = visuals.filter((v) => {
+                const endpointOk = e === "all" || v.endpoint === "both" || v.endpoint === e;
+                const kindOk = k === "all" || v.kind === k;
+                const methodOk = m === "all" || v.method === m;
+                return endpointOk && kindOk && methodOk;
+            });
+
+            if (!filtered.length) {
+                grid.innerHTML = "<p>No visualization matches the current filter. Try changing the filter options.</p>";
+                return;
+            }
+
+            grid.innerHTML = filtered.map((v) => `
+                <article class="card">
+                    <div class="card-head">
+                        <h3>${v.title}</h3>
+                        <div class="meta">
+                            ${tag(endpointLabel(v.endpoint))}
+                            ${tag(v.kind === "trend" ? "Trend" : "Label Distribution")}
+                            ${tag(methodLabel(v.method))}
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <img class="viz" src="${v.path}" alt="${v.title}" data-title="${v.title}" data-path="${v.path}">
+                        <p class="caption">${v.explain}</p>
+                    </div>
+                </article>
+            `).join("");
+
+            document.querySelectorAll(".viz").forEach((img) => {
+                img.addEventListener("click", () => {
+                    modalTitle.textContent = img.dataset.title;
+                    modalImage.src = img.dataset.path;
+                    modal.classList.add("open");
+                    modal.setAttribute("aria-hidden", "false");
+                });
+            });
+        }
+
+        endpointFilter.addEventListener("change", render);
+        kindFilter.addEventListener("change", render);
+        methodFilter.addEventListener("change", render);
+        closeModal.addEventListener("click", () => {
+            modal.classList.remove("open");
+            modal.setAttribute("aria-hidden", "true");
+            modalImage.src = "";
+        });
+        modal.addEventListener("click", (evt) => {
+            if (evt.target === modal) {
+                modal.classList.remove("open");
+                modal.setAttribute("aria-hidden", "true");
+                modalImage.src = "";
+            }
+        });
+
+        render();
+    </script>
 </body>
 </html>
