@@ -106,6 +106,17 @@
             cursor: zoom-in;
             background: #000;
         }
+        .plotly-trajectory {
+            width: 100%;
+            min-height: 440px;
+            border-radius: 8px;
+            border: 1px solid #facc15;
+            background: #0a0a0a;
+            margin-top: 10px;
+        }
+        .card-body .viz + .plotly-trajectory {
+            margin-top: 14px;
+        }
         .caption {
             margin-top: 10px;
             font-size: 0.9rem;
@@ -178,6 +189,7 @@
             .toolbar { grid-template-columns: 1fr; }
         }
     </style>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
 </head>
 <body>
     <div class="container">
@@ -204,6 +216,7 @@
                     <option value="all">All</option>
                     <option value="trend">Trend</option>
                     <option value="label">Label Distribution</option>
+                    <option value="thread">Thread trajectory</option>
                 </select>
             </div>
             <div class="field">
@@ -214,6 +227,8 @@
                     <option value="engagement">Per-Comment Aggregation (High-Engagement Sample)</option>
                     <option value="random">Per-Comment Aggregation (Random Sample)</option>
                     <option value="compare">Formal Comparative Plots (v1 vs v2)</option>
+                    <option value="thread_png">Thread trajectories (static PNG)</option>
+                    <option value="thread_plotly">Thread trajectories (interactive Plotly)</option>
                 </select>
             </div>
         </section>
@@ -222,7 +237,7 @@
         <section class="grid" id="dashboardGrid"></section>
 
         <p class="footer-note">
-            Tip: Click any visualization to open it in a larger view.
+            Tip: Click a <strong>static PNG</strong> to open it in a larger view. Interactive thread charts show Reddit post id, subreddit, and title when you hover a line.
         </p>
     </div>
 
@@ -293,6 +308,42 @@
                 method: "compare",
                 path: "../tps_gds_classification/outputs/vader_endpoint_comparison_compare_v1_v2/maxScore_0.5_label_distribution_compare.png",
                 explain: "Compares class percentages across methods for maxScore_0.5. It supports the conclusion that this endpoint tends to retain a stronger positive share."
+            },
+            {
+                title: "Author vs community sentiment over time (static PNG) — minScore_0.5",
+                endpoint: "min",
+                kind: "thread",
+                method: "thread_png",
+                path: "images/vader_author_community/minScore_0.5_author_community_trajectory.png",
+                plotlySlug: null,
+                explain: "Top 10 posts by comment volume: VADER compound vs hours since the submission. Each color is one post—solid lines are the OP (opening text + submitter comments), dashed lines are everyone else. Orange and blue bold curves are the mean across those ten threads. Same figure is committed under web/images for the dashboard."
+            },
+            {
+                title: "Author vs community sentiment over time (static PNG) — maxScore_0.5",
+                endpoint: "max",
+                kind: "thread",
+                method: "thread_png",
+                path: "images/vader_author_community/maxScore_0.5_author_community_trajectory.png",
+                plotlySlug: null,
+                explain: "Same design as the minScore chart, but for the maxScore=0.5 endpoint (typically lower-scoring posts). Use it next to the interactive version to compare how community vs author sentiment evolves in that slice."
+            },
+            {
+                title: "Author vs community sentiment over time (interactive) — minScore_0.5",
+                endpoint: "min",
+                kind: "thread",
+                method: "thread_plotly",
+                path: null,
+                plotlySlug: "minScore_0.5",
+                explain: "Hover any trace to see rank, reddit post id, subreddit, truncated title, elapsed hours, and VADER compound. Per-post colors match the static export; means appear as thicker orange (author) and blue (community) lines."
+            },
+            {
+                title: "Author vs community sentiment over time (interactive) — maxScore_0.5",
+                endpoint: "max",
+                kind: "thread",
+                method: "thread_plotly",
+                path: null,
+                plotlySlug: "maxScore_0.5",
+                explain: "Interactive twin of the maxScore static trajectory. Useful for presentations—pan/zoom with the mode bar and inspect which thread each line belongs to."
             }
         ];
 
@@ -310,17 +361,152 @@
             return `<span class="badge">${text}</span>`;
         }
 
-        function methodLabel(v) {
-            if (v === "baseline") return "Baseline";
-            if (v === "engagement") return "V2 High-Engagement";
-            if (v === "random") return "V2 Random";
-            return "v1 vs v2 Comparison";
+        function methodLabel(m) {
+            if (m === "baseline") return "Baseline";
+            if (m === "engagement") return "V2 High-Engagement";
+            if (m === "random") return "V2 Random";
+            if (m === "compare") return "v1 vs v2 Comparison";
+            if (m === "thread_png") return "Thread (PNG)";
+            if (m === "thread_plotly") return "Thread (interactive)";
+            return m;
+        }
+
+        function kindLabel(kind) {
+            if (kind === "trend") return "Trend";
+            if (kind === "label") return "Label Distribution";
+            if (kind === "thread") return "Thread trajectory";
+            return kind;
         }
 
         function endpointLabel(v) {
             if (v === "min") return "minScore_0.5";
             if (v === "max") return "maxScore_0.5";
             return "Both endpoints";
+        }
+
+        let trajectoryDataCache = null;
+
+        async function loadTrajectoryData() {
+            if (trajectoryDataCache) return trajectoryDataCache;
+            const res = await fetch("data/vader_thread_trajectories.json");
+            if (!res.ok) throw new Error("trajectory json " + res.status);
+            trajectoryDataCache = await res.json();
+            return trajectoryDataCache;
+        }
+
+        function buildTrajectoryFigure(slug, ep) {
+            const traces = [];
+            const titleShort = (t) => (t.length > 100 ? t.slice(0, 100) + "…" : t);
+            (ep.traces || []).forEach((t) => {
+                const n = t.hours.length;
+                const cd = [];
+                for (let i = 0; i < n; i++) {
+                    cd.push([t.rank, t.redditId, t.subreddit, titleShort(t.title || ""), t.stream]);
+                }
+                const label = t.stream === "author" ? `#${t.rank} author` : `#${t.rank} community`;
+                traces.push({
+                    type: "scatter",
+                    mode: "lines+markers",
+                    name: label,
+                    x: t.hours,
+                    y: t.compound,
+                    showlegend: false,
+                    line: {
+                        color: t.color,
+                        width: 2.6,
+                        dash: t.stream === "community" ? "dash" : "solid"
+                    },
+                    marker: { size: t.stream === "author" ? 5 : 4, color: t.color },
+                    customdata: cd,
+                    hovertemplate:
+                        "<b>%{customdata[4]}</b> · %{customdata[0]} · id %{customdata[1]}<br>r/%{customdata[2]}<br>%{customdata[3]}<br>hours: %{x:.2f}<br>VADER: %{y:.3f}<extra></extra>"
+                });
+            });
+            traces.push({
+                type: "scatter",
+                mode: "lines",
+                name: "Mean — author (10 posts)",
+                x: ep.grid_hours,
+                y: ep.mean_author,
+                showlegend: true,
+                line: { color: "#c05621", width: 4 },
+                hovertemplate: "<b>Mean author</b><br>hours: %{x:.2f}<br>VADER: %{y:.3f}<extra></extra>"
+            });
+            traces.push({
+                type: "scatter",
+                mode: "lines",
+                name: "Mean — community",
+                x: ep.grid_hours,
+                y: ep.mean_community,
+                showlegend: true,
+                line: { color: "#2c5282", width: 4 },
+                hovertemplate: "<b>Mean community</b><br>hours: %{x:.2f}<br>VADER: %{y:.3f}<extra></extra>"
+            });
+
+            const xMax = ep.max_hours != null ? ep.max_hours : 1;
+            const layout = {
+                autosize: true,
+                paper_bgcolor: "#0a0a0a",
+                plot_bgcolor: "#101010",
+                font: { color: "#fde68a", size: 11 },
+                margin: { t: 36, r: 24, b: 52, l: 56 },
+                title: {
+                    text: slug.replace(/_/g, " ") + " — hover lines for post details",
+                    font: { size: 13, color: "#fef08a" }
+                },
+                xaxis: {
+                    title: "Hours since post creation",
+                    gridcolor: "#333",
+                    zeroline: false,
+                    range: [0, xMax * 1.02]
+                },
+                yaxis: {
+                    title: "VADER compound",
+                    gridcolor: "#333",
+                    zeroline: false,
+                    range: [-1, 1]
+                },
+                legend: {
+                    orientation: "h",
+                    yanchor: "bottom",
+                    y: 1.02,
+                    xanchor: "right",
+                    x: 1,
+                    font: { size: 10, color: "#fde68a" }
+                },
+                shapes: [
+                    { type: "line", xref: "paper", x0: 0, x1: 1, y0: 0, y1: 0, yref: "y", line: { color: "#666", width: 1, dash: "dash" } },
+                    { type: "line", xref: "paper", x0: 0, x1: 1, y0: 0.05, y1: 0.05, yref: "y", line: { color: "#2f855a", width: 1, dash: "dot" } },
+                    { type: "line", xref: "paper", x0: 0, x1: 1, y0: -0.05, y1: -0.05, yref: "y", line: { color: "#c53030", width: 1, dash: "dot" } }
+                ]
+            };
+            return { traces, layout };
+        }
+
+        async function mountTrajectoryPlots() {
+            const nodes = document.querySelectorAll(".plotly-trajectory[data-slug]");
+            if (!nodes.length) return;
+            try {
+                const data = await loadTrajectoryData();
+                nodes.forEach((el) => {
+                    const slug = el.dataset.slug;
+                    const ep = data[slug];
+                    if (!slug || !ep || typeof Plotly === "undefined") return;
+                    const { traces, layout } = buildTrajectoryFigure(slug, ep);
+                    Plotly.purge(el);
+                    Plotly.newPlot(el, traces, layout, {
+                        responsive: true,
+                        displayModeBar: true,
+                        displaylogo: false,
+                        modeBarButtonsToRemove: ["lasso2d", "select2d"]
+                    });
+                });
+            } catch (err) {
+                console.error(err);
+                nodes.forEach((el) => {
+                    el.innerHTML = "<p style='color:#f87171;padding:12px'>Could not load interactive data (vader_thread_trajectories.json).</p>";
+                });
+            }
         }
 
         function render() {
@@ -340,22 +526,32 @@
                 return;
             }
 
-            grid.innerHTML = filtered.map((v) => `
+            grid.innerHTML = filtered.map((v) => {
+                const imgHtml = v.path
+                    ? `<img class="viz" src="${v.path}" alt="${v.title}" data-title="${v.title}" data-path="${v.path}">`
+                    : "";
+                const plotId = v.plotlySlug ? "plotly-" + v.plotlySlug.replace(/[^a-zA-Z0-9_-]/g, "_") : "";
+                const plotHtml = v.plotlySlug
+                    ? `<div class="plotly-trajectory" id="${plotId}" data-slug="${v.plotlySlug}"></div>`
+                    : "";
+                return `
                 <article class="card">
                     <div class="card-head">
                         <h3>${v.title}</h3>
                         <div class="meta">
                             ${tag(endpointLabel(v.endpoint))}
-                            ${tag(v.kind === "trend" ? "Trend" : "Label Distribution")}
+                            ${tag(kindLabel(v.kind))}
                             ${tag(methodLabel(v.method))}
                         </div>
                     </div>
                     <div class="card-body">
-                        <img class="viz" src="${v.path}" alt="${v.title}" data-title="${v.title}" data-path="${v.path}">
+                        ${imgHtml}
+                        ${plotHtml}
                         <p class="caption">${v.explain}</p>
                     </div>
                 </article>
-            `).join("");
+            `;
+            }).join("");
 
             document.querySelectorAll(".viz").forEach((img) => {
                 img.addEventListener("click", () => {
@@ -365,6 +561,8 @@
                     modal.setAttribute("aria-hidden", "false");
                 });
             });
+
+            void mountTrajectoryPlots();
         }
 
         endpointFilter.addEventListener("change", render);
