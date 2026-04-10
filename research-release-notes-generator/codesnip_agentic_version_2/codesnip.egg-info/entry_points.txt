@@ -1,0 +1,2 @@
+[console_scripts]
+codesnip = codesnip.presentation.cli:app

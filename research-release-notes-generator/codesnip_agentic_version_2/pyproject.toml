@@ -1,0 +1,16 @@
+[project]
+name = "codesnip"
+version = "1.0.0"
+description = "AI-powered GitHub PR analyzer and release notes generator (Ollama)"
+authors = [{ name = "Your Name" }]
+dependencies = [
+    "click",
+    "requests",
+]
+
+[project.scripts]
+codesnip = "codesnip.presentation.cli:app"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
