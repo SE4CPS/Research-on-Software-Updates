@@ -217,6 +217,7 @@
                     <option value="trend">Trend</option>
                     <option value="label">Label Distribution</option>
                     <option value="thread">Thread trajectory</option>
+                    <option value="comment_index">Comment-index trajectory</option>
                 </select>
             </div>
             <div class="field">
@@ -229,6 +230,8 @@
                     <option value="compare">Formal Comparative Plots (v1 vs v2)</option>
                     <option value="thread_png">Thread trajectories (static PNG)</option>
                     <option value="thread_plotly">Thread trajectories (interactive Plotly)</option>
+                    <option value="comment_index_raw">Comment-index (raw 2-line)</option>
+                    <option value="comment_index_cumulative">Comment-index (cumulative mean)</option>
                 </select>
             </div>
         </section>
@@ -347,6 +350,37 @@
             }
         ];
 
+        // Add 20 comment-index trajectories (10 raw + 10 cumulative).
+        const commentIndexPosts = {
+            min: ["1nw56v4", "1of2cda", "1rj06fw", "1p9x65b", "1sdnf0p"],
+            max: ["1ppl4nv", "1piwkia", "1qrykct", "1oetmbo", "1pch8er"]
+        };
+
+        ["min", "max"].forEach((endpointKey) => {
+            const slug = endpointKey === "min" ? "minScore_0.5" : "maxScore_0.5";
+            commentIndexPosts[endpointKey].forEach((postId, idx) => {
+                const rank = String(idx + 1).padStart(2, "0");
+                visuals.push({
+                    title: `Comment-index trajectory (raw) — ${slug} — post #${idx + 1} (${postId})`,
+                    endpoint: endpointKey,
+                    kind: "comment_index",
+                    method: "comment_index_raw",
+                    path: `images/vader_comment_index_trajectories/raw/${slug}/post_${rank}_${postId}_by_comment_index.png`,
+                    plotlySlug: null,
+                    explain: "Raw per-event trajectory with exactly two lines: orange = author stream (opening post + OP comments), blue dashed = community stream. X-axis is chronological comment number."
+                });
+                visuals.push({
+                    title: `Comment-index trajectory (cumulative mean) — ${slug} — post #${idx + 1} (${postId})`,
+                    endpoint: endpointKey,
+                    kind: "comment_index",
+                    method: "comment_index_cumulative",
+                    path: `images/vader_comment_index_trajectories/cumulative/${slug}/post_${rank}_${postId}_by_comment_index.png`,
+                    plotlySlug: null,
+                    explain: "Cumulative mean trajectory with two lines over comment index: orange = author-side mean, blue = community mean."
+                });
+            });
+        });
+
         const endpointFilter = document.getElementById("endpointFilter");
         const kindFilter = document.getElementById("kindFilter");
         const methodFilter = document.getElementById("methodFilter");
@@ -368,6 +402,8 @@
             if (m === "compare") return "v1 vs v2 Comparison";
             if (m === "thread_png") return "Thread (PNG)";
             if (m === "thread_plotly") return "Thread (interactive)";
+            if (m === "comment_index_raw") return "Comment-index raw";
+            if (m === "comment_index_cumulative") return "Comment-index cumulative";
             return m;
         }
 
@@ -375,6 +411,7 @@
             if (kind === "trend") return "Trend";
             if (kind === "label") return "Label Distribution";
             if (kind === "thread") return "Thread trajectory";
+            if (kind === "comment_index") return "Comment-index trajectory";
             return kind;
         }
 
