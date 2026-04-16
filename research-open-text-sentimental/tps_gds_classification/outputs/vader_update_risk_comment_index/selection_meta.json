@@ -1,0 +1,18 @@
+{
+  "labels_csv": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/updated_labeled_dataset.csv",
+  "lines_per_chart": 5,
+  "update_risk_reddit_ids": [
+    "1ppl4nv",
+    "1oetmbo",
+    "1p9x65b",
+    "1ozp5qj",
+    "1nxiv7z"
+  ],
+  "non_update_risk_reddit_ids": [
+    "1piwkia",
+    "1qrykct",
+    "1nw56v4",
+    "1pch8er",
+    "1nwjxmb"
+  ]
+}
