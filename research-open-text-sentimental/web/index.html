@@ -218,7 +218,7 @@
                     <option value="label">Label Distribution</option>
                     <option value="thread">Thread trajectory</option>
                     <option value="comment_index">Comment-index trajectory</option>
-                    <option value="risk_professor">Update vs non-update (professor)</option>
+                    <option value="risk_professor">minScore vs maxScore cohort (professor)</option>
                 </select>
             </div>
             <div class="field">
@@ -233,7 +233,7 @@
                     <option value="thread_plotly">Thread trajectories (interactive Plotly)</option>
                     <option value="comment_index_raw">Comment-index (raw 2-line)</option>
                     <option value="comment_index_cumulative">Comment-index (cumulative mean)</option>
-                    <option value="risk_professor">Risk split (5-line panels)</option>
+                    <option value="risk_professor">minScore vs maxScore (5-line panels)</option>
                 </select>
             </div>
         </section>
@@ -385,22 +385,22 @@
 
         visuals.push(
             {
-                title: "Professor view — update-risk posts (VADER per comment, max 5 lines)",
+                title: "Professor view — minScore=0.5 cohort (VADER per comment, max 5 lines)",
                 endpoint: "both",
                 kind: "risk_professor",
                 method: "risk_professor",
                 path: "images/vader_update_risk/update_risk_top5_by_comment_index.png",
                 plotlySlug: null,
-                explain: "X-axis: 1 = first comment in time, 2 = second, etc. Y-axis: VADER compound for that comment only (opening post body excluded). Lines: top 5 engagement among posts labeled update-risk (corrected_label=1) in updated_labeled_dataset.csv and present in the min/max endpoint pull. Reddit ids: web/data/vader_update_risk_comment_index_selection.json."
+                explain: "X-axis: 1 = first comment in time, 2 = second, etc. Y-axis: VADER compound for that comment only (opening post body excluded). Lines: top 5 by engagement among posts returned by the ReleaseTrain filter with minComments=3 and minScore=0.5 (higher-score / update-risk cohort). Reddit ids and URL: web/data/vader_update_risk_comment_index_selection.json."
             },
             {
-                title: "Professor view — non–update-risk posts (VADER per comment, max 5 lines)",
+                title: "Professor view — maxScore=0.5 cohort (VADER per comment, max 5 lines)",
                 endpoint: "both",
                 kind: "risk_professor",
                 method: "risk_professor",
                 path: "images/vader_update_risk/non_update_risk_top5_by_comment_index.png",
                 plotlySlug: null,
-                explain: "Same layout as the update-risk panel, but for corrected_label=0. Each line is one thread; color distinguishes posts."
+                explain: "Same layout as the minScore panel, but threads are drawn only from the ReleaseTrain filter with minComments=3 and maxScore=0.5 (lower-score / without-risks cohort). Each line is one thread; color distinguishes posts."
             }
         );
 
@@ -427,7 +427,7 @@
             if (m === "thread_plotly") return "Thread (interactive)";
             if (m === "comment_index_raw") return "Comment-index raw";
             if (m === "comment_index_cumulative") return "Comment-index cumulative";
-            if (m === "risk_professor") return "Risk split (professor)";
+            if (m === "risk_professor") return "minScore vs maxScore (professor)";
             return m;
         }
 
@@ -436,7 +436,7 @@
             if (kind === "label") return "Label Distribution";
             if (kind === "thread") return "Thread trajectory";
             if (kind === "comment_index") return "Comment-index trajectory";
-            if (kind === "risk_professor") return "Update vs non-update (professor)";
+            if (kind === "risk_professor") return "minScore vs maxScore cohort (professor)";
             return kind;
         }
 

@@ -1,18 +1,20 @@
 {
-  "labels_csv": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/updated_labeled_dataset.csv",
+  "mode": "endpoint",
+  "minScore_url": "https://releasetrain.io/api/reddit/query/filter?minComments=3&minScore=0.5",
+  "maxScore_url": "https://releasetrain.io/api/reddit/query/filter?minComments=3&maxScore=0.5",
   "lines_per_chart": 5,
-  "update_risk_reddit_ids": [
-    "1ppl4nv",
-    "1oetmbo",
+  "minScore_endpoint_reddit_ids": [
+    "1nw56v4",
+    "1of2cda",
+    "1rj06fw",
     "1p9x65b",
-    "1ozp5qj",
-    "1nxiv7z"
+    "1sdnf0p"
   ],
-  "non_update_risk_reddit_ids": [
+  "maxScore_endpoint_reddit_ids": [
+    "1ppl4nv",
     "1piwkia",
     "1qrykct",
-    "1nw56v4",
-    "1pch8er",
-    "1nwjxmb"
+    "1oetmbo",
+    "1pch8er"
   ]
 }
