@@ -1,6 +1,13 @@
 [build]
   publish = "."
 
+# Same-origin proxy so the live dashboard can call ReleaseTrain without browser CORS issues.
+[[redirects]]
+  from = "/releasetrain-api/*"
+  to = "https://releasetrain.io/api/:splat"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/"
   to = "/web/index.html"

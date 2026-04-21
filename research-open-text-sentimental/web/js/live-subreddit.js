@@ -1,0 +1,468 @@
+/**
+ * Live multi-subreddit VADER dashboard: fetch ReleaseTrain filter JSON via same-origin proxy,
+ * pick top posts per subreddit, score title / description / author vs community comments.
+ */
+
+const TARGET_SUBREDDITS = [
+  "android",
+  "rust",
+  "mongodb",
+  "nginx",
+  "linux",
+  "openclaw",
+  "chrome",
+  "firefox",
+  "langchain",
+];
+
+const FETCH_SLICES = [
+  "reddit/query/filter?minComments=1&limit=500",
+  "reddit/query/filter?minComments=3&minScore=0.5&limit=500",
+  "reddit/query/filter?minComments=3&maxScore=0.5&limit=500",
+];
+
+function apiBaseUrl() {
+  const u = new URL("../releasetrain-api/", window.location.href);
+  return u.href.replace(/\/?$/, "/");
+}
+
+function compoundLabel(c) {
+  if (c >= 0.05) return "Positive";
+  if (c <= -0.05) return "Negative";
+  return "Neutral";
+}
+
+function cleanText(s) {
+  if (!s) return "";
+  return String(s)
+    .replace(/https?:\/\/\S+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isOpComment(c, post) {
+  const v = c.is_submitter;
+  if (v === true) return true;
+  if (v === false) return false;
+  const pa = (post.author || "").trim().toLowerCase();
+  const ca = (c.author || "").trim().toLowerCase();
+  return Boolean(pa) && pa === ca;
+}
+
+function commentSortKey(c) {
+  if (c.created_utc_ts != null) {
+    const t = Number(c.created_utc_ts);
+    if (!Number.isNaN(t)) return t;
+  }
+  const raw = c.created_utc;
+  if (!raw) return 0;
+  const s = String(raw).replace("Z", "+00:00");
+  const d = Date.parse(s);
+  return Number.isNaN(d) ? 0 : d / 1000;
+}
+
+function engagementTuple(post) {
+  return [Number(post.num_comments) || 0, Number(post.score) || 0];
+}
+
+function dedupeMerge(postsById, rows) {
+  for (const p of rows) {
+    const id = p.redditId || p._id;
+    if (!id) continue;
+    const prev = postsById.get(id);
+    if (!prev) {
+      postsById.set(id, p);
+      continue;
+    }
+    const a = engagementTuple(prev);
+    const b = engagementTuple(p);
+    if (b[0] > a[0] || (b[0] === a[0] && b[1] > a[1])) {
+      postsById.set(id, p);
+    }
+  }
+}
+
+function pickTopPerSubreddit(postsById, targets, k) {
+  const buckets = new Map();
+  for (const t of targets) {
+    buckets.set(t.toLowerCase(), []);
+  }
+
+  for (const p of postsById.values()) {
+    const sub = (p.subreddit || "").trim().toLowerCase();
+    if (!buckets.has(sub)) continue;
+    buckets.get(sub).push(p);
+  }
+
+  const out = [];
+  for (const t of targets) {
+    const key = t.toLowerCase();
+    const list = buckets.get(key) || [];
+    list.sort((a, b) => {
+      const [ncA, sA] = engagementTuple(a);
+      const [ncB, sB] = engagementTuple(b);
+      if (ncB !== ncA) return ncB - ncA;
+      return sB - sA;
+    });
+    const top = list.slice(0, k);
+    for (const p of top) {
+      out.push({ post: p });
+    }
+  }
+  return out;
+}
+
+function meanCompounds(scores) {
+  if (!scores.length) return null;
+  const sum = scores.reduce((a, b) => a + b, 0);
+  return sum / scores.length;
+}
+
+function analyzePost(SentimentClass, post) {
+  const title = cleanText(post.title || "");
+  const desc = cleanText(
+    [post.author_description || "", post.body || ""].filter(Boolean).join("\n")
+  );
+
+  const titleScores = title
+    ? SentimentClass.polarity_scores(title)
+    : { compound: 0, pos: 0, neu: 1, neg: 0 };
+  const descScores = desc
+    ? SentimentClass.polarity_scores(desc)
+    : { compound: 0, pos: 0, neu: 1, neg: 0 };
+
+  const comments = Array.isArray(post.comments) ? [...post.comments] : [];
+  comments.sort((a, b) => commentSortKey(a) - commentSortKey(b));
+
+  const authorCompounds = [];
+  const communityCompounds = [];
+
+  for (const c of comments) {
+    const body = cleanText(c.body || "");
+    if (!body) continue;
+    const pol = SentimentClass.polarity_scores(body).compound;
+    if (isOpComment(c, post)) authorCompounds.push(pol);
+    else communityCompounds.push(pol);
+  }
+
+  return {
+    redditId: post.redditId || "",
+    subreddit: post.subreddit || "",
+    titleText: title.slice(0, 120),
+    url: post.url || "",
+    num_comments: post.num_comments,
+    score: post.score,
+    title: { ...titleScores, label: compoundLabel(titleScores.compound) },
+    description: { ...descScores, label: compoundLabel(descScores.compound) },
+    authorComments: {
+      mean: meanCompounds(authorCompounds),
+      n: authorCompounds.length,
+      label:
+        authorCompounds.length === 0
+          ? "N/A"
+          : compoundLabel(meanCompounds(authorCompounds)),
+    },
+    communityComments: {
+      mean: meanCompounds(communityCompounds),
+      n: communityCompounds.length,
+      label:
+        communityCompounds.length === 0
+          ? "N/A"
+          : compoundLabel(meanCompounds(communityCompounds)),
+    },
+  };
+}
+
+async function fetchJson(path) {
+  const url = `${apiBaseUrl()}${path}`;
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) {
+    const t = await res.text();
+    throw new Error(`HTTP ${res.status} for ${path}: ${t.slice(0, 200)}`);
+  }
+  return res.json();
+}
+
+async function loadAllPosts() {
+  const postsById = new Map();
+  const errors = [];
+  await Promise.all(
+    FETCH_SLICES.map(async (path) => {
+      try {
+        const payload = await fetchJson(path);
+        dedupeMerge(postsById, payload.data || []);
+      } catch (e) {
+        errors.push(String(e.message || e));
+      }
+    })
+  );
+  if (!postsById.size && errors.length) {
+    throw new Error(errors.join(" | "));
+  }
+  return postsById;
+}
+
+function filterAnalyzed(analyzed, subredditFilter) {
+  if (!subredditFilter || subredditFilter === "__all__") return analyzed;
+  const want = subredditFilter.toLowerCase();
+  return analyzed.filter((a) => (a.subreddit || "").toLowerCase() === want);
+}
+
+function buildGroupedBarPlot(analyzed) {
+  const labels = analyzed.map(
+    (a) =>
+      `${a.subreddit} · ${a.redditId}<br><span style="font-size:11px">${(a.titleText || "").slice(0, 60)}…</span>`
+  );
+
+  const titleC = analyzed.map((a) => a.title.compound);
+  const descC = analyzed.map((a) => a.description.compound);
+  const authC = analyzed.map((a) =>
+    a.authorComments.mean == null ? null : a.authorComments.mean
+  );
+  const commC = analyzed.map((a) =>
+    a.communityComments.mean == null ? null : a.communityComments.mean
+  );
+
+  const traces = [
+    {
+      type: "bar",
+      name: "Post title",
+      x: labels,
+      y: titleC,
+      marker: { color: "#f59e0b" },
+    },
+    {
+      type: "bar",
+      name: "Description / body",
+      x: labels,
+      y: descC,
+      marker: { color: "#84cc16" },
+    },
+    {
+      type: "bar",
+      name: "Author comments (mean)",
+      x: labels,
+      y: authC,
+      marker: { color: "#ea580c" },
+    },
+    {
+      type: "bar",
+      name: "Community comments (mean)",
+      x: labels,
+      y: commC,
+      marker: { color: "#2563eb" },
+    },
+  ];
+
+  const layout = {
+    barmode: "group",
+    paper_bgcolor: "#0a0a0a",
+    plot_bgcolor: "#101010",
+    font: { color: "#fde68a", size: 11 },
+    margin: { t: 48, r: 24, b: 140, l: 56 },
+    title: {
+      text: "VADER compound by text layer (live fetch)",
+      font: { size: 14, color: "#fef08a" },
+    },
+    xaxis: { tickangle: -35, gridcolor: "#333" },
+    yaxis: {
+      title: "VADER compound",
+      range: [-1, 1],
+      gridcolor: "#333",
+      zeroline: true,
+      zerolinecolor: "#666",
+    },
+    legend: {
+      orientation: "h",
+      yanchor: "bottom",
+      y: 1.02,
+      x: 0,
+      font: { size: 10, color: "#fde68a" },
+    },
+    shapes: [
+      {
+        type: "line",
+        xref: "paper",
+        x0: 0,
+        x1: 1,
+        y0: 0,
+        y1: 0,
+        yref: "y",
+        line: { color: "#666", width: 1, dash: "dash" },
+      },
+      {
+        type: "line",
+        xref: "paper",
+        x0: 0,
+        x1: 1,
+        y0: 0.05,
+        y1: 0.05,
+        yref: "y",
+        line: { color: "#2f855a", width: 1, dash: "dot" },
+      },
+      {
+        type: "line",
+        xref: "paper",
+        x0: 0,
+        x1: 1,
+        y0: -0.05,
+        y1: -0.05,
+        yref: "y",
+        line: { color: "#c53030", width: 1, dash: "dot" },
+      },
+    ],
+  };
+
+  return { traces, layout };
+}
+
+let siaPromise = null;
+
+function getAnalyzer() {
+  if (!siaPromise) {
+    siaPromise = import("https://esm.sh/vader-sentiment@1.1.3").then((mod) => {
+      const SIA =
+        mod.default ||
+        mod.SentimentIntensityAnalyzer ||
+        (mod.default && mod.default.SentimentIntensityAnalyzer);
+      if (!SIA || typeof SIA.polarity_scores !== "function") {
+        throw new Error("vader-sentiment: SentimentIntensityAnalyzer.polarity_scores missing");
+      }
+      return SIA;
+    });
+  }
+  return siaPromise;
+}
+
+export async function runLiveSubredditDashboard(opts) {
+  const {
+    plotEl,
+    statusEl,
+    subSelect,
+    onMeta,
+  } = opts;
+
+  statusEl.textContent = "Fetching Reddit slices from ReleaseTrain…";
+  const postsById = await loadAllPosts();
+  const picked = pickTopPerSubreddit(postsById, TARGET_SUBREDDITS, 5);
+
+  const SentimentClass = await getAnalyzer();
+  const analyzed = picked.map(({ post }) => analyzePost(SentimentClass, post));
+
+  const meta = {
+    fetchedUniquePosts: postsById.size,
+    targets: TARGET_SUBREDDITS,
+    perSubredditCounts: {},
+  };
+  for (const t of TARGET_SUBREDDITS) {
+    const k = t.toLowerCase();
+    meta.perSubredditCounts[t] = analyzed.filter(
+      (a) => (a.subreddit || "").toLowerCase() === k
+    ).length;
+  }
+  if (onMeta) onMeta(meta);
+
+  function render() {
+    const v = subSelect.value;
+    const subset = filterAnalyzed(analyzed, v);
+    if (!subset.length) {
+      statusEl.textContent = "No posts for this filter (API slice may lack that subreddit). Try Refresh.";
+      Plotly.purge(plotEl);
+      Plotly.newPlot(
+        plotEl,
+        [
+          {
+            type: "scatter",
+            x: [0],
+            y: [0],
+            mode: "text",
+            text: ["No data"],
+            textfont: { color: "#f87171", size: 14 },
+          },
+        ],
+        {
+          paper_bgcolor: "#0a0a0a",
+          plot_bgcolor: "#101010",
+          xaxis: { visible: false },
+          yaxis: { visible: false },
+          annotations: [
+            {
+              text: "No posts — try another subreddit or refresh.",
+              xref: "paper",
+              yref: "paper",
+              x: 0.5,
+              y: 0.5,
+              showarrow: false,
+              font: { color: "#fde68a", size: 14 },
+            },
+          ],
+        },
+        { responsive: true, displaylogo: false }
+      );
+      return;
+    }
+
+    const { traces, layout } = buildGroupedBarPlot(subset);
+    Plotly.purge(plotEl);
+    Plotly.newPlot(plotEl, traces, layout, {
+      responsive: true,
+      displayModeBar: true,
+      displaylogo: false,
+      modeBarButtonsToRemove: ["lasso2d", "select2d"],
+    });
+
+    statusEl.textContent = `Analyzed ${subset.length} post(s) · unique posts merged from API: ${meta.fetchedUniquePosts} · Refresh page for a new sample.`;
+  }
+
+  subSelect.innerHTML = "";
+  const allOpt = document.createElement("option");
+  allOpt.value = "__all__";
+  allOpt.textContent = "All subreddits";
+  subSelect.appendChild(allOpt);
+  for (const t of TARGET_SUBREDDITS) {
+    const o = document.createElement("option");
+    o.value = t;
+    o.textContent = `r/${t}`;
+    subSelect.appendChild(o);
+  }
+
+  subSelect.onchange = () => render();
+  render();
+}
+
+function bootLivePanel() {
+  const plotEl = document.getElementById("liveSubredditPlot");
+  const statusEl = document.getElementById("liveSubredditStatus");
+  const subSelect = document.getElementById("liveSubredditFilter");
+  const metaEl = document.getElementById("liveSubredditMeta");
+  const refreshBtn = document.getElementById("liveSubredditRefresh");
+  if (!plotEl || !statusEl || !subSelect) return;
+
+  if (refreshBtn) {
+    refreshBtn.addEventListener("click", () => window.location.reload());
+  }
+
+  runLiveSubredditDashboard({
+    plotEl,
+    statusEl,
+    subSelect,
+    onMeta: (meta) => {
+      if (!metaEl) return;
+      const parts = TARGET_SUBREDDITS.map(
+        (t) => `${t}: ${meta.perSubredditCounts[t] ?? 0}/5`
+      );
+      metaEl.textContent = `Posts per target (max 5 each): ${parts.join(" · ")}`;
+    },
+  }).catch((err) => {
+    statusEl.textContent = `Live panel error: ${err.message || err}`;
+    console.error(err);
+  });
+}
+
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootLivePanel);
+  } else {
+    bootLivePanel();
+  }
+}

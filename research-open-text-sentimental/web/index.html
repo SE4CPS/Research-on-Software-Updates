@@ -188,6 +188,55 @@
         @media (max-width: 900px) {
             .toolbar { grid-template-columns: 1fr; }
         }
+        .live-panel {
+            background: #0d0d0d;
+            border: 2px solid #38bdf8;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+        }
+        .live-panel h2 { margin-top: 0; color: #7dd3fc; }
+        .live-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+        .live-toolbar .field label { color: #7dd3fc; }
+        .live-toolbar .field select {
+            border-color: #38bdf8;
+            color: #e0f2fe;
+        }
+        .live-status {
+            font-size: 0.85rem;
+            color: #bae6fd;
+            margin: 0 0 8px;
+            line-height: 1.4;
+        }
+        .live-meta {
+            font-size: 0.78rem;
+            color: #94a3b8;
+            margin: 0 0 10px;
+        }
+        .btn-refresh {
+            border: 1px solid #38bdf8;
+            background: transparent;
+            color: #7dd3fc;
+            border-radius: 8px;
+            padding: 8px 14px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-refresh:hover { background: #1e293b; }
+        #liveSubredditPlot {
+            min-height: 460px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #38bdf8;
+            background: #0a0a0a;
+        }
     </style>
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
 </head>
@@ -198,8 +247,27 @@
             <p>
                 Interactive review of baseline and improved methods across
                 <strong>minScore=0.5</strong> and <strong>maxScore=0.5</strong> endpoint datasets.
+                The <strong>live multi-subreddit</strong> block below fetches fresh ReleaseTrain slices on each page load and runs VADER in the browser.
             </p>
         </header>
+
+        <section class="live-panel" id="liveSubredditPanel" aria-label="Live subreddit sentiment">
+            <h2 class="section-title">Live multi-subreddit VADER</h2>
+            <p class="live-status" id="liveSubredditStatus">Loading ReleaseTrain data and VADER…</p>
+            <p class="live-meta" id="liveSubredditMeta"></p>
+            <div class="live-toolbar">
+                <div class="field">
+                    <label for="liveSubredditFilter">Subreddit</label>
+                    <select id="liveSubredditFilter"></select>
+                </div>
+                <button type="button" class="btn-refresh" id="liveSubredditRefresh">Refresh (reload)</button>
+            </div>
+            <div id="liveSubredditPlot"></div>
+            <p class="footer-note" style="margin-top:10px;color:#94a3b8">
+                Sources: merged <code>filter</code> slices (up to 500 posts each) from the ReleaseTrain API; top <strong>5</strong> posts per target subreddit by <strong>comment count</strong> then <strong>score</strong>.
+                Sentiment: title, description/body, mean VADER compound for <strong>author</strong> vs <strong>community</strong> comments (same rules as the offline author/community trajectories).
+            </p>
+        </section>
 
         <section class="toolbar">
             <div class="field">
@@ -645,5 +713,6 @@
 
         render();
     </script>
+    <script type="module" src="js/live-subreddit.js"></script>
 </body>
 </html>
