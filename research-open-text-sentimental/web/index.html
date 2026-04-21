@@ -230,12 +230,22 @@
             font-weight: 600;
         }
         .btn-refresh:hover { background: #1e293b; }
-        #liveSubredditPlot {
+        #liveSubredditPlot,
+        #liveSubredditPlotLines {
             min-height: 460px;
             width: 100%;
             border-radius: 8px;
             border: 1px solid #38bdf8;
             background: #0a0a0a;
+        }
+        #liveSubredditPlotLines {
+            margin-top: 14px;
+        }
+        .live-chart-label {
+            font-size: 0.9rem;
+            color: #7dd3fc;
+            margin: 12px 0 6px;
+            font-weight: 600;
         }
     </style>
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
@@ -262,10 +272,13 @@
                 </div>
                 <button type="button" class="btn-refresh" id="liveSubredditRefresh">Refresh (reload)</button>
             </div>
+            <p class="live-chart-label">Layer summary (bars)</p>
             <div id="liveSubredditPlot"></div>
+            <p class="live-chart-label">Comment-index trajectories (one line per post, VADER per comment)</p>
+            <div id="liveSubredditPlotLines" title="Click a point to open the Reddit post"></div>
             <p class="footer-note" style="margin-top:10px;color:#94a3b8">
                 Sources: merged <code>filter</code> slices (up to 500 posts each) from the ReleaseTrain API; top <strong>5</strong> posts per target subreddit by <strong>comment count</strong> then <strong>score</strong>.
-                Sentiment: title, description/body, mean VADER compound for <strong>author</strong> vs <strong>community</strong> comments (same rules as the offline author/community trajectories).
+                Bars: title, description/body, mean VADER for <strong>author</strong> vs <strong>community</strong> comments. Lines: raw VADER compound vs chronological comment index (each comment with body). <strong>Click a point</strong> on the line chart to open that post on Reddit.
             </p>
         </section>
 

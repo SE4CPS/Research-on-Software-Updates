@@ -120,6 +120,15 @@ function meanCompounds(scores) {
   return sum / scores.length;
 }
 
+/** Distinct Plotly line colors (up to 5 posts). */
+const TRAJECTORY_LINE_COLORS = [
+  "#f59e0b",
+  "#3b82f6",
+  "#10b981",
+  "#ec4899",
+  "#a855f7",
+];
+
 function analyzePost(SentimentClass, post) {
   const title = cleanText(post.title || "");
   const desc = cleanText(
@@ -138,13 +147,28 @@ function analyzePost(SentimentClass, post) {
 
   const authorCompounds = [];
   const communityCompounds = [];
+  const trajX = [];
+  const trajY = [];
+  const trajCustom = [];
 
+  let commentIndex = 0;
   for (const c of comments) {
     const body = cleanText(c.body || "");
     if (!body) continue;
     const pol = SentimentClass.polarity_scores(body).compound;
     if (isOpComment(c, post)) authorCompounds.push(pol);
     else communityCompounds.push(pol);
+    commentIndex += 1;
+    trajX.push(commentIndex);
+    trajY.push(pol);
+    trajCustom.push([
+      post.url || "",
+      post.redditId || "",
+      (post.title || "").slice(0, 100),
+      post.subreddit || "",
+      commentIndex,
+      isOpComment(c, post) ? "author" : "community",
+    ]);
   }
 
   return {
@@ -171,6 +195,12 @@ function analyzePost(SentimentClass, post) {
         communityCompounds.length === 0
           ? "N/A"
           : compoundLabel(meanCompounds(communityCompounds)),
+    },
+    trajectory: {
+      x: trajX,
+      y: trajY,
+      customdata: trajCustom,
+      nComments: trajX.length,
     },
   };
 }
@@ -318,6 +348,124 @@ function buildGroupedBarPlot(analyzed) {
   return { traces, layout };
 }
 
+function buildCommentIndexLinePlot(subset) {
+  const traces = [];
+  const maxLines = 5;
+  const rows = subset.slice(0, maxLines);
+
+  rows.forEach((a, i) => {
+    const tr = a.trajectory;
+    if (!tr || !tr.x || !tr.x.length) return;
+    const color = TRAJECTORY_LINE_COLORS[i % TRAJECTORY_LINE_COLORS.length];
+    const name = `r/${a.subreddit} · ${a.redditId} (${tr.nComments} comments)`;
+    traces.push({
+      type: "scatter",
+      mode: "lines+markers",
+      name,
+      legendgroup: a.redditId,
+      x: tr.x,
+      y: tr.y,
+      customdata: tr.customdata,
+      line: { color, width: 2.4 },
+      marker: { size: 5, color },
+      hovertemplate:
+        `<b>${name}</b><br>` +
+        "%{customdata[4]} · %{customdata[5]}<br>" +
+        "%{customdata[2]}<br>" +
+        "<b>VADER compound</b>: %{y:.3f}<br>" +
+        "<extra>Click to open Reddit post</extra>",
+    });
+  });
+
+  const layout = {
+    paper_bgcolor: "#0a0a0a",
+    plot_bgcolor: "#101010",
+    font: { color: "#fde68a", size: 11 },
+    margin: { t: 52, r: 24, b: 56, l: 56 },
+    title: {
+      text: "Comment-index trajectory (raw VADER per comment) — up to 5 posts",
+      font: { size: 13, color: "#fef08a" },
+    },
+    xaxis: {
+      title: "Comment number (chronological within post)",
+      gridcolor: "#333",
+      zeroline: false,
+      dtick: 5,
+    },
+    yaxis: {
+      title: "VADER compound",
+      gridcolor: "#333",
+      zeroline: true,
+      zerolinecolor: "#666",
+      range: [-1, 1],
+    },
+    legend: {
+      orientation: "h",
+      yanchor: "bottom",
+      y: 1.02,
+      x: 0,
+      font: { size: 9, color: "#fde68a" },
+    },
+    shapes: [
+      {
+        type: "line",
+        xref: "paper",
+        x0: 0,
+        x1: 1,
+        y0: 0,
+        y1: 0,
+        yref: "y",
+        line: { color: "#666", width: 1, dash: "dash" },
+      },
+      {
+        type: "line",
+        xref: "paper",
+        x0: 0,
+        x1: 1,
+        y0: 0.05,
+        y1: 0.05,
+        yref: "y",
+        line: { color: "#2f855a", width: 1, dash: "dot" },
+      },
+      {
+        type: "line",
+        xref: "paper",
+        x0: 0,
+        x1: 1,
+        y0: -0.05,
+        y1: -0.05,
+        yref: "y",
+        line: { color: "#c53030", width: 1, dash: "dot" },
+      },
+    ],
+  };
+
+  if (!traces.length) {
+    traces.push({
+      type: "scatter",
+      x: [0],
+      y: [0],
+      mode: "text",
+      text: ["No comments in API payload for these posts"],
+      textfont: { color: "#f87171", size: 13 },
+      showlegend: false,
+    });
+    layout.annotations = [
+      {
+        text: "Threads have no comment bodies in this slice — try Refresh.",
+        xref: "paper",
+        yref: "paper",
+        x: 0.5,
+        y: 0.55,
+        showarrow: false,
+        font: { color: "#fde68a", size: 12 },
+      },
+    ];
+  }
+
+  return { traces, layout };
+}
+
 let siaPromise = null;
 
 /** Bundled with esbuild from vader-sentiment@1.1.3 (CDN esm.sh wrapped the wrong export). */
@@ -337,6 +485,7 @@ function getAnalyzer() {
 export async function runLiveSubredditDashboard(opts) {
   const {
     plotEl,
+    plotLinesEl,
     statusEl,
     subSelect,
     onMeta,
@@ -362,12 +511,20 @@ export async function runLiveSubredditDashboard(opts) {
   }
   if (onMeta) onMeta(meta);
 
+  const plotConfig = {
+    responsive: true,
+    displayModeBar: true,
+    displaylogo: false,
+    modeBarButtonsToRemove: ["lasso2d", "select2d"],
+  };
+
   function render() {
     const v = subSelect.value;
     const subset = filterAnalyzed(analyzed, v);
     if (!subset.length) {
       statusEl.textContent = "No posts for this filter (API slice may lack that subreddit). Try Refresh.";
       Plotly.purge(plotEl);
+      if (plotLinesEl) Plotly.purge(plotLinesEl);
       Plotly.newPlot(
         plotEl,
         [
@@ -404,14 +561,27 @@ export async function runLiveSubredditDashboard(opts) {
 
     const { traces, layout } = buildGroupedBarPlot(subset);
     Plotly.purge(plotEl);
-    Plotly.newPlot(plotEl, traces, layout, {
-      responsive: true,
-      displayModeBar: true,
-      displaylogo: false,
-      modeBarButtonsToRemove: ["lasso2d", "select2d"],
-    });
+    Plotly.newPlot(plotEl, traces, layout, plotConfig);
 
-    statusEl.textContent = `Analyzed ${subset.length} post(s) · unique posts merged from API: ${meta.fetchedUniquePosts} · Refresh page for a new sample.`;
+    if (plotLinesEl) {
+      const linePlot = buildCommentIndexLinePlot(subset);
+      Plotly.purge(plotLinesEl);
+      Plotly.newPlot(plotLinesEl, linePlot.traces, linePlot.layout, plotConfig).then(
+        (gd) => {
+          gd.on("plotly_click", (ev) => {
+            const p = ev.points && ev.points[0];
+            if (!p || p.customdata == null) return;
+            const row = p.customdata;
+            const url = Array.isArray(row) ? row[0] : null;
+            if (url && String(url).startsWith("http")) {
+              window.open(url, "_blank", "noopener");
+            }
+          });
+        }
+      );
+    }
+
+    statusEl.textContent = `Analyzed ${subset.length} post(s) · unique posts merged from API: ${meta.fetchedUniquePosts} · Line chart: up to 5 posts · Click a point to open Reddit · Refresh for a new sample.`;
   }
 
   subSelect.innerHTML = "";
@@ -432,6 +602,7 @@ export async function runLiveSubredditDashboard(opts) {
 
 function bootLivePanel() {
   const plotEl = document.getElementById("liveSubredditPlot");
+  const plotLinesEl = document.getElementById("liveSubredditPlotLines");
   const statusEl = document.getElementById("liveSubredditStatus");
   const subSelect = document.getElementById("liveSubredditFilter");
   const metaEl = document.getElementById("liveSubredditMeta");
@@ -444,6 +615,7 @@ function bootLivePanel() {
 
   runLiveSubredditDashboard({
     plotEl,
+    plotLinesEl,
     statusEl,
     subSelect,
     onMeta: (meta) => {
