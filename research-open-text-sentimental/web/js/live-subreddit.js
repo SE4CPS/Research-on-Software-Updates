@@ -21,20 +21,11 @@ const FETCH_SLICES = [
   "reddit/query/filter?minComments=3&maxScore=0.5&limit=500",
 ];
 
-/**
- * Proxy lives next to the `web/` folder (see netlify.toml). When the site is deployed
- * under a path prefix (e.g. /research-open-text-sentimental/web/), `../releasetrain-api`
- * from the browser resolves correctly only if we anchor off "/web/" in the pathname.
- */
+/** ReleaseTrain exposes CORS `Access-Control-Allow-Origin: *`, so we call the API directly. Same-origin Netlify proxies were unreliable (404) when redirects did not match the deploy layout. */
+const RELEASETRAIN_API_BASE = "https://releasetrain.io/api/";
+
 function apiBaseUrl() {
-  const { pathname, origin } = window.location;
-  const marker = "/web/";
-  const i = pathname.indexOf(marker);
-  if (i >= 0) {
-    const prefix = pathname.slice(0, i);
-    return `${origin}${prefix}/releasetrain-api/`;
-  }
-  return new URL("../releasetrain-api/", window.location.href).href.replace(/\/?$/, "/");
+  return RELEASETRAIN_API_BASE;
 }
 
 function compoundLabel(c) {
