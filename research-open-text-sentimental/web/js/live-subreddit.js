@@ -348,49 +348,115 @@ function buildGroupedBarPlot(analyzed) {
   return { traces, layout };
 }
 
-function buildCommentIndexLinePlot(subset) {
-  const traces = [];
-  const maxLines = 5;
-  const rows = subset.slice(0, maxLines);
+const TRAJECTORY_SHAPES = [
+  {
+    type: "line",
+    xref: "paper",
+    x0: 0,
+    x1: 1,
+    y0: 0,
+    y1: 0,
+    yref: "y",
+    line: { color: "#666", width: 1, dash: "dash" },
+  },
+  {
+    type: "line",
+    xref: "paper",
+    x0: 0,
+    x1: 1,
+    y0: 0.05,
+    y1: 0.05,
+    yref: "y",
+    line: { color: "#2f855a", width: 1, dash: "dot" },
+  },
+  {
+    type: "line",
+    xref: "paper",
+    x0: 0,
+    x1: 1,
+    y0: -0.05,
+    y1: -0.05,
+    yref: "y",
+    line: { color: "#c53030", width: 1, dash: "dot" },
+  },
+];
 
-  rows.forEach((a, i) => {
-    const tr = a.trajectory;
-    if (!tr || !tr.x || !tr.x.length) return;
-    const color = TRAJECTORY_LINE_COLORS[i % TRAJECTORY_LINE_COLORS.length];
-    const name = `r/${a.subreddit} · ${a.redditId} (${tr.nComments} comments)`;
-    traces.push({
+/** One Plotly figure: single post, comment index vs VADER compound. */
+function buildSinglePostTrajectoryPlot(a, postIndex) {
+  const color = TRAJECTORY_LINE_COLORS[postIndex % TRAJECTORY_LINE_COLORS.length];
+  const tr = a.trajectory;
+
+  if (!tr || !tr.x || !tr.x.length) {
+    return {
+      traces: [
+        {
+          type: "scatter",
+          x: [0],
+          y: [0],
+          mode: "text",
+          text: ["No comment bodies"],
+          textfont: { color: "#f87171", size: 12 },
+          showlegend: false,
+        },
+      ],
+      layout: {
+        paper_bgcolor: "#0a0a0a",
+        plot_bgcolor: "#101010",
+        font: { color: "#fde68a", size: 10 },
+        margin: { t: 40, r: 12, b: 40, l: 44 },
+        title: {
+          text: `Post ${postIndex + 1} · r/${a.subreddit} · ${a.redditId}`,
+          font: { size: 11, color: "#fef08a" },
+        },
+        xaxis: { visible: false },
+        yaxis: { visible: false },
+        annotations: [
+          {
+            text: "No comments in API payload for this thread.",
+            xref: "paper",
+            yref: "paper",
+            x: 0.5,
+            y: 0.5,
+            showarrow: false,
+            font: { color: "#94a3b8", size: 11 },
+          },
+        ],
+      },
+    };
+  }
+
+  const traces = [
+    {
       type: "scatter",
       mode: "lines+markers",
-      name,
-      legendgroup: a.redditId,
       x: tr.x,
       y: tr.y,
       customdata: tr.customdata,
-      line: { color, width: 2.4 },
-      marker: { size: 5, color },
+      line: { color, width: 2.2 },
+      marker: { size: 4, color },
+      showlegend: false,
       hovertemplate:
-        `<b>${name}</b><br>` +
-        "%{customdata[4]} · %{customdata[5]}<br>" +
+        "comment #%{customdata[4]} · %{customdata[5]}<br>" +
         "%{customdata[2]}<br>" +
-        "<b>VADER compound</b>: %{y:.3f}<br>" +
-        "<extra>Click to open Reddit post</extra>",
-    });
-  });
+        "<b>VADER</b>: %{y:.3f}<br>" +
+        "<extra>Click to open post</extra>",
+    },
+  ];
 
   const layout = {
     paper_bgcolor: "#0a0a0a",
     plot_bgcolor: "#101010",
-    font: { color: "#fde68a", size: 11 },
-    margin: { t: 52, r: 24, b: 56, l: 56 },
+    font: { color: "#fde68a", size: 10 },
+    margin: { t: 44, r: 12, b: 44, l: 48 },
     title: {
-      text: "Comment-index trajectory (raw VADER per comment) — up to 5 posts",
-      font: { size: 13, color: "#fef08a" },
+      text: `Post ${postIndex + 1} · r/${a.subreddit} · ${a.redditId}`,
+      font: { size: 11, color: "#fef08a" },
     },
     xaxis: {
-      title: "Comment number (chronological within post)",
+      title: "Comment # (chronological)",
       gridcolor: "#333",
       zeroline: false,
-      dtick: 5,
+      dtick: Math.max(1, Math.ceil(tr.x.length / 8)),
     },
     yaxis: {
       title: "VADER compound",
@@ -399,71 +465,74 @@ function buildCommentIndexLinePlot(subset) {
       zerolinecolor: "#666",
       range: [-1, 1],
     },
-    legend: {
-      orientation: "h",
-      yanchor: "bottom",
-      y: 1.02,
-      x: 0,
-      font: { size: 9, color: "#fde68a" },
-    },
-    shapes: [
-      {
-        type: "line",
-        xref: "paper",
-        x0: 0,
-        x1: 1,
-        y0: 0,
-        y1: 0,
-        yref: "y",
-        line: { color: "#666", width: 1, dash: "dash" },
-      },
-      {
-        type: "line",
-        xref: "paper",
-        x0: 0,
-        x1: 1,
-        y0: 0.05,
-        y1: 0.05,
-        yref: "y",
-        line: { color: "#2f855a", width: 1, dash: "dot" },
-      },
-      {
-        type: "line",
-        xref: "paper",
-        x0: 0,
-        x1: 1,
-        y0: -0.05,
-        y1: -0.05,
-        yref: "y",
-        line: { color: "#c53030", width: 1, dash: "dot" },
-      },
-    ],
+    shapes: TRAJECTORY_SHAPES,
   };
 
-  if (!traces.length) {
-    traces.push({
-      type: "scatter",
-      x: [0],
-      y: [0],
-      mode: "text",
-      text: ["No comments in API payload for these posts"],
-      textfont: { color: "#f87171", size: 13 },
-      showlegend: false,
-    });
-    layout.annotations = [
-      {
-        text: "Threads have no comment bodies in this slice — try Refresh.",
-        xref: "paper",
-        yref: "paper",
-        x: 0.5,
-        y: 0.55,
-        showarrow: false,
-        font: { color: "#fde68a", size: 12 },
-      },
-    ];
-  }
-
   return { traces, layout };
+}
+
+function purgeTrajectoryGrid(container) {
+  if (!container) return;
+  container.querySelectorAll(".js-trajectory-plot").forEach((gd) => {
+    try {
+      Plotly.purge(gd);
+    } catch (_) {
+      /* ignore */
+    }
+  });
+  container.innerHTML = "";
+}
+
+function attachTrajectoryClick(gd) {
+  gd.on("plotly_click", (ev) => {
+    const p = ev.points && ev.points[0];
+    if (!p || p.customdata == null) return;
+    const row = p.customdata;
+    const url = Array.isArray(row) ? row[0] : null;
+    if (url && String(url).startsWith("http")) {
+      window.open(url, "_blank", "noopener");
+    }
+  });
+}
+
+function renderTrajectoryGrid(gridEl, subset, plotConfig) {
+  purgeTrajectoryGrid(gridEl);
+  const rows = subset.slice(0, 5);
+  rows.forEach((a, i) => {
+    const cell = document.createElement("div");
+    cell.className = "trajectory-cell";
+
+    const head = document.createElement("div");
+    head.className = "trajectory-cell-head";
+    const safeUrl = a.url && String(a.url).startsWith("http") ? a.url : "#";
+    const strong = document.createElement("strong");
+    strong.textContent = `Post ${i + 1}`;
+    head.appendChild(strong);
+    head.appendChild(document.createTextNode(" · "));
+    const link = document.createElement("a");
+    link.href = safeUrl;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = `r/${a.subreddit} · ${a.redditId}`;
+    head.appendChild(link);
+    head.appendChild(document.createElement("br"));
+    const sub = document.createElement("span");
+    sub.style.opacity = "0.9";
+    sub.textContent = `${(a.titleText || "").slice(0, 72)}…`;
+    head.appendChild(sub);
+
+    const plotDiv = document.createElement("div");
+    plotDiv.className = "js-trajectory-plot";
+
+    cell.appendChild(head);
+    cell.appendChild(plotDiv);
+    gridEl.appendChild(cell);
+
+    const { traces, layout } = buildSinglePostTrajectoryPlot(a, i);
+    Plotly.newPlot(plotDiv, traces, layout, plotConfig).then((gd) => {
+      attachTrajectoryClick(gd);
+    });
+  });
 }
 
 let siaPromise = null;
@@ -485,7 +554,7 @@ function getAnalyzer() {
 export async function runLiveSubredditDashboard(opts) {
   const {
     plotEl,
-    plotLinesEl,
+    trajectoryGridEl,
     statusEl,
     subSelect,
     onMeta,
@@ -524,7 +593,7 @@ export async function runLiveSubredditDashboard(opts) {
     if (!subset.length) {
       statusEl.textContent = "No posts for this filter (API slice may lack that subreddit). Try Refresh.";
       Plotly.purge(plotEl);
-      if (plotLinesEl) Plotly.purge(plotLinesEl);
+      if (trajectoryGridEl) purgeTrajectoryGrid(trajectoryGridEl);
       Plotly.newPlot(
         plotEl,
         [
@@ -563,25 +632,11 @@ export async function runLiveSubredditDashboard(opts) {
     Plotly.purge(plotEl);
     Plotly.newPlot(plotEl, traces, layout, plotConfig);
 
-    if (plotLinesEl) {
-      const linePlot = buildCommentIndexLinePlot(subset);
-      Plotly.purge(plotLinesEl);
-      Plotly.newPlot(plotLinesEl, linePlot.traces, linePlot.layout, plotConfig).then(
-        (gd) => {
-          gd.on("plotly_click", (ev) => {
-            const p = ev.points && ev.points[0];
-            if (!p || p.customdata == null) return;
-            const row = p.customdata;
-            const url = Array.isArray(row) ? row[0] : null;
-            if (url && String(url).startsWith("http")) {
-              window.open(url, "_blank", "noopener");
-            }
-          });
-        }
-      );
+    if (trajectoryGridEl) {
+      renderTrajectoryGrid(trajectoryGridEl, subset, plotConfig);
     }
 
-    statusEl.textContent = `Analyzed ${subset.length} post(s) · unique posts merged from API: ${meta.fetchedUniquePosts} · Line chart: up to 5 posts · Click a point to open Reddit · Refresh for a new sample.`;
+    statusEl.textContent = `Analyzed ${subset.length} post(s) · unique posts merged from API: ${meta.fetchedUniquePosts} · Up to 5 separate trajectory charts · Click a point or the header link to open Reddit · Refresh for a new sample.`;
   }
 
   subSelect.innerHTML = "";
@@ -602,7 +657,7 @@ export async function runLiveSubredditDashboard(opts) {
 
 function bootLivePanel() {
   const plotEl = document.getElementById("liveSubredditPlot");
-  const plotLinesEl = document.getElementById("liveSubredditPlotLines");
+  const trajectoryGridEl = document.getElementById("liveSubredditTrajectoryGrid");
   const statusEl = document.getElementById("liveSubredditStatus");
   const subSelect = document.getElementById("liveSubredditFilter");
   const metaEl = document.getElementById("liveSubredditMeta");
@@ -615,7 +670,7 @@ function bootLivePanel() {
 
   runLiveSubredditDashboard({
     plotEl,
-    plotLinesEl,
+    trajectoryGridEl,
     statusEl,
     subSelect,
     onMeta: (meta) => {

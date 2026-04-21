@@ -230,16 +230,42 @@
             font-weight: 600;
         }
         .btn-refresh:hover { background: #1e293b; }
-        #liveSubredditPlot,
-        #liveSubredditPlotLines {
+        #liveSubredditPlot {
             min-height: 460px;
             width: 100%;
             border-radius: 8px;
             border: 1px solid #38bdf8;
             background: #0a0a0a;
         }
-        #liveSubredditPlotLines {
-            margin-top: 14px;
+        .trajectory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: 14px;
+            margin-top: 10px;
+        }
+        .trajectory-cell {
+            border: 1px solid #38bdf8;
+            border-radius: 10px;
+            background: #0a0a0a;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .trajectory-cell-head {
+            padding: 10px 12px 4px;
+            font-size: 0.8rem;
+            color: #bae6fd;
+            line-height: 1.35;
+            border-bottom: 1px solid #1e3a5f;
+        }
+        .trajectory-cell-head a {
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+        .trajectory-cell .js-trajectory-plot {
+            min-height: 280px;
+            width: 100%;
+            flex: 1;
         }
         .live-chart-label {
             font-size: 0.9rem;
@@ -274,11 +300,11 @@
             </div>
             <p class="live-chart-label">Layer summary (bars)</p>
             <div id="liveSubredditPlot"></div>
-            <p class="live-chart-label">Comment-index trajectories (one line per post, VADER per comment)</p>
-            <div id="liveSubredditPlotLines" title="Click a point to open the Reddit post"></div>
+            <p class="live-chart-label">Comment-index trajectories (one graph per post, up to 5)</p>
+            <div id="liveSubredditTrajectoryGrid" class="trajectory-grid" aria-label="Per-post trajectory charts"></div>
             <p class="footer-note" style="margin-top:10px;color:#94a3b8">
                 Sources: merged <code>filter</code> slices (up to 500 posts each) from the ReleaseTrain API; top <strong>5</strong> posts per target subreddit by <strong>comment count</strong> then <strong>score</strong>.
-                Bars: title, description/body, mean VADER for <strong>author</strong> vs <strong>community</strong> comments. Lines: raw VADER compound vs chronological comment index (each comment with body). <strong>Click a point</strong> on the line chart to open that post on Reddit.
+                Bars: layer summary. Below: <strong>one line chart per post</strong> (VADER compound vs chronological comment index). <strong>Click a point</strong> on any small chart to open that Reddit thread.
             </p>
         </section>
 
