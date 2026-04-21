@@ -21,9 +21,20 @@ const FETCH_SLICES = [
   "reddit/query/filter?minComments=3&maxScore=0.5&limit=500",
 ];
 
+/**
+ * Proxy lives next to the `web/` folder (see netlify.toml). When the site is deployed
+ * under a path prefix (e.g. /research-open-text-sentimental/web/), `../releasetrain-api`
+ * from the browser resolves correctly only if we anchor off "/web/" in the pathname.
+ */
 function apiBaseUrl() {
-  const u = new URL("../releasetrain-api/", window.location.href);
-  return u.href.replace(/\/?$/, "/");
+  const { pathname, origin } = window.location;
+  const marker = "/web/";
+  const i = pathname.indexOf(marker);
+  if (i >= 0) {
+    const prefix = pathname.slice(0, i);
+    return `${origin}${prefix}/releasetrain-api/`;
+  }
+  return new URL("../releasetrain-api/", window.location.href).href.replace(/\/?$/, "/");
 }
 
 function compoundLabel(c) {

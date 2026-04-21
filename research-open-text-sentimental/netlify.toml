@@ -2,8 +2,15 @@
   publish = "."
 
 # Same-origin proxy so the live dashboard can call ReleaseTrain without browser CORS issues.
+# Support both site-root deploys and path-prefix deploys (e.g. .../research-open-text-sentimental/web/).
 [[redirects]]
   from = "/releasetrain-api/*"
+  to = "https://releasetrain.io/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/research-open-text-sentimental/releasetrain-api/*"
   to = "https://releasetrain.io/api/:splat"
   status = 200
   force = true
