@@ -320,17 +320,15 @@ function buildGroupedBarPlot(analyzed) {
 
 let siaPromise = null;
 
+/** Bundled with esbuild from vader-sentiment@1.1.3 (CDN esm.sh wrapped the wrong export). */
 function getAnalyzer() {
   if (!siaPromise) {
-    siaPromise = import("https://esm.sh/vader-sentiment@1.1.3").then((mod) => {
-      const SIA =
-        mod.default ||
-        mod.SentimentIntensityAnalyzer ||
-        (mod.default && mod.default.SentimentIntensityAnalyzer);
-      if (!SIA || typeof SIA.polarity_scores !== "function") {
-        throw new Error("vader-sentiment: SentimentIntensityAnalyzer.polarity_scores missing");
+    siaPromise = import("../vendor/vader-sentiment.bundle.mjs").then((mod) => {
+      const C = mod.default;
+      if (!C || typeof C.polarity_scores !== "function") {
+        throw new Error("vader bundle: SentimentIntensityAnalyzer.polarity_scores missing");
       }
-      return SIA;
+      return C;
     });
   }
   return siaPromise;
