@@ -276,6 +276,25 @@
             margin: 12px 0 6px;
             font-weight: 600;
         }
+        .live-panel-technical {
+            background: #0f0a12;
+            border: 2px solid #a855f7;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+        }
+        .live-panel-technical h2 { margin-top: 0; color: #e9d5ff; }
+        .live-panel-technical .live-status { color: #d8b4fe; }
+        .live-panel-technical .live-meta { color: #a78bfa; }
+        .live-panel-technical .live-toolbar .field label { color: #c4b5fd; }
+        .live-panel-technical .live-toolbar .field select { border-color: #a855f7; color: #f3e8ff; }
+        .live-panel-technical .btn-refresh {
+            border: 1px solid #a855f7;
+            color: #e9d5ff;
+        }
+        .live-panel-technical .live-chart-label { color: #d8b4fe; }
+        .live-panel-technical .trajectory-cell { border-color: #7c3aed; }
     </style>
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
 </head>
@@ -306,6 +325,24 @@
             <p class="footer-note" style="margin-top:10px;color:#94a3b8">
                 Sources: three merged <code>filter</code> slices (up to 500 posts each): <strong>Pool</strong> (<code>minComments≥1</code>, no post-score filter), <strong>Class 1</strong> (<code>minScore=0.5</code> on post), <strong>Class 2</strong> (<code>maxScore=0.5</code>). Each post is tagged with the slice(s) it appeared in. Top <strong>5</strong> per target subreddit by <strong>comment count</strong> then <strong>score</strong>, preferring at least one Class 1 and one Class 2 when available.
                 <strong>One line chart per post</strong> (VADER compound vs chronological comment index). <strong>Click a point</strong> on any chart or the header link to open that Reddit thread.
+            </p>
+        </section>
+
+        <section class="live-panel-technical" id="technicalBalancePanel" aria-label="Technical subreddit balanced min max cohorts">
+            <h2 class="section-title">Technical subreddits — balanced min / max post scores</h2>
+            <p class="live-status" id="technicalBalanceStatus">Loading subreddit list and class slices…</p>
+            <p class="live-meta" id="technicalBalanceMeta"></p>
+            <div class="live-toolbar">
+                <div class="field">
+                    <label for="technicalBalanceFilter">Technical subreddit</label>
+                    <select id="technicalBalanceFilter"></select>
+                </div>
+                <button type="button" class="btn-refresh" id="technicalBalanceRefresh">Refresh (reload)</button>
+            </div>
+            <p class="live-chart-label">Up to <strong>6</strong> charts: up to 3 from Class 1 (min post score ≥0.5) and 3 from Class 2 (max ≤0.5) per sub. If a cohort is missing, you get up to 5 from the available slice only, or a mixed 5 (e.g. 1+4). List = curated technical names that appear in <code>releasetrain.io/api/reddit/meta/subreddits</code>.</p>
+            <div id="technicalBalanceGrid" class="trajectory-grid" aria-label="Balanced min max trajectory charts"></div>
+            <p class="footer-note" style="margin-top:10px;color:#a78bfa">
+                Slices: <code>minComments=3&amp;minScore=0.5</code> vs <code>minComments=3&amp;maxScore=0.5</code> (500 rows each), filtered to the selected subreddit. Interactive Plotly: click a point to open the Reddit thread.
             </p>
         </section>
 
@@ -754,5 +791,6 @@
         render();
     </script>
     <script type="module" src="js/live-subreddit.js"></script>
+    <script type="module" src="js/technical-balance.mjs"></script>
 </body>
 </html>
