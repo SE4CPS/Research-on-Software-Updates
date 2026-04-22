@@ -301,7 +301,7 @@
                 </div>
                 <button type="button" class="btn-refresh" id="liveSubredditRefresh">Refresh (reload)</button>
             </div>
-            <p class="live-chart-label">Comment-index trajectories (up to 5 charts). <strong>All subreddits</strong> = one top post per target community in order; a <strong>single</strong> subreddit = up to 5 posts from that sub only.</p>
+            <p class="live-chart-label">Comment-index trajectories: up to 5 top posts for the <strong>selected</strong> subreddit (comment count, then score).</p>
             <div id="liveSubredditTrajectoryGrid" class="trajectory-grid" aria-label="Per-post trajectory charts"></div>
             <p class="footer-note" style="margin-top:10px;color:#94a3b8">
                 Sources: three merged <code>filter</code> slices (up to 500 posts each): <strong>Pool</strong> (<code>minComments≥1</code>, no post-score filter), <strong>Class 1</strong> (<code>minScore=0.5</code> on post), <strong>Class 2</strong> (<code>maxScore=0.5</code>). Each post is tagged with the slice(s) it appeared in. Top <strong>5</strong> per target subreddit by <strong>comment count</strong> then <strong>score</strong>, preferring at least one Class 1 and one Class 2 when available.

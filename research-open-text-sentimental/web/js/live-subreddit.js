@@ -275,33 +275,9 @@ async function loadAllPosts() {
 
 const MAX_TRAJECTORY_CELLS = 5;
 
-/**
- * "All subreddits" should sample across communities. The `analyzed` array is ordered
- * (all of subreddit 1, then all of 2, …) so taking `.slice(0, 5)` would only show android.
- * Here we take the top-ranked post per target subreddit in list order, up to MAX_TRAJECTORY_CELLS.
- */
-function subsetForAllSubredditsMode(analyzed) {
-  const firstBySub = new Map();
-  for (const a of analyzed) {
-    const s = (a.subreddit || "").trim().toLowerCase();
-    if (!s || firstBySub.has(s)) continue;
-    firstBySub.set(s, a);
-  }
-  const out = [];
-  for (const t of TARGET_SUBREDDITS) {
-    if (out.length >= MAX_TRAJECTORY_CELLS) break;
-    const a = firstBySub.get(t.toLowerCase());
-    if (a) out.push(a);
-  }
-  return out;
-}
-
 function filterAnalyzedForDisplay(analyzed, subredditFilter) {
-  if (subredditFilter && subredditFilter !== "__all__") {
-    const want = subredditFilter.toLowerCase();
-    return analyzed.filter((a) => (a.subreddit || "").toLowerCase() === want);
-  }
-  return subsetForAllSubredditsMode(analyzed);
+  const want = (subredditFilter || TARGET_SUBREDDITS[0]).toLowerCase();
+  return analyzed.filter((a) => (a.subreddit || "").toLowerCase() === want);
 }
 
 const TRAJECTORY_SHAPES = [
@@ -572,24 +548,17 @@ export async function runLiveSubredditDashboard(opts) {
       renderTrajectoryGrid(trajectoryGridEl, subset, plotConfig);
     }
 
-    const allMode = !v || v === "__all__";
-    const allNote = allMode
-      ? " All mode: up to 5 charts = one #1 post per target subreddit in order (skips 0/5). "
-      : " ";
-    statusEl.textContent = `Showing ${subset.length} trajectory chart(s) · ${analyzed.length} post(s) scored total · unique posts in API pool: ${meta.fetchedUniquePosts} ·${allNote}Class 1/2/Pool — see green strip on each chart · Per-subreddit pick uses class diversity when available · Click a point or header to open Reddit · Refresh for a new sample.`;
+    statusEl.textContent = `Showing ${subset.length} trajectory chart(s) for r/${(v || TARGET_SUBREDDITS[0]).toLowerCase()} · ${analyzed.length} post(s) scored total · unique posts in API pool: ${meta.fetchedUniquePosts} · Class 1/2/Pool — see green strip on each chart · Per-subreddit pick uses class diversity when available · Click a point or header to open Reddit · Refresh for a new sample.`;
   }
 
   subSelect.innerHTML = "";
-  const allOpt = document.createElement("option");
-  allOpt.value = "__all__";
-  allOpt.textContent = "All subreddits";
-  subSelect.appendChild(allOpt);
   for (const t of TARGET_SUBREDDITS) {
     const o = document.createElement("option");
     o.value = t;
     o.textContent = `r/${t}`;
     subSelect.appendChild(o);
   }
+  subSelect.value = TARGET_SUBREDDITS[0];
 
   subSelect.onchange = () => render();
   render();
