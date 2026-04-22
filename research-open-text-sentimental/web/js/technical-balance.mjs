@@ -1,5 +1,5 @@
 /**
- * Technical subreddits (from /reddit/meta/subreddits) with balanced minScore vs maxScore
+ * All subreddits from /reddit/meta/subreddits, with balanced minScore vs maxScore
  * cohorts (up to 3+3; single cohort capped at 5; mixed fill to 5 when needed).
  */
 import {
@@ -15,12 +15,18 @@ const CLASS1_PATH = "reddit/query/filter?minComments=3&minScore=0.5&limit=500";
 const CLASS2_PATH = "reddit/query/filter?minComments=3&maxScore=0.5&limit=500";
 const META_PATH = "reddit/meta/subreddits";
 
-const TECHNICAL_CANDIDATE_NAMES = new Set(
-  "android,androiddev,angular,ansible,apache,arch,aws,azure,c++,c#,chrome,chromeos,debian,django,docker,elasticsearch,elixir,fastapi,firefox,flask,flutter,git,golang,graphql,haskell,java,javascript,jenkins,kotlin,kubernetes,langchain,linux,linuxquestions,mongodb,mysql,neovim,nginx,node,node.js,nixos,openclaw,postgresql,python,react,redis,ruby,rust,scala,spring,spring-boot,sql,sqlite,swift,sysadmin,terraform,typescript,ubuntu,next.js,deno,netsec,vim,vscode,grafana,prometheus,emacs"
-    .split(",")
-    .map((s) => s.trim().toLowerCase())
-    .filter(Boolean)
-);
+/** Deduplicate by lowercase (e.g. python vs Python); sort for the dropdown. */
+function allSubredditNamesFromMeta(dataList) {
+  const seen = new Set();
+  const out = [];
+  for (const raw of dataList || []) {
+    const s = String(raw).trim().toLowerCase();
+    if (!s || seen.has(s)) continue;
+    seen.add(s);
+    out.push(s);
+  }
+  return out.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
+}
 
 function postId(p) {
   return p.redditId || p._id;
@@ -92,15 +98,6 @@ export function pickBalancedMinMax(l1, l2) {
   return out.length > 6 ? out.slice(0, 6) : out;
 }
 
-function buildTechnicalNameSetFromMeta(dataArray) {
-  const meta = new Set((dataArray || []).map((s) => String(s).toLowerCase()));
-  const out = new Set();
-  for (const n of TECHNICAL_CANDIDATE_NAMES) {
-    if (meta.has(n)) out.add(n);
-  }
-  return out;
-}
-
 function postsForSub(rows, name) {
   const n = name.toLowerCase();
   return rows.filter((p) => (p.subreddit || "").trim().toLowerCase() === n);
@@ -121,41 +118,38 @@ export async function runTechnicalBalancePanel(opts) {
   ]);
 
   const dataList = Array.isArray(metaRes.data) ? metaRes.data : Array.isArray(metaRes) ? metaRes : [];
-  const technicalSet = buildTechnicalNameSetFromMeta(dataList);
-  const technical = [...technicalSet].sort();
-  if (!technical.length) {
-    statusEl.textContent =
-      "No curated technical names intersect the ReleaseTrain meta subreddit list. Expand TECHNICAL_CANDIDATE_NAMES or check the API.";
-    if (metaOut) metaOut.textContent = `Meta: ${dataList.length} subreddit name(s) returned.`;
+  const allNames = allSubredditNamesFromMeta(dataList);
+  if (!allNames.length) {
+    statusEl.textContent = "ReleaseTrain meta returned no subreddit names. Check the API.";
+    if (metaOut) metaOut.textContent = "Meta: 0 names.";
     return;
   }
 
   const rows1 = c1p.data || [];
   const rows2 = c2p.data || [];
 
-  const withAny = technical.filter(
+  const withAny = allNames.filter(
     (name) => postsForSub(rows1, name).length + postsForSub(rows2, name).length > 0
   );
 
   subSelect.innerHTML = "";
-  if (!withAny.length) {
-    statusEl.textContent =
-      "No curated technical name from meta had any posts in the current min/max slices. Try Refresh later.";
-    if (metaOut) {
-      metaOut.textContent = `Meta: ${dataList.length} names · technical in meta: ${technicalSet.size} · min: ${rows1.length} · max: ${rows2.length}`;
-    }
-    return;
-  }
-  for (const name of withAny) {
+  for (const name of allNames) {
     const o = document.createElement("option");
     o.value = name;
     o.textContent = `r/${name}`;
     subSelect.appendChild(o);
   }
-  subSelect.value = withAny[0];
+  subSelect.value = (withAny.length ? withAny[0] : allNames[0]) || "";
 
   if (metaOut) {
-    metaOut.textContent = `Meta: ${dataList.length} names · ${technicalSet.size} technical (curated, in meta) · min-slice: ${rows1.length} · max-slice: ${rows2.length} · with posts: ${withAny.length}`;
+    const hint = withAny.length
+      ? ` · ${withAny.length} with ≥1 post in min or max slice (first selected)`
+      : " · no meta sub had posts in current min/max rows — pick another or Refresh";
+    metaOut.textContent = `Meta: ${dataList.length} raw · ${allNames.length} unique (deduped) · min-slice: ${rows1.length} · max-slice: ${rows2.length}${hint}`;
+  }
+  if (!withAny.length) {
+    statusEl.textContent =
+      "No subreddit in the current min/max filter rows matches any meta name. Open the list and try again after Refresh, or the ReleaseTrain sample may be empty.";
   }
 
   const SentimentClass = await getAnalyzer();

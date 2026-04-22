@@ -328,18 +328,18 @@
             </p>
         </section>
 
-        <section class="live-panel-technical" id="technicalBalancePanel" aria-label="Technical subreddit balanced min max cohorts">
-            <h2 class="section-title">Technical subreddits — balanced min / max post scores</h2>
+        <section class="live-panel-technical" id="technicalBalancePanel" aria-label="Meta subreddits balanced min max cohorts">
+            <h2 class="section-title">All meta subreddits — balanced min / max post scores</h2>
             <p class="live-status" id="technicalBalanceStatus">Loading subreddit list and class slices…</p>
             <p class="live-meta" id="technicalBalanceMeta"></p>
             <div class="live-toolbar">
                 <div class="field">
-                    <label for="technicalBalanceFilter">Technical subreddit</label>
+                    <label for="technicalBalanceFilter">Subreddit (from meta)</label>
                     <select id="technicalBalanceFilter"></select>
                 </div>
                 <button type="button" class="btn-refresh" id="technicalBalanceRefresh">Refresh (reload)</button>
             </div>
-            <p class="live-chart-label">Up to <strong>6</strong> charts: up to 3 from Class 1 (min post score ≥0.5) and 3 from Class 2 (max ≤0.5) per sub. If a cohort is missing, you get up to 5 from the available slice only, or a mixed 5 (e.g. 1+4). List = curated technical names that appear in <code>releasetrain.io/api/reddit/meta/subreddits</code>.</p>
+            <p class="live-chart-label">Up to <strong>6</strong> charts: up to 3 from Class 1 (min post score ≥0.5) and 3 from Class 2 (max ≤0.5) per sub. If a cohort is missing, you get up to 5 from the available slice only, or a mixed 5 (e.g. 1+4). The dropdown is the <strong>full</strong> <code>releasetrain.io/api/reddit/meta/subreddits</code> list (case-insensitive, deduplicated, sorted). Many names may have no rows in the current min/max samples—use another or Refresh.</p>
             <div id="technicalBalanceGrid" class="trajectory-grid" aria-label="Balanced min max trajectory charts"></div>
             <p class="footer-note" style="margin-top:10px;color:#a78bfa">
                 Slices: <code>minComments=3&amp;minScore=0.5</code> vs <code>minComments=3&amp;maxScore=0.5</code> (500 rows each), filtered to the selected subreddit. Interactive Plotly: click a point to open the Reddit thread.
