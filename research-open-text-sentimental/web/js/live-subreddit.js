@@ -15,10 +15,16 @@ const TARGET_SUBREDDITS = [
   "langchain",
 ];
 
+/**
+ * Merged on load (union). Per row we record which slice(s) it appeared in:
+ * - pool: minComments only (no post upvote filter)
+ * - class1: min post score (minScore=0.5) — "Class 1"
+ * - class2: max post score (maxScore=0.5) — "Class 2"
+ */
 const FETCH_SLICES = [
-  "reddit/query/filter?minComments=1&limit=500",
-  "reddit/query/filter?minComments=3&minScore=0.5&limit=500",
-  "reddit/query/filter?minComments=3&maxScore=0.5&limit=500",
+  { path: "reddit/query/filter?minComments=1&limit=500", key: "pool" },
+  { path: "reddit/query/filter?minComments=3&minScore=0.5&limit=500", key: "class1" },
+  { path: "reddit/query/filter?minComments=3&maxScore=0.5&limit=500", key: "class2" },
 ];
 
 /** ReleaseTrain exposes CORS `Access-Control-Allow-Origin: *`, so we call the API directly. Same-origin Netlify proxies were unreliable (404) when redirects did not match the deploy layout. */
@@ -57,6 +63,20 @@ function commentSortKey(c) {
   return Number.isNaN(d) ? 0 : d / 1000;
 }
 
+function emptyClassFlags() {
+  return { pool: false, class1: false, class2: false };
+}
+
+function formatSourceClassLine(flags) {
+  const f = flags || emptyClassFlags();
+  const parts = [];
+  if (f.pool) parts.push("Pool (no post-score filter)");
+  if (f.class1) parts.push("Class 1: min post score ≥0.5");
+  if (f.class2) parts.push("Class 2: max post score ≤0.5");
+  if (!parts.length) return "Source: (slice unknown)";
+  return `Source: ${parts.join(" · ")}`;
+}
+
 function engagementTuple(post) {
   return [Number(post.num_comments) || 0, Number(post.score) || 0];
 }
@@ -76,6 +96,43 @@ function dedupeMerge(postsById, rows) {
       postsById.set(id, p);
     }
   }
+}
+
+/**
+ * Picks up to k posts; when both Class 1 and Class 2 exist in the subreddit,
+ * prefer keeping at least one of each in the set (by engagement) before filling the rest in rank order.
+ */
+function pickTopKWithClassDiversity(list, k) {
+  if (!list.length || k <= 0) return [];
+  if (list.length <= k) return list.slice();
+  const postId = (p) => p.redditId || p._id;
+  const hasC1 = (p) => p._rrClasses && p._rrClasses.class1;
+  const hasC2 = (p) => p._rrClasses && p._rrClasses.class2;
+  const indexOf = (id) => list.findIndex((p) => postId(p) === id);
+  if (k < 2 || !list.some(hasC1) || !list.some(hasC2)) {
+    return list.slice(0, k);
+  }
+  const p1 = list.find(hasC1);
+  const p2 = list.find(hasC2);
+  const out = [];
+  const seen = new Set();
+  for (const p of [p1, p2]) {
+    if (!p) continue;
+    const id = postId(p);
+    if (seen.has(id)) continue;
+    if (id == null) continue;
+    out.push(p);
+    seen.add(id);
+  }
+  for (const p of list) {
+    if (out.length >= k) break;
+    const id = postId(p);
+    if (id == null || seen.has(id)) continue;
+    out.push(p);
+    seen.add(id);
+  }
+  out.sort((a, b) => indexOf(postId(a)) - indexOf(postId(b)));
+  return out.slice(0, k);
 }
 
 function pickTopPerSubreddit(postsById, targets, k) {
@@ -100,7 +157,7 @@ function pickTopPerSubreddit(postsById, targets, k) {
       if (ncB !== ncA) return ncB - ncA;
       return sB - sA;
     });
-    const top = list.slice(0, k);
+    const top = pickTopKWithClassDiversity(list, k);
     for (const p of top) {
       out.push({ post: p });
     }
@@ -144,6 +201,8 @@ function analyzePost(SentimentClass, post) {
     ]);
   }
 
+  const classFlags = post._rrClasses || emptyClassFlags();
+
   return {
     redditId: post.redditId || "",
     subreddit: post.subreddit || "",
@@ -151,6 +210,8 @@ function analyzePost(SentimentClass, post) {
     url: post.url || "",
     num_comments: post.num_comments,
     score: post.score,
+    classFlags,
+    classLabel: formatSourceClassLine(classFlags),
     trajectory: {
       x: trajX,
       y: trajY,
@@ -172,17 +233,40 @@ async function fetchJson(path) {
 
 async function loadAllPosts() {
   const postsById = new Map();
+  const flagsById = new Map();
   const errors = [];
+
+  function recordFlagsForRows(rows, sliceKey) {
+    for (const p of rows) {
+      const id = p.redditId || p._id;
+      if (!id) continue;
+      let f = flagsById.get(id);
+      if (!f) {
+        f = emptyClassFlags();
+        flagsById.set(id, f);
+      }
+      if (sliceKey === "pool") f.pool = true;
+      if (sliceKey === "class1") f.class1 = true;
+      if (sliceKey === "class2") f.class2 = true;
+    }
+  }
+
   await Promise.all(
-    FETCH_SLICES.map(async (path) => {
+    FETCH_SLICES.map(async (slice) => {
       try {
-        const payload = await fetchJson(path);
-        dedupeMerge(postsById, payload.data || []);
+        const payload = await fetchJson(slice.path);
+        const rows = payload.data || [];
+        recordFlagsForRows(rows, slice.key);
+        dedupeMerge(postsById, rows);
       } catch (e) {
         errors.push(String(e.message || e));
       }
     })
   );
+  for (const p of postsById.values()) {
+    const id = p.redditId || p._id;
+    p._rrClasses = flagsById.get(id) || emptyClassFlags();
+  }
   if (!postsById.size && errors.length) {
     throw new Error(errors.join(" | "));
   }
@@ -228,10 +312,16 @@ const TRAJECTORY_SHAPES = [
   },
 ];
 
+/** Plotly `layout.title` is SVG (not HTML) — do not use `<br>` or `<span>`. Use a DOM strip above the plot for Class 1/2. */
+function chartTitlePlain(postIndex, a) {
+  return `Post ${postIndex + 1} · r/${a.subreddit} · ${a.redditId}`;
+}
+
 /** One Plotly figure: single post, comment index vs VADER compound. */
 function buildSinglePostTrajectoryPlot(a, postIndex) {
   const color = TRAJECTORY_LINE_COLORS[postIndex % TRAJECTORY_LINE_COLORS.length];
   const tr = a.trajectory;
+  const titleText = chartTitlePlain(postIndex, a);
 
   if (!tr || !tr.x || !tr.x.length) {
     return {
@@ -250,10 +340,12 @@ function buildSinglePostTrajectoryPlot(a, postIndex) {
         paper_bgcolor: "#0a0a0a",
         plot_bgcolor: "#101010",
         font: { color: "#fde68a", size: 10 },
-        margin: { t: 40, r: 12, b: 40, l: 44 },
+        margin: { t: 50, r: 12, b: 40, l: 44 },
         title: {
-          text: `Post ${postIndex + 1} · r/${a.subreddit} · ${a.redditId}`,
+          text: titleText,
           font: { size: 11, color: "#fef08a" },
+          x: 0.01,
+          xanchor: "left",
         },
         xaxis: { visible: false },
         yaxis: { visible: false },
@@ -294,10 +386,12 @@ function buildSinglePostTrajectoryPlot(a, postIndex) {
     paper_bgcolor: "#0a0a0a",
     plot_bgcolor: "#101010",
     font: { color: "#fde68a", size: 10 },
-    margin: { t: 44, r: 12, b: 44, l: 48 },
+    margin: { t: 50, r: 12, b: 44, l: 48 },
     title: {
-      text: `Post ${postIndex + 1} · r/${a.subreddit} · ${a.redditId}`,
+      text: titleText,
       font: { size: 11, color: "#fef08a" },
+      x: 0.01,
+      xanchor: "left",
     },
     xaxis: {
       title: "Comment # (chronological)",
@@ -368,10 +462,17 @@ function renderTrajectoryGrid(gridEl, subset, plotConfig) {
     sub.textContent = `${(a.titleText || "").slice(0, 72)}…`;
     head.appendChild(sub);
 
+    const sourceStrip = document.createElement("div");
+    sourceStrip.className = "trajectory-source-strip";
+    sourceStrip.setAttribute("role", "status");
+    const label = a.classLabel && String(a.classLabel).trim() ? a.classLabel : "Source: not available";
+    sourceStrip.textContent = label;
+
     const plotDiv = document.createElement("div");
     plotDiv.className = "js-trajectory-plot";
 
     cell.appendChild(head);
+    cell.appendChild(sourceStrip);
     cell.appendChild(plotDiv);
     gridEl.appendChild(cell);
 
@@ -446,7 +547,7 @@ export async function runLiveSubredditDashboard(opts) {
       renderTrajectoryGrid(trajectoryGridEl, subset, plotConfig);
     }
 
-    statusEl.textContent = `Analyzed ${subset.length} post(s) · unique posts merged from API: ${meta.fetchedUniquePosts} · Up to 5 separate trajectory charts · Click a point or the header link to open Reddit · Refresh for a new sample.`;
+    statusEl.textContent = `Analyzed ${subset.length} post(s) · unique posts merged from API: ${meta.fetchedUniquePosts} · Class 1 = min post score ≥0.5 · Class 2 = max post score ≤0.5 (Pool = no post-score filter) — see chart labels · Up to 5 trajectories (when both classes exist, selection prefers ≥1 C1 and ≥1 C2) · Click a point or header to open Reddit · Refresh for a new sample.`;
   }
 
   subSelect.innerHTML = "";

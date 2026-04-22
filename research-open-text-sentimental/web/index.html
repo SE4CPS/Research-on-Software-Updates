@@ -255,6 +255,16 @@
             color: #7dd3fc;
             font-weight: 600;
         }
+        .trajectory-source-strip {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: #dcfce7;
+            background: linear-gradient(90deg, #14532d 0%, #0f172a 100%);
+            border-top: 1px solid #166534;
+            border-bottom: 2px solid #4ade80;
+            padding: 8px 12px;
+            font-weight: 500;
+        }
         .trajectory-cell .js-trajectory-plot {
             min-height: 280px;
             width: 100%;
@@ -294,8 +304,8 @@
             <p class="live-chart-label">Comment-index trajectories (one graph per post, up to 5)</p>
             <div id="liveSubredditTrajectoryGrid" class="trajectory-grid" aria-label="Per-post trajectory charts"></div>
             <p class="footer-note" style="margin-top:10px;color:#94a3b8">
-                Sources: merged <code>filter</code> slices (up to 500 posts each) from the ReleaseTrain API; top <strong>5</strong> posts per target subreddit by <strong>comment count</strong> then <strong>score</strong>.
-                <strong>One line chart per post</strong> (VADER compound vs chronological comment index for each comment body). <strong>Click a point</strong> on any chart or the header link to open that Reddit thread.
+                Sources: three merged <code>filter</code> slices (up to 500 posts each): <strong>Pool</strong> (<code>minComments≥1</code>, no post-score filter), <strong>Class 1</strong> (<code>minScore=0.5</code> on post), <strong>Class 2</strong> (<code>maxScore=0.5</code>). Each post is tagged with the slice(s) it appeared in. Top <strong>5</strong> per target subreddit by <strong>comment count</strong> then <strong>score</strong>, preferring at least one Class 1 and one Class 2 when available.
+                <strong>One line chart per post</strong> (VADER compound vs chronological comment index). <strong>Click a point</strong> on any chart or the header link to open that Reddit thread.
             </p>
         </section>
 
