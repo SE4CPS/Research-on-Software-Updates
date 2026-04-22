@@ -273,10 +273,35 @@ async function loadAllPosts() {
   return postsById;
 }
 
-function filterAnalyzed(analyzed, subredditFilter) {
-  if (!subredditFilter || subredditFilter === "__all__") return analyzed;
-  const want = subredditFilter.toLowerCase();
-  return analyzed.filter((a) => (a.subreddit || "").toLowerCase() === want);
+const MAX_TRAJECTORY_CELLS = 5;
+
+/**
+ * "All subreddits" should sample across communities. The `analyzed` array is ordered
+ * (all of subreddit 1, then all of 2, …) so taking `.slice(0, 5)` would only show android.
+ * Here we take the top-ranked post per target subreddit in list order, up to MAX_TRAJECTORY_CELLS.
+ */
+function subsetForAllSubredditsMode(analyzed) {
+  const firstBySub = new Map();
+  for (const a of analyzed) {
+    const s = (a.subreddit || "").trim().toLowerCase();
+    if (!s || firstBySub.has(s)) continue;
+    firstBySub.set(s, a);
+  }
+  const out = [];
+  for (const t of TARGET_SUBREDDITS) {
+    if (out.length >= MAX_TRAJECTORY_CELLS) break;
+    const a = firstBySub.get(t.toLowerCase());
+    if (a) out.push(a);
+  }
+  return out;
+}
+
+function filterAnalyzedForDisplay(analyzed, subredditFilter) {
+  if (subredditFilter && subredditFilter !== "__all__") {
+    const want = subredditFilter.toLowerCase();
+    return analyzed.filter((a) => (a.subreddit || "").toLowerCase() === want);
+  }
+  return subsetForAllSubredditsMode(analyzed);
 }
 
 const TRAJECTORY_SHAPES = [
@@ -438,7 +463,7 @@ function attachTrajectoryClick(gd) {
 
 function renderTrajectoryGrid(gridEl, subset, plotConfig) {
   purgeTrajectoryGrid(gridEl);
-  const rows = subset.slice(0, 5);
+  const rows = subset.slice(0, MAX_TRAJECTORY_CELLS);
   rows.forEach((a, i) => {
     const cell = document.createElement("div");
     cell.className = "trajectory-cell";
@@ -536,7 +561,7 @@ export async function runLiveSubredditDashboard(opts) {
 
   function render() {
     const v = subSelect.value;
-    const subset = filterAnalyzed(analyzed, v);
+    const subset = filterAnalyzedForDisplay(analyzed, v);
     if (!subset.length) {
       statusEl.textContent = "No posts for this filter (API slice may lack that subreddit). Try Refresh.";
       if (trajectoryGridEl) purgeTrajectoryGrid(trajectoryGridEl);
@@ -547,7 +572,11 @@ export async function runLiveSubredditDashboard(opts) {
       renderTrajectoryGrid(trajectoryGridEl, subset, plotConfig);
     }
 
-    statusEl.textContent = `Analyzed ${subset.length} post(s) · unique posts merged from API: ${meta.fetchedUniquePosts} · Class 1 = min post score ≥0.5 · Class 2 = max post score ≤0.5 (Pool = no post-score filter) — see chart labels · Up to 5 trajectories (when both classes exist, selection prefers ≥1 C1 and ≥1 C2) · Click a point or header to open Reddit · Refresh for a new sample.`;
+    const allMode = !v || v === "__all__";
+    const allNote = allMode
+      ? " All mode: up to 5 charts = one #1 post per target subreddit in order (skips 0/5). "
+      : " ";
+    statusEl.textContent = `Showing ${subset.length} trajectory chart(s) · ${analyzed.length} post(s) scored total · unique posts in API pool: ${meta.fetchedUniquePosts} ·${allNote}Class 1/2/Pool — see green strip on each chart · Per-subreddit pick uses class diversity when available · Click a point or header to open Reddit · Refresh for a new sample.`;
   }
 
   subSelect.innerHTML = "";
