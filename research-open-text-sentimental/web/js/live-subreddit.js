@@ -1,6 +1,6 @@
 /**
- * Live multi-subreddit VADER dashboard: fetch ReleaseTrain filter JSON via same-origin proxy,
- * pick top posts per subreddit, score title / description / author vs community comments.
+ * Live multi-subreddit VADER: fetch ReleaseTrain filter JSON, pick top posts per subreddit,
+ * run VADER per comment for comment-index trajectories.
  */
 
 const TARGET_SUBREDDITS = [
@@ -26,12 +26,6 @@ const RELEASETRAIN_API_BASE = "https://releasetrain.io/api/";
 
 function apiBaseUrl() {
   return RELEASETRAIN_API_BASE;
-}
-
-function compoundLabel(c) {
-  if (c >= 0.05) return "Positive";
-  if (c <= -0.05) return "Negative";
-  return "Neutral";
 }
 
 function cleanText(s) {
@@ -114,12 +108,6 @@ function pickTopPerSubreddit(postsById, targets, k) {
   return out;
 }
 
-function meanCompounds(scores) {
-  if (!scores.length) return null;
-  const sum = scores.reduce((a, b) => a + b, 0);
-  return sum / scores.length;
-}
-
 /** Distinct Plotly line colors (up to 5 posts). */
 const TRAJECTORY_LINE_COLORS = [
   "#f59e0b",
@@ -131,22 +119,9 @@ const TRAJECTORY_LINE_COLORS = [
 
 function analyzePost(SentimentClass, post) {
   const title = cleanText(post.title || "");
-  const desc = cleanText(
-    [post.author_description || "", post.body || ""].filter(Boolean).join("\n")
-  );
-
-  const titleScores = title
-    ? SentimentClass.polarity_scores(title)
-    : { compound: 0, pos: 0, neu: 1, neg: 0 };
-  const descScores = desc
-    ? SentimentClass.polarity_scores(desc)
-    : { compound: 0, pos: 0, neu: 1, neg: 0 };
-
   const comments = Array.isArray(post.comments) ? [...post.comments] : [];
   comments.sort((a, b) => commentSortKey(a) - commentSortKey(b));
 
-  const authorCompounds = [];
-  const communityCompounds = [];
   const trajX = [];
   const trajY = [];
   const trajCustom = [];
@@ -156,8 +131,6 @@ function analyzePost(SentimentClass, post) {
     const body = cleanText(c.body || "");
     if (!body) continue;
     const pol = SentimentClass.polarity_scores(body).compound;
-    if (isOpComment(c, post)) authorCompounds.push(pol);
-    else communityCompounds.push(pol);
     commentIndex += 1;
     trajX.push(commentIndex);
     trajY.push(pol);
@@ -178,24 +151,6 @@ function analyzePost(SentimentClass, post) {
     url: post.url || "",
     num_comments: post.num_comments,
     score: post.score,
-    title: { ...titleScores, label: compoundLabel(titleScores.compound) },
-    description: { ...descScores, label: compoundLabel(descScores.compound) },
-    authorComments: {
-      mean: meanCompounds(authorCompounds),
-      n: authorCompounds.length,
-      label:
-        authorCompounds.length === 0
-          ? "N/A"
-          : compoundLabel(meanCompounds(authorCompounds)),
-    },
-    communityComments: {
-      mean: meanCompounds(communityCompounds),
-      n: communityCompounds.length,
-      label:
-        communityCompounds.length === 0
-          ? "N/A"
-          : compoundLabel(meanCompounds(communityCompounds)),
-    },
     trajectory: {
       x: trajX,
       y: trajY,
@@ -238,114 +193,6 @@ function filterAnalyzed(analyzed, subredditFilter) {
   if (!subredditFilter || subredditFilter === "__all__") return analyzed;
   const want = subredditFilter.toLowerCase();
   return analyzed.filter((a) => (a.subreddit || "").toLowerCase() === want);
-}
-
-function buildGroupedBarPlot(analyzed) {
-  const labels = analyzed.map(
-    (a) =>
-      `${a.subreddit} · ${a.redditId}<br><span style="font-size:11px">${(a.titleText || "").slice(0, 60)}…</span>`
-  );
-
-  const titleC = analyzed.map((a) => a.title.compound);
-  const descC = analyzed.map((a) => a.description.compound);
-  const authC = analyzed.map((a) =>
-    a.authorComments.mean == null ? null : a.authorComments.mean
-  );
-  const commC = analyzed.map((a) =>
-    a.communityComments.mean == null ? null : a.communityComments.mean
-  );
-
-  const traces = [
-    {
-      type: "bar",
-      name: "Post title",
-      x: labels,
-      y: titleC,
-      marker: { color: "#f59e0b" },
-    },
-    {
-      type: "bar",
-      name: "Description / body",
-      x: labels,
-      y: descC,
-      marker: { color: "#84cc16" },
-    },
-    {
-      type: "bar",
-      name: "Author comments (mean)",
-      x: labels,
-      y: authC,
-      marker: { color: "#ea580c" },
-    },
-    {
-      type: "bar",
-      name: "Community comments (mean)",
-      x: labels,
-      y: commC,
-      marker: { color: "#2563eb" },
-    },
-  ];
-
-  const layout = {
-    barmode: "group",
-    paper_bgcolor: "#0a0a0a",
-    plot_bgcolor: "#101010",
-    font: { color: "#fde68a", size: 11 },
-    margin: { t: 48, r: 24, b: 140, l: 56 },
-    title: {
-      text: "VADER compound by text layer (live fetch)",
-      font: { size: 14, color: "#fef08a" },
-    },
-    xaxis: { tickangle: -35, gridcolor: "#333" },
-    yaxis: {
-      title: "VADER compound",
-      range: [-1, 1],
-      gridcolor: "#333",
-      zeroline: true,
-      zerolinecolor: "#666",
-    },
-    legend: {
-      orientation: "h",
-      yanchor: "bottom",
-      y: 1.02,
-      x: 0,
-      font: { size: 10, color: "#fde68a" },
-    },
-    shapes: [
-      {
-        type: "line",
-        xref: "paper",
-        x0: 0,
-        x1: 1,
-        y0: 0,
-        y1: 0,
-        yref: "y",
-        line: { color: "#666", width: 1, dash: "dash" },
-      },
-      {
-        type: "line",
-        xref: "paper",
-        x0: 0,
-        x1: 1,
-        y0: 0.05,
-        y1: 0.05,
-        yref: "y",
-        line: { color: "#2f855a", width: 1, dash: "dot" },
-      },
-      {
-        type: "line",
-        xref: "paper",
-        x0: 0,
-        x1: 1,
-        y0: -0.05,
-        y1: -0.05,
-        yref: "y",
-        line: { color: "#c53030", width: 1, dash: "dot" },
-      },
-    ],
-  };
-
-  return { traces, layout };
 }
 
 const TRAJECTORY_SHAPES = [
@@ -553,7 +400,6 @@ function getAnalyzer() {
 
 export async function runLiveSubredditDashboard(opts) {
   const {
-    plotEl,
     trajectoryGridEl,
     statusEl,
     subSelect,
@@ -592,45 +438,9 @@ export async function runLiveSubredditDashboard(opts) {
     const subset = filterAnalyzed(analyzed, v);
     if (!subset.length) {
       statusEl.textContent = "No posts for this filter (API slice may lack that subreddit). Try Refresh.";
-      Plotly.purge(plotEl);
       if (trajectoryGridEl) purgeTrajectoryGrid(trajectoryGridEl);
-      Plotly.newPlot(
-        plotEl,
-        [
-          {
-            type: "scatter",
-            x: [0],
-            y: [0],
-            mode: "text",
-            text: ["No data"],
-            textfont: { color: "#f87171", size: 14 },
-          },
-        ],
-        {
-          paper_bgcolor: "#0a0a0a",
-          plot_bgcolor: "#101010",
-          xaxis: { visible: false },
-          yaxis: { visible: false },
-          annotations: [
-            {
-              text: "No posts — try another subreddit or refresh.",
-              xref: "paper",
-              yref: "paper",
-              x: 0.5,
-              y: 0.5,
-              showarrow: false,
-              font: { color: "#fde68a", size: 14 },
-            },
-          ],
-        },
-        { responsive: true, displaylogo: false }
-      );
       return;
     }
-
-    const { traces, layout } = buildGroupedBarPlot(subset);
-    Plotly.purge(plotEl);
-    Plotly.newPlot(plotEl, traces, layout, plotConfig);
 
     if (trajectoryGridEl) {
       renderTrajectoryGrid(trajectoryGridEl, subset, plotConfig);
@@ -656,20 +466,18 @@ export async function runLiveSubredditDashboard(opts) {
 }
 
 function bootLivePanel() {
-  const plotEl = document.getElementById("liveSubredditPlot");
   const trajectoryGridEl = document.getElementById("liveSubredditTrajectoryGrid");
   const statusEl = document.getElementById("liveSubredditStatus");
   const subSelect = document.getElementById("liveSubredditFilter");
   const metaEl = document.getElementById("liveSubredditMeta");
   const refreshBtn = document.getElementById("liveSubredditRefresh");
-  if (!plotEl || !statusEl || !subSelect) return;
+  if (!trajectoryGridEl || !statusEl || !subSelect) return;
 
   if (refreshBtn) {
     refreshBtn.addEventListener("click", () => window.location.reload());
   }
 
   runLiveSubredditDashboard({
-    plotEl,
     trajectoryGridEl,
     statusEl,
     subSelect,

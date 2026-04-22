@@ -230,13 +230,6 @@
             font-weight: 600;
         }
         .btn-refresh:hover { background: #1e293b; }
-        #liveSubredditPlot {
-            min-height: 460px;
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid #38bdf8;
-            background: #0a0a0a;
-        }
         .trajectory-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
@@ -298,13 +291,11 @@
                 </div>
                 <button type="button" class="btn-refresh" id="liveSubredditRefresh">Refresh (reload)</button>
             </div>
-            <p class="live-chart-label">Layer summary (bars)</p>
-            <div id="liveSubredditPlot"></div>
             <p class="live-chart-label">Comment-index trajectories (one graph per post, up to 5)</p>
             <div id="liveSubredditTrajectoryGrid" class="trajectory-grid" aria-label="Per-post trajectory charts"></div>
             <p class="footer-note" style="margin-top:10px;color:#94a3b8">
                 Sources: merged <code>filter</code> slices (up to 500 posts each) from the ReleaseTrain API; top <strong>5</strong> posts per target subreddit by <strong>comment count</strong> then <strong>score</strong>.
-                Bars: layer summary. Below: <strong>one line chart per post</strong> (VADER compound vs chronological comment index). <strong>Click a point</strong> on any small chart to open that Reddit thread.
+                <strong>One line chart per post</strong> (VADER compound vs chronological comment index for each comment body). <strong>Click a point</strong> on any chart or the header link to open that Reddit thread.
             </p>
         </section>
 
