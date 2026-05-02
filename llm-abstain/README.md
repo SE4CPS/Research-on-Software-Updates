@@ -613,22 +613,27 @@ curl -s -X POST http://localhost:3001/api/query \
 
 ### I Don't Know — Abstain Response
 
-<!-- Add screenshot here -->
-<!-- Example: ![Abstain Response](./screenshots/abstain-response.png) -->
+
+#### 1) I Don't Know Response
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/5bdfa46a-c26e-409f-b3f6-e650f2b78909" />
+
+#### 2) BERTScore + Composite Confidence
+
+<img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/8ac33b43-134d-481f-9a62-ec670f5c7a42" />
+
 
 ---
 
 ### CVE Card
 
-<!-- Add screenshot here -->
-<!-- Example: ![CVE Card](./screenshots/cve-card.png) -->
+
 
 ---
 
 ### Breaking Update Card with Date Filter
 
-<!-- Add screenshot here -->
-<!-- Example: ![Breaking Update](./screenshots/breaking-update.png) -->
+
 
 ---
 
