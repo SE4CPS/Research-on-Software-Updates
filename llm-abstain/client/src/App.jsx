@@ -70,9 +70,10 @@ export default function App() {
     <div className="chat-layout">
       {/* ── Header ── */}
       <header className="chat-header">
-        <h1>
-          <span className="gradient">Release Master</span>
-        </h1>
+        <div className="header-title-group">
+          <h1><span className="gradient">Release Master</span></h1>
+          <p className="header-subtitle">Software Update Q&amp;A System</p>
+        </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span className="header-badge">releasetrain.io</span>
           <button className="clear-btn" onClick={clearChat} title="Clear chat">

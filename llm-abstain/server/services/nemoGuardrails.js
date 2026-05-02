@@ -9,7 +9,12 @@
 //   • The LLM call times out or errors
 // ============================================
 
-const axios = require("axios");
+const axios    = require("axios");
+const LRUCache = require("../utils/lruCache");
+
+// LRU cache for topic classifications — avoids calling the LLM twice for the
+// same query. 200 entries, 30-min TTL (topic relevance doesn't change quickly).
+const classifyCache = new LRUCache(200, 30 * 60 * 1000);
 
 const NIM_BASE     = "https://integrate.api.nvidia.com/v1";
 const GUARD_MODEL  = process.env.GUARDRAILS_MODEL || "meta/llama-3.1-8b-instruct";
@@ -63,6 +68,14 @@ async function classifyTopic(userQuery, fallbackScores = {}) {
     return buildFallback(fallbackScores, "No NVIDIA_API_KEY set");
   }
 
+  // LRU cache check — skip LLM call if we've already classified this query
+  const cacheKey = userQuery.toLowerCase().trim();
+  const cached   = classifyCache.get(cacheKey);
+  if (cached) {
+    console.log(`[Guardrails] LRU hit "${cacheKey.slice(0, 40)}" | ${classifyCache.stats().hitRate} hit-rate`);
+    return cached;
+  }
+
   try {
     const response = await axios.post(
       `${NIM_BASE}/chat/completions`,
@@ -97,13 +110,15 @@ async function classifyTopic(userQuery, fallbackScores = {}) {
       `[Guardrails] LLM: relevant=${relevant} conf=${confidence.toFixed(3)} reason="${parsed.reason}" model=${GUARD_MODEL}`
     );
 
-    return {
+    const result = {
       score:      confidence,
       isRelevant: relevant,
       method:     "llm",
       model:      GUARD_MODEL,
       reason:     parsed.reason || (relevant ? "on-topic" : "off-topic"),
     };
+    classifyCache.set(cacheKey, result);
+    return result;
   } catch (err) {
     console.warn(`[Guardrails] LLM call failed (${err.message}) — using regex fallback`);
     return buildFallback(fallbackScores, `LLM error: ${err.message}`);
