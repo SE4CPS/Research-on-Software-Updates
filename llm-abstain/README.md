@@ -409,10 +409,10 @@ Center-top card strip — appears after the first query, updates on every subseq
 ┌──────────────────────────────┐  ┌──────────────────────────┐
 │  HALLUCINATION DETECTION     │  │  COMPOSITE CONFIDENCE    │
 │                              │  │                          │
-│   ╭────╮  BERTScore 65.1%   │  │   87%                    │
-│   │ 65 │  Grounded  77%     │  │   ████████░░             │
-│   ╰────╯  Coverage  56%     │  │   60%  80%               │
-│           ● Medium Risk     │  │   ● Confident            │
+│   ╭────╮  BERTScore 65.1%    │  │   87%                    │
+│   │ 65 │  Grounded  77%      │  │   ████████░░             │
+│   ╰────╯  Coverage  56%      │  │   60%  80%               │
+│           ● Medium Risk      │  │   ● Confident            │
 └──────────────────────────────┘  └──────────────────────────┘
 ```
 
@@ -585,12 +585,12 @@ curl -s -X POST http://localhost:3001/api/query \
 <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/91bc92d7-876b-47dd-a957-fee205a37b67" />
 
 
-#### 2) Source Evicence
+#### 2) Evicence Against Source
 
 <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/85830592-d898-4158-b7e0-ab14e2d4b54b" />
 
 
-#### 3) Source Verify Against Releasetrain — For GitHub Failure today
+#### 3) Data Verify Against Releasetrain — For GitHub Failure today
 
 <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/18101d35-43cf-40f9-ae3c-41e9427e3394" />
 
@@ -625,15 +625,24 @@ curl -s -X POST http://localhost:3001/api/query \
 
 ---
 
-### CVE Card
-
-
-
----
 
 ### Breaking Update Card with Date Filter
 
+#### 1) LLM Summary
 
+<img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/3a6848c6-1ef7-4368-ae26-78c6e39ead31" />
+
+#### 2) Evicence Against Source
+
+<img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/f5a76450-8575-4b76-b105-5059552c3dc2" />
+
+#### 3) Data Verify Against Releasetrain — For Firefox breaking updates last month (April)
+
+<img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/af6283cd-c167-4801-bde4-801994cc823b" />
+
+#### 4) BERTSccore is 47.9%, reason is the correct answer is 150.0.0, and llm generated 150.0.1
+
+<img width="700" height="250" alt="image" src="https://github.com/user-attachments/assets/e3590174-ea5b-4446-b9aa-67deddcc4ad0" />
 
 ---
 
