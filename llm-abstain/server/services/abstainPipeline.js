@@ -9,6 +9,7 @@ const { rankEntriesByRelevance, isEnabled: nemoEnabled } = require("./nemoRetrie
 const { resolveCanonicalSearchName } = require("./componentNames");
 const { classifyTopic } = require("./nemoGuardrails");
 const { computeBERTScore } = require("./hallucination");
+const { generateLLMResponse } = require("./llmResponse");
 
 // ── Configurable Thresholds ──
 const THRESHOLDS = {
@@ -117,11 +118,24 @@ async function runPipeline(processedPrompt) {
 
   console.log(`[DEBUG][Pipeline] Composite   : ${(compositeScore * 100).toFixed(1)}% | decision: confident`);
 
-  // BERTScore: measure how well the structured response is grounded in the source entries
-  const bertscore = await computeBERTScore(gate5.structuredData, gate3.entries || []);
+  // LLM: generate a natural-language summary grounded in the verified source data (RAG)
+  const llmResult = await generateLLMResponse(
+    processedPrompt.originalTitle || processedPrompt.prompt,
+    gate5.structuredData,
+    gate3.entries || [],
+    queryType
+  );
+
+  // BERTScore: when LLM text exists, check IT against source (real hallucination check)
+  const bertscore = await computeBERTScore(
+    gate5.structuredData,
+    gate3.entries || [],
+    llmResult?.text || null
+  );
 
   const result = buildResult("confident", gates, null, null, gate5.structuredData, queryType);
-  if (bertscore) result.bertscore = bertscore;
+  if (llmResult) result.llmResponse = llmResult;
+  if (bertscore)  result.bertscore  = bertscore;
   return result;
 }
 

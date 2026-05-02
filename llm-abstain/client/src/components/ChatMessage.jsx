@@ -92,6 +92,20 @@ function PipelineResult({ data, onSend }) {
         </div>
       )}
 
+      {/* Confident: LLM natural-language summary */}
+      {decision === "confident" && data.llmResponse && (
+        <div className="llm-summary">
+          <span className="llm-summary-label">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61z"/>
+            </svg>
+            AI Summary
+          </span>
+          <p className="llm-summary-text">{data.llmResponse.text}</p>
+          <span className="llm-summary-model">{data.llmResponse.model}</span>
+        </div>
+      )}
+
       {/* Confident: software data card */}
       {decision === "confident" && data.data && (
         <SoftwareCard data={data.data} queryType={queryType} />

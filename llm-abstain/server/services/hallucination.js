@@ -17,20 +17,23 @@ const { embed } = require("./tritonClient");
 // ── Public API ──────────────────────────────────
 
 /**
- * Compute a BERTScore-style grounding score between the pipeline's
- * structured response and the raw source entries it was derived from.
+ * Compute a BERTScore-style grounding score.
  *
- * @param {object}   structuredData  - Gate 5 output (the response shown to user)
+ * When llmText is provided (RAG mode), it is used as the hypothesis —
+ * this gives a real hallucination check on the generated text.
+ * Otherwise falls back to structured data field phrases.
+ *
+ * @param {object}   structuredData  - Gate 5 output
  * @param {object[]} sourceEntries   - Raw releasetrain.io entries (Gate 3 pool)
- * @returns {Promise<{
- *   precision: number, recall: number, f1: number,
- *   risk: "low"|"medium"|"high", method: "embedding"|"lexical"
- * }|null>}
+ * @param {string}   [llmText]       - LLM-generated response text (optional)
  */
-async function computeBERTScore(structuredData, sourceEntries) {
+async function computeBERTScore(structuredData, sourceEntries, llmText = null) {
   if (!structuredData || !sourceEntries || sourceEntries.length === 0) return null;
 
-  const hypothesis  = toHypothesisPhrases(structuredData);
+  const hypothesis = llmText
+    ? llmText.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 8)  // split LLM text into sentences
+    : toHypothesisPhrases(structuredData);
+
   const references  = toReferencePhrases(sourceEntries.slice(0, 10));
 
   if (hypothesis.length === 0 || references.length === 0) return null;
