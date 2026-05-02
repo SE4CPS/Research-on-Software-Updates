@@ -576,26 +576,38 @@ curl -s -X POST http://localhost:3001/api/query \
 
 ---
 
-## Screenshots
+## Application Screenshots
 
-### Dashboard — Confident Answer with AI Summary
+### Dashboard — Confident Answer with LLM Summary
 
-<!-- Add screenshot here -->
-<!-- Example: ![Confident Answer](./screenshots/confident-answer.png) -->
+#### 1) LLM Summary
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/91bc92d7-876b-47dd-a957-fee205a37b67" />
+
+
+#### 2) Source Evicence
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/85830592-d898-4158-b7e0-ab14e2d4b54b" />
+
+
+#### 3) Source Verify Against Releasetrain — For GitHub Failure today
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/18101d35-43cf-40f9-ae3c-41e9427e3394" />
+
 
 ---
 
 ### KPI Bar — BERTScore + Composite Confidence
 
-<!-- Add screenshot here -->
-<!-- Example: ![KPI Bar](./screenshots/kpi-bar.png) -->
+<img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/285c4b39-924b-4e2b-81f9-ba13a2cc2707" />
+
 
 ---
 
 ### Gate Timeline — All 5 Gates Passed
 
-<!-- Add screenshot here -->
-<!-- Example: ![Gate Timeline](./screenshots/gate-timeline.png) -->
+<img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/9c5dc12f-f0a4-4103-8642-e491c19c3b50" />
+
 
 ---
 
