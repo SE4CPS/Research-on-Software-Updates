@@ -403,17 +403,15 @@ Two vertical markers at **60%** and **80%** show where the acceptable zone start
 
 ## KPI Dashboard
 
-Center-top card strip — appears after the first query, updates on every subsequent result.
+Compact inline metrics displayed **inside the header bar** alongside the "Release Master" title — appears after the first query and updates on every subsequent result, no page scroll needed.
 
 ```
-┌──────────────────────────────┐  ┌──────────────────────────┐
-│  HALLUCINATION DETECTION     │  │  COMPOSITE CONFIDENCE    │
-│                              │  │                          │
-│   ╭────╮  BERTScore 65.1%    │  │   87%                    │
-│   │ 65 │  Grounded  77%      │  │   ████████░░             │
-│   ╰────╯  Coverage  56%      │  │   60%  80%               │
-│           ● Medium Risk      │  │   ● Confident            │
-└──────────────────────────────┘  └──────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  Release Master          HALLUCINATION  │  CONFIDENCE    releasetrain.io  🗑 │
+│  Software Update Q&A     ╭──╮  65.1%   │  87%                              │
+│                          │65│  Grnd 77% │  ████████░░  ● Confident          │
+│                          ╰──╯  Cov  56% │                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 | Element | Description |
@@ -597,10 +595,14 @@ curl -s -X POST http://localhost:3001/api/query \
 
 ---
 
-### KPI Bar — BERTScore + Composite Confidence
+### Header KPI Bar — BERTScore + Composite Confidence
+
+KPIs now live inline inside the header bar (between the title and the badge button), visible at all times without scrolling.
 
 <img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/285c4b39-924b-4e2b-81f9-ba13a2cc2707" />
 
+<!-- Add updated screenshot here once the header KPI layout is captured -->
+<!-- Example: ![Header KPI Bar](./screenshots/kpi-header.png) -->
 
 ---
 

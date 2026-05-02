@@ -74,6 +74,15 @@ export default function App() {
           <h1><span className="gradient">Release Master</span></h1>
           <p className="header-subtitle">Software Update Q&amp;A System</p>
         </div>
+
+        {latestResult && (
+          <KpiBar
+            bertscore={latestResult.bertscore}
+            compositeScore={latestResult.compositeScore}
+            decision={latestResult.decision}
+          />
+        )}
+
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span className="header-badge">releasetrain.io</span>
           <button className="clear-btn" onClick={clearChat} title="Clear chat">
@@ -83,15 +92,6 @@ export default function App() {
           </button>
         </div>
       </header>
-
-      {/* ── KPI Bar ── */}
-      {latestResult && (
-        <KpiBar
-          bertscore={latestResult.bertscore}
-          compositeScore={latestResult.compositeScore}
-          decision={latestResult.decision}
-        />
-      )}
 
       {/* ── Messages ── */}
       <main className="chat-messages">

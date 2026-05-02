@@ -1,93 +1,84 @@
-// KpiBar — center-top dashboard strip
-// BERTScore hallucination detection + composite confidence bar
+// KpiBar — compact inline metrics for the header bar
+// BERTScore + Composite side by side, no cards, tight layout
 
-const ZERO_SCORE = { precision: 0, recall: 0, f1: 0, risk: "high", method: "n/a" };
+const ZERO_SCORE = { precision: 0, recall: 0, f1: 0, risk: "high" };
 
 export default function KpiBar({ bertscore, compositeScore, decision }) {
   if (compositeScore === null || compositeScore === undefined) return null;
 
-  // Abstain / suggest → show zeroed BERTScore, not N/A
   const score = (decision === "confident" && bertscore) ? bertscore : ZERO_SCORE;
 
   return (
-    <div className="kpi-bar">
-      <BertScoreKpi bertscore={score} decision={decision} />
-      <div className="kpi-divider" />
+    <div className="kpi-inline">
+      <BertKpi bertscore={score} />
+      <div className="kpi-sep" />
       <CompositeKpi score={compositeScore} decision={decision} />
     </div>
   );
 }
 
-// ── BERTScore panel ──────────────────────────────
+// ── BERTScore metric ─────────────────────────────
 
-function BertScoreKpi({ bertscore, decision }) {
-  const { precision, recall, f1, risk, method } = bertscore;
+function BertKpi({ bertscore }) {
+  const { precision, recall, f1, risk } = bertscore;
 
-  const riskColor =
+  const color =
     risk === "low"    ? "var(--accent-teal)"
     : risk === "medium" ? "var(--accent-amber)"
     : "var(--accent-coral)";
 
-  const riskLabel =
-    risk === "low" ? "Low Risk" : risk === "medium" ? "Medium Risk" : "High Risk";
+  const riskLabel = risk === "low" ? "Low" : risk === "medium" ? "Med" : "High";
 
   return (
-    <div className="kpi-panel">
-      <div className="kpi-label">Hallucination Detection</div>
-      <div className="kpi-bert-row">
-        <RingGauge value={f1} color={riskColor} />
-        <div className="kpi-bert-details">
-          <div className="kpi-bert-f1">
-            BERTScore&nbsp;<span style={{ color: riskColor }}>{(f1 * 100).toFixed(1)}%</span>
-          </div>
-          <div className="kpi-bert-pr">
-            <span title="Grounded: % of response words found in source data">
-              Grounded&nbsp;<strong>{(precision * 100).toFixed(0)}%</strong>
-            </span>
+    <div className="kpi-metric">
+      <span className="kpi-metric-label">Hallucination</span>
+      <div className="kpi-metric-row">
+        <SmallRing value={f1} color={color} />
+        <div className="kpi-metric-details">
+          <span className="kpi-metric-main" style={{ color }}>
+            {(f1 * 100).toFixed(1)}%
+          </span>
+          <span className="kpi-metric-sub">
+            Grnd&nbsp;<b>{(precision * 100).toFixed(0)}%</b>
             &nbsp;·&nbsp;
-            <span title="Coverage: % of source data represented in response (lower is normal for summaries)">
-              Coverage&nbsp;<strong>{(recall * 100).toFixed(0)}%</strong>
-            </span>
-          </div>
-          <div
-            className="kpi-risk-badge"
-            style={{ background: `${riskColor}18`, color: riskColor, borderColor: `${riskColor}30` }}
-          >
-            <span className="kpi-risk-dot" style={{ background: riskColor }} />
-            {riskLabel}
-          </div>
+            Cov&nbsp;<b>{(recall * 100).toFixed(0)}%</b>
+          </span>
+          <span className="kpi-risk-pill" style={{ color, background: `${color}15`, borderColor: `${color}25` }}>
+            <span style={{ width: 5, height: 5, borderRadius: "50%", background: color, display: "inline-block", marginRight: 4 }} />
+            {riskLabel} Risk
+          </span>
         </div>
       </div>
     </div>
   );
 }
 
-// ── SVG ring gauge ───────────────────────────────
+// ── Small SVG ring ───────────────────────────────
 
-function RingGauge({ value, color }) {
-  const r    = 22;
+function SmallRing({ value, color }) {
+  const r    = 16;
   const circ = 2 * Math.PI * r;
   const off  = circ * (1 - Math.min(1, Math.max(0, value)));
   return (
-    <svg width="56" height="56" viewBox="0 0 56 56" className="kpi-ring">
-      <circle cx="28" cy="28" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="5" />
+    <svg width="40" height="40" viewBox="0 0 40 40" style={{ flexShrink: 0 }}>
+      <circle cx="20" cy="20" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="4" />
       <circle
-        cx="28" cy="28" r={r} fill="none"
-        stroke={color} strokeWidth="5"
+        cx="20" cy="20" r={r} fill="none"
+        stroke={color} strokeWidth="4"
         strokeDasharray={circ} strokeDashoffset={off}
         strokeLinecap="round"
-        transform="rotate(-90 28 28)"
+        transform="rotate(-90 20 20)"
         style={{ transition: "stroke-dashoffset 0.9s cubic-bezier(0.16,1,0.3,1)" }}
       />
-      <text x="28" y="33" textAnchor="middle" fill={color}
-        fontSize="11" fontWeight="700" fontFamily="var(--font-mono)">
+      <text x="20" y="25" textAnchor="middle" fill={color}
+        fontSize="9" fontWeight="700" fontFamily="var(--font-mono)">
         {Math.round(value * 100)}
       </text>
     </svg>
   );
 }
 
-// ── Composite score panel ────────────────────────
+// ── Composite metric ─────────────────────────────
 
 function CompositeKpi({ score, decision }) {
   const pct = Math.min(100, Math.round((score || 0) * 100));
@@ -102,32 +93,21 @@ function CompositeKpi({ score, decision }) {
     : "Abstained";
 
   return (
-    <div className="kpi-panel">
-      <div className="kpi-label">Composite Confidence</div>
-
-      <div className="kpi-composite-score" style={{ color }}>
-        {pct}<span className="kpi-pct-unit">%</span>
-      </div>
-
-      <div className="kpi-bar-wrap">
-        <div className="kpi-bar-track">
-          <div className="kpi-bar-fill" style={{ width: `${pct}%`, background: color }} />
-          {[60, 80].map(b => (
-            <div key={b} className="kpi-band-marker" style={{ left: `${b}%` }}>
-              <div className="kpi-band-line" />
-              <span className="kpi-band-label">{b}%</span>
-            </div>
-          ))}
+    <div className="kpi-metric">
+      <span className="kpi-metric-label">Confidence</span>
+      <div className="kpi-metric-row" style={{ alignItems: "center", gap: 10 }}>
+        <span className="kpi-composite-num" style={{ color }}>{pct}<span style={{ fontSize: 12 }}>%</span></span>
+        <div className="kpi-metric-details">
+          <div className="kpi-mini-track">
+            <div className="kpi-mini-fill" style={{ width: `${pct}%`, background: color }} />
+            {[60, 80].map(b => (
+              <div key={b} className="kpi-mini-marker" style={{ left: `${b}%` }} />
+            ))}
+          </div>
+          <span className="kpi-risk-pill" style={{ color, background: `${color}15`, borderColor: `${color}25` }}>
+            {label}
+          </span>
         </div>
-      </div>
-
-      <div className="kpi-composite-meta">
-        <span
-          className="kpi-decision-pill"
-          style={{ color, background: `${color}18`, borderColor: `${color}30` }}
-        >
-          {label}
-        </span>
       </div>
     </div>
   );
