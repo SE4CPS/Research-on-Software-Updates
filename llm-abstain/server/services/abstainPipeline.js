@@ -7,11 +7,6 @@
 const { fetchVersionSearch } = require("./apiClient");
 const { rankEntriesByRelevance, isEnabled: nemoEnabled } = require("./nemoRetriever");
 const { resolveCanonicalSearchName } = require("./componentNames");
-const { classifyTopic } = require("./nemoGuardrails");
-const { computeBERTScore } = require("./hallucination");
-const { generateLLMResponse } = require("./llmResponse");
-const { runAgent } = require("./agent");
-const { BROAD_SEARCH_SOFTWARE } = require("./nlpProcessor");
 
 // ── Configurable Thresholds ──
 const THRESHOLDS = {
@@ -33,127 +28,21 @@ const WEIGHTS = {
   responseQuality: 0.25,  // Gate 5 — data completeness
 };
 
-// ── Broad Pipeline — no entity, search top software, return up to 10 results ──
-
-async function runBroadPipeline(processedPrompt) {
-  const { queryType, dateFilter, breakingSubType } = processedPrompt.metadata;
-
-  // Gate 1: keyword-based pass — NeMo LLM rejects no-entity queries so use
-  // the fact that NLP already confirmed breaking keyword + date filter.
-  const gate1 = {
-    gate: 1, name: "Topic relevance", result: "pass", score: 0.85,
-    details: { method: "keyword", classifierReason: "broad failure query with date filter" },
-  };
-
-  const fmtDate = (d) => {
-    const s = String(d || "");
-    return s.length === 8 ? `${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}` : s || null;
-  };
-
-  // Search popular software in parallel, filter by date + breaking type
-  const results = await Promise.allSettled(
-    BROAD_SEARCH_SOFTWARE.map((sw) => fetchVersionSearch(sw))
-  );
-
-  const collected = [];
-  for (let i = 0; i < results.length; i++) {
-    const r = results[i];
-    if (r.status !== "fulfilled" || !r.value.success) continue;
-    let entries = r.value.data || [];
-
-    // Date filter
-    if (dateFilter) {
-      entries = entries.filter((e) => {
-        const d = String(e.versionReleaseDate || "");
-        if (dateFilter.type === "exact") return d === dateFilter.date;
-        if (dateFilter.type === "range") return d >= dateFilter.from && d <= dateFilter.to;
-        return true;
-      });
-    }
-
-    // Breaking type filter
-    if (breakingSubType) {
-      entries = entries.filter((e) =>
-        (e.classification?.breakingType || []).includes(breakingSubType)
-      );
-    } else {
-      entries = entries.filter((e) =>
-        (e.classification?.breakingType || []).length > 0
-      );
-    }
-
-    for (const e of entries) {
-      collected.push({
-        software: e.versionProductBrand || e.versionProductName || BROAD_SEARCH_SOFTWARE[i],
-        version:       e.versionNumber,
-        date:          fmtDate(e.versionReleaseDate),
-        channel:       e.versionReleaseChannel,
-        breakingTypes: e.classification?.breakingType || [],
-        isCve:         e.isCve,
-        notes:         (e.versionReleaseNotes || "").slice(0, 200),
-        url:           e.versionUrl,
-      });
-    }
-  }
-
-  if (collected.length === 0) {
-    return buildResult(
-      "abstain",
-      [gate1],
-      `I don't know — no ${breakingSubType || "failures"} found across popular software for ${dateFilter?.displayDate || "that date"}.`,
-      null, null, queryType
-    );
-  }
-
-  // Sort by date descending, cap at 10
-  collected.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-  const top10 = collected.slice(0, 10);
-
-  const structuredData = {
-    queryType: "breaking",
-    software: "Multiple Software",
-    dateFilter: dateFilter ? dateFilter.displayDate : null,
-    dateLabel:  dateFilter ? dateFilter.label : null,
-    totalCritical: collected.length,
-    breakingLabel: breakingSubType || "All Failures",
-    isBroadQuery: true,
-    entries: top10,
-  };
-
-  const compositeScore = gate1.score * 0.5 + 0.5; // simplified composite for broad
-  return {
-    decision: "confident",
-    compositeScore: Math.round(compositeScore * 1000) / 1000,
-    reason: null,
-    suggestions: null,
-    gates: [gate1],
-    data: structuredData,
-    queryType,
-    timestamp: new Date().toISOString(),
-  };
-}
-
 // ── Main Pipeline ──
 
 async function runPipeline(processedPrompt) {
-  // Broad query: no entity — search across popular software
-  if (processedPrompt.metadata?.isBroadQuery) {
-    return runBroadPipeline(processedPrompt);
-  }
-
   const gates = [];
   const queryType    = processedPrompt.metadata?.queryType    || "general";
   const dateFilter   = processedPrompt.metadata?.dateFilter   || null;
   const breakingSubType = processedPrompt.metadata?.breakingSubType || null;
-  const wantAll      = processedPrompt.metadata?.wantAll      || false;
 
   console.log(`[DEBUG][Pipeline] Query       : "${processedPrompt.originalTitle}"`);
   console.log(`[DEBUG][Pipeline] QueryType   : ${queryType}${breakingSubType ? ` → "${breakingSubType}"` : ""}`);
   console.log(`[DEBUG][Pipeline] DateFilter  : ${dateFilter ? `${dateFilter.label} (${dateFilter.displayDate})` : "none"}`);
   console.log(`[DEBUG][Pipeline] Entity      : "${processedPrompt.extraction?.primaryEntity?.name}" (conf: ${processedPrompt.extraction?.primaryEntity?.confidence}`);
 
-  // Gate 1: Topic Relevance — LLM-based classifier (NeMo Guardrails), regex fallback
-  const gate1 = await checkTopicRelevance(processedPrompt);
+  // Gate 1: Topic Relevance
+  const gate1 = checkTopicRelevance(processedPrompt);
   gates.push(gate1);
   if (gate1.result === "fail") {
     return buildResult("abstain", gates, gate1.reason, null, null, queryType);
@@ -166,22 +55,8 @@ async function runPipeline(processedPrompt) {
     return buildResult("abstain", gates, gate2.reason, null, null, queryType);
   }
 
-  // Agent Layer: LLM decides which search tool(s) to call (search_releases / search_cves /
-  // search_breaking_changes). Runs after entity is confirmed (Gate 2) so the agent has a
-  // clean entity name. Returns null and falls back to Gate 3's own call when unavailable.
-  const agentResult = await runAgent(
-    processedPrompt.extraction.primaryEntity.name,
-    processedPrompt.originalTitle || processedPrompt.prompt,
-    queryType
-  );
-  console.log(`[DEBUG][Pipeline] Agent        : ${
-    agentResult
-      ? `tools=[${agentResult.agentDecision.toolsSelected.map((t) => t.tool).join(", ")}] entries=${agentResult.entries.length}`
-      : "skipped (Gate 3 fallback)"
-  }`);
-
-  // Gate 3: Software Lookup — uses agent-fetched entries when available
-  const gate3 = await checkSoftwareExists(processedPrompt, agentResult);
+  // Gate 3: Software Lookup — searches releasetrain.io directly (same endpoint as the website)
+  const gate3 = await checkSoftwareExists(processedPrompt);
   gates.push(gate3);
   if (gate3.result === "fail") {
     return buildResult("abstain", gates, gate3.reason, null, null, queryType);
@@ -210,7 +85,7 @@ async function runPipeline(processedPrompt) {
   }
 
   // Gate 5: Response Quality — filters Gate 3's entries by queryType + dateFilter (no extra API call)
-  const gate5 = await checkResponseQuality(gate3.validatedName, queryType, dateFilter, gate3.entries, breakingSubType, wantAll);
+  const gate5 = await checkResponseQuality(gate3.validatedName, queryType, dateFilter, gate3.entries, breakingSubType);
   gates.push(gate5);
   if (gate5.result === "fail") {
     return buildResult("abstain", gates, gate5.reason, null, null, queryType);
@@ -239,50 +114,23 @@ async function runPipeline(processedPrompt) {
   }
 
   console.log(`[DEBUG][Pipeline] Composite   : ${(compositeScore * 100).toFixed(1)}% | decision: confident`);
-
-  // LLM: generate a natural-language summary grounded in the verified source data (RAG)
-  const llmResult = await generateLLMResponse(
-    processedPrompt.originalTitle || processedPrompt.prompt,
-    gate5.structuredData,
-    gate3.entries || [],
-    queryType
-  );
-
-  // BERTScore: when LLM text exists, check IT against source (real hallucination check)
-  const bertscore = await computeBERTScore(
-    gate5.structuredData,
-    gate3.entries || [],
-    llmResult?.text || null
-  );
-
-  const result = buildResult("confident", gates, null, null, gate5.structuredData, queryType);
-  if (llmResult)              result.llmResponse   = llmResult;
-  if (bertscore)              result.bertscore     = bertscore;
-  if (gate3.agentDecision)    result.agentDecision = gate3.agentDecision;
-  return result;
+  return buildResult("confident", gates, null, null, gate5.structuredData, queryType);
 }
 
 // ── Gate Implementations ──
 
-async function checkTopicRelevance(prompt) {
+function checkTopicRelevance(prompt) {
   const { positiveScore, isUpdateRelated } = prompt.metadata;
+  const score = Math.max(positiveScore, isUpdateRelated ? 0.7 : 0);
 
-  // NeMo Guardrails LLM classifier — falls back to regex scores automatically
-  const classification = await classifyTopic(
-    prompt.originalTitle || prompt.prompt,
-    { positiveScore, isUpdateRelated }
-  );
-
-  const score = classification.score;
-
-  if (!classification.isRelevant && score < THRESHOLDS.topicRelevance) {
+  if (!isUpdateRelated && positiveScore < THRESHOLDS.topicRelevance) {
     return {
       gate: 1,
       name: "Topic relevance",
       result: "fail",
       score,
-      reason: `Off-topic (score ${score.toFixed(3)} < ${THRESHOLDS.topicRelevance}): ${classification.reason}`,
-      details: { positiveScore, isUpdateRelated, method: classification.method, classifierReason: classification.reason },
+      reason: `Score ${positiveScore.toFixed(3)} below threshold ${THRESHOLDS.topicRelevance} and not update-related`,
+      details: { positiveScore, isUpdateRelated },
     };
   }
 
@@ -291,7 +139,7 @@ async function checkTopicRelevance(prompt) {
     name: "Topic relevance",
     result: "pass",
     score,
-    details: { positiveScore, isUpdateRelated, method: classification.method, classifierReason: classification.reason },
+    details: { positiveScore, isUpdateRelated },
   };
 }
 
@@ -331,26 +179,9 @@ function checkNLPConfidence(prompt) {
 // the releasetrain.io website uses. Returns entries for Gate 5 to avoid a second call.
 // If the primary search returns 0 entries, resolves a canonical name from the
 // component list and retries once (e.g. "node.js" → "Node").
-async function checkSoftwareExists(prompt, agentResult = null) {
+async function checkSoftwareExists(prompt) {
   const entityName = prompt.extraction.primaryEntity.name;
   const queryText  = prompt.originalTitle || entityName;
-
-  // Agent pre-fetched entries — skip the API call
-  if (agentResult?.entries?.length > 0) {
-    const entries = agentResult.entries;
-    const validatedName =
-      entries[0]?.versionProductBrand ||
-      entries[0]?.versionProductName  ||
-      entityName;
-    console.log(`[DEBUG][Gate3] Agent supplied ${entries.length} entries for "${validatedName}"`);
-    return {
-      gate: 3, name: "Software lookup", result: "pass", score: 1.0,
-      validatedName,
-      entries,
-      agentDecision: agentResult.agentDecision,
-      details: { query: entityName, totalEntries: entries.length, matchedBrand: validatedName, source: "agent" },
-    };
-  }
 
   let result      = await fetchVersionSearch(entityName);
   let usedName    = entityName;
@@ -403,7 +234,7 @@ async function checkSoftwareExists(prompt, agentResult = null) {
 }
 
 // Gate 5 receives entries already fetched by Gate 3 — no second API call.
-async function checkResponseQuality(softwareName, queryType, dateFilter, entries, breakingSubType = null, wantAll = false) {
+async function checkResponseQuality(softwareName, queryType, dateFilter, entries, breakingSubType = null) {
   if (!entries || entries.length === 0) {
     return {
       gate: 5,
@@ -415,7 +246,7 @@ async function checkResponseQuality(softwareName, queryType, dateFilter, entries
   }
 
   // Extract type-specific structured data from the pre-fetched entries
-  const extracted = extractStructuredData(entries, queryType, softwareName, dateFilter, breakingSubType, wantAll);
+  const extracted = extractStructuredData(entries, queryType, softwareName, dateFilter, breakingSubType);
 
   if (!extracted.found) {
     return {
@@ -474,7 +305,7 @@ function filterByDate(entries, dateFilter) {
 // Returns { found: true, structured } or { found: false, reason }.
 
 // entries is a flat array from GET /api/v/?q={software}
-function extractStructuredData(entries, queryType, softwareName, dateFilter, breakingSubType = null, wantAll = false) {
+function extractStructuredData(entries, queryType, softwareName, dateFilter, breakingSubType = null) {
   if (!Array.isArray(entries) || entries.length === 0) {
     return {
       found: false,
@@ -639,7 +470,6 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
       };
     }
 
-    const criticalLimit = wantAll ? criticalEntries.length : 20;
     return {
       found: true,
       structured: {
@@ -649,8 +479,7 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
         dateLabel: dateFilter ? dateFilter.label : null,
         totalCritical: criticalEntries.length,
         breakingLabel: "Critical Failure",
-        wantAll,
-        entries: criticalEntries.slice(0, criticalLimit).map((e) => ({
+        entries: criticalEntries.slice(0, 20).map((e) => ({
           version: e.versionNumber,
           date: fmtDate(e.versionReleaseDate),
           channel: e.versionReleaseChannel,
@@ -665,23 +494,19 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
   }
 
   if (queryType === "breaking") {
-    // null breakingSubType = broad "failures" query → match any entry that has any breakingType
-    const matched = breakingSubType
-      ? entries.filter((e) => (e.classification?.breakingType || []).includes(breakingSubType))
-      : entries.filter((e) => (e.classification?.breakingType || []).length > 0);
-
-    const targetLabel = breakingSubType || "All Failures";
-    console.log(`[DEBUG][Extract] breaking "${targetLabel}" wantAll=${wantAll} → ${matched.length} / ${entries.length} entries`);
+    const targetType = breakingSubType || "Breaking Update";
+    const matched = entries.filter(
+      (e) => (e.classification?.breakingType || []).includes(targetType)
+    );
+    console.log(`[DEBUG][Extract] breaking "${targetType}" → ${matched.length} / ${entries.length} entries`);
 
     if (matched.length === 0) {
       return {
         found: false,
-        reason: `I don't know — releasetrain.io has no "${targetLabel}" releases for "${displayName}"${dateLabel}`,
+        reason: `I don't know — releasetrain.io has no "${targetType}" releases for "${displayName}"${dateLabel}`,
       };
     }
 
-    // wantAll: return every matched entry; otherwise cap at 20
-    const limit = wantAll ? matched.length : 20;
     return {
       found: true,
       structured: {
@@ -690,9 +515,8 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
         dateFilter: dateFilter ? dateFilter.displayDate : null,
         dateLabel: dateFilter ? dateFilter.label : null,
         totalCritical: matched.length,
-        breakingLabel: targetLabel,
-        wantAll,
-        entries: matched.slice(0, limit).map((e) => ({
+        breakingLabel: targetType,
+        entries: matched.slice(0, 20).map((e) => ({
           version: e.versionNumber,
           date: fmtDate(e.versionReleaseDate),
           channel: e.versionReleaseChannel,
@@ -838,4 +662,4 @@ function buildResult(
   };
 }
 
-module.exports = { runPipeline, runBroadPipeline, THRESHOLDS };
+module.exports = { runPipeline, THRESHOLDS };

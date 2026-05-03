@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import ChatMessage from "./components/ChatMessage";
-import KpiBar from "./components/KpiBar";
 
 export default function App() {
   const [messages, setMessages] = useState([
@@ -13,7 +12,6 @@ export default function App() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [latestResult, setLatestResult] = useState(null);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -43,7 +41,6 @@ export default function App() {
         body: JSON.stringify({ message: trimmed }),
       });
       const data = await res.json();
-      setLatestResult(data);
       setMessages((prev) => [
         ...prev,
         { id: (Date.now() + 1).toString(), role: "assistant", type: "pipeline-result", content: data },
@@ -63,26 +60,15 @@ export default function App() {
     setMessages([
       { id: "welcome", role: "assistant", type: "text", content: "Hi, I'm Release Master! Ask me about CVEs, patches, versions, or breaking updates." },
     ]);
-    setLatestResult(null);
   }
 
   return (
     <div className="chat-layout">
       {/* ── Header ── */}
       <header className="chat-header">
-        <div className="header-title-group">
-          <h1><span className="gradient">Release Master</span></h1>
-          <p className="header-subtitle">Software Update Q&amp;A System</p>
-        </div>
-
-        {latestResult && (
-          <KpiBar
-            bertscore={latestResult.bertscore}
-            compositeScore={latestResult.compositeScore}
-            decision={latestResult.decision}
-          />
-        )}
-
+        <h1>
+          <span className="gradient">Release Master</span>
+        </h1>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <span className="header-badge">releasetrain.io</span>
           <button className="clear-btn" onClick={clearChat} title="Clear chat">

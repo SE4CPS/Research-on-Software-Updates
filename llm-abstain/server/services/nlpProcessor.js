@@ -225,59 +225,12 @@ const BREAKING_TYPE_MAP = [
   { pattern: /\b(resource\s+exhaustion|resource\s+limit|out\s+of\s+memory|oom)\b/,   apiType: "Resource Exhaustion",          queryType: "breaking" },
   { pattern: /\b(dependency\s+fail(?:ure)?|dependency\s+issue|dependency\s+error)\b/,  apiType: "Dependency Failures",          queryType: "breaking" },
   { pattern: /\b(data\s+integrity|data\s+corruption|data\s+loss)\b/,                 apiType: "Data Integrity Issues",        queryType: "breaking" },
-  // Broad failure/break — matches any breaking type (apiType null = all breaking subtypes)
-  { pattern: /\b(failures?|breakings?|broke|broken|incidents?|outages?)\b/,          apiType: null,                           queryType: "breaking" },
 ];
 
 // ── NEW: For raw chatbot user text ──
-// Popular software searched for broad queries (no entity specified)
-const BROAD_SEARCH_SOFTWARE = [
-  "GitHub", "Docker", "Kubernetes", "Node", "Chrome", "Firefox",
-  "Android", "Windows", "Ubuntu", "PostgreSQL", "MongoDB", "Redis",
-  "Nginx", "AWS", "Azure",
-];
-
 function generatePromptFromText(userMessage) {
   const extraction = extractEntities(userMessage);
-
-  // Broad query: no entity (or only a low-confidence noun-fallback entity)
-  // + has breaking/failure keyword + date filter
-  // e.g. "Any critical failures today?" / "Failures this month?"
-  const noRealEntity = !extraction.primaryEntity || extraction.primaryEntity.confidence <= 0.55;
-  if (noRealEntity) {
-    const lower = userMessage.toLowerCase();
-    const dateFilter = extractDateFilter(userMessage);
-    let breakingMatch = null;
-    for (const entry of BREAKING_TYPE_MAP) {
-      if (entry.pattern.test(lower)) { breakingMatch = entry; break; }
-    }
-    const hasCritical = /\b(critical|failure|failures|breaking|incident|outage)\b/.test(lower);
-    if ((breakingMatch || hasCritical) && dateFilter) {
-      const queryType = breakingMatch?.queryType || "breaking";
-      const breakingSubType = breakingMatch?.apiType || null;
-      const typeLabel = breakingSubType || "failures";
-      return {
-        id: Date.now().toString(),
-        prompt: `List all "${typeLabel}" across popular software on ${dateFilter.displayDate} (${dateFilter.label})`,
-        originalTitle: userMessage,
-        originalDescription: userMessage,
-        extraction: { primaryEntity: null, entities: { os: [], software: [], device: [], versions: [] }, overallConfidence: 1.0 },
-        metadata: {
-          positiveScore: 0.85,
-          isUpdateRelated: true,
-          isBreakingQuery: true,
-          breakingSubType,
-          queryType,
-          dateFilter,
-          wantAll: false,
-          isBroadQuery: true,  // no entity — search across popular software
-        },
-        createdAt: new Date().toISOString(),
-      };
-    }
-    // No entity and not a broad failure query — can't process
-    if (!extraction.primaryEntity) return null;
-  }
+  if (!extraction.primaryEntity) return null;
 
   const entity = extraction.primaryEntity;
   const versions = extraction.entities.versions;
@@ -288,8 +241,6 @@ function generatePromptFromText(userMessage) {
   const isAboutCve    = /\b(cves?[\s-]?\d*|vulnerabilit(y|ies)|exploit|zero.?day|advisor(y|ies))\b/.test(lower);
   const isAboutPatch  = /\b(patch(es|ed)?|hotfix(es)?|hot.?fix(es)?|bug.?fix(es)?|security.?fix(es)?|security.?patch(es)?|security.?update)\b/.test(lower);
   const isAboutVersion = versions.length > 0 || /\bversion\b/.test(lower);
-  // User explicitly wants all/every result, not just the top one
-  const wantAll = /\b(all|every|each|list|show\s+all|show\s+every|give\s+(me\s+)?all|any)\b/.test(lower);
 
   // Match any known breaking type
   let breakingMatch = null;
@@ -319,10 +270,7 @@ function generatePromptFromText(userMessage) {
   } else if (isAboutPatch) {
     promptText = `What patches are available for ${entity.name}${dateSuffix}?`;
   } else if (breakingMatch) {
-    const typeLabel = breakingMatch.apiType || "failures";
-    promptText = wantAll
-      ? `List all "${typeLabel}" releases for ${entity.name}${dateSuffix}`
-      : `What are the "${typeLabel}" releases for ${entity.name}${dateSuffix}?`;
+    promptText = `What are the "${breakingMatch.apiType}" releases for ${entity.name}${dateSuffix}?`;
   } else if (isAboutUpdate) {
     promptText = `What's the latest version of ${entity.name}${dateSuffix}?`;
   } else {
@@ -345,7 +293,6 @@ function generatePromptFromText(userMessage) {
       isAboutLatestUpdate: isAboutUpdate,
       queryType,
       dateFilter,
-      wantAll,
     },
     createdAt: new Date().toISOString(),
   };
@@ -359,9 +306,8 @@ function extractDateFilter(text) {
   const lower = text.toLowerCase();
   const now = new Date();
 
-  // Both use UTC so date labels match releasetrain.io's UTC-based dates
   const toYMD = (d) =>
-    `${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, "0")}${String(d.getUTCDate()).padStart(2, "0")}`;
+    `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
 
   const toISO = (d) => d.toISOString().slice(0, 10);
 
@@ -420,4 +366,4 @@ function extractDateFilter(text) {
   return null;
 }
 
-module.exports = { extractEntities, generatePrompt, generatePromptFromText, extractDateFilter, cleanName, BROAD_SEARCH_SOFTWARE };
+module.exports = { extractEntities, generatePrompt, generatePromptFromText, extractDateFilter, cleanName };

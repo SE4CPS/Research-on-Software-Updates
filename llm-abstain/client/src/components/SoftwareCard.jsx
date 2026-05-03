@@ -267,14 +267,11 @@ function CriticalCard({ data }) {
 
       {entries.length > 0 && (
         <div style={{ marginTop: 12 }}>
-          <div className="section-label">Versions tagged "{label}" ({data.totalCritical} total{data.isBroadQuery ? ", top 10 shown" : ""})</div>
+          <div className="section-label">Versions tagged "{label}" ({data.totalCritical} total)</div>
           {visible.map((e, i) => (
             <div key={i} className="cve-row" onClick={() => e.url && window.open(e.url, "_blank")}
               title={e.url ? "Open release page" : undefined}>
               <div className="cve-row-header">
-                {data.isBroadQuery && e.software && (
-                  <span className="broad-software-badge">{e.software}</span>
-                )}
                 <span className="cve-row-id">v{e.version}</span>
                 <span className={isCritical ? "critical-badge" : "breaking-badge"}>{label}</span>
                 {e.breakingTypes.filter((t) => t !== label).map((t, j) => (

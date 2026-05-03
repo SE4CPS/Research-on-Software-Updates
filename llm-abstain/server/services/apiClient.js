@@ -1,19 +1,15 @@
 // ============================================
 // FILE: server/services/apiClient.js
 // HTTP client for releasetrain.io
-// Primary endpoint: GET /api/v/?q={software}
-//   → same schema used by https://releasetrain.io/?q=Android
+// Primary endpoint: GET /api/component/?q={software}
 // ============================================
 
-const axios    = require("axios");
-const LRUCache = require("../utils/lruCache");
+const axios = require("axios");
 
 const BASE_URL = process.env.API_BASE_URL || "https://releasetrain.io/api";
 
-// LRU cache: max 100 software queries, TTL 5 min
-// Evicts least-recently-used entry when full so memory stays bounded.
-const CACHE_TTL    = 5 * 60 * 1000;
-const searchCache  = new LRUCache(100, CACHE_TTL);
+const searchCache = new Map();
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 
 function debugSourceStats(versions) {
@@ -46,18 +42,19 @@ function debugSourceStats(versions) {
   }
 }
 
-// GET /api/v/?q={query}  — releasetrain.io's own search used by its website
+// GET /api/component/?q={query}  — releasetrain.io component search
 async function fetchVersionSearch(query) {
-  const key    = query.toLowerCase().trim();
-  const cached = searchCache.get(key); // LRU get — promotes entry + checks TTL
+  const key = query.toLowerCase().trim();
+  const now = Date.now();
+  const cached = searchCache.get(key);
 
-  if (cached) {
-    console.log(`[API Client] LRU hit "${query}" (${cached.data.length} entries) | ${searchCache.stats().hitRate} hit-rate`);
+  if (cached && now - cached.fetchedAt < CACHE_TTL) {
+    console.log(`[API Client] Cache hit for "${query}" (${cached.data.length} entries)`);
     return { success: true, data: cached.data, cached: true };
   }
 
   const encoded = encodeURIComponent(key);
-  const fullUrl = `${BASE_URL}/v/?q=${encoded}`;
+  const fullUrl = `${BASE_URL}/component/?q=${encoded}`;
 
   console.log(`[DEBUG][Source] Fetching from : ${fullUrl}`);
 
@@ -67,21 +64,19 @@ async function fetchVersionSearch(query) {
       timeout: 15000,
     });
 
-    const versions = response.data?.versions || [];
+    const versions = Array.isArray(response.data) ? response.data : [];
     console.log(`[DEBUG][Source] Status        : ${response.status} ${response.statusText}`);
     console.log(`[DEBUG][Source] Content-Type  : ${response.headers["content-type"]}`);
     console.log(`[DEBUG][Source] Total entries : ${versions.length}`);
     debugSourceStats(versions);
 
-    searchCache.set(key, { data: versions }); // LRU set — evicts LRU if at capacity
+    searchCache.set(key, { data: versions, fetchedAt: now });
     return { success: true, data: versions, cached: false };
   } catch (error) {
     console.error(`[DEBUG][Source] FAILED for "${query}": ${error.message}`);
-    // On network failure, peek raw map for stale data (bypass TTL check intentionally)
-    const stale = searchCache._map.get(key);
-    if (stale) {
-      console.warn(`[DEBUG][Source] Serving stale LRU entry (${stale.value.data.length} entries)`);
-      return { success: true, data: stale.value.data, cached: true, stale: true };
+    if (cached) {
+      console.warn(`[DEBUG][Source] Falling back to stale cache (${cached.data.length} entries)`);
+      return { success: true, data: cached.data, cached: true, stale: true };
     }
     return { success: false, data: [], error: error.message };
   }
