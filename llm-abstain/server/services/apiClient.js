@@ -1,8 +1,7 @@
 // ============================================
 // FILE: server/services/apiClient.js
 // HTTP client for releasetrain.io
-// Primary endpoint: GET /api/v/?q={software}
-//   → same schema used by https://releasetrain.io/?q=Android
+// Primary endpoint: GET /api/component/?q={software}
 // ============================================
 
 const axios = require("axios");
@@ -43,7 +42,7 @@ function debugSourceStats(versions) {
   }
 }
 
-// GET /api/v/?q={query}  — releasetrain.io's own search used by its website
+// GET /api/component/?q={query}  — releasetrain.io component search
 async function fetchVersionSearch(query) {
   const key = query.toLowerCase().trim();
   const now = Date.now();
@@ -55,7 +54,7 @@ async function fetchVersionSearch(query) {
   }
 
   const encoded = encodeURIComponent(key);
-  const fullUrl = `${BASE_URL}/v/?q=${encoded}`;
+  const fullUrl = `${BASE_URL}/component/?q=${encoded}`;
 
   console.log(`[DEBUG][Source] Fetching from : ${fullUrl}`);
 
@@ -65,7 +64,7 @@ async function fetchVersionSearch(query) {
       timeout: 15000,
     });
 
-    const versions = response.data?.versions || [];
+    const versions = Array.isArray(response.data) ? response.data : [];
     console.log(`[DEBUG][Source] Status        : ${response.status} ${response.statusText}`);
     console.log(`[DEBUG][Source] Content-Type  : ${response.headers["content-type"]}`);
     console.log(`[DEBUG][Source] Total entries : ${versions.length}`);
