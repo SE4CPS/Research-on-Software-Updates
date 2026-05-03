@@ -10,6 +10,7 @@ const { resolveCanonicalSearchName } = require("./componentNames");
 const { classifyTopic } = require("./nemoGuardrails");
 const { computeBERTScore } = require("./hallucination");
 const { generateLLMResponse } = require("./llmResponse");
+const { runAgent } = require("./agent");
 
 // ── Configurable Thresholds ──
 const THRESHOLDS = {
@@ -59,8 +60,22 @@ async function runPipeline(processedPrompt) {
     return buildResult("abstain", gates, gate2.reason, null, null, queryType);
   }
 
-  // Gate 3: Software Lookup — searches releasetrain.io directly (same endpoint as the website)
-  const gate3 = await checkSoftwareExists(processedPrompt);
+  // Agent Layer: LLM decides which search tool(s) to call (search_releases / search_cves /
+  // search_breaking_changes). Runs after entity is confirmed (Gate 2) so the agent has a
+  // clean entity name. Returns null and falls back to Gate 3's own call when unavailable.
+  const agentResult = await runAgent(
+    processedPrompt.extraction.primaryEntity.name,
+    processedPrompt.originalTitle || processedPrompt.prompt,
+    queryType
+  );
+  console.log(`[DEBUG][Pipeline] Agent        : ${
+    agentResult
+      ? `tools=[${agentResult.agentDecision.toolsSelected.map((t) => t.tool).join(", ")}] entries=${agentResult.entries.length}`
+      : "skipped (Gate 3 fallback)"
+  }`);
+
+  // Gate 3: Software Lookup — uses agent-fetched entries when available
+  const gate3 = await checkSoftwareExists(processedPrompt, agentResult);
   gates.push(gate3);
   if (gate3.result === "fail") {
     return buildResult("abstain", gates, gate3.reason, null, null, queryType);
@@ -135,8 +150,9 @@ async function runPipeline(processedPrompt) {
   );
 
   const result = buildResult("confident", gates, null, null, gate5.structuredData, queryType);
-  if (llmResult) result.llmResponse = llmResult;
-  if (bertscore)  result.bertscore  = bertscore;
+  if (llmResult)              result.llmResponse   = llmResult;
+  if (bertscore)              result.bertscore     = bertscore;
+  if (gate3.agentDecision)    result.agentDecision = gate3.agentDecision;
   return result;
 }
 
@@ -209,9 +225,26 @@ function checkNLPConfidence(prompt) {
 // the releasetrain.io website uses. Returns entries for Gate 5 to avoid a second call.
 // If the primary search returns 0 entries, resolves a canonical name from the
 // component list and retries once (e.g. "node.js" → "Node").
-async function checkSoftwareExists(prompt) {
+async function checkSoftwareExists(prompt, agentResult = null) {
   const entityName = prompt.extraction.primaryEntity.name;
   const queryText  = prompt.originalTitle || entityName;
+
+  // Agent pre-fetched entries — skip the API call
+  if (agentResult?.entries?.length > 0) {
+    const entries = agentResult.entries;
+    const validatedName =
+      entries[0]?.versionProductBrand ||
+      entries[0]?.versionProductName  ||
+      entityName;
+    console.log(`[DEBUG][Gate3] Agent supplied ${entries.length} entries for "${validatedName}"`);
+    return {
+      gate: 3, name: "Software lookup", result: "pass", score: 1.0,
+      validatedName,
+      entries,
+      agentDecision: agentResult.agentDecision,
+      details: { query: entityName, totalEntries: entries.length, matchedBrand: validatedName, source: "agent" },
+    };
+  }
 
   let result      = await fetchVersionSearch(entityName);
   let usedName    = entityName;

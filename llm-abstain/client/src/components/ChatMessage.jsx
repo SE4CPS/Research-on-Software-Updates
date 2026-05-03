@@ -35,8 +35,14 @@ export default function ChatMessage({ message, onSend }) {
   return null;
 }
 
+const TOOL_LABELS = {
+  search_releases:         "Releases",
+  search_cves:             "CVEs",
+  search_breaking_changes: "Breaking Changes",
+};
+
 function PipelineResult({ data, onSend }) {
-  const { decision, compositeScore, reason, suggestions, gates, processedAs, queryType } = data;
+  const { decision, compositeScore, reason, suggestions, gates, processedAs, queryType, agentDecision } = data;
   const [gatesOpen, setGatesOpen] = useState(false);
 
   const confidenceColor =
@@ -70,6 +76,21 @@ function PipelineResult({ data, onSend }) {
           </span>
         </div>
       </div>
+
+      {/* Agent tool badges */}
+      {agentDecision?.toolsSelected?.length > 0 && (
+        <div className="agent-row">
+          <span className="agent-badge-label">Agent</span>
+          <div className="agent-tools">
+            {agentDecision.toolsSelected.filter((t) => !t.deduped).map((t, i) => (
+              <span key={i} className={`agent-tool-badge ${t.tool}`} title={t.reason || t.tool}>
+                {TOOL_LABELS[t.tool] || t.tool}
+              </span>
+            ))}
+          </div>
+          {agentDecision.cached && <span className="agent-cached-pill">cached</span>}
+        </div>
+      )}
 
       {/* Collapsible gate timeline */}
       {gates && gates.length > 0 && (
