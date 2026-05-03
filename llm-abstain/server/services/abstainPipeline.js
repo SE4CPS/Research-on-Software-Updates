@@ -347,7 +347,9 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
       (e) =>
         e.isCve === true ||
         (e.versionUrl && e.versionUrl.includes("nvd.nist.gov")) ||
-        (e.classification?.securityType || []).includes("SECURITY")
+        (e.classification?.securityType || []).includes("SECURITY") ||
+        (e.versionReleaseTags || []).some((t) => /security|vulnerability|cve/i.test(t)) ||
+        (e.versionSearchTags || []).some((t) => /cve-?\d{4}/i.test(t))
     );
 
     if (cveEntries.length === 0) {
@@ -458,9 +460,21 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
   }
 
   if (queryType === "critical") {
-    const criticalEntries = entries.filter(
+    let criticalEntries = entries.filter(
       (e) => (e.classification?.breakingType || []).includes("Critical Failure")
     );
+
+    // Fallback when breakingType is unclassified: use channel + tags
+    if (criticalEntries.length === 0) {
+      criticalEntries = entries.filter(
+        (e) =>
+          e.isCve === true ||
+          e.versionReleaseChannel === "major" ||
+          (e.versionReleaseTags || []).some((t) =>
+            /security|vulnerability|critical|breaking|cve/i.test(t)
+          )
+      );
+    }
     console.log(`[DEBUG][Extract] critical filter → ${criticalEntries.length} / ${entries.length} entries`);
 
     if (criticalEntries.length === 0) {
@@ -495,9 +509,20 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
 
   if (queryType === "breaking") {
     const targetType = breakingSubType || "Breaking Update";
-    const matched = entries.filter(
+    let matched = entries.filter(
       (e) => (e.classification?.breakingType || []).includes(targetType)
     );
+
+    // Fallback when breakingType is unclassified: use channel + tags
+    if (matched.length === 0) {
+      matched = entries.filter(
+        (e) =>
+          e.versionReleaseChannel === "major" ||
+          (e.versionReleaseTags || []).some((t) =>
+            /major|breaking|security|critical/i.test(t)
+          )
+      );
+    }
     console.log(`[DEBUG][Extract] breaking "${targetType}" → ${matched.length} / ${entries.length} entries`);
 
     if (matched.length === 0) {
