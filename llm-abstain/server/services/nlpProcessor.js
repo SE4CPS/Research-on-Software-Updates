@@ -230,9 +230,54 @@ const BREAKING_TYPE_MAP = [
 ];
 
 // ── NEW: For raw chatbot user text ──
+// Popular software searched for broad queries (no entity specified)
+const BROAD_SEARCH_SOFTWARE = [
+  "GitHub", "Docker", "Kubernetes", "Node", "Chrome", "Firefox",
+  "Android", "Windows", "Ubuntu", "PostgreSQL", "MongoDB", "Redis",
+  "Nginx", "AWS", "Azure",
+];
+
 function generatePromptFromText(userMessage) {
   const extraction = extractEntities(userMessage);
-  if (!extraction.primaryEntity) return null;
+
+  // Broad query: no entity (or only a low-confidence noun-fallback entity)
+  // + has breaking/failure keyword + date filter
+  // e.g. "Any critical failures today?" / "Failures this month?"
+  const noRealEntity = !extraction.primaryEntity || extraction.primaryEntity.confidence <= 0.55;
+  if (noRealEntity) {
+    const lower = userMessage.toLowerCase();
+    const dateFilter = extractDateFilter(userMessage);
+    let breakingMatch = null;
+    for (const entry of BREAKING_TYPE_MAP) {
+      if (entry.pattern.test(lower)) { breakingMatch = entry; break; }
+    }
+    const hasCritical = /\b(critical|failure|failures|breaking|incident|outage)\b/.test(lower);
+    if ((breakingMatch || hasCritical) && dateFilter) {
+      const queryType = breakingMatch?.queryType || "breaking";
+      const breakingSubType = breakingMatch?.apiType || null;
+      const typeLabel = breakingSubType || "failures";
+      return {
+        id: Date.now().toString(),
+        prompt: `List all "${typeLabel}" across popular software on ${dateFilter.displayDate} (${dateFilter.label})`,
+        originalTitle: userMessage,
+        originalDescription: userMessage,
+        extraction: { primaryEntity: null, entities: { os: [], software: [], device: [], versions: [] }, overallConfidence: 1.0 },
+        metadata: {
+          positiveScore: 0.85,
+          isUpdateRelated: true,
+          isBreakingQuery: true,
+          breakingSubType,
+          queryType,
+          dateFilter,
+          wantAll: false,
+          isBroadQuery: true,  // no entity — search across popular software
+        },
+        createdAt: new Date().toISOString(),
+      };
+    }
+    // No entity and not a broad failure query — can't process
+    if (!extraction.primaryEntity) return null;
+  }
 
   const entity = extraction.primaryEntity;
   const versions = extraction.entities.versions;
@@ -375,4 +420,4 @@ function extractDateFilter(text) {
   return null;
 }
 
-module.exports = { extractEntities, generatePrompt, generatePromptFromText, extractDateFilter, cleanName };
+module.exports = { extractEntities, generatePrompt, generatePromptFromText, extractDateFilter, cleanName, BROAD_SEARCH_SOFTWARE };

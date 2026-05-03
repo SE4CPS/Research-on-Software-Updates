@@ -11,6 +11,7 @@ const { classifyTopic } = require("./nemoGuardrails");
 const { computeBERTScore } = require("./hallucination");
 const { generateLLMResponse } = require("./llmResponse");
 const { runAgent } = require("./agent");
+const { BROAD_SEARCH_SOFTWARE } = require("./nlpProcessor");
 
 // ── Configurable Thresholds ──
 const THRESHOLDS = {
@@ -32,9 +33,114 @@ const WEIGHTS = {
   responseQuality: 0.25,  // Gate 5 — data completeness
 };
 
+// ── Broad Pipeline — no entity, search top software, return up to 10 results ──
+
+async function runBroadPipeline(processedPrompt) {
+  const { queryType, dateFilter, breakingSubType } = processedPrompt.metadata;
+
+  // Gate 1: keyword-based pass — NeMo LLM rejects no-entity queries so use
+  // the fact that NLP already confirmed breaking keyword + date filter.
+  const gate1 = {
+    gate: 1, name: "Topic relevance", result: "pass", score: 0.85,
+    details: { method: "keyword", classifierReason: "broad failure query with date filter" },
+  };
+
+  const fmtDate = (d) => {
+    const s = String(d || "");
+    return s.length === 8 ? `${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}` : s || null;
+  };
+
+  // Search popular software in parallel, filter by date + breaking type
+  const results = await Promise.allSettled(
+    BROAD_SEARCH_SOFTWARE.map((sw) => fetchVersionSearch(sw))
+  );
+
+  const collected = [];
+  for (let i = 0; i < results.length; i++) {
+    const r = results[i];
+    if (r.status !== "fulfilled" || !r.value.success) continue;
+    let entries = r.value.data || [];
+
+    // Date filter
+    if (dateFilter) {
+      entries = entries.filter((e) => {
+        const d = String(e.versionReleaseDate || "");
+        if (dateFilter.type === "exact") return d === dateFilter.date;
+        if (dateFilter.type === "range") return d >= dateFilter.from && d <= dateFilter.to;
+        return true;
+      });
+    }
+
+    // Breaking type filter
+    if (breakingSubType) {
+      entries = entries.filter((e) =>
+        (e.classification?.breakingType || []).includes(breakingSubType)
+      );
+    } else {
+      entries = entries.filter((e) =>
+        (e.classification?.breakingType || []).length > 0
+      );
+    }
+
+    for (const e of entries) {
+      collected.push({
+        software: e.versionProductBrand || e.versionProductName || BROAD_SEARCH_SOFTWARE[i],
+        version:       e.versionNumber,
+        date:          fmtDate(e.versionReleaseDate),
+        channel:       e.versionReleaseChannel,
+        breakingTypes: e.classification?.breakingType || [],
+        isCve:         e.isCve,
+        notes:         (e.versionReleaseNotes || "").slice(0, 200),
+        url:           e.versionUrl,
+      });
+    }
+  }
+
+  if (collected.length === 0) {
+    return buildResult(
+      "abstain",
+      [gate1],
+      `I don't know — no ${breakingSubType || "failures"} found across popular software for ${dateFilter?.displayDate || "that date"}.`,
+      null, null, queryType
+    );
+  }
+
+  // Sort by date descending, cap at 10
+  collected.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  const top10 = collected.slice(0, 10);
+
+  const structuredData = {
+    queryType: "breaking",
+    software: "Multiple Software",
+    dateFilter: dateFilter ? dateFilter.displayDate : null,
+    dateLabel:  dateFilter ? dateFilter.label : null,
+    totalCritical: collected.length,
+    breakingLabel: breakingSubType || "All Failures",
+    isBroadQuery: true,
+    entries: top10,
+  };
+
+  const compositeScore = gate1.score * 0.5 + 0.5; // simplified composite for broad
+  return {
+    decision: "confident",
+    compositeScore: Math.round(compositeScore * 1000) / 1000,
+    reason: null,
+    suggestions: null,
+    gates: [gate1],
+    data: structuredData,
+    queryType,
+    timestamp: new Date().toISOString(),
+  };
+}
+
 // ── Main Pipeline ──
 
 async function runPipeline(processedPrompt) {
+  // Broad query: no entity — search across popular software
+  if (processedPrompt.metadata?.isBroadQuery) {
+    return runBroadPipeline(processedPrompt);
+  }
+
   const gates = [];
   const queryType    = processedPrompt.metadata?.queryType    || "general";
   const dateFilter   = processedPrompt.metadata?.dateFilter   || null;
@@ -732,4 +838,4 @@ function buildResult(
   };
 }
 
-module.exports = { runPipeline, THRESHOLDS };
+module.exports = { runPipeline, runBroadPipeline, THRESHOLDS };

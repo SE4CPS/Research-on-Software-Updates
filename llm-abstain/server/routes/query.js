@@ -48,9 +48,13 @@ router.post("/", async (req, res) => {
       });
     }
 
-    console.log(
-      `[Query] NLP extracted: "${processed.extraction.primaryEntity.name}" (${processed.extraction.primaryEntity.confidence})`
-    );
+    if (processed.metadata?.isBroadQuery) {
+      console.log(`[Query] Broad query detected — searching across popular software`);
+    } else {
+      console.log(
+        `[Query] NLP extracted: "${processed.extraction.primaryEntity.name}" (${processed.extraction.primaryEntity.confidence})`
+      );
+    }
 
     // Step 2: Run 5-gate abstain pipeline
     const result = await runPipeline(processed);

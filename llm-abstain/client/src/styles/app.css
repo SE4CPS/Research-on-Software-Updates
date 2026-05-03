@@ -766,6 +766,16 @@ body::after {
 .copy-btn:hover { color: var(--accent-teal); border-color: var(--accent-teal); }
 
 /* ── CVE badge pill ── */
+.broad-software-badge {
+  background: rgba(139, 122, 223, 0.12);
+  color: var(--accent-purple);
+  border: 1px solid rgba(139, 122, 223, 0.2);
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+}
+
 .cve-badge {
   background: rgba(255,136,0,0.15);
   color: #ff8800;
