@@ -77,21 +77,6 @@ function PipelineResult({ data, onSend }) {
         </div>
       </div>
 
-      {/* Agent tool badges */}
-      {agentDecision?.toolsSelected?.length > 0 && (
-        <div className="agent-row">
-          <span className="agent-badge-label">Agent</span>
-          <div className="agent-tools">
-            {agentDecision.toolsSelected.filter((t) => !t.deduped).map((t, i) => (
-              <span key={i} className={`agent-tool-badge ${t.tool}`} title={t.reason || t.tool}>
-                {TOOL_LABELS[t.tool] || t.tool}
-              </span>
-            ))}
-          </div>
-          {agentDecision.cached && <span className="agent-cached-pill">cached</span>}
-        </div>
-      )}
-
       {/* Collapsible gate timeline */}
       {gates && gates.length > 0 && (
         <div className="gates-section">
