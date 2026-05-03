@@ -7,7 +7,7 @@
     "dev:server": "node server/index.js",
     "dev:client": "npx vite client --port 5173",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "build": "npx vite build client --outDir ../dist",
+    "build": "npx vite build client",
     "start": "NODE_ENV=production node server/index.js",
     "render:build": "npm install && npm run build"
   },
