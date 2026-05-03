@@ -225,6 +225,8 @@ const BREAKING_TYPE_MAP = [
   { pattern: /\b(resource\s+exhaustion|resource\s+limit|out\s+of\s+memory|oom)\b/,   apiType: "Resource Exhaustion",          queryType: "breaking" },
   { pattern: /\b(dependency\s+fail(?:ure)?|dependency\s+issue|dependency\s+error)\b/,  apiType: "Dependency Failures",          queryType: "breaking" },
   { pattern: /\b(data\s+integrity|data\s+corruption|data\s+loss)\b/,                 apiType: "Data Integrity Issues",        queryType: "breaking" },
+  // Broad failure/break — matches any breaking type (apiType null = all breaking subtypes)
+  { pattern: /\b(failures?|breakings?|broke|broken|incidents?|outages?)\b/,          apiType: null,                           queryType: "breaking" },
 ];
 
 // ── NEW: For raw chatbot user text ──
@@ -241,6 +243,8 @@ function generatePromptFromText(userMessage) {
   const isAboutCve    = /\b(cves?[\s-]?\d*|vulnerabilit(y|ies)|exploit|zero.?day|advisor(y|ies))\b/.test(lower);
   const isAboutPatch  = /\b(patch(es|ed)?|hotfix(es)?|hot.?fix(es)?|bug.?fix(es)?|security.?fix(es)?|security.?patch(es)?|security.?update)\b/.test(lower);
   const isAboutVersion = versions.length > 0 || /\bversion\b/.test(lower);
+  // User explicitly wants all/every result, not just the top one
+  const wantAll = /\b(all|every|each|list|show\s+all|show\s+every|give\s+(me\s+)?all|any)\b/.test(lower);
 
   // Match any known breaking type
   let breakingMatch = null;
@@ -270,7 +274,10 @@ function generatePromptFromText(userMessage) {
   } else if (isAboutPatch) {
     promptText = `What patches are available for ${entity.name}${dateSuffix}?`;
   } else if (breakingMatch) {
-    promptText = `What are the "${breakingMatch.apiType}" releases for ${entity.name}${dateSuffix}?`;
+    const typeLabel = breakingMatch.apiType || "failures";
+    promptText = wantAll
+      ? `List all "${typeLabel}" releases for ${entity.name}${dateSuffix}`
+      : `What are the "${typeLabel}" releases for ${entity.name}${dateSuffix}?`;
   } else if (isAboutUpdate) {
     promptText = `What's the latest version of ${entity.name}${dateSuffix}?`;
   } else {
@@ -293,6 +300,7 @@ function generatePromptFromText(userMessage) {
       isAboutLatestUpdate: isAboutUpdate,
       queryType,
       dateFilter,
+      wantAll,
     },
     createdAt: new Date().toISOString(),
   };

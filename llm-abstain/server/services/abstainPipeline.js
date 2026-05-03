@@ -38,6 +38,7 @@ async function runPipeline(processedPrompt) {
   const queryType    = processedPrompt.metadata?.queryType    || "general";
   const dateFilter   = processedPrompt.metadata?.dateFilter   || null;
   const breakingSubType = processedPrompt.metadata?.breakingSubType || null;
+  const wantAll      = processedPrompt.metadata?.wantAll      || false;
 
   console.log(`[DEBUG][Pipeline] Query       : "${processedPrompt.originalTitle}"`);
   console.log(`[DEBUG][Pipeline] QueryType   : ${queryType}${breakingSubType ? ` → "${breakingSubType}"` : ""}`);
@@ -88,7 +89,7 @@ async function runPipeline(processedPrompt) {
   }
 
   // Gate 5: Response Quality — filters Gate 3's entries by queryType + dateFilter (no extra API call)
-  const gate5 = await checkResponseQuality(gate3.validatedName, queryType, dateFilter, gate3.entries, breakingSubType);
+  const gate5 = await checkResponseQuality(gate3.validatedName, queryType, dateFilter, gate3.entries, breakingSubType, wantAll);
   gates.push(gate5);
   if (gate5.result === "fail") {
     return buildResult("abstain", gates, gate5.reason, null, null, queryType);
@@ -263,7 +264,7 @@ async function checkSoftwareExists(prompt) {
 }
 
 // Gate 5 receives entries already fetched by Gate 3 — no second API call.
-async function checkResponseQuality(softwareName, queryType, dateFilter, entries, breakingSubType = null) {
+async function checkResponseQuality(softwareName, queryType, dateFilter, entries, breakingSubType = null, wantAll = false) {
   if (!entries || entries.length === 0) {
     return {
       gate: 5,
@@ -275,7 +276,7 @@ async function checkResponseQuality(softwareName, queryType, dateFilter, entries
   }
 
   // Extract type-specific structured data from the pre-fetched entries
-  const extracted = extractStructuredData(entries, queryType, softwareName, dateFilter, breakingSubType);
+  const extracted = extractStructuredData(entries, queryType, softwareName, dateFilter, breakingSubType, wantAll);
 
   if (!extracted.found) {
     return {
@@ -334,7 +335,7 @@ function filterByDate(entries, dateFilter) {
 // Returns { found: true, structured } or { found: false, reason }.
 
 // entries is a flat array from GET /api/v/?q={software}
-function extractStructuredData(entries, queryType, softwareName, dateFilter, breakingSubType = null) {
+function extractStructuredData(entries, queryType, softwareName, dateFilter, breakingSubType = null, wantAll = false) {
   if (!Array.isArray(entries) || entries.length === 0) {
     return {
       found: false,
@@ -499,6 +500,7 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
       };
     }
 
+    const criticalLimit = wantAll ? criticalEntries.length : 20;
     return {
       found: true,
       structured: {
@@ -508,7 +510,8 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
         dateLabel: dateFilter ? dateFilter.label : null,
         totalCritical: criticalEntries.length,
         breakingLabel: "Critical Failure",
-        entries: criticalEntries.slice(0, 20).map((e) => ({
+        wantAll,
+        entries: criticalEntries.slice(0, criticalLimit).map((e) => ({
           version: e.versionNumber,
           date: fmtDate(e.versionReleaseDate),
           channel: e.versionReleaseChannel,
@@ -523,19 +526,23 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
   }
 
   if (queryType === "breaking") {
-    const targetType = breakingSubType || "Breaking Update";
-    const matched = entries.filter(
-      (e) => (e.classification?.breakingType || []).includes(targetType)
-    );
-    console.log(`[DEBUG][Extract] breaking "${targetType}" → ${matched.length} / ${entries.length} entries`);
+    // null breakingSubType = broad "failures" query → match any entry that has any breakingType
+    const matched = breakingSubType
+      ? entries.filter((e) => (e.classification?.breakingType || []).includes(breakingSubType))
+      : entries.filter((e) => (e.classification?.breakingType || []).length > 0);
+
+    const targetLabel = breakingSubType || "All Failures";
+    console.log(`[DEBUG][Extract] breaking "${targetLabel}" wantAll=${wantAll} → ${matched.length} / ${entries.length} entries`);
 
     if (matched.length === 0) {
       return {
         found: false,
-        reason: `I don't know — releasetrain.io has no "${targetType}" releases for "${displayName}"${dateLabel}`,
+        reason: `I don't know — releasetrain.io has no "${targetLabel}" releases for "${displayName}"${dateLabel}`,
       };
     }
 
+    // wantAll: return every matched entry; otherwise cap at 20
+    const limit = wantAll ? matched.length : 20;
     return {
       found: true,
       structured: {
@@ -544,8 +551,9 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
         dateFilter: dateFilter ? dateFilter.displayDate : null,
         dateLabel: dateFilter ? dateFilter.label : null,
         totalCritical: matched.length,
-        breakingLabel: targetType,
-        entries: matched.slice(0, 20).map((e) => ({
+        breakingLabel: targetLabel,
+        wantAll,
+        entries: matched.slice(0, limit).map((e) => ({
           version: e.versionNumber,
           date: fmtDate(e.versionReleaseDate),
           channel: e.versionReleaseChannel,
