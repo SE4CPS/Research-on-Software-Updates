@@ -317,7 +317,9 @@ function extractDateFilter(text) {
   const toYMD = (d) =>
     `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
 
-  const toISO = (d) => d.toISOString().slice(0, 10);
+  // Use local date parts (not UTC) so the date matches the user's timezone
+  const toISO = (d) =>
+    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 
   if (/\byesterday\b/.test(lower)) {
     const d = new Date(now);
