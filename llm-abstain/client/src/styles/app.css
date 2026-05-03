@@ -88,8 +88,8 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
-  min-height: 60px;
+  padding: 0 20px;
+  min-height: 80px;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
@@ -877,7 +877,7 @@ body::after {
 
 .kpi-sep {
   width: 1px;
-  height: 44px;
+  height: 52px;
   background: var(--border);
   margin: 0 20px;
 }
