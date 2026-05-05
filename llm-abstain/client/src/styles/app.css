@@ -202,7 +202,8 @@ body::after {
 }
 
 .pipeline-bubble {
-  max-width: 1060px;
+  max-width: 560px;
+  width: 560px;
   padding: 18px 20px;
 }
 
