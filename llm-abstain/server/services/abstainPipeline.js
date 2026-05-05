@@ -91,7 +91,7 @@ async function runBroadPipeline(processedPrompt) {
         breakingTypes: e.classification?.breakingType || [],
         isCve:         e.isCve,
         notes:         (e.versionReleaseNotes || "").slice(0, 200),
-        url:           e.versionUrl,
+        versionUrl:    e.versionUrl,
       });
     }
   }
@@ -554,9 +554,10 @@ function extractStructuredData(entries, queryType, softwareName, dateFilter, bre
 
   // Standard 3-field entry format returned for every query type
   const fmt = (e) => ({
-    versionNumber:     e.versionNumber,
+    versionNumber:      e.versionNumber,
     versionProductName: e.versionProductBrand || e.versionProductName || displayName,
-    releaseDate:       fmtDate(e.versionReleaseDate),
+    releaseDate:        fmtDate(e.versionReleaseDate),
+    versionUrl:         e.versionUrl || null,
   });
 
   // Case-insensitive match against classification.breakingType AND versionSearchTags

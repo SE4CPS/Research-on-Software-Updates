@@ -54,7 +54,12 @@ function EntriesTable({ entries, showCve }) {
         <tbody>
           {visible.map((e, i) => (
             <tr key={i}>
-              <td style={{ fontWeight: 600 }}>{e.versionNumber ?? "—"}</td>
+              <td style={{ fontWeight: 600 }}>
+                {e.versionUrl
+                  ? <a href={e.versionUrl} target="_blank" rel="noreferrer" className="source-link" style={{ fontWeight: 600 }}>{e.versionNumber ?? "—"}</a>
+                  : (e.versionNumber ?? "—")
+                }
+              </td>
               <td>{e.versionProductName ?? "—"}</td>
               <td>{e.releaseDate ?? "—"}</td>
               {showCve && <td style={{ fontFamily: "monospace", fontSize: "0.85em" }}>{e.cveId ?? "—"}</td>}
