@@ -46,7 +46,9 @@ async function loadComponentNames() {
 
 // Returns { name, confidence } for the longest component name found in text,
 // or null if no known component is present.
-function findComponentInText(text) {
+// Returns the longest vendor name from the c/names list found in `text`,
+// skipping any name whose lowercase form is in the optional `stoplist` Set.
+function findComponentInText(text, stoplist = null) {
   if (sortedNames.length === 0) return null;
 
   const lower = text.toLowerCase();
@@ -64,16 +66,17 @@ function findComponentInText(text) {
   candidates.sort((a, b) => b.name.length - a.name.length);
 
   for (const { name, lower: nameLower } of candidates) {
+    // Skip stoplist words (common query terms that aren't vendor names)
+    if (stoplist && stoplist.has(nameLower)) continue;
+
     const idx = lower.indexOf(nameLower);
     if (idx === -1) continue;
 
     // Word-boundary check
     const charBefore = idx === 0 ? " " : lower[idx - 1];
-    const charAfter =
-      idx + nameLower.length >= lower.length ? " " : lower[idx + nameLower.length];
-    const okBefore = idx === 0 || /[\s,.()\[\]"'!?;:/\\]/.test(charBefore);
-    const okAfter =
-      idx + nameLower.length >= lower.length || /[\s,.()\[\]"'!?;:/\\]/.test(charAfter);
+    const charAfter  = idx + nameLower.length >= lower.length ? " " : lower[idx + nameLower.length];
+    const okBefore   = idx === 0 || /[\s,.()\[\]"'!?;:/\\]/.test(charBefore);
+    const okAfter    = idx + nameLower.length >= lower.length || /[\s,.()\[\]"'!?;:/\\]/.test(charAfter);
 
     if (okBefore && okAfter) {
       return { name, confidence: 0.95 };

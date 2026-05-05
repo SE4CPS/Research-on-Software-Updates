@@ -35,12 +35,27 @@ Classify the user query as RELEVANT or NOT RELEVANT to the following domain:
 Respond ONLY with a JSON object on one line:
 {"relevant": <true|false>, "confidence": <0.0-1.0>, "reason": "<short phrase>"}
 
-RELEVANT examples:
+RELEVANT examples (ALL of these must be marked relevant=true):
   "What CVEs affect Firefox 128?"
   "Latest Node.js LTS patches"
   "Is Android 15 stable?"
   "Breaking changes in React 19"
-  "Docker critical failure updates last week"
+  "What is the latest version of GitHub?"
+  "What is the newest release of Linux?"
+  "GitHub patch releases this month"
+  "Critical failure of GitHub this week"
+  "Critical failure of GitHub this month"
+  "Breaking Update of GitHub this month"
+  "Network issues in Docker last month"
+  "NETWORK ISSUE GitHub last month"
+  "Configuration errors in Kubernetes today"
+  "GitHub Configuration Errors this month"
+  "Logging and Monitoring Failures GitHub this week"
+  "GitHub Logging & Monitoring Failures last month"
+  "Data integrity issue GitHub today"
+  "LIMITED FUNCTIONALITY GitHub this month"
+  "Dependency failures in Node this week"
+  "Resource exhaustion in Redis yesterday"
 
 NOT RELEVANT examples:
   "How do I make pasta?"
@@ -48,7 +63,7 @@ NOT RELEVANT examples:
   "Tell me a joke"
   "Who won the game last night?"
 
-Be strict — only mark relevant=true when the query clearly asks about software or OS release/security/update information.`;
+Any query mentioning a software name (GitHub, Docker, Linux, Node, etc.) alongside a time period (today, this month, last week, etc.) and any technical term (failure, error, issue, update, patch, CVE, network, logging, configuration, data, functionality) is RELEVANT.`;
 
 /**
  * LLM-based topic classification for Gate 1.
@@ -109,6 +124,18 @@ async function classifyTopic(userQuery, fallbackScores = {}) {
     console.log(
       `[Guardrails] LLM: relevant=${relevant} conf=${confidence.toFixed(3)} reason="${parsed.reason}" model=${GUARD_MODEL}`
     );
+
+    // Override: if NLP already flagged this as clearly update-related and
+    // positiveScore is high, don't let a low-confidence LLM rejection win.
+    const nlpIsConfident =
+      fallbackScores.isUpdateRelated && (fallbackScores.positiveScore || 0) >= 0.7;
+    const llmLowConfidence = !relevant && confidence < 0.85;
+    if (nlpIsConfident && llmLowConfidence) {
+      console.log(`[Guardrails] NLP override — LLM rejected with low confidence (${confidence.toFixed(3)}) but NLP signals update-related query`);
+      const override = buildFallback(fallbackScores, `llm-override: conf=${confidence.toFixed(3)}`);
+      classifyCache.set(cacheKey, override);
+      return override;
+    }
 
     const result = {
       score:      confidence,

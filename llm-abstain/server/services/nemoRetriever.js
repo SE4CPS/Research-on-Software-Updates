@@ -1,66 +1,108 @@
 // ============================================
 // FILE: server/services/nemoRetriever.js
-// NVIDIA NeMo Retriever — semantic re-ranking
-// Uses NIM embeddings API to rank releasetrain.io
-// entries by relevance to the user's query.
+// NVIDIA NeMo Reranker — cross-encoder re-ranking
 //
-// Falls back to original order if no API key set.
+// Primary  : nvidia/nv-rerankqa-mistral-4b-v3 (NVIDIA NIM ranking API)
+// Fallback : Triton embeddings (local) → NVIDIA NIM embeddings + cosine similarity
+//
+// Falls back to original entry order when no backend is available.
 // ============================================
 
-const axios = require("axios");
+const axios        = require("axios");
+const { embed }    = require("./tritonClient");
 
-const NIM_BASE    = "https://integrate.api.nvidia.com/v1";
-const EMBED_MODEL = "nvidia/nv-embedqa-e5-v5";
-const MAX_ENTRIES = 30;   // cap to avoid slow/expensive batch calls
-const ENABLED     = !!process.env.NVIDIA_API_KEY;
+const NIM_BASE      = "https://integrate.api.nvidia.com/v1";
+const RERANK_MODEL  = "nvidia/nv-rerankqa-mistral-4b-v3";
+const MAX_ENTRIES   = 30;   // cap to keep API calls fast
+const ENABLED       = !!process.env.NVIDIA_API_KEY;
 
 // ── Public API ──────────────────────────────────
 
-// Re-ranks `entries` (releasetrain.io version objects) by semantic
-// similarity to `userQuery`. Returns entries sorted best-first.
+/**
+ * Re-ranks `entries` (releasetrain.io version objects) by relevance to `userQuery`.
+ * Returns entries sorted best-first.
+ *
+ * Strategy:
+ *  1. NeMo cross-encoder reranker  (nvidia/nv-rerankqa-mistral-4b-v3)
+ *  2. Triton / NIM embeddings + cosine similarity
+ *  3. Original order (silent no-op)
+ */
 async function rankEntriesByRelevance(userQuery, entries) {
-  if (!ENABLED || !entries || entries.length === 0) {
-    if (!ENABLED) console.log("[NeMo] No NVIDIA_API_KEY — skipping semantic re-rank");
-    return entries;
-  }
+  if (!entries || entries.length === 0) return entries;
 
   const pool = entries.slice(0, MAX_ENTRIES);
 
-  try {
-    // Build a short passage for each entry
-    const passages = pool.map(entryToPassage);
+  // ── Path 1: NeMo cross-encoder reranker ──
+  if (ENABLED) {
+    try {
+      const ranked = await rerank(userQuery, pool);
+      console.log(
+        `[NeMo Reranker] Cross-encoder ranked ${pool.length} entries — top: "${entryToPassage(ranked[0]).slice(0, 60)}"`
+      );
+      return [...ranked, ...entries.slice(MAX_ENTRIES)];
+    } catch (err) {
+      console.warn(`[NeMo Reranker] Reranker failed (${err.message}) — falling back to embeddings`);
+    }
+  } else {
+    console.log("[NeMo Reranker] No NVIDIA_API_KEY — skipping reranker, trying embeddings");
+  }
 
-    // Embed query and all passages in parallel
-    const [queryEmbedding, passageEmbeddings] = await Promise.all([
+  // ── Path 2: embeddings + cosine similarity (Triton → NIM) ──
+  try {
+    const passages = pool.map(entryToPassage);
+    const [queryVec, passageVecs] = await Promise.all([
       embed([userQuery], "query"),
       embed(passages, "passage"),
     ]);
 
-    // Score each entry
-    const scored = pool.map((entry, i) => ({
-      entry,
-      score: cosineSimilarity(queryEmbedding[0], passageEmbeddings[i]),
-    }));
-
-    scored.sort((a, b) => b.score - a.score);
+    const scored = pool
+      .map((entry, i) => ({ entry, score: cosineSimilarity(queryVec[0], passageVecs[i]) }))
+      .sort((a, b) => b.score - a.score);
 
     const ranked = scored.map((s) => s.entry);
-
     console.log(
-      `[NeMo] Re-ranked ${pool.length} entries — top: "${entryToPassage(ranked[0]).slice(0, 60)}"`
+      `[NeMo Reranker] Embedding re-rank (${scored[0]?.score.toFixed(4)}) — top: "${entryToPassage(ranked[0]).slice(0, 60)}"`
     );
-
-    // Return ranked pool + any remaining entries that weren't embedded
     return [...ranked, ...entries.slice(MAX_ENTRIES)];
   } catch (err) {
-    console.error("[NeMo] Re-ranking failed, using original order:", err.message);
+    console.warn(`[NeMo Reranker] Embedding fallback also failed (${err.message}) — using original order`);
     return entries;
   }
 }
 
-// ── Internals ────────────────────────────────────
+// ── NeMo Reranker (cross-encoder) ───────────────
 
-// Converts a releasetrain.io entry into a short text passage for embedding
+async function rerank(query, entries) {
+  const passages = entries.map((e) => ({ text: entryToPassage(e) }));
+
+  const response = await axios.post(
+    `${NIM_BASE}/ranking`,
+    {
+      model:    RERANK_MODEL,
+      query:    { text: query },
+      passages,
+      truncate: "END",
+    },
+    {
+      headers: {
+        Authorization:  `Bearer ${process.env.NVIDIA_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      timeout: 15000,
+    }
+  );
+
+  // rankings is an array of { index, logit } sorted by relevance
+  const rankings = response.data.rankings;
+  if (!Array.isArray(rankings)) throw new Error("Unexpected reranker response shape");
+
+  return rankings
+    .sort((a, b) => b.logit - a.logit)
+    .map((r) => entries[r.index]);
+}
+
+// ── Helpers ──────────────────────────────────────
+
 function entryToPassage(entry) {
   const parts = [
     entry.versionProductBrand || entry.versionProductName || "",
@@ -72,32 +114,6 @@ function entryToPassage(entry) {
   return parts.join(" — ");
 }
 
-// Calls NVIDIA NIM embeddings endpoint
-async function embed(texts, inputType = "query") {
-  const response = await axios.post(
-    `${NIM_BASE}/embeddings`,
-    {
-      input: texts,
-      model: EMBED_MODEL,
-      input_type: inputType,
-      encoding_format: "float",
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NVIDIA_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      timeout: 20000,
-    }
-  );
-
-  // Sort by index to preserve order, then return vectors
-  return response.data.data
-    .sort((a, b) => a.index - b.index)
-    .map((d) => d.embedding);
-}
-
-// Standard cosine similarity between two vectors
 function cosineSimilarity(a, b) {
   let dot = 0, normA = 0, normB = 0;
   for (let i = 0; i < a.length; i++) {
@@ -108,4 +124,8 @@ function cosineSimilarity(a, b) {
   return dot / (Math.sqrt(normA) * Math.sqrt(normB) || 1);
 }
 
-module.exports = { rankEntriesByRelevance, isEnabled: () => ENABLED };
+module.exports = {
+  rankEntriesByRelevance,
+  isEnabled: () => ENABLED,
+  RERANK_MODEL,
+};
