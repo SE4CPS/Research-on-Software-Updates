@@ -56,22 +56,22 @@ function BertKpi({ bertscore }) {
 // ── Small SVG ring ───────────────────────────────
 
 function SmallRing({ value, color }) {
-  const r    = 16;
+  const r    = 22;
   const circ = 2 * Math.PI * r;
   const off  = circ * (1 - Math.min(1, Math.max(0, value)));
   return (
-    <svg width="40" height="40" viewBox="0 0 40 40" style={{ flexShrink: 0 }}>
-      <circle cx="20" cy="20" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="4" />
+    <svg width="54" height="54" viewBox="0 0 54 54" style={{ flexShrink: 0 }}>
+      <circle cx="27" cy="27" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="5" />
       <circle
-        cx="20" cy="20" r={r} fill="none"
-        stroke={color} strokeWidth="4"
+        cx="27" cy="27" r={r} fill="none"
+        stroke={color} strokeWidth="5"
         strokeDasharray={circ} strokeDashoffset={off}
         strokeLinecap="round"
-        transform="rotate(-90 20 20)"
+        transform="rotate(-90 27 27)"
         style={{ transition: "stroke-dashoffset 0.9s cubic-bezier(0.16,1,0.3,1)" }}
       />
-      <text x="20" y="25" textAnchor="middle" fill={color}
-        fontSize="9" fontWeight="700" fontFamily="var(--font-mono)">
+      <text x="27" y="32" textAnchor="middle" fill={color}
+        fontSize="11" fontWeight="700" fontFamily="var(--font-mono)">
         {Math.round(value * 100)}
       </text>
     </svg>

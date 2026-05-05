@@ -89,7 +89,7 @@ body::after {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  min-height: 80px;
+  min-height: 110px;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
@@ -202,7 +202,7 @@ body::after {
 }
 
 .pipeline-bubble {
-  max-width: 960px;
+  max-width: 1060px;
   padding: 18px 20px;
 }
 
@@ -877,7 +877,7 @@ body::after {
 
 .kpi-sep {
   width: 1px;
-  height: 52px;
+  height: 78px;
   background: var(--border);
   margin: 0 20px;
 }
@@ -889,7 +889,7 @@ body::after {
 }
 
 .kpi-metric-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -909,7 +909,7 @@ body::after {
 }
 
 .kpi-metric-main {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   font-family: var(--font-mono);
   line-height: 1;
@@ -940,7 +940,7 @@ body::after {
 
 /* ── Composite inline ── */
 .kpi-composite-num {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 700;
   font-family: var(--font-mono);
   line-height: 1;
