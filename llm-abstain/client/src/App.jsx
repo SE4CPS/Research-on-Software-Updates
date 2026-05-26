@@ -2,6 +2,33 @@ import { useState, useRef, useEffect } from "react";
 import ChatMessage from "./components/ChatMessage";
 import KpiBar from "./components/KpiBar";
 
+const EXAMPLE_COMMANDS = {
+  answers: [
+    "What is the Linux version last month?",
+    "GitHub breaking update this month??",
+    "Firefox Configuration Error last month?"
+  ],
+  abstain: [
+    "Firefox Configuration Error this month?",
+    "What should I use instead of jQuery?",
+    "Is Kubernetes worth learning?"
+  ],
+};
+
+const SUPPORTED_SOFTWARES = [
+  "Linux",
+  "GitHub",
+  "Firefox",
+];
+
+const QUERY_CATEGORIES = [
+  "Latest Version",
+  "Breaking Update",
+  "Configuration Errors",
+  "Compatibility Issues",
+  
+];
+
 export default function App() {
   const [messages, setMessages] = useState([
     {
@@ -59,6 +86,15 @@ export default function App() {
     }
   }
 
+  function appendToInput(token) {
+    setInput((prev) => {
+      const trimmed = prev.trim();
+      const next = trimmed ? `${trimmed} ${token}` : token;
+      return next;
+    });
+    inputRef.current?.focus();
+  }
+
   function clearChat() {
     setMessages([
       { id: "welcome", role: "assistant", type: "text", content: "Hi, I'm Release Master! Ask me about CVEs, patches, versions, or breaking updates." },
@@ -67,7 +103,146 @@ export default function App() {
   }
 
   return (
-    <div className="chat-layout">
+    <div className="app-shell">
+      {/* ── Sidebar ── */}
+      <aside className="sidebar">
+        {/* Recruiter intro banner */}
+        <div className="sidebar-intro">
+          <div className="sidebar-intro-title">User Guideline</div>
+        
+        </div>
+
+        {/* Query categories */}
+        <div className="sidebar-section">
+          <div className="sidebar-section-label sidebar-label-category">
+            <span className="step-num step-num-category">1</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/>
+            </svg>
+            <span className="label-text">Query Context Categories</span>
+          </div>
+          <div className="sidebar-chip-grid">
+            {QUERY_CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                className="sidebar-chip sidebar-chip-category"
+                onClick={() => appendToInput(cat)}
+                disabled={isLoading}
+                title={`Append "${cat}" to the query`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="sidebar-divider" />
+
+        {/* Supported software list (recruiter-testable) */}
+        <div className="sidebar-section">
+          <div className="sidebar-section-label sidebar-label-software">
+            <span className="step-num step-num-software">2</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+            <span className="label-text">Name OF Supported Softwares</span>
+          </div>
+          <div className="sidebar-chip-grid">
+            {SUPPORTED_SOFTWARES.map((sw) => (
+              <button
+                key={sw}
+                className="sidebar-chip sidebar-chip-software"
+                onClick={() => appendToInput(sw)}
+                disabled={isLoading}
+                title={`Insert "${sw}" into the query`}
+              >
+                {sw}
+              </button>
+            ))}
+            <a
+              className="sidebar-chip sidebar-chip-software sidebar-chip-link"
+              href="https://releasetrain.io/api/c/names"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Open the full supported-software list (releasetrain.io API)"
+            >
+              Browse full list →
+            </a>
+          </div>
+          <div className="sidebar-hint">
+            <div className="hint-title">How to build a prompt</div>
+            <ol className="hint-steps">
+              <li>Pick a category — e.g. <kbd> Breaking Update</kbd></li>
+              <li>Pick a software — e.g. <kbd>Firefox</kbd></li>
+              <li>Pick a timeline — e.g. <kbd>Last month</kbd></li>
+              <li>Input now reads <em>"Last monthBreaking Update in Firefox"</em></li>
+              <li>Press <kbd>Enter</kbd> to send</li>
+            </ol>
+          </div>
+        </div>
+
+        <div className="sidebar-divider" />
+
+        <div className="sidebar-section">
+          <div className="sidebar-section-label sidebar-label-answers">
+            <span className="step-num step-num-answers">3</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61z"/>
+            </svg>
+            <span className="label-text">Example Answer Prompts</span>
+          </div>
+          <ul className="sidebar-list">
+            {EXAMPLE_COMMANDS.answers.map((q) => (
+              <li key={q}>
+                <button className="sidebar-item" onClick={() => handleSend(q)} disabled={isLoading}>
+                  {q}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="sidebar-divider" />
+
+        <div className="sidebar-section">
+          <div className="sidebar-section-label sidebar-label-abstain">
+            <span className="step-num step-num-abstain">4</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span className="label-text">Example "I Don't Know" Prompts</span>
+          </div>
+          <ul className="sidebar-list">
+            {EXAMPLE_COMMANDS.abstain.map((q) => (
+              <li key={q}>
+                <button className="sidebar-item sidebar-item-abstain" onClick={() => handleSend(q)} disabled={isLoading}>
+                  {q}
+                </button>
+              </li>
+            ))}
+          </ul>
+          
+
+        </div>
+        <div className="sidebar-footer-note">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <span>
+            <strong>Note:</strong> this system can hallucinate.
+            <em>"LLM hallucination is unsolvable."</em>
+          </span>
+        </div>
+      </aside>
+
+
+      {/* ── Main chat column ── */}
+      <div className="chat-layout">
       {/* ── Header ── */}
       <header className="chat-header">
         <div className="header-title-group">
@@ -133,6 +308,7 @@ export default function App() {
           Answers come only from releasetrain.io — the system says "I don't know" when data isn't available.
         </p>
       </footer>
+      </div>
     </div>
   );
 }

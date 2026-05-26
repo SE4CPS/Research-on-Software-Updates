@@ -74,13 +74,285 @@ body::after {
 }
 
 /* ensure layout sits above the orbs */
-.chat-layout { position: relative; z-index: 1; }
+.app-shell { position: relative; z-index: 1; }
+
+/* ── App Shell (sidebar + chat) ── */
+.app-shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+ 
+  padding: 40px 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  z-index: 2;
+}
+
+.sidebar-section { padding: 6px 0 4px; }
+
+/* ── Recruiter intro banner ── */
+.sidebar-intro {
+  background: linear-gradient(135deg, rgba(44,184,138,0.10), rgba(79,143,247,0.10));
+  border: 1px solid rgba(79,143,247,0.25);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  margin: 0 4px 14px;
+}
+
+.sidebar-intro-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  margin-bottom: 4px;
+}
+
+.sidebar-intro-desc {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.sidebar-section-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0 6px 8px;
+}
+
+.sidebar-section-label .label-text {
+  flex: 1;
+  line-height: 1.2;
+}
+
+/* Numbered step badge in section headers */
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+
+.step-num-category { background: var(--accent-purple); }
+.step-num-software { background: var(--accent-blue); }
+.step-num-answers  { background: var(--accent-teal); }
+.step-num-abstain  { background: var(--accent-coral); }
+
+/* Chip styled as an external link (same shape as software chips) */
+.sidebar-chip-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sidebar-label-answers  { color: var(--accent-teal); }
+.sidebar-label-abstain  { color: var(--accent-coral); }
+.sidebar-label-software { color: var(--accent-blue); }
+.sidebar-label-category { color: var(--accent-purple); }
+
+.sidebar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-item {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 12px;
+  font-family: var(--font-sans);
+  line-height: 1.4;
+  padding: 6px 8px;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.sidebar-item:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: var(--accent-teal);
+  color: var(--accent-teal);
+}
+
+.sidebar-item-abstain:hover:not(:disabled) {
+  border-color: var(--accent-coral);
+  color: var(--accent-coral);
+}
+
+.sidebar-item:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 10px 4px;
+}
+
+/* ── Sidebar chip grids (software + categories) ── */
+.sidebar-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0 4px;
+}
+
+.sidebar-chip {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--font-sans);
+  line-height: 1.2;
+  padding: 4px 9px;
+  transition: background 0.12s, border-color 0.12s, color 0.12s, transform 0.08s;
+}
+
+.sidebar-chip:hover:not(:disabled) {
+  background: var(--bg-hover);
+}
+
+.sidebar-chip:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.sidebar-chip:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.sidebar-chip-software:hover:not(:disabled) {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.sidebar-chip-category:hover:not(:disabled) {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+}
+
+.sidebar-hint {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 12px 4px 0;
+  padding: 10px 12px;
+  line-height: 1.5;
+  background: rgba(139, 122, 223, 0.06);
+  border: 1px dashed rgba(139, 122, 223, 0.25);
+  border-radius: var(--radius-sm);
+}
+
+.sidebar-hint .hint-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-purple);
+  margin-bottom: 6px;
+}
+
+.sidebar-hint .hint-steps {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: var(--text-secondary);
+}
+
+.sidebar-hint .hint-steps li {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.sidebar-hint em {
+  font-style: normal;
+  color: var(--accent-blue);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.sidebar-hint kbd {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--text-primary);
+}
+
+/* Hallucination disclaimer pinned at the bottom of the nav panel */
+.sidebar-footer-note {
+  margin-top: auto;        /* sticks to the bottom of the flex sidebar */
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 10px 12px;
+  background: rgba(232, 101, 74, 0.08);
+  border: 1px solid rgba(232, 101, 74, 0.25);
+  border-radius: var(--radius-sm);
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.sidebar-footer-note svg {
+  color: var(--accent-coral);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.sidebar-footer-note strong {
+  color: var(--accent-coral);
+  font-weight: 700;
+}
+
+.sidebar-footer-note em {
+  display: block;
+  margin-top: 3px;
+  font-style: normal;
+  color: var(--accent-coral);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
 
 /* ── Chat Layout ── */
 .chat-layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
 }
 
@@ -980,6 +1252,7 @@ body::after {
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  .sidebar { display: none; }
   .message { padding: 0 12px; }
   .chat-input-area { padding: 12px; }
   .data-grid { grid-template-columns: 1fr; }
