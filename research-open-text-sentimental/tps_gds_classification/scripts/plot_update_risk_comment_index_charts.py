@@ -178,7 +178,7 @@ def main() -> None:
     parser.add_argument(
         "--out-dir",
         type=Path,
-        default=ROOT / "tps_gds_classification" / "outputs" / "vader_update_risk_comment_index",
+        default=ROOT / "final visualisations" / "vader_update_risk_comment_index",
     )
     parser.add_argument("--min-url", type=str, default=URL_MIN)
     parser.add_argument("--max-url", type=str, default=URL_MAX)

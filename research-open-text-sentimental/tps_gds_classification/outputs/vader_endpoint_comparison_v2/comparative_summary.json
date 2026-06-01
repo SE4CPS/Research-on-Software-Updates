@@ -1,0 +1,90 @@
+{
+  "inputs": {
+    "endpoints": {
+      "minScore_0.5": "https://releasetrain.io/api/reddit/query/filter?minComments=3&minScore=0.5",
+      "maxScore_0.5": "https://releasetrain.io/api/reddit/query/filter?minComments=3&maxScore=0.5"
+    },
+    "n": 30,
+    "random_seed": 42,
+    "comment_aggregation": "mean",
+    "final_compound_definition": {
+      "post_compound": "VADER(title + author_description + body)",
+      "comments_compound": "mean( VADER(comment.body).compound for each comment )",
+      "final_compound": "weighted_average(post_compound, comments_compound)",
+      "weights": {
+        "post": 1.0,
+        "comments": 1.0
+      }
+    }
+  },
+  "strategies": {
+    "engagement_top_n": {
+      "minScore_0.5": {
+        "n_selected_posts": 30,
+        "compound_mean": 0.021600175301079817,
+        "compound_std": 0.22661564307018436,
+        "label_percentages": {
+          "Positive": 46.666666666666664,
+          "Neutral": 30.0,
+          "Negative": 23.333333333333332
+        },
+        "filters": {
+          "minComments": 3,
+          "minScore": 0.5,
+          "maxScore": null,
+          "limit": 100
+        }
+      },
+      "maxScore_0.5": {
+        "n_selected_posts": 30,
+        "compound_mean": 0.09021382676143526,
+        "compound_std": 0.19431298383615334,
+        "label_percentages": {
+          "Positive": 56.666666666666664,
+          "Neutral": 26.666666666666668,
+          "Negative": 16.666666666666668
+        },
+        "filters": {
+          "minComments": 3,
+          "minScore": null,
+          "maxScore": 0.5,
+          "limit": 100
+        }
+      }
+    },
+    "random_n": {
+      "minScore_0.5": {
+        "n_selected_posts": 30,
+        "compound_mean": 0.07826217303098995,
+        "compound_std": 0.2854417778843371,
+        "label_percentages": {
+          "Positive": 63.333333333333336,
+          "Neutral": 10.0,
+          "Negative": 26.666666666666668
+        },
+        "filters": {
+          "minComments": 3,
+          "minScore": 0.5,
+          "maxScore": null,
+          "limit": 100
+        }
+      },
+      "maxScore_0.5": {
+        "n_selected_posts": 30,
+        "compound_mean": 0.16834662536476824,
+        "compound_std": 0.23478174084256578,
+        "label_percentages": {
+          "Positive": 63.333333333333336,
+          "Neutral": 23.333333333333332,
+          "Negative": 13.333333333333334
+        },
+        "filters": {
+          "minComments": 3,
+          "minScore": null,
+          "maxScore": 0.5,
+          "limit": 100
+        }
+      }
+    }
+  }
+}

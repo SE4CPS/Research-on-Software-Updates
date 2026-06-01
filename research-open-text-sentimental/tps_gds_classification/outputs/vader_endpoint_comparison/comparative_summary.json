@@ -1,0 +1,51 @@
+{
+  "selection_rule": "top 30 posts per endpoint by num_comments desc then score desc",
+  "text_fields_for_vader": [
+    "title",
+    "author_description",
+    "body",
+    "comments.body"
+  ],
+  "thresholds": {
+    "positive_gte": 0.05,
+    "negative_lte": -0.05
+  },
+  "endpoints": {
+    "minScore_0.5": {
+      "endpoint": "minScore_0.5",
+      "filters": {
+        "minComments": 3,
+        "minScore": 0.5,
+        "maxScore": null,
+        "limit": 100
+      },
+      "n_selected_posts": 30,
+      "engagement_ranking": "num_comments desc, score desc",
+      "compound_mean": 0.27137,
+      "compound_std": 0.8424888268893145,
+      "label_percentages": {
+        "Positive": 60.0,
+        "Neutral": 0.0,
+        "Negative": 40.0
+      }
+    },
+    "maxScore_0.5": {
+      "endpoint": "maxScore_0.5",
+      "filters": {
+        "minComments": 3,
+        "minScore": null,
+        "maxScore": 0.5,
+        "limit": 100
+      },
+      "n_selected_posts": 30,
+      "engagement_ranking": "num_comments desc, score desc",
+      "compound_mean": 0.6779733333333333,
+      "compound_std": 0.70149101345317,
+      "label_percentages": {
+        "Positive": 83.33333333333333,
+        "Neutral": 0.0,
+        "Negative": 16.666666666666668
+      }
+    }
+  }
+}

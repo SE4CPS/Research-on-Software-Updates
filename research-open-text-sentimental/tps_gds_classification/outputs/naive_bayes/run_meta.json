@@ -1,0 +1,6 @@
+{
+  "unique_labels_csv": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/updated_labeled_dataset_unique.csv",
+  "n_rows_unique_labels": 542,
+  "merged_posts": 542,
+  "imbalance": "GDS undersampled + balanced sample_weight on train"
+}

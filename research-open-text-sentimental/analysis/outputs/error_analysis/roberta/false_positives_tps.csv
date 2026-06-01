@@ -1,0 +1,58 @@
+reddit_id,subreddit,gold,pred,score_tps,title,corrected_label,label_name_hint,correct
+1nxqah6,chrome,0,1,0.574253499507904,the borders for websites are turning white??,0,TPS,False
+1nx29vh,Wordpress,0,1,0.5046219229698181,Wordpress auto-updated for the first time despite auto-update not being enabled?,0,TPS,False
+1oum7kl,firefox,0,1,0.5010579824447632,Anybody else get the Firefox exe directly on the desktop after the 145 update? Normally it is a shortcut.,0,TPS,False
+1p3x3cx,MicrosoftEdge,0,1,0.5376975536346436,Most recent update added this intrusive toggle on my New Tab page. How can I get rid of it?,0,TPS,False
+1qwo6w8,ios,0,1,0.5661016702651978,Appstore unavailable after updated to ios 26.2.1,0,TPS,False
+1pe5qzj,Android,0,1,0.5394805669784546,One UI 8.5: Calculator app gets an update to v12.5.10.18.,0,TPS,False
+1nubv0g,chrome,0,1,0.5500810146331787,Is this legit??Chrome Update,0,TPS,False
+1noelxs,Wordpress,0,1,0.725394070148468,Upgrading to PHP 8.3 causing pages to disappear?,0,TPS,False
+1nubblp,immich,0,1,0.5292177200317383,Migration from Old Storage Configuration,0,TPS,False
+1nv9moy,ansible,0,1,0.5963860154151917,Delegate_to: localhost gives me trouble,0,TPS,False
+1nwb2xm,typescript,0,1,0.528453528881073,@ts-ignore is almost always the worst option,0,TPS,False
+1o2aon2,MicrosoftEdge,0,1,0.5115336775779724,My Edge randomly my search engine Yandex? I don't want to use yandex and didn't switch it myself,0,GDS,False
+1nux0o3,neovim,0,1,0.6061167120933533,endpoint.nvim - Looking for feedback &amp; framework requests,0,GDS,False
+1nu6glg,immich,0,1,0.5204163193702698,iOS app won’t show content,0,GDS,False
+1nq718r,chrome,0,1,0.6017261743545532,I somehow broke my Chrome?!,0,GDS,False
+1o1g48g,PHP,0,1,0.5285597443580627,An update on the Doctrine ORM 2 End of Life,0,GDS,False
+1pp9s46,linux,0,1,0.5188747048377991,WINE developers has removed so much bloat in the new version. congrats to devs.,0,GDS,False
+1q4kplr,MicrosoftEdge,0,1,0.6470587849617004,Edge turns on background image on new tabs page each time I start it up even if I turn the option off,0,GDS,False
+1nogcov,google,0,1,0.5540084838867188,Google Verify ALWAYS Uses the First Number,0,GDS,False
+1nobzk5,json,0,1,0.5645086169242859,Formatting/parsing help,0,GDS,False
+1nwdd6e,PHP,0,1,0.5369762182235718,Stuck with Laravel Package Tests with Pest + Orchestra Testbench - Laravel Helpers Not Available,0,GDS,False
+1nv41m3,Nuxt,0,1,0.5877842307090759,Nuxt4 with Tailwind,0,GDS,False
+1nqsr52,chrome,0,1,0.5116278529167175,iOS Chrome keeps getting worse,0,GDS,False
+1nv73o8,chrome,0,1,0.5343068838119507,Shaking search bar on s24 ultra,0,GDS,False
+1nww0mp,vmware,0,1,0.5306298136711121,what's the new name for SRM and VREP?,0,GDS,False
+1noec4y,Wordpress,0,1,0.5533995032310486,WordPress vulnerability in the latest version,0,GDS,False
+1qfb0tq,PHP,0,1,0.5038933157920837,Dealing with a PHP BC break,0,GDS,False
+1nxstb4,chrome,0,1,0.5188064575195312,Chrome Bookmarks Gone After Installing New Windows,0,GDS,False
+1qo71ai,godot,0,1,0.5094085335731506,Please don't break Please don't break Please don't break Please don't break,0,GDS,False
+1nuifs3,neovim,0,1,0.5303149819374084,Third Update to Simple Picker,0,GDS,False
+1nwck9t,immich,0,1,0.5970787405967712,"I made a little Windows app to manage Immich (backups, updates, etc.) and thought you guys might like it!",0,GDS,False
+1q2scgj,linux,0,1,0.5316864848136902,dwipe: Making `dd if=/dev/zero of=/dev/ohno` less risky updated,0,GDS,False
+1nuwiid,chrome,0,1,0.5155162215232849,"Youtube videos show grey/blank screen when playing, but plays audio. Windows 11",0,GDS,False
+1oqaia9,immich,0,1,0.559516429901123,Thumbnails greyed out sometimes- this happen to anyone else?,0,GDS,False
+1rk4t40,chrome,0,1,0.5892042517662048,Is there a way to disable the + for ai features on google chrome search bar?,0,GDS,False
+1npaijx,scrcpy,0,1,0.5568215250968933,Connection lost via QtScrcpy,0,GDS,False
+1nu9iny,chrome,0,1,0.5700613856315613,My chrome won't load videos and sites.,0,GDS,False
+1nrjstu,neovim,0,1,0.5510876774787903,&lt;gc&gt; turns into &lt;g@&gt; if I wait a second,0,GDS,False
+1nnq16o,Wordpress,0,1,0.5803836584091187,New link goes to an old page that doesn’t excist anymore,0,GDS,False
+1nwdr3j,node,0,1,0.5152004957199097,Handling 100k+ API records in Node – worker threads or another approach?,0,GDS,False
+1pea9yo,comfyui,0,1,0.5177850127220154,We got it back :),0,GDS,False
+1ntnu85,MacOS,0,1,0.6224765181541443,macOS Tahoe 26.0.1 Released,0,GDS,False
+1nqjtia,Supabase,0,1,0.5718227028846741,Can I use any trigger to call an edge function when a user is registered and then verified?,0,GDS,False
+1nxhm28,neovim,0,1,0.5184596180915833,Need help with diagnostic floating window,0,GDS,False
+1ns2nv7,Wordpress,0,1,0.5558708310127258,Permalink rewrites stop working,0,GDS,False
+1nyuw70,tailwindcss,0,1,0.5188490152359009,Did something break with the most recent Daisy UI?,0,GDS,False
+1qone71,chrome,0,1,0.5736895799636841,"this past week whenever I am AFK for a while chrome will open a new tab, type something strange into the search bar having to do with search engines and try to Google it. Windows 11, have not installed any browser extensions since getting this PC. Any help would be appreciated",0,GDS,False
+1oiwr33,immich,0,1,0.5281479954719543,What is happen???,0,GDS,False
+1q1n7ln,MicrosoftEdge,0,1,0.5293617844581604,"Microsoft Edge keeps on opening tons of tabs or windows or whatever whenever my computer is turned off. Google said to turn off startup boost, but that didn't seem to do anything. Does anyone know how I can stop this from happening?",0,GDS,False
+1qo2w0x,chrome,0,1,0.6221928596496582,"How to remove this ""Screenshot / Copy / Drop Files"" option in Chrome?",0,GDS,False
+1nnp9dj,Wordpress,0,1,0.5013933181762695,Elementor layout breaks out of the blue?,0,GDS,False
+1nu697z,vscode,0,1,0.5240099430084229,rich printing different colors depending on if i'm in light or dark mode.,0,GDS,False
+1pcit5m,chrome,0,1,0.6766629219055176,"How do I make this ""Ask Google"" button never show up in my address bar?",0,GDS,False
+1nsp6at,chrome,0,1,0.5695942640304565,Suspicious Chrome App Notifications on iPhone,0,GDS,False
+1o15qph,neovim,0,1,0.5228899717330933,Is it possible to limit the vim.diagnostic.setqflist to current buffer?,0,GDS,False
+1nxeyty,chrome,0,1,0.5255931615829468,Being prompted for a capcha on my PC Chrome every time I start chrome with an incognito search.,0,GDS,False
+1nzslca,MicrosoftEdge,0,1,0.5456076264381409,Print to PDF no longer works in headless mode with edge 141 ( post 2 Oct),0,GDS,False

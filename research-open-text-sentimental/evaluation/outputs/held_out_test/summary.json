@@ -1,0 +1,52 @@
+{
+  "created_at_utc": "2026-05-26T21:04:59.566792+00:00",
+  "split": "70+15 train+val / 15% test (stratified, seed=42)",
+  "n_train_val": 460,
+  "n_test": 82,
+  "metrics": [
+    {
+      "model": "naive_bayes",
+      "n_test": 82,
+      "accuracy": 0.7560975609756098,
+      "f1_macro": 0.6117424242424243,
+      "f1_tps": 0.375,
+      "pr_auc_tps": 0.40495280393597366
+    },
+    {
+      "model": "logistic_regression",
+      "n_test": 82,
+      "accuracy": 0.8536585365853658,
+      "f1_macro": 0.6850192061459667,
+      "f1_tps": 0.45454545454545453,
+      "pr_auc_tps": 0.41779434731239407
+    },
+    {
+      "model": "vader_rules",
+      "n_test": 82,
+      "accuracy": 0.5365853658536586,
+      "f1_macro": 0.5072738772928527,
+      "f1_tps": 0.3870967741935484,
+      "pr_auc_tps": 0.22871833564316657
+    }
+  ],
+  "mcnemar": {
+    "naive_bayes_vs_logistic_regression": {
+      "b": 1,
+      "c": 9,
+      "p_value": 0.026856695507524467,
+      "statistic": 4.9
+    },
+    "naive_bayes_vs_vader_rules": {
+      "b": 27,
+      "c": 9,
+      "p_value": 0.004606532263391773,
+      "statistic": 8.027777777777779
+    },
+    "logistic_regression_vs_vader_rules": {
+      "b": 33,
+      "c": 7,
+      "p_value": 7.722679550543408e-05,
+      "statistic": 15.625
+    }
+  }
+}

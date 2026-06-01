@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-05-26T17:11:44.801725+00:00",
+  "n_samples": 542,
+  "n_tps": 86,
+  "n_gds": 456,
+  "n_folds": 3,
+  "random_state": 42,
+  "undersample_gds": false,
+  "tier_a_only": false,
+  "models": [
+    "roberta"
+  ],
+  "labels_path": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/updated_labeled_dataset_unique.csv",
+  "data_json_path": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/tps_gds_dataset.json"
+}

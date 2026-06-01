@@ -6,3 +6,9 @@ wordcloud
 scikit-learn
 pandas
 numpy
+scipy
+
+# Optional — RoBERTa CV (scripts/run_evaluation.py --include-roberta)
+# torch
+# transformers
+# accelerate

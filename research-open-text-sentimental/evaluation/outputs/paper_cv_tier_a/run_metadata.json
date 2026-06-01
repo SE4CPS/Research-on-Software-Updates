@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-05-26T21:03:03.157566+00:00",
+  "n_samples": 304,
+  "n_tps": 53,
+  "n_gds": 251,
+  "n_folds": 5,
+  "random_state": 42,
+  "undersample_gds": false,
+  "tier_a_only": true,
+  "models": [
+    "majority",
+    "logistic_regression",
+    "naive_bayes",
+    "vader_rules"
+  ],
+  "labels_path": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/updated_labeled_dataset_unique.csv",
+  "data_json_path": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/tps_gds_dataset.json"
+}

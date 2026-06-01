@@ -1,0 +1,90 @@
+{
+  "fold_metrics": [
+    {
+      "accuracy": 0.7889908256880734,
+      "f1_macro": 0.6545404437095218,
+      "f1_tps": 0.43902439024390244,
+      "precision_tps": 0.391304347826087,
+      "recall_tps": 0.5,
+      "pr_auc_tps": 0.4360820721028196
+    },
+    {
+      "accuracy": 0.8440366972477065,
+      "f1_macro": 0.4577114427860697,
+      "f1_tps": 0.0,
+      "precision_tps": 0.0,
+      "recall_tps": 0.0,
+      "pr_auc_tps": 0.4943107394959578
+    },
+    {
+      "accuracy": 0.8055555555555556,
+      "f1_macro": 0.5817813018624378,
+      "f1_tps": 0.27586206896551724,
+      "precision_tps": 0.3333333333333333,
+      "recall_tps": 0.23529411764705882,
+      "pr_auc_tps": 0.35262251834004704
+    },
+    {
+      "accuracy": 0.75,
+      "f1_macro": 0.593588850174216,
+      "f1_tps": 0.34146341463414637,
+      "precision_tps": 0.2916666666666667,
+      "recall_tps": 0.4117647058823529,
+      "pr_auc_tps": 0.28120106611831225
+    },
+    {
+      "accuracy": 0.7777777777777778,
+      "f1_macro": 0.668542199488491,
+      "f1_tps": 0.4782608695652174,
+      "precision_tps": 0.3793103448275862,
+      "recall_tps": 0.6470588235294118,
+      "pr_auc_tps": 0.3906837294517135
+    }
+  ],
+  "aggregate": {
+    "accuracy_mean": 0.7932721712538227,
+    "accuracy_std": 0.03485256656026849,
+    "f1_macro_mean": 0.5912328476041473,
+    "f1_macro_std": 0.08352759367871983,
+    "f1_tps_mean": 0.3069221486817567,
+    "f1_tps_std": 0.1891870717416515,
+    "precision_tps_mean": 0.27912293853073467,
+    "precision_tps_std": 0.16095644737491555,
+    "recall_tps_mean": 0.35882352941176465,
+    "recall_tps_std": 0.2499134798382118,
+    "pr_auc_tps_mean": 0.39098002510177005,
+    "pr_auc_tps_std": 0.08098493244498889
+  },
+  "bootstrap_oof": {
+    "accuracy": {
+      "estimate": 0.7933579335793358,
+      "ci_lower": 0.7582564575645757,
+      "ci_upper": 0.8265682656826568
+    },
+    "f1_macro": {
+      "estimate": 0.6166224580017683,
+      "ci_lower": 0.5603078941116526,
+      "ci_upper": 0.6639291808101152
+    },
+    "f1_tps": {
+      "estimate": 0.3563218390804598,
+      "ci_lower": 0.260199871825683,
+      "ci_upper": 0.4395929339477726
+    },
+    "pr_auc_tps": {
+      "estimate": 0.3019120474701007,
+      "ci_lower": 0.22948850834908338,
+      "ci_upper": 0.40285150359534405
+    }
+  },
+  "params": {
+    "name": "roberta",
+    "text_column": "text_raw",
+    "model_name": "roberta-base",
+    "max_length": 256,
+    "epochs": 2,
+    "batch_size": 8,
+    "learning_rate": 2e-05,
+    "device": "mps"
+  }
+}

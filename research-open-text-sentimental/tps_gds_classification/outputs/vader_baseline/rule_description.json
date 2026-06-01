@@ -1,0 +1,11 @@
+{
+  "neutral_band": 0.15,
+  "rule_style": "technical_first",
+  "rules": [
+    "If compound < -0.6 and no technical cues \u2192 predict GDS (rant-only).",
+    "Else if technical_cues_regex(text_raw) \u2192 predict TPS.",
+    "Else if |compound| > neutral_band \u2192 predict GDS.",
+    "Else \u2192 predict GDS."
+  ],
+  "text_for_vader": "text_raw (title + body + comments, uncleaned)"
+}

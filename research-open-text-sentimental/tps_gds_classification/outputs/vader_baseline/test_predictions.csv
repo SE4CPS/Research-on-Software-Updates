@@ -1,0 +1,635 @@
+reddit_id,text_raw,label_true,label_pred,vader_compound
+1nu697z,"rich printing different colors depending on if i'm in light or dark mode.
+the letter ""o"" here has the same inputted color but the left is the output in light mode on vscode while the right in dark mode and they are very clearly different. is there a way to fix this? am i using the library incorrectly?
+I dont know what rich is but If it had the game color letters as the left one and only made the background dark you wouldnt be able to see the letters so thats why it does it
+duh. it's a dark / light theme. all colors are completely different
+hint: dark and ligth themes has diferent color scheme for terminal defined.
+
+ 
+
+        ""terminal.ansiBlack"": ""#000000"",
+        ""terminal.ansiBlue"": ""#30b7ee"",
+        ""terminal.ansiBrightBlack"": ""#000000"",
+        ""terminal.ansiBrightBlue"": ""#00b5ff"",
+        ""terminal.ansiBrightCyan"": ""#00FFFF"",
+        ""terminal.ansiBrightGreen"": ""#a5fc4e"",
+        ""terminal.ansiBrightMagenta"": ""#ff08e8"",
+        ""terminal.ansiBrightRed"": ""#f80909"",
+        ""terminal.ansiBrightWhite"": ""#ffffff"",
+        ""terminal.ansiBrightYellow"": ""#FFD93D"",
+        ""terminal.ansiCyan"": ""#B2FFFF"",
+        ""terminal.ansiGreen"": ""#5CB338"",
+        ""terminal.ansiMagenta"": ""#FF80FF"",
+        ""terminal.ansiRed"": ""#ff5c5d"",
+        ""terminal.ansiWhite"": ""#e1e1e1"",
+        ""terminal.ansiYellow"": ""#ffcd02"",
+ 
+this is colors for my dark theme. define them for both you rthemes and check is its now are same.
+It is probably a “feature” and “intended behavior”.
+
+As an example when programming for apple (eg iOS) and use “system red” or “system green” it is only a description of the color and the actual color will be different in light or dark mode which is very important for visibility and color perception.
+
+Usually however there is also a separate specific color selection which will always look the same 🤓
+What's the issue?
+If you print as red, green or other predefined colors they will differ by terminal theme. If you want the same colour you should use one of the xterm colours or true colour.
+`terminal.integrated.minimumContrastRatio` might also change the appearance of colors.
+
+[https://code.visualstudio.com/docs/terminal/appearance#\_minimum-contrast-ratio](https://code.visualstudio.com/docs/terminal/appearance#_minimum-contrast-ratio)
+the left ""o"" color probably has poor dark background contrast, so dark mode reasonably updates the text color to provide better color contrast accessibility levels.
+This is printed straight into the console. Would that change anything?",0,1,0.8556
+1o1cbch,"Alert! tpm device not detected on Dell XPS 8940.
+Since day one I got this shitbox computer I got this message every time I boot it up. Computer has always been particularly hard to boot up, falling into a boot loop sequence if I don't hold the power button in a specific manner. I've always ignored those problems like an absolute dumbass but now the fact it can't detect a tpm device is preventing me from ""upgrading"" my pc to windows 11. Computer is out of warranty its a 2021. 
+
+Steps I've taken sor far: 
+-try to find tpm setting in bios. TPM device settings are absent from the bios
+-updated the bios, still no tpm ddevice settings
+-download a dell patch that was supposed to fix the bug that tpm settings are absent from bios, didn't work
+- reseted bios to default settings. still no tpm settings in bios. 
+-changed the mother board battery. 
+-contacted dell support, absolute waste of time, the agent sent me a link to the windows 11 webpage to check if my computer was compatible. they told my top contact sale team. 
+
+What else can I try ? could the mother board just be fried ? thanks!!
+Yeah, there's no PTT either sadly.
+Done already, didn't work 😔
+Download and install TPM 2.0 should be all you need to do.
+Try searching for PTT in the bios under Security, its not called TPM anywhere in the uefi as far as I know.",0,1,-0.7282
+1qi4tgl,"Nova Launcher: An update - Instabridge (swedish company) has acquired Nova Launcher from Branch
+I wonder what Branch got out of buying it in the first place at the end of the day if they were just going to mostly sit on it then fire everyone involved and sell it off.
+They probably thought they could have worked around the terms of the original deal not to enshittify it and couldn't. After all, when the dev left, it was supposed to have been open sourced.
+Sounds like they are adding in ads and paid tier levels to get past them... Anyone know any good equivalents?
+Nova has always had a paid ""unlocker"" app, the new thing is now the free app will have ads and probably the same locked features anyway
+Didn't I just see not 24 hours ago that Nova Launcher now had links/callbacks to FB and Twitter?  Between that and the pricing gaffe for Prime I'm getting a feeling of ""whoops, they caught us, roll it back"".
+
+Guess it's less expensive to ask forgiveness than ask permission.
+
+I still have Prime as I was one of the OG fans but it's parked in a backup and I've switched to Lawnchair full-time.  It's IMO the closest ""spiritual successor"" to Nova and has highly active development, not to mention no spying.
+How the mighty have fallen
+Companies buying others to end up reselling without doing nothing of it happen all the time.
+
+
+Sometimes whoever takes the decision to buy has an idea for it, but he ends up leaving and other people become on charge and decide it was never a good idea and the best is to recoup the losses.
+Bigger question for prime folks is if they are going to track us to sell the data regardless of if they show ads or not.
+Octopi Launcher is worth a try
+I commented a bit [here](https://old.reddit.com/r/Android/comments/1qhpget/psa_nova_launcher_added_facebook_and_google_ads/o0o61zo/) but I'd advocate for [Smart Launcher](https://play.google.com/store/apps/details?id=ginlemon.flowerfree&amp;hl=en_US). It's a bit on the pricey end, however.
+
+I'm also a fan for [Niagara](https://play.google.com/store/apps/details?id=bitpit.launcher), though I use that one mainly on my tablet. It's different from other launchers, but I can attest it's very solid. For better or for worse, it's also really pricey for Pro features.
+
+[Octopi](https://play.google.com/store/apps/details?id=com.otp.octopilauncher&amp;hl=en_US) is shaping up to be pretty good, though a bit simple and less mature of an offering. Has a good price for Pro features though!",0,1,0.9898
+1pbp7rl,"Advent of Code 2025 - Solution for Day 1
+Small [FYI](https://www.reddit.com/r/adventofcode/wiki/faqs/copyright/inputs/)
+Huh, interesting. I'm going to remove the puzzle input. But I am curious, why would sharing it be prohibited?
+I hear a lot of fuzz about this Advent of Code thingy. So I thought I'd give it a try.
+
+I don't know if people are interested in solutions, but here's mine for day 1. Written in Rust of course.
+
+https://github.com/Rismosch/advent_of_code_2025",0,1,0.9294
+1nqu3ag,"Pipetype: TypeScript Unions, JavaScript Bitwise Operators, and My Favorite Failed Experiment
+Good stuff. Always cool to see someone pushing the boundaries of what a schema can do, and what a schema even means.
+[deleted]
+The reason to use bigint and bits was to be able to use the \`|\` pipe operator (bitwise or). Using strings would not allow for that.
+This was a great read. Thanks for sharing!
+That's nice. This makes me wonder again, do bigint masks optimize themselves to «smallint» masks if we fit in, or should we use two separate versions depending on how many flags we are planning to use?
+
+This thought comes to me because I want to experiment with my own context/dependency provider someday. It should work similar to React's Context and use simple (but growable) bitmasks to check context's presence. I heard they use a Bloom filter for that, but I wanted to use a plain bitmask because I think the number of contexts will (and should) be relatively small, but I still want it to grow if not.
+
+BTW, I think that «smallints» actually provide 32 bits and not 53, because they coerce to 32-bit ints according to MDN. 53 is just a space limit that determines safe integers; actual bitmasks are even smaller.",1,1,0.9474
+1nzzwvd,"The Supreme Court didn’t save Google from Epic, and now the clock is ticking
+Curious how this will play out in light of the recent developments from Google about sideloading
+Depends if Google wants to defy the court. Side loading is required based on the current ruling.
+I dont understand...
+
+* Stop Google from forcing app developers to use Google Play Billing
+* Let Android developers link to ways to download their apps outside of the Play Store
+* Work with Epic to resolve any disputes as Google builds a system to let rival app stores into Google Play
+
+Why these weren't forced on Apple but are forced on Google (Android)? It feels like Google is being punished for Android being more open than iOS, punished into being even more open.
+This is very good news. It keeps the ecosystem open including side loading.
+Guessing the developer verification IS their way of slightly enforcing control on third party app stores.
+
+The verification stuff is utterly consumer-unfriendly, since it lets Google arbitrary revoke developer rights with no appeals process.
+
+But it does give them a mechanism to control things if third party stores allow piracy / malware.
+It might set a precedent for Apple and other app stores as well. The case against Apple as a monopoly is different. No one here is going to be an expert on the legal angles of each situation.
+I do hope this forces Google to stop the verification thing
+You can say ""you can't sideload"" as a legitimate business decision. But you can't strongarm other companies into controlling a market and you can NEVER delete relevant internal communications when discussing things pertinent to anti-trust.
+&gt; Why these weren't forced on Apple but are forced on Google (Android)? 
+
+...weren't they? As far as I recall, the judge in Epic v. Apple ruled that Apple has to allow app developers to point users to ways to subscribe to their service outside of the App Store, and that they're not allowed to collect fees on those transactions. 
+
+As for the more general issues – why Google is being told they have to allow apps to be downloaded from outside the Play Store, while Apple has not (yet) been forced to allow the same (in the US) – comes down to the way the two companies operate and how the cases were run. In antitrust suits, the ""relevant market"" must be defined, and in Epic v. Apple, the judge defined the market as ""digital mobile gaming transactions"" – Apple is, obviously, not a monopoly in that space, as it includes platforms like Android and Steam, and even game consoles. In Epic v. Google, the market was defined as ""Android app distribution"" and ""Android in-app billing,"" and obviously Google does have a monopoly in these spaces. While this may seem like an unfair difference in approach, the reason for it is that iOS is a vertically-integrated, closed-source system made by Apple (""walled garden""), and is branded and marketed as such. Android, on the other hand, is purportedly an open-source system, where other hardware manufacturers and software companies compete with Google. When you buy an iPhone, you know you're getting the App Store and Apple's ecosystem; with an Android device, you're likely getting hardware made by one company running software made at least in part by Google, but often also in part by the hardware company. Google brands itself as an open system, but it competes in that market against others, who (per the court ruling) had options unfairly restricted by Google, using their power over the OS. 
+
+There's also the difference that Epic v. Apple was a bench trial, decided by a judge, while Epic v. Google was a trial by jury, but I think the key distinction is that Apple is very up-front about iPhone being locked down to their App Store/ecosystem (suggesting consumers consent to this by purchasing an Apple product), while Google purports that Android is open to anyone and everyone (suggesting that consumers buying Android products expect a level playing field).
+I honestly think their loss of this court case is what started that whole thing.
+
+Google is being forced to host third party app stores on their own Google Play store with no way to prevent those app stores from distributing malware infested apps to their user base. What the judge [said](https://arstechnica.com/tech-policy/2024/10/judge-orders-google-to-distribute-third-party-app-stores-on-google-play/) below stood out to me 
+
+&gt;*Donato's order allows Google to impose security restrictions on third-party apps, but he said that Google must show that any restrictions are necessary.*
+
+&gt;*""As Google has suggested, there are potential security and technical risks involved in making third-party apps available, including rival app stores,"" Donato wrote. ""The Court is in no position to anticipate what those might be, or how to solve them. Consequently, Google will have room to engage in its normal security and safety processes. To the extent Google imposes requirements along these lines on rival app stores, it will... bear the burden when challenged of establishing that the requirements were strictly necessary to achieve safety and security for users and developers""*
+
+The judge is allowing them to take security measures in regards to third party stores and their apps, which is what Google appears to be doing. Whether their solution holds up in court when challenged in the future remains to be seen.",0,1,0.9938
+1nqxc6f,"Trash Samsung ruined chromium based Browsers.
+I don't have a One UI 8 device on hand, but have you tried building Chromium from source and seeing if the same issue occurs?
+Happens with me in One Ui 7 too
+What are you complaining about?. None of that is new or UI8 related.
+
+\- The address bar, long press the address and select move it to the top
+
+\- The install thing, it already happens on UI7.
+
+I would not think that's UI related but Chrome.
+Thank you for your submission to /r/Chrome! We hope you'll find the help you need. Once you've found a solution to your issue, please comment ""**!solved**"" under this comment to mark the post as solved. Thanks!
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/chrome) if you have any questions or concerns.*",0,1,0.9818
+1p0gc65,"My turn!
+Thanks for your sacrifice.
+Solded some this morning...that's why it pumped!
+Confused which way to rotate my phone.
+Next stop: 100–105
+Sodl
+Yahoo!!!
+The hopium we need.
+It’s pumping baby! Let it rip!!!
+Eh?
+always hodl",0,0,-0.4153
+1nq4ygb,"Right clicking on misspelled words crashes tab
+Does the reload button work?
+
+Status\_access\_violation errors can be caused by a myriad things unfortunately. It's unlikely that the update is the problem. The usual trawling exercise is necessary ...
+
+**Restart your computer**: Restarting your computer can help fix the issue.  If you have a fast boot option, disable it to ensure that everything is properly loaded.
+
+**Update Google Chrome**: Make sure you have the latest version of Google Chrome installed. 
+
+**Close other tabs, extensions, and apps**: Close any other tabs, extensions, or apps that you might be using. If this works re-enable them one by one to find the culprit.
+
+**Check for unwanted software**: Run a scan for malware or unwanted software. 
+
+**Adjust your antivirus**: Check your antivirus and firewall settings. 
+
+And, if all else fails do a radical uninstall of Chrome (removing all traces) then a clean reinstall with the latest file from Chrome HQ.
+
+If it's still a problem after all that then it may be necessary to go for the nuclear option and reinstall Windows but check back here before going that far!
+It stopped happening and all I did was game and watch youtube for a few hours, I haven't even closed the browser. 
+
+Only thing I can think of that changed is I closed a tab with an 8hr video, possible that chrome just ate too much ram and started freaking out over autocorrect.
+is there anything in chrome://crashes ?
+Thank you for your submission to /r/Chrome! We hope you'll find the help you need. Once you've found a solution to your issue, please comment ""**!solved**"" under this comment to mark the post as solved. Thanks!
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/chrome) if you have any questions or concerns.*",1,1,0.9734
+1otmljx,"Out of these two....which TF Prime Bumblebee figure is the better version
+First Edition and it's not even close competition. It's SO much better.
+I preferred 1st edition for BB and then bought the PRiD mold as Hot Shot
+The…the … the left one? The first edition. I would think the image you posted would answer that question for you
+PRiD vehicon is better than the First Edition.
+
+Zero kibble. Designed by fucking wizards.
+Those shoulders suck BALLS though
+1st edition IMO but he is pretty big in comparison to modern deluxes (if that’s a thing for you.)
+
+I have that one on the right with the auto morph feature and panel behind his head (no weapons GAH) he’s okay but I would love to see an updated TF Prime Bee.
+First edition is definitely better but the deluxe one isn’t too bad either.
+Hope APC does Hotshot with the 1st edition mold
+All The he first editions were better
+Same!",0,1,0.9739
+1ozbp5s,"Update on my blockout. Godot 4.6's new SSR looks great!
+i loved yous choice of color,texture and design
+What is that flickering in the beginning? Is the temporal effect of the SDFGI?
+Godot beating Unreal at its own game.
+TAA, more specifically FSR 2.2. Godot's post processing effects don't take advantage of temporal accumulation, so they just flicker when TAA is on. Well at least they don't have that ugly ghosting artifact lol
+If others are interested, here's the [PR implementing SSR in Godot 4.6](https://github.com/godotengine/godot/pull/111210). You can see other examples.
+Nope, I'm using SDFGI + SSIL
+Realtime, I'm using SDFGI + SSIL for the global illumination
+Thank you! It's an early wip though, so there will be some changes, but I'm glad to know I'm on the right track!
+If this is the rendering quality we're going to be seeing in 4.6, Godot is about to grow up into a significant player.
+Is this realtime or baked?",0,0,0.9446
+1nva5xv,"On this day 10 years ago, LG announced the V10
+I really liked the back buttons/fingerprint reader
+I wish LG and HTC are still around
+Still one of the most attractive phones of all time, up there with the HTC M7 and one of the windows phone Lumias.
+Reach into pocket, finger was already finding the fingerprint sensor, by the time it's out it's ready to go!
+Mine is still going strong after LG replaced the motherboard.
+
+My LG V20 is also still running.
+
+Tried using the Teracube 2e but it wasn't compatible with my network.
+
+Currently using a Samsung XCover6 Pro for my daily driver.
+&gt; Just as the leaks suggested, the defining feature of the LG V10 is a secondary display located above the handset’s 5.7” QHD unit. The 2.1” additional screen has a resolution of 1040 x 160 pixels and can display app shortcuts and other relevant information in always on mode.
+
+LG was so ahead of time with this idea.
+
+&gt; In addition to the rather unique display setup, LG V10 packs a duo of 5MP front-facing cameras. One of the units has a standard angle lens, while the other on offers a wide angle solution for easy group selfies.
+
+And this one. I remember Google and a few others copying this idea years later.
+
+&gt; Specs-wise, LG V10 packs Qualcomm Snapdragon 808 SoC, 4GB of RAM, and 64GB of expandable memory via microSD card slot.
+
+Sadly, the SoC that effectively killed LG as a smartphone brand. They never recovered from this.
+
+&gt; The handset boots Android 5.1.1 Lollipop.
+
+And that went from boots to bootloops.
+I wish Sony lowered their prices a bit
+LG's phone division was always full of cool and ambitious ideas. I wish they'd let Samsung bring back the Wing since they got out of the phone business.
+My v10 started bootlooping after 6 mths zzzz
+While not on the same day, 10 years ago, LG's reputation was in tatters after people realized every V10 and G4 were ticking time bombs ready to have a bootloop at any moment.
+
+LG's mobile division failed and got axed for a reason",0,1,0.9454
+1nufwtf,"How can I solve this issue?
+Application Failed!  
+new row violates row-level security policy for table ""profiles"" ( mods,my bad if i put this in the wrong flair, I suck at this coding sh|t) 
+
+https://preview.redd.it/oi9ydd09jbsf1.png?width=1582&amp;format=png&amp;auto=webp&amp;s=bb60316388b15d5cefcccbdeb39a200f50b17e6f
+Delete all your rls for the table and rebuild them from scratch based ok your need.
+can you share more details of these policies?
+Those policies need to apply to the authenticated role",1,1,-0.8842
+1otu2rz,"Google Play Store Update Makes it Super Easy to Uninstall Apps From Other Devices
+pretty good for parents, cant think of other use cases but nice to have
+Car, watch, tablet, TV.......
+Honestly nothing that ""impresses""...
+Nice feature... for hackers
+how long until hackers abuse this somehow?
+You can already install apps from the play store on other signed in devices that's been around forever now, this is just reversing it yet there's no known attacks from that. They'd need access to your Google account and at that point you've got far more things to worry about",0,1,0.2226
+1r2myps,"Error since the latest update. Working well on Web version...
+Try loging out and loging in to the app again
+*I am using Caddy for SSL and never got any problem before. The HTTPS web version is working well. 
+
+But all the pictures stay blurred on Android.
+I've had the same issue after I've upgraded to 2.5.5, I believe. After turning the option 'Prefer remote images' on, in the advanced settings, the issue disappeared.
+
+[https://i.imgur.com/eZ9RuTI.jpeg](https://i.imgur.com/eZ9RuTI.jpeg)
+If you have a self-signed cert, make sure it's trusted in the OS.
+Nope. The pictures are not loading.
+You need to turn off explicit/nsfw filter on your reddit client. Then it'll be show up
+Looks like you have a lot of nsfw images there
+When does the cert expire?
+2027
+No extra auth like pangolin sso, authentik etc? No crowdsec right?",1,1,0.8902
+1o0nzld,"After update doesn't work FaceDetailer
+https://preview.redd.it/3kxgu5gllqtf1.png?width=980&amp;format=png&amp;auto=webp&amp;s=ec8efa5a7d6a42fd673718da9b2abfc171daabb9
+
+https://preview.redd.it/ahi14i0tlqtf1.png?width=1137&amp;format=png&amp;auto=webp&amp;s=1927aa34d4515b47825fa09729b365be403197da
+
+It didn't work after updating to 0.3.63. I found a solution on Discord.
+Official Discord, help section.  
+The source indicated there was: [https://github.com/ltdrdata/ComfyUI-Impact-Pack/issues/1121](https://github.com/ltdrdata/ComfyUI-Impact-Pack/issues/1121)
+Thanks. I was going to ask here about this.
+What Discord channel do you recommend for support like this?
+GPT is good at these too. Paste in your cmd logs and tell it what’s wrong, it’s fixed every update break for me.",1,1,0.7808
+1p8znwx,"true hahaha
+So true
+So, I need for a for a class assignment...
+Winning ✌️✌️
+Truuuue 🤣🤣🤣🤣🤣
+Big Facts
+Yanet Garcia, Mexico
+🍑
+100%⭐⭐⭐⭐⭐
+Ooooohh, sexy lady! Yum!",0,0,0.986
+1nqptsb,"Failed to deploy
+It sounds like you're using an older version of docker compose. Your best bet going forward might be to upgrade to compose v2.
+Care to share your compose?
+I'm using the yml file from immich portainer install (on Portainer inside QNAP nas)
+I'm using the yml file from immich portainer install (on Portainer inside QNAP nas)",1,1,0.8316
+1ooxu8t,"🌟 tiny-glimmer.nvim update: reusable library, improved API, event callbacks, looping animations...
+animation isn't intrusive. straight to my bucketlist
+OP doesn't mention what the plugin does, so, from the README:
+&gt; A Neovim plugin that adds smooth, customizable animations to text operations like yank, paste, search, undo/redo, and more.
+Been using your plugin since the initial release. Love it!
+Looks awesome. This has a lot of potential to help pairing partners follow better what is changing. Will try later. 👍
+Not only do I enjoy the visual flair for its own sake, but I also value the additional visual indicators of change that help my aging eyeballs see what's going on.  Your work is appreciated.
+Yes completely async. It does not interrupt or collide with movements or anything else
+Thank you very much !
+Thank you very much, I hope you'll like it ! Do not hesitate to tell me if you find something to improve or to add
+&gt; reusable library
+
+
+Thanks for exposing that, I love when I can easily build on other plugins to add cool features to my own!
+Hello!
+
+Context: A Neovim plugin that adds smooth, customizable animations to text operations like yank, paste, search, undo/redo, and more.
+
+I've made a huge update to [tiny-glimmer.nvim](https://github.com/rachartier/tiny-glimmer.nvim)! In my first post, a user left a [comment](https://www.reddit.com/r/neovim/comments/1i0ar5p/comment/m75lrqn/?utm_source=share&amp;utm_medium=web3x&amp;utm_name=web3xcss&amp;utm_term=1&amp;utm_content=share_button) suggesting that the plugin should include a standalone library so anyone could use it in their own projects.
+
+So, I've just added that, but directly inside the plugin.
+
+**Update notes:**
+
+* Added a new library that you can use in your own projects
+   * You can create, customize, add, and play with text animations
+* Added examples and documentation on how to use it
+* Added looping animations
+* Added callbacks for animation events
+* Improved performance and reduced memory usage
+* Added CI for tests
+* Better README
+
+There's still room for improvement, and I plan to add features like animating things other than text. I already have some ideas for that, but they're still in the testing phase.
+
+You can check the [README](https://github.com/rachartier/tiny-glimmer.nvim/blob/main/README.md) and [examples](https://github.com/rachartier/tiny-glimmer.nvim/tree/main/examples) for more information.
+
+Repo: [rachartier/tiny-glimmer.nvim](https://github.com/rachartier/tiny-glimmer.nvim)
+
+Thank you for reading!
+
+EDIT: this comment was again shadow removed, like in my last post. I don't understand why Reddit is doing this !
+
+EDIT: second shadowban. It's getting on my nerve",0,1,0.9984
+1p2liee,"Motorola ignores EU regulation on security updates for smartphones. Will this end well?
+&gt; EU regulation introduced in June 2025 requires that all smartphones sold on the European market receive software updates for a long time. The directive does not specify a minimum price for this rule to take effect. The EU explicitly states that software updates must be available for five years after a device is no longer sold.
+&gt; 
+&gt; Motorola’s lawyers have apparently studied that legal text closely, and now the company appears to be ready to confront the EU Commission. Their interpretation is that the EU does not actually require updates to be provided at all, but only requires that if updates are offered, they must be free of charge. However, we are not aware of any case in which a smartphone manufacturer has ever charged money for security patches.
+
+Moto is not the only one that doesnt see 5 years of updates as 5 years of OS and security patches. Many chinese phones are sold in europe with the same label and see it as just 5 years of support. 
+
+Its kinda worse now cuz before theyd say oh 2 years of updates and youd know it would be 2 OS updates and now its 5 years that means nothing.
+Motorola is in no position to be using these  anti-consumer practices. Do they really want this company to die?
+They are broke as hell and can’t afford to play the long game.
+Idk, Xiaomi seems to provide 4 years of Android updates and 6 years of security patches for smartphones released in 2025. Haven't found much on others like iqoo, though.
+https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32023R1670
+
+On page 214/63, there's the (6) section that says that they have to release the update if the OS provider does.
+
+IMHO, if the Court says the OS provider is Google / AOSP, then Motorola has to release it. Otherwise, if the OS provider is Motorola itself, no...
+For stuff like this is why I'm never bought a Motorola since the G4. They promised 2 OS updates in their marketing, and they had to be threatened with a lawsuit for them to cough up those updates. I recently saw that the Motorola Rarz was selling at 399 USD, a flip smartphone at that price is a bargain, then I remembered why nobody buy them (for this). Motorola is not even the shell of what it was.
+I'm pretty sure most of us here expected these companies to jump through loop holes and put in minimal effort to loosely follow the new EU regulation. That's why I wasn't exactly jumping and down when EU announced it.
+I think ""or on any other product of the same brand"" part covers that. If moto doesn't want to provide update a to device b, it also can't provide the same update to *any* other moto device. If even one device receives the update, they have to update all of them
+EU device longevity rules are vague and many OEMs have different opinions on what they actually mean. 
+
+That said this is a big issue for Android and it’s a feature and not a bug. For Apple, they make money selling hardware and services. 
+
+For Android, OEMs make money selling hardware and Google makes the money on services. (Photos, storage, apps etc). So OEMs aren’t keen to support devices. They want you to keep buying new phones. One can say this is short sighted but these OEMs aren’t rich enough to play the long game.
+... ?",0,1,0.9771
+1qr5gs0,"Inside Nvidia's 10-year effort to make the Shield TV the most updated Android device ever
+Now update the hardware instead of still charging $200 for ten year old tech. Love both of mine, but come on.
+Somehow more updsted than android TV and probably google tv despite  receiving an update once every year or so
+
+Pls someone make a successor to the shield. Same performance, but with a branch of ATV thst the devs care more about than google. Someone show why its better to run with a self owned, self managed streaming box over a locked down ""smart"" TV.
+Can't wait for the upcoming refresh!
+I said this exact thing 5 years ago.
+The Shield TV is the single best Android TV box I've ever used, but I would not buy one new because the hardware is very old and starting to show its age. I'd preorder one with a modern SoC and I *never* preorder things. Common Nvidia, throw the Switch 2 SoC in there and revive the ecosystem.
+if only they'd update it with some modern hardware
+&gt; Someone show why its better to run with a self owned, self managed streaming box over a locked down ""smart"" TV.
+
+
+The problem is the content owners. If you run on Linux instead of Android you're locked out of most high-resolution streaming due to DRM. You're basically limited to ripped or ""acquired"" content, this defeating the ""streaming box"" part of it and just becoming a HTPC.
+&gt; “We’re always playing in the labs, trying to discover new things,” said Bell. “We’ve played with new concepts for Shield and we’ll continue to play, and if we find something we’re super-excited about, we’ll probably make a go of it.”
+
+I am very curious as to what would have to change for them to be super excited about. I say that largely rhetorically. I sold my 2019 pro because I was using it less and less because lack of HDR support on YouTube, and using it as a game stream device for Moonlight wasn't working well at 4k. 
+
+I wish they'd make a new one but I don't think they ever will. It's probably not even a blip on their radar with all the money they're making elsewhere
+Shout-out to Nvidia. My OG 2016 one is still running smooth as butter and completely updated. Best investment ever
+I'm buying day 1 if they ever update it",0,1,0.9954
+1nut2lh,"Theme recommendations for a non-profit (not subscription based)
+I'm a software developer, and I'm contributing to a local non-profit in my home town, basically working for free paying the domain and hosting for them. And I built a simple website for them using the default Twenty Twenty-Five theme.
+
+But now I'm looking for an upgrade, and I'm willing to pay for a theme. But it has been a while since my last time working with WordPress in this capacity, and I notice that almost all of the recommended themes are freemium with subscription models. I know I can go the route of building my own theme for scratch, but I don't have much free time. **So, I'm looking for recommendations for themes that are free or a single payment**. 
+
+Any help is highly appreciated!
+It's often more about what page builder you want to use, and go from there..
+The usual: Astra, Kadence, Blocksy, GeneratePress - all freemium themes.
+
+Search ""theme recommendations"" in the sub - this gets asked a lot. You're better of choosing a multipurpose theme, rather than a niche-specific theme.
+Try Kadence theme/block",0,1,0.9564
+1rlshhw,"Prima Prime with an Amalgamous Jetpack/back cannons
+This is why the 5mm Siege port system should continue being used.
+""Let's roll""
+Siege is the best transformers line no cap
+One of the coolest uses for Amalgamous, this is sick!
+
+Definitely gonna try this if I ever find these two in the wild.
+Hell yea
+Still one of the best fights from TF media and I will die on that hill
+Cool figure
+this is AWESOME
+Peak
+That's nifty! Move over Optimus+Jetfire. Thank you for sharing",0,0,0.8784
+1pewpho,"Mobvoi commits to ‘essential’ TicWatch updates as the Wear OS lineup seems dead - 9to5google
+What a disappointment. Ticwatches had excellent hardware and a near stock software experience but always lagged behind in updates. They seemed to have gotten a bit better about actually sending out updates but not good enough.
+Anyone who's followed Mobvoi for any length of time should not be surprised at all.
+
+Their support is beyond abysmal, and they're the first ones to drop software updates from their product lines. If I didn't only use my TWP5 for basically notifications and a grocery list, I'd be pissed. But then I'd also have to be ignorant, because the writing was on the wall since long before TWP3 was released...
+The writing was on the wall as it has been quiet for far too long when it came to delivering updates. Their fairly recent drastically reduced prices kinda alluded to that fact... I bought the Atlas just cuz yet it's three OS versions behind only running Wear OS 4.0. Versions 5.0, 5.1, 6.0, were released awhile ago. Yup it's too bad but it is what is I suppose.
+Fuck man what now pixel watch? The curved bezels are too much
+OnePlus watch seems to be the spiritual successor to mobvoi
+Still own a TicWatch from years ago... disappointed there might not be more.
+I recently purchased the Pro 5 Enduro. I didn't realize they were basically ending support, but I also bought it as an interim watch. My previous watch was a Garmin, but the battery was deteriorating. Garmin really seems to have hiked prices since I last purchased, and couldn't justify it, even though I really like their watches.
+Thank god there's someone besides me who thinks the pixel watch is kind of ugly
+&gt; Ticwatches had excellent hardware and a near stock software experience but always lagged behind in updates.
+
+My experience as well.
+*alluded",0,0,-0.921
+1nu6glg,"iOS app won’t show content
+Do I have to update? I’m having update problems, otherwise it runs, so I really have to? Or is or possibly not working because something else?
+You need to update.
+You need to update your server. Be sure to not update from 135 to 14c in one run. Carefully read each breaking change and upgrade incrementally. Also, make sure to keep your server up to date especially during active development phase or wait for stable.
+Your server to be clear.
+I did and it works. Thanks!
+I did and it works. Thanks!
+You need to update and logout and login again",0,1,0.9442
+1ql2670,"I un-installed and re-installed ComfyUI which broke my one of my favorite workflows...how do i fix this?
+try to activate or disable the nodes 2.0?
+
+https://preview.redd.it/m7stqgkmu5fg1.png?width=219&amp;format=png&amp;auto=webp&amp;s=0b84c387ada3bffb6078f81792abe993e3a19f90
+try switching ComfyUI version (go lower), newest one as of today is v10.  
+Switch to 9.x deppending which ver. you created workflow.
+
+for example: LTX-2 has some broken features in 9.x+, I still have to switch to v.8.2.0 to use it
+
+https://preview.redd.it/dh728r1526fg1.png?width=671&amp;format=png&amp;auto=webp&amp;s=3bdce63f20cfb2148a88fcc30f408d022357e19c
+have you updated the node pack that the ""prompt line"" node belongs too?  ComfyUI is not responsible for broken custom nodes, it's for the custom node creators to keep up
+nope
+disabling the prompt line node got it working but its only producing one image instead of making multiple images?
+when I reinstalled I had to restart my computer a couple times after reinstalling nodes etc.
+I did a couple times, it fixed a couple of other issues... I'll try again!
+paste log to chatgpt
+Try the ""fix node"" on all the nodes.",1,1,0.3127
+1oi3veh,"Unable to update to fedora 43 if you have wine installed
+There is also a second one related to wine [https://bugzilla.redhat.com/show\_bug.cgi?id=2404874](https://bugzilla.redhat.com/show_bug.cgi?id=2404874)
+The bright side of it is that dnf blocks the whole transaction instead of leaving your system in a half-updated state. Much better than what I observed a few times on other distros.
+I had the same issue, I ended up removing the problematic packages and the upgrade went through.
+sudo dnf remove wine-core
+Is it possible to re-install wine after the update to 43?  
+I need wine for some old HAM-Software.
+This is why I use Fedora. Ubuntu kept breaking everything. Apt sucks
+Can you reinstall them now that you upgraded?
+Are you certain that doing this and then reinstalling wine-core once the upgrade is complete will cause no issues?",1,1,-0.3736
+1oudsi3,"Update on the Rockstar union busting situation
+Having to treat their employees well and pay them properly
+Shameful truly and they will try to gas light people about it.
+What is it that bothers CEO's and Boards of Directors so much about worker unions?
+This is happening in the UK, so no constitution, but we already have relatively strong trade union protections. I'm surprised they've gotten away with this even this far! Hopefully they're held accountable.
+We don’t need unions right now. We need to rewrite the constitution before it’s too late! Come on guys!!!!",0,0,0.9049
+1ry5cbn,"I shouldn't upgrade, should I? Do i just skip to the next version after this one?
+dumb take since you are also missing security updates by holding out on the update
+If you can update, you should. The question should be why shouldn't you update.
+yeah, but tahoe is so laggy",0,1,-0.4318
+1nuto07,"Archer the only one to never violate the prime directive
+Because there wasn't one.
+ThatsTheJoke.gif
+Best Captain, fight me
+I would lose on purpose. The man is a gem.
+They did kind of eldue to what they should do IF there was one.
+""Some day, my people are going to come up with some sort of a doctrine. Something that tells us what we can and can't do out do out here. Should and shouldn't do. But until somebody tells me that they've drafted that... directive, I'm going to have to remind myself every day that we didn't come out here to play god.""
+
+ \- Archer, two years before becoming a space pirate.
+Just like how George Washington never had a Twitter
+Archer is one of the GOATs.
+I love Archer, but Picard is my space dad.
+This belongs in r/shittydaystrom 
+
+That’s not a criticism",0,0,0.9422
+1onnoh7,"Android November security update is out, fixes two vulnerabilities
+r/im12andthisisdeep
+Thats not how These things work
+And how many vulnerabilities create?",1,0,0.3182
+1pu5edz,"So I got two guns and no shoulder cannons too…
+There’s a guy in this sub with the exact opposite issue, trade with him
+I am he.
+Hey.
+Hello, are you the two shoulder missle guy??
+It's me, I do.
+Somewhere someone’s waiting to trade his extra shoulder cannon with you
+u/Based_MASK3D
+I love this community! U/Based_MASK3D https://i.imgur.com/p3LaNzU.jpeg I can definitely mail to you, but may not be able to send until later this week due to the holidays.
+This is amazing.
+So at this point, I think it's safe to say something funky is happening at the factory given we have been seeing this happening to more than a few people?",0,1,0.9317
+1qzmjt6,"What made you hate chrome
+When they killed MV2.
+
+I don't really care too much about the ad blockers, but when they killed MV2 it also ruined a ton of older utility extensions I still use daily.
+
+That's when I switched to Brave, which, so far, has maintained MV2 support, and pretty much feels and functions exactly like Chrome, as a Chromium browser. I sorta forget I'm not using Chrome most of the time.
+
+I still use Chrome on my phone since there aren't any extensions.
+Privacy + Removed tab scrolling
+Can we stop these stupid chain posts?
+Remove the arrows used to navigate between tabs
+they ruined the customization, the new colors are terrible and it's damn near impossible to change the background and colors separately
+Not being able to use ad blockers
+I don't hate Chrome enough yet to stop using it as my main browser.  It's what most sites expect, especially important ones like banking.  But I do find myself using Brave and Firefox more often to circumvent Google's poor and anticonsumer decisions with Chrome.  I guess that's the key.  We have choices, which we can use when needed.
+MV3
+But you can…
+Privacy is hardly existant. ungoogled-chromium is better AND lighter.",0,0,-0.8779
+1nuovbw,"How do I debug Syncthing issues?
+I have a bunch of 0 byte or few KB files on my Android phone that are not syncing. Syncthing just halts silently without any message. The transfer rate is 0B/s but there are still files to be synced.
+
+The logs show nothing and I guarantee that it is not a network issue. I can modify other (much bigger) files and they sync just fine but the same files are always stuck in limbo.
+
+My issue really is that Syncthing does not give me the tools to solve it. There are 0 error messages or warnings.
+
+Edit:
+
+Enabled multiple debugging categories in the Syncthing UI so I get more verbose logs and the connection to the other peers was successful (indexes exchange correctly). However, there are no pull/create file system operations in the logs so Syncthing is just ignoring them for some reason (again without any message telling me why). 
+
+There are no Syncthing ignore files anywhere so this is not an issue with exclude rules. I solved the issue by nuking my folder and just syncing from the known good version (by switching to ""Receive Only""). I shouldn't have to do that but this always happens on Android in my experience. Don't have these issues on other devices.
+One possible cause would be the presence of special charaters in the file path or name. Try removing them.
+Which version btw?
+
+I'm on [2.0.10.0](http://2.0.10.0) here and all my 0B files get synced to 2.0.9.2.
+Good idea but that didn't seem to be the case.
+Are there files or folders that have duplicate names just with different capitalization? I have to run this script every so often to get my Android to fully sync:
+
+https://github.com/chapmanjacobd/computer/blob/main/bin/files_casefold.py
+No special characters.",1,1,0.5794
+1pjzzxl,"Google Pixel 10 performance reportedly jumps after Android 16 QPR2 update | Android Central
+* 5% increase in peak CPU &amp; GPU Benchmark Scores
+* 20% increase in ""real-world test"" PCMark Work 3.0
+Google has some weird ""marketing"" tactics:
+- releases phones with subpar performance, only to unleash full performance after an update.
+- every pixel device has a manufacturer hardware defect that affects some.
+Would be cool if they did something about the weird scrolling. Some apps it feels like the scrolling is dampened and less responsive.
+The update definitely helps, but graphics performance is still way behind even former Pixel phones. So they still have a long way to go.
+With the PowerVR GPU it's never catching up. How they thought that was going to fly is beyond me.
+Finally it reached budget phone performance
+id use my pixel 7 until the end of time if the modem wasnt so awful
+QPR stands for quarterly platform release. Android now releases new minor feature updates between major versions, and it's the second one of these for android 16.
+Will have to see how the 10 series goes but it's actually infuriating how many *major* issues crop up with nearly every Pixel generation.
+
+- Pixel 9 Pro, 8, 7 Pro: OLED vertical lines (bad flex cables?)
+- Pixel 7a, 6a, 4a: Spicy battery pillows
+- Pixel 6, 6a: Garbage modem
+- Pixel 4 (XL): ""sudden death"", usually related to the SoC failing
+- Pixel 2 XL: OLED burn-in and major hue shifts
+I know you're joking, but as someone who recently got given a modern budget phone from work (the latest A16), even my pixel 6 blows it out of the water. That A16 stutters and hitches doing just about anything, it's horrible. They blew the whole budget on the screen size and the premium-ish build.",0,1,-0.9495
+1ouqaca,"Galaxy S26 Ultra could get big upgrades to both wired and wireless charging
+Just give me magnets so I can go truly case free...
+I'm just waiting for them to release a phone with a graphene battery
+Waiting for 200w wired charging and 100w wireless charging
+Finally. I'm waiting for them to bring this to the fold line where having a big enough battery that doesn't need charging throughout the day is infeasible, this faster charging would be more useful.
+awesome. if they pull it off, they might catch up to chinese flagships of 2020
+Well, as far as S26 series leaks go, so far we've got conflicting reports on:
+
+(1) All S series will be using Exynos VS Half-half
+
+(2) Delayed launch to March VS. Early release on Jan
+
+(3) Awesome new cameras VS. No camera upgrade
+
+If the trends hold, there will be a new report about ""Samsung's going to keep the same charging specs for S26 series"" in two weeks.
+
+Also if past trends hold, and there is no reason to expect otherwise, S26 will just continue to stagnate and the only exciting thing will be 256gb base model thanks to Apple.
+Why Samsung doesn't utilize silicon-carbon batteries, like for example oneplus.
+What? There are foldables that have both a big battery and fast charging.
+People don't understand that samsung batteriet have double the charging cycles.
+Nah better wait to 1000W",0,1,0.9722
+1qscg7w,"EU warns Google: Gemini cannot be the only AI with deep Android integration (Updated: Statement)
+will the iphone also have siri alternatives?
+Yeah. And ""none"" should always be an option. 
+
+But in reality, the alternatives aren't very good. Pretty sure Gemini Nano (and Gemma) blow everything else out of the water. It was probably a huge reason Apple chose it for Siri.
+Apple actually already has API-ed out their core apps and already has 3rd party integration for AI assistants in the Japan market which I presume they will turn on for EU too.
+Yeah, it's called Gemini
+I'd assume just like Gemini none of that access is enabled by default, it's just integrated access that would enable similar integration if you installed a separate 3rd party assistant, which sounds useful, it would be nice to see Alexa to be able to work with say Google home automations for instance
+Ok now genuinely i'd LOVE to change my assistant anytime and more importantly i'd LOVE to be able to change the wake word. I dont like to use hey google or okay google, i want to use ""hey gemini"". The wake word detection all happens on device anyways and the api for it should be accessible to turn on/off, but it's probably nested alongside some NSA CIA mossad shit and we don't wanna touch that. Do we Google?
+That's some surprising lack of reading comprehension there, friend.
+
+The EU is warning Google that Gemini must not be the ONLY option. No one is forcing you to use their AI crap. They're just slapping Google on the wrist for trying to force everyone into using Gemini.
+
+You can still opt out entirely by leaving the services disabled and choosing not to use them like you can now.
+I love Anthropic's models for work and host my own LLM on my server for personal work and studies
+
+
+Gemini is pretty nice for general knowledge but isn't very good at domain expertise
+i investigated it, the chip that always listens for the wake word, uses some sort of local mini AI to recognize it. The problem is, it has to be recognizable with any kind of accent, dialect even, speech impediment....so using machine learning they created a file where the mic input is being compared to what is in this ""hey google"" file/library they have. So to let us use other wake words, they'd have either come up with a way to train for our words directly on phone or create a api that would send a request for new wake word training on servers or something else.
+In about 6 months, Siri will be the alternative.",1,1,0.994
+1npcivg,"Packaging error?
+Someone just opened and switched them, it's quite easy to reseal a box to factory standards
+This isn't the first time I've seen specifically Micronus in Alchemist's box, so I'm thinking that this was a bit of a ""common"" error. I remember back in Siege you'd get Soundwave in Starscream's box (or maybe it was the other way around).
+Idk who’s going to return a brand new figure to get an older figure like that
+In this case though - why?  They’re both new and at the same price point.  What’s the advantage in the case?
+Yeah it seems like that's it for once
+That makes no sense here
+Yeah but that means they chose alchemist over micronus
+Its easy to reseal a tf box like it was fresh from the factory.
+
+Micronus is way more fun and value than alchemist no to mention hes newer, this is an actually good figure swap lol
+Mississauga, Ontario
+Is this Canada?",1,1,0.9817
+1pp1ivu,"Android is fixing the most annoying part of taking scrolling screenshots [Auto delete OG screenshot if scrolling screenshot is taken]
+I can't say I've ever experienced this problem on a Samsung or OnePlus phone
+I wish it wasn't so app dependent but it is super handy when it works.
+Yep, this is just Google catching up with features Samsung has had for years again.
+Yeah I don't have this issue on my long line of Samsung phones (currently S22 Ultra on Android 16) or my occasional OnePlus devices either.
+Honestly I just want an option to delete without going into the photo... Samsung does this properly
+Samsung does it as well, never even knew this was a problem.
+my 2018 huawei did this..
+Next they should make it so Pixel devices can take scrolling screenshots as long as Samsung and OnePlus.
+Be thankful you’re not on iPhone. Works only in Safari
+Also, you can set it to automatically delete screenshots if they're shared directly.",1,1,0.97
+1nsp6at,"Suspicious Chrome App Notifications on iPhone
+Hi so I don’t use Chrome nor do I click allow on every popup. I don’t visit sites which even request popups. Let us heed our high horse there.
+
+The only reason I have the Chrome app installed is because my group of friends was messing around with the music function where you can hum a song - that is all.
+
+Edit: just checked, the only website with permission to use a popup is YouTube.
+Maybe you should stop clicking ""allow"" on every popup you get without reading what you're allowing. 
+
+Not familiar with the exact path on iOS but go to site settings in Chrome and revoke notification access for the sites you don't want.
+Thank you for your submission to /r/Chrome! We hope you'll find the help you need. Once you've found a solution to your issue, please comment ""**!solved**"" under this comment to mark the post as solved. Thanks!
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/chrome) if you have any questions or concerns.*",0,1,0.9747

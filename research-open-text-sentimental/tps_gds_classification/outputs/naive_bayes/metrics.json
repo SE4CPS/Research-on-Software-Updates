@@ -1,0 +1,20 @@
+{
+  "model": "naive_bayes_multinomial",
+  "vectorizer": "tfidf",
+  "verified_unique_posts": 542,
+  "after_gds_undersample_n": 261,
+  "n_tps_after_undersample": 86,
+  "n_gds_after_undersample": 175,
+  "train_size": 182,
+  "val_size": 39,
+  "test_size": 40,
+  "training_sample_weight": "balanced",
+  "val_f1_tps": 0.5161290322580645,
+  "test_accuracy": 0.7,
+  "test_f1_tps": 0.5714285714285714,
+  "test_f1_macro": 0.6703296703296704,
+  "test_precision_tps": 0.5333333333333333,
+  "test_recall_tps": 0.6153846153846154,
+  "random_state": 42,
+  "gds_sample_size": 175
+}

@@ -1,0 +1,8 @@
+              precision    recall  f1-score   support
+
+         GDS     0.8000    0.7407    0.7692        27
+         TPS     0.5333    0.6154    0.5714        13
+
+    accuracy                         0.7000        40
+   macro avg     0.6667    0.6781    0.6703        40
+weighted avg     0.7133    0.7000    0.7049        40

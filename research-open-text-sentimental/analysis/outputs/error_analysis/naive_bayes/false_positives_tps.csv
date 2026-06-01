@@ -1,0 +1,92 @@
+reddit_id,subreddit,gold,pred,score_tps,title,corrected_label,label_name_hint,correct
+1nxqah6,chrome,0,1,0.5772085297859939,the borders for websites are turning white??,0,TPS,False
+1nwcima,immich,0,1,0.6035298224956337,2.0 version timeline?,0,TPS,False
+1nx29vh,Wordpress,0,1,0.5864807269578696,Wordpress auto-updated for the first time despite auto-update not being enabled?,0,TPS,False
+1oum7kl,firefox,0,1,0.5623577112082593,Anybody else get the Firefox exe directly on the desktop after the 145 update? Normally it is a shortcut.,0,TPS,False
+1p3x3cx,MicrosoftEdge,0,1,0.5128540497665763,Most recent update added this intrusive toggle on my New Tab page. How can I get rid of it?,0,TPS,False
+1nw7zjt,google,0,1,0.565433101186616,I think… someone maybe pushed a bad update,0,TPS,False
+1o0hdym,comfyui,0,1,0.545846307812591,"ComfyUI 0.3.63: Subgraph Publishing, Selection Toolbox Redesign",0,TPS,False
+1nubrx1,chrome,0,1,0.571585543852824,"If You've Got TubeBlock, remove it!",0,TPS,False
+1pe31s2,comfyui,0,1,0.5533277450017903,Qwen edit images looking like this since updating Comfy,0,TPS,False
+1nubv0g,chrome,0,1,0.6612033011453464,Is this legit??Chrome Update,0,TPS,False
+1noelxs,Wordpress,0,1,0.6216861916828226,Upgrading to PHP 8.3 causing pages to disappear?,0,TPS,False
+1o0mf1k,rustdesk,0,1,0.6613865493131912,Updating ID,0,TPS,False
+1nubblp,immich,0,1,0.7391805485348607,Migration from Old Storage Configuration,0,TPS,False
+1nv9moy,ansible,0,1,0.6609463624345879,Delegate_to: localhost gives me trouble,0,TPS,False
+1nwb2xm,typescript,0,1,0.6134625850866703,@ts-ignore is almost always the worst option,0,TPS,False
+1oi8pv0,Fedora,0,1,0.5750016408601784,how do i upgrade to fedora 43?,0,TPS,False
+1p1gzjd,Android,0,1,0.5202441505292723,Pixel phones in the US are finally getting this hotspot upgrade unlocked,0,TPS,False
+1o2aon2,MicrosoftEdge,0,1,0.6198816523557122,My Edge randomly my search engine Yandex? I don't want to use yandex and didn't switch it myself,0,GDS,False
+1s1xuee,Ubiquiti,0,1,0.8169921629192936,"Based on the feedback I received, here's the new version.",0,GDS,False
+1ic38ep,OpenSSH,0,1,0.6378540322676002,OpenSSH support for certified keys in CASignatureAlgorithms?,0,GDS,False
+1qpbh7a,Bitcoin,0,1,0.5057571310507777,"Don't Trust, Verify 😁",0,GDS,False
+1qz4z4c,Bitcoin,0,1,0.6032341089292792,"Don't trust, verify",0,GDS,False
+1nu6glg,immich,0,1,0.6631821718056639,iOS app won’t show content,0,GDS,False
+1rllhyo,java,0,1,0.5085590133412001,Eclipse GlassFish: This Isn’t Your Father’s GlassFish,0,GDS,False
+1nwg7xp,immich,0,1,0.5720866891401221,Stable + Watchtower,0,GDS,False
+1nq6kr4,chrome,0,1,0.5547632491864588,I hate chrome and windows and youtube,0,GDS,False
+1s078k7,Fedora,0,1,0.5464673213707432,My desktop with xfce and chicago95,0,GDS,False
+1nwb9xv,rust,0,1,0.5619539429986765,ZLUDA update Q3 2025 – ZLUDA 5 is here,0,GDS,False
+1nw1qeq,neovim,0,1,0.5035918732736567,"What's your preferred installation method? Old stable ppa, ""dev"" versions from unstable ppa, or AppImage/Snap/Flatpak?",0,GDS,False
+1noj307,cms,0,1,0.512466636750882,MCP Servers for CMS - this changes everything,0,GDS,False
+1nq718r,chrome,0,1,0.996619116970092,I somehow broke my Chrome?!,0,GDS,False
+1s4gwva,chrome,0,1,0.7213994903890624,You can no longer swipe the search bar with your finger to switch Chrome tabs on Android,0,GDS,False
+1q4kplr,MicrosoftEdge,0,1,0.6303964744004357,Edge turns on background image on new tabs page each time I start it up even if I turn the option off,0,GDS,False
+1nwi6qc,chrome,0,1,0.5369210089831513,"Chrome removed ""#windows11-mica-titlebar"" from chrome://flags in the last update.",0,GDS,False
+1nobzk5,json,0,1,0.7066384513148256,Formatting/parsing help,0,GDS,False
+1nwdd6e,PHP,0,1,0.6365414857535657,Stuck with Laravel Package Tests with Pest + Orchestra Testbench - Laravel Helpers Not Available,0,GDS,False
+1nv41m3,Nuxt,0,1,0.5584164203713904,Nuxt4 with Tailwind,0,GDS,False
+1o1cbch,Dell,0,1,0.599214508463665,Alert! tpm device not detected on Dell XPS 8940.,0,GDS,False
+1nqsr52,chrome,0,1,0.9638329802572246,iOS Chrome keeps getting worse,0,GDS,False
+1nv73o8,chrome,0,1,0.9832078770188882,Shaking search bar on s24 ultra,0,GDS,False
+1nww0mp,vmware,0,1,0.5447671141756301,what's the new name for SRM and VREP?,0,GDS,False
+1noec4y,Wordpress,0,1,0.6361907565898753,WordPress vulnerability in the latest version,0,GDS,False
+1qfb0tq,PHP,0,1,0.5175750686017953,Dealing with a PHP BC break,0,GDS,False
+1nxstb4,chrome,0,1,0.9517002351624944,Chrome Bookmarks Gone After Installing New Windows,0,GDS,False
+1p8z5a3,EndeavourOS,0,1,0.5298118127374684,"Is that warning (eos-rankmirrors) something to be worried about or nah? Update was successful, btw.",0,GDS,False
+1qo71ai,godot,0,1,0.5747496037555035,Please don't break Please don't break Please don't break Please don't break,0,GDS,False
+1nwgz8q,chrome,0,1,0.9888782181898312,I cant watch youtube and other videos.,0,GDS,False
+1rzzy7w,rust,0,1,0.5265791802936057,"The Good, the Bad, and the Leaky: jemalloc, bumpalo, and mimalloc in meilisearch",0,GDS,False
+1r2sc6j,PHP,0,1,0.502242806820856,FrankenPHP v1.11.2 (security and performance updates),0,GDS,False
+1nuwiid,chrome,0,1,0.9870358941496872,"Youtube videos show grey/blank screen when playing, but plays audio. Windows 11",0,GDS,False
+1qseizq,Bitcoin,0,1,0.538208563765334,Don't worry.,0,GDS,False
+1ovbv9c,chrome,0,1,0.995082375311802,Why Chrome Google look like this stop i Sony want to update your shitty app iwant it to look like opera,0,GDS,False
+1oqaia9,immich,0,1,0.6133747222322642,Thumbnails greyed out sometimes- this happen to anyone else?,0,GDS,False
+1qyyehf,openclaw,0,1,0.9277991499205082,"I made my OpenClaw respond using Scarlett Johansson’s AI voice from the movie Her using custom skills and FishAudio/ElevenLabs. It feels surreal and futuristic to get audio briefing of news, movie/tv reviews, updates using this (Use headphones for audio)",0,GDS,False
+1rk4t40,chrome,0,1,0.9872249999584148,Is there a way to disable the + for ai features on google chrome search bar?,0,GDS,False
+1npaijx,scrcpy,0,1,0.5694514618760315,Connection lost via QtScrcpy,0,GDS,False
+1s3nt3h,MacOS,0,1,0.6082666900259365,MacOS 26.4 finally brings back the option to have compact tabs. The option is in Safari settings under the 'Tabs' tab.,0,GDS,False
+1oubo0f,firefox,0,1,0.6060258632110677,"Firefox Tab Groups with the same name - they should be merged, instead of creating a new group with the same name",0,GDS,False
+1o0om20,immich,0,1,0.5658450722171882,Immich Stable iOS background updates,0,GDS,False
+1s0ckr6,Ubiquiti,0,1,0.6050025133963775,me looking up at random bar in NY,0,GDS,False
+1nqxc6f,chrome,0,1,0.9920731554513874,Trash Samsung ruined chromium based Browsers.,0,GDS,False
+1nu9iny,chrome,0,1,0.9945864451360172,My chrome won't load videos and sites.,0,GDS,False
+1nwxusf,node,0,1,0.5563756707004797,STOP USING AI FOR EVERYTHING. SERIOUSLY.,0,GDS,False
+1nny826,neovim,0,1,0.5059914899535434,neotest-golang 2.0.0,0,GDS,False
+1nxss8f,kubernetes,0,1,0.500978918789076,Minikube stops responding when I run 15 pods (and 10 services). Is it time to buy a nicer laptop?,0,GDS,False
+1ov99ij,PowerToys,0,1,0.6131687786693014,Light Switch logs filled up my hard drive,0,GDS,False
+1nt3yn3,github,0,1,0.5307946433477054,Excuse me? WTF?,0,GDS,False
+1rzl7os,Fedora,0,1,0.5280662668433767,so installed fedora,0,GDS,False
+1nnq16o,Wordpress,0,1,0.5592608677585473,New link goes to an old page that doesn’t excist anymore,0,GDS,False
+1s1l8mf,Ubiquiti,0,1,0.694934558904383,Got mine in go get it,0,GDS,False
+1o1kd6r,comfyui,0,1,0.5174231304253581,"I got tired of my ComfyUI breaking every time I added a node or update a package, so I wrote a Powershell script to put an end to it.",0,GDS,False
+1nwz394,rustdesk,0,1,0.5169354821865202,Rede do Rustdesk offline,0,GDS,False
+1ntnu85,MacOS,0,1,0.6027978092349866,macOS Tahoe 26.0.1 Released,0,GDS,False
+1nznnb8,comfyui,0,1,0.6421218199955189,Qwen image edit giving weird results? Untuck this man's shirt please!,0,GDS,False
+1nqjtia,Supabase,0,1,0.54077337187086,Can I use any trigger to call an edge function when a user is registered and then verified?,0,GDS,False
+1pddpxr,transformers,0,1,0.7003326065605292,WNW Lunch Break Score! Found at a local comic shop.,0,GDS,False
+1qp0b64,Wordpress,0,1,0.5919109238329625,"My website looks like this when I visit it. I don't know what it is, but it seems to have happened after it was indexed by Google, although I don't think it's related.",0,GDS,False
+1ntjtzi,chrome,0,1,0.9806483017637974,Chrome on iOS 26 better than safari?,0,GDS,False
+1ns2nv7,Wordpress,0,1,0.5438524101197681,Permalink rewrites stop working,0,GDS,False
+1qone71,chrome,0,1,0.995013391052628,"this past week whenever I am AFK for a while chrome will open a new tab, type something strange into the search bar having to do with search engines and try to Google it. Windows 11, have not installed any browser extensions since getting this PC. Any help would be appreciated",0,GDS,False
+1oiwr33,immich,0,1,0.5294357039464465,What is happen???,0,GDS,False
+1q1n7ln,MicrosoftEdge,0,1,0.6663509601634015,"Microsoft Edge keeps on opening tons of tabs or windows or whatever whenever my computer is turned off. Google said to turn off startup boost, but that didn't seem to do anything. Does anyone know how I can stop this from happening?",0,GDS,False
+1s11al2,google,0,1,0.5420222373695338,Bro I didn’t search this 😭🙏,0,GDS,False
+1qo2w0x,chrome,0,1,0.9990495050969976,"How to remove this ""Screenshot / Copy / Drop Files"" option in Chrome?",0,GDS,False
+1nnp9dj,Wordpress,0,1,0.5651261458673847,Elementor layout breaks out of the blue?,0,GDS,False
+1pcit5m,chrome,0,1,0.9544767907200477,"How do I make this ""Ask Google"" button never show up in my address bar?",0,GDS,False
+1nsp6at,chrome,0,1,0.9919441028969512,Suspicious Chrome App Notifications on iPhone,0,GDS,False
+1o15qph,neovim,0,1,0.6967330656899445,Is it possible to limit the vim.diagnostic.setqflist to current buffer?,0,GDS,False
+1orep9e,chrome,0,1,0.5613699078776587,What is the best Adblocker for Chrome right now?,0,GDS,False
+1nxeyty,chrome,0,1,0.9766199605744066,Being prompted for a capcha on my PC Chrome every time I start chrome with an incognito search.,0,GDS,False
+1nzslca,MicrosoftEdge,0,1,0.6141667201797645,Print to PDF no longer works in headless mode with edge 141 ( post 2 Oct),0,GDS,False

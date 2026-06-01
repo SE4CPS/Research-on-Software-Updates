@@ -1,0 +1,83 @@
+{
+  "fold_metrics": [
+    {
+      "accuracy": 0.8348623853211009,
+      "f1_macro": 0.455,
+      "f1_tps": 0.0,
+      "precision_tps": 0.0,
+      "recall_tps": 0.0,
+      "pr_auc_tps": 0.1651376146788991
+    },
+    {
+      "accuracy": 0.8440366972477065,
+      "f1_macro": 0.4577114427860697,
+      "f1_tps": 0.0,
+      "precision_tps": 0.0,
+      "recall_tps": 0.0,
+      "pr_auc_tps": 0.1559633027522936
+    },
+    {
+      "accuracy": 0.8425925925925926,
+      "f1_macro": 0.457286432160804,
+      "f1_tps": 0.0,
+      "precision_tps": 0.0,
+      "recall_tps": 0.0,
+      "pr_auc_tps": 0.1574074074074074
+    },
+    {
+      "accuracy": 0.8425925925925926,
+      "f1_macro": 0.457286432160804,
+      "f1_tps": 0.0,
+      "precision_tps": 0.0,
+      "recall_tps": 0.0,
+      "pr_auc_tps": 0.1574074074074074
+    },
+    {
+      "accuracy": 0.8425925925925926,
+      "f1_macro": 0.457286432160804,
+      "f1_tps": 0.0,
+      "precision_tps": 0.0,
+      "recall_tps": 0.0,
+      "pr_auc_tps": 0.1574074074074074
+    }
+  ],
+  "aggregate": {
+    "accuracy_mean": 0.841335372069317,
+    "accuracy_std": 0.0036721426134621272,
+    "f1_macro_mean": 0.45691414785369633,
+    "f1_macro_std": 0.001085751816824907,
+    "f1_tps_mean": 0.0,
+    "f1_tps_std": 0.0,
+    "precision_tps_mean": 0.0,
+    "precision_tps_std": 0.0,
+    "recall_tps_mean": 0.0,
+    "recall_tps_std": 0.0,
+    "pr_auc_tps_mean": 0.15866462793068298,
+    "pr_auc_tps_std": 0.003672142613462124
+  },
+  "bootstrap_oof": {
+    "accuracy": {
+      "estimate": 0.8413284132841329,
+      "ci_lower": 0.8099630996309963,
+      "ci_upper": 0.8726937269372693
+    },
+    "f1_macro": {
+      "estimate": 0.45691382765531063,
+      "ci_lower": 0.4475025484199796,
+      "ci_upper": 0.4660098522167488
+    },
+    "f1_tps": {
+      "estimate": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0
+    },
+    "pr_auc_tps": {
+      "estimate": 0.15867158671586715,
+      "ci_lower": 0.12730627306273062,
+      "ci_upper": 0.1900369003690037
+    }
+  },
+  "params": {
+    "name": "majority"
+  }
+}

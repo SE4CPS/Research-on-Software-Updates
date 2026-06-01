@@ -1,0 +1,45 @@
+{
+  "model": "roberta",
+  "run_dir": "evaluation/outputs/paper_roberta_5fold",
+  "n": 542,
+  "accuracy_oof": 0.7933579335793358,
+  "n_fp_tps": 57,
+  "n_fn_tps": 55,
+  "fp_theme_counts": {
+    "uncategorized": 28,
+    "technical_cue": 11,
+    "news_announcement": 2,
+    "short_title": 19,
+    "rant_emotion": 1,
+    "crypto": 1
+  },
+  "fn_theme_counts": {
+    "uncategorized": 23,
+    "technical_cue": 15,
+    "short_title": 16,
+    "news_announcement": 2,
+    "off_topic_fandom": 1,
+    "sarcasm_humor": 1,
+    "rant_emotion": 1
+  },
+  "top_fp_subreddits": {
+    "chrome": 14,
+    "Wordpress": 6,
+    "MicrosoftEdge": 5,
+    "immich": 5,
+    "neovim": 5,
+    "PHP": 3,
+    "linux": 2,
+    "vmware": 1
+  },
+  "top_fn_subreddits": {
+    "Android": 6,
+    "transformers": 6,
+    "firefox": 5,
+    "Bitcoin": 5,
+    "chrome": 4,
+    "comfyui": 4,
+    "immich": 4,
+    "linux": 3
+  }
+}

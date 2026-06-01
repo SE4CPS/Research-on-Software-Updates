@@ -1,0 +1,45 @@
+{
+  "model": "naive_bayes",
+  "run_dir": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/evaluation/outputs/paper_cv_full",
+  "n": 542,
+  "accuracy_oof": 0.7712177121771218,
+  "n_fp_tps": 91,
+  "n_fn_tps": 33,
+  "fp_theme_counts": {
+    "uncategorized": 41,
+    "short_title": 39,
+    "technical_cue": 14,
+    "rant_emotion": 2,
+    "crypto": 2,
+    "news_announcement": 1
+  },
+  "fn_theme_counts": {
+    "technical_cue": 9,
+    "uncategorized": 14,
+    "short_title": 9,
+    "news_announcement": 1,
+    "off_topic_fandom": 1,
+    "sarcasm_humor": 1,
+    "rant_emotion": 1
+  },
+  "top_fp_subreddits": {
+    "chrome": 23,
+    "Wordpress": 7,
+    "immich": 7,
+    "MicrosoftEdge": 5,
+    "comfyui": 4,
+    "Fedora": 3,
+    "PHP": 3,
+    "Bitcoin": 3
+  },
+  "top_fn_subreddits": {
+    "transformers": 6,
+    "Android": 5,
+    "Bitcoin": 5,
+    "linux": 4,
+    "godot": 2,
+    "windows": 1,
+    "comfyui": 1,
+    "angular": 1
+  }
+}

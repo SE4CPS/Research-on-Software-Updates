@@ -1,0 +1,30 @@
+{
+  "model": "vader_rule_baseline",
+  "verified_unique_posts": 542,
+  "after_gds_undersample_n": 261,
+  "n_tps_after_undersample": 86,
+  "n_gds_after_undersample": 175,
+  "train_size": 182,
+  "val_size": 39,
+  "test_size": 40,
+  "val_f1_tps": 0.47619047619047616,
+  "test_accuracy": 0.5,
+  "test_f1_tps": 0.5454545454545454,
+  "test_f1_macro": 0.4949494949494949,
+  "test_precision_tps": 0.3870967741935484,
+  "test_recall_tps": 0.9230769230769231,
+  "random_state": 42,
+  "gds_sample_size": 175,
+  "rule_style": "technical_first",
+  "rule_spec": {
+    "neutral_band": 0.15,
+    "rule_style": "technical_first",
+    "rules": [
+      "If compound < -0.6 and no technical cues \u2192 predict GDS (rant-only).",
+      "Else if technical_cues_regex(text_raw) \u2192 predict TPS.",
+      "Else if |compound| > neutral_band \u2192 predict GDS.",
+      "Else \u2192 predict GDS."
+    ],
+    "text_for_vader": "text_raw (title + body + comments, uncleaned)"
+  }
+}

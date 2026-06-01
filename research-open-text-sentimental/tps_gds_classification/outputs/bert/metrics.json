@@ -1,0 +1,40 @@
+{
+  "model": "bert-base-uncased_finetuned",
+  "model_name": "bert-base-uncased",
+  "max_length": 512,
+  "text_column": "text_raw",
+  "verified_unique_posts": 542,
+  "after_gds_undersample_n": 261,
+  "n_tps_after_undersample": 86,
+  "n_gds_after_undersample": 175,
+  "train_size": 182,
+  "val_size": 39,
+  "test_size": 40,
+  "class_weights_balanced": [
+    0.7459016442298889,
+    1.5166666507720947
+  ],
+  "val_eval": {
+    "eval_loss": 0.6872109770774841,
+    "eval_accuracy": 0.6153846153846154,
+    "eval_f1_macro": 0.606060606060606,
+    "eval_f1_tps": 0.5454545454545454,
+    "eval_runtime": 5.4313,
+    "eval_samples_per_second": 7.181,
+    "eval_steps_per_second": 0.921,
+    "epoch": 4.0
+  },
+  "test_accuracy": 0.65,
+  "test_f1_tps": 0.5625,
+  "test_f1_macro": 0.6354166666666667,
+  "test_precision_tps": 0.47368421052631576,
+  "test_recall_tps": 0.6923076923076923,
+  "random_state": 42,
+  "gds_sample_size": 175,
+  "training_args": {
+    "epochs": 4,
+    "batch_size": 8,
+    "lr": 2e-05,
+    "weight_decay": 0.01
+  }
+}

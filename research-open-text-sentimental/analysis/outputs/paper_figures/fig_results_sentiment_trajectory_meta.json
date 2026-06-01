@@ -1,0 +1,20 @@
+{
+  "generated_at_utc": "2026-05-27T18:22:44.746701+00:00",
+  "n_tps_threads": 86,
+  "n_gds_threads": 456,
+  "n_skipped": 0,
+  "grid_points": 51,
+  "end_mean_gap_tps": 0.3581769081665269,
+  "end_mean_gap_gds": 0.26756975633680286,
+  "mean_gap_area_tps": 46.39899869535656,
+  "mean_gap_area_gds": 33.69036906040776,
+  "end_author_mean_tps": -0.045583308416389814,
+  "end_community_mean_tps": 0.1712127225359241,
+  "end_author_mean_gds": 0.16153131636232512,
+  "end_community_mean_gds": 0.1941867108168241,
+  "ci_method": "mean \u00b1 1.96\u00b7SEM across threads per grid point",
+  "sources": [
+    "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/data/c1_prime/c1_prime_metrics.csv",
+    "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/raw"
+  ]
+}

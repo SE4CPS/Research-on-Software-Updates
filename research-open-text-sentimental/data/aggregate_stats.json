@@ -1,0 +1,115 @@
+{
+  "source": "enhanced_automated_sentiment_results.json",
+  "source_metadata": {
+    "date": "2025-10-07 09:53:29",
+    "api_endpoint": "https://releasetrain.io/api/reddit",
+    "total_posts_fetched": 3519,
+    "total_posts_analyzed": 324,
+    "sentiment_model": "VADER (Valence Aware Dictionary and sEntiment Reasoner)",
+    "enhanced_filtering": {
+      "min_total_comments": 10,
+      "min_author_replies": 3,
+      "min_community_comments": 5,
+      "min_quality_score": 0.3
+    },
+    "sentiment_thresholds": {
+      "positive": "compound >= 0.05",
+      "negative": "compound <= -0.05",
+      "neutral": "-0.05 < compound < 0.05"
+    }
+  },
+  "n_posts_analyzed": 324,
+  "aggregate_stats": {
+    "n_posts": 324,
+    "overall_mean_author_sentiment": 0.2976,
+    "overall_mean_community_sentiment": 0.2602,
+    "average_divergence": 0.1902,
+    "median_divergence": 0.1731,
+    "pct_author_more_negative": 41.4,
+    "count_author_more_negative": 134,
+    "author_mean_min": -0.5839,
+    "author_mean_max": 0.8896,
+    "community_mean_min": -0.3645,
+    "community_mean_max": 0.7894,
+    "divergence_min": 0.0018,
+    "divergence_max": 0.6662,
+    "average_author_trend": -0.0089,
+    "average_community_trend": -0.0027,
+    "average_author_volatility": 0.4309,
+    "average_community_volatility": 0.4714,
+    "pct_author_trend_positive": 47.8,
+    "pct_community_trend_positive": 46.9
+  },
+  "per_post_stats_sample": [
+    {
+      "post_id": "1o094i5",
+      "subreddit": "Wordpress",
+      "author_mean": 0.2533,
+      "community_mean": 0.3587,
+      "divergence": 0.1055,
+      "author_more_negative": true,
+      "author_trend": -0.0174,
+      "community_trend": 0.005,
+      "author_volatility": 0.7454,
+      "community_volatility": 0.5375,
+      "n_author_replies": 11,
+      "n_community_comments": 19
+    },
+    {
+      "post_id": "1o085tj",
+      "subreddit": "Python",
+      "author_mean": 0.4598,
+      "community_mean": 0.4227,
+      "divergence": 0.0372,
+      "author_more_negative": false,
+      "author_trend": 0.0092,
+      "community_trend": -0.0098,
+      "author_volatility": 0.3923,
+      "community_volatility": 0.299,
+      "n_author_replies": 10,
+      "n_community_comments": 13
+    },
+    {
+      "post_id": "1o07gac",
+      "subreddit": "transformers",
+      "author_mean": 0.2337,
+      "community_mean": 0.248,
+      "divergence": 0.0143,
+      "author_more_negative": true,
+      "author_trend": -0.0106,
+      "community_trend": 0.0245,
+      "author_volatility": 0.3506,
+      "community_volatility": 0.45,
+      "n_author_replies": 3,
+      "n_community_comments": 19
+    },
+    {
+      "post_id": "1o076os",
+      "subreddit": "comfyui",
+      "author_mean": 0.1609,
+      "community_mean": 0.0495,
+      "divergence": 0.1114,
+      "author_more_negative": false,
+      "author_trend": -0.3147,
+      "community_trend": 0.0229,
+      "author_volatility": 0.669,
+      "community_volatility": 0.3904,
+      "n_author_replies": 4,
+      "n_community_comments": 12
+    },
+    {
+      "post_id": "1o03zht",
+      "subreddit": "neovim",
+      "author_mean": 0.328,
+      "community_mean": 0.1469,
+      "divergence": 0.1811,
+      "author_more_negative": false,
+      "author_trend": 0.0183,
+      "community_trend": 0.0036,
+      "author_volatility": 0.4276,
+      "community_volatility": 0.3239,
+      "n_author_replies": 15,
+      "n_community_comments": 22
+    }
+  ]
+}

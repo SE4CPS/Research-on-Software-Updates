@@ -99,3 +99,16 @@ temp/
 tmp/
 output/
 results/
+
+# Large binaries / local caches (do not commit)
+*.pdf
+.mplconfig/
+
+# Separate project repo (tracked in its own GitHub repo)
+vader-sentiment-dashboard/
+
+# Large model weights / training checkpoints (exceed GitHub 100MB limit; use LFS or external storage)
+*.safetensors
+*.pt
+*.pth
+**/outputs/bert/checkpoints/

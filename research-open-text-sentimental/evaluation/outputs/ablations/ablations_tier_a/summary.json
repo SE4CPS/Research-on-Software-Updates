@@ -1,0 +1,188 @@
+{
+  "created_at_utc": "2026-05-26T21:04:40.527081+00:00",
+  "n_samples": 304,
+  "n_folds": 5,
+  "model": "logistic_regression or logistic_hybrid",
+  "ablations": [
+    {
+      "ablation_id": "D1_title_only",
+      "description": "Title only (raw)",
+      "text_column": "text_title_only",
+      "aggregate": {
+        "accuracy_mean": 0.8618032786885245,
+        "accuracy_std": 0.030002687329248004,
+        "f1_macro_mean": 0.6949705649568989,
+        "f1_macro_std": 0.07815998992714697,
+        "f1_tps_mean": 0.46944444444444444,
+        "f1_tps_std": 0.14007824092358853,
+        "precision_tps_mean": 0.6895238095238095,
+        "precision_tps_std": 0.13913402403434946,
+        "recall_tps_mean": 0.36,
+        "recall_tps_std": 0.12639306393774244,
+        "pr_auc_tps_mean": 0.6512777351609896,
+        "pr_auc_tps_std": 0.14774126631308337
+      },
+      "bootstrap_oof": {
+        "f1_macro": {
+          "estimate": 0.6977272727272728,
+          "ci_lower": 0.6225536177171465,
+          "ci_upper": 0.7696985087442185
+        },
+        "f1_tps": {
+          "estimate": 0.475,
+          "ci_lower": 0.33321917808219187,
+          "ci_upper": 0.6037834119496855
+        },
+        "pr_auc_tps": {
+          "estimate": 0.6326934933440977,
+          "ci_lower": 0.5085401160395752,
+          "ci_upper": 0.7524645453397962
+        }
+      }
+    },
+    {
+      "ablation_id": "D2_title_body",
+      "description": "Title + post body",
+      "text_column": "text_title_body",
+      "aggregate": {
+        "accuracy_mean": 0.8354644808743169,
+        "accuracy_std": 0.04211037597574141,
+        "f1_macro_mean": 0.5847632706511211,
+        "f1_macro_std": 0.10253334600562834,
+        "f1_tps_mean": 0.26219780219780214,
+        "f1_tps_std": 0.18279019566715235,
+        "precision_tps_mean": 0.65,
+        "precision_tps_std": 0.355512150128359,
+        "recall_tps_mean": 0.17272727272727273,
+        "recall_tps_std": 0.13267745017569477,
+        "pr_auc_tps_mean": 0.5635960671483466,
+        "pr_auc_tps_std": 0.13496968631713552
+      },
+      "bootstrap_oof": {
+        "f1_macro": {
+          "estimate": 0.5860566448801743,
+          "ci_lower": 0.5142455333296766,
+          "ci_upper": 0.6617611910084022
+        },
+        "f1_tps": {
+          "estimate": 0.2647058823529412,
+          "ci_lower": 0.1332786885245902,
+          "ci_upper": 0.40912004662004664
+        },
+        "pr_auc_tps": {
+          "estimate": 0.49021872995693594,
+          "ci_lower": 0.36309013410003,
+          "ci_upper": 0.6199043352808732
+        }
+      }
+    },
+    {
+      "ablation_id": "D3_full_thread",
+      "description": "Full thread (cleaned TF-IDF text)",
+      "text_column": "text",
+      "aggregate": {
+        "accuracy_mean": 0.8224043715846994,
+        "accuracy_std": 0.03127192115371476,
+        "f1_macro_mean": 0.6224256728482507,
+        "f1_macro_std": 0.06366737354522356,
+        "f1_tps_mean": 0.3480859010270774,
+        "f1_tps_std": 0.11730271364552276,
+        "precision_tps_mean": 0.4904761904761905,
+        "precision_tps_std": 0.13531687846078877,
+        "recall_tps_mean": 0.27999999999999997,
+        "recall_tps_std": 0.12237322669428247,
+        "pr_auc_tps_mean": 0.5381221155358497,
+        "pr_auc_tps_std": 0.12640702797881373
+      },
+      "bootstrap_oof": {
+        "f1_macro": {
+          "estimate": 0.6270447110141767,
+          "ci_lower": 0.5530576914005377,
+          "ci_upper": 0.696306806751052
+        },
+        "f1_tps": {
+          "estimate": 0.35714285714285715,
+          "ci_lower": 0.2222222222222222,
+          "ci_upper": 0.48081896551724135
+        },
+        "pr_auc_tps": {
+          "estimate": 0.45205738347633634,
+          "ci_lower": 0.3401058856440346,
+          "ci_upper": 0.6110643031302851
+        }
+      }
+    },
+    {
+      "ablation_id": "D4_full_plus_trajectory",
+      "description": "Full thread + C1\u2032 trajectory features",
+      "text_column": "text",
+      "aggregate": {
+        "accuracy_mean": 0.75,
+        "accuracy_std": 0.04395002169985085,
+        "f1_macro_mean": 0.5908713087277551,
+        "f1_macro_std": 0.09279454007883964,
+        "f1_tps_mean": 0.3368888958725619,
+        "f1_tps_std": 0.16876900366075792,
+        "precision_tps_mean": 0.302020202020202,
+        "precision_tps_std": 0.12434913705752168,
+        "recall_tps_mean": 0.39090909090909093,
+        "recall_tps_std": 0.2374102701309199,
+        "pr_auc_tps_mean": 0.3853852951053986,
+        "pr_auc_tps_std": 0.13288566423987183
+      },
+      "bootstrap_oof": {
+        "f1_macro": {
+          "estimate": 0.600415081286752,
+          "ci_lower": 0.530511183275434,
+          "ci_upper": 0.6596421554783738
+        },
+        "f1_tps": {
+          "estimate": 0.3559322033898305,
+          "ci_lower": 0.23808345120226307,
+          "ci_upper": 0.4603479853479853
+        },
+        "pr_auc_tps": {
+          "estimate": 0.34499118149287833,
+          "ci_lower": 0.23958153646940614,
+          "ci_upper": 0.4883766097147911
+        }
+      }
+    },
+    {
+      "ablation_id": "D5_full_plus_subreddit",
+      "description": "Full thread + subreddit one-hot (leakage check)",
+      "text_column": "text",
+      "aggregate": {
+        "accuracy_mean": 0.7697267759562841,
+        "accuracy_std": 0.0645637144998321,
+        "f1_macro_mean": 0.6642238359874841,
+        "f1_macro_std": 0.06955428043589888,
+        "f1_tps_mean": 0.4765700483091787,
+        "f1_tps_std": 0.09425552846676695,
+        "precision_tps_mean": 0.40540935672514616,
+        "precision_tps_std": 0.10281839906326837,
+        "recall_tps_mean": 0.5872727272727273,
+        "recall_tps_std": 0.09306533739687074,
+        "pr_auc_tps_mean": 0.5187501028489669,
+        "pr_auc_tps_std": 0.11892335311952958
+      },
+      "bootstrap_oof": {
+        "f1_macro": {
+          "estimate": 0.661319073083779,
+          "ci_lower": 0.5927170077752191,
+          "ci_upper": 0.7265771369634331
+        },
+        "f1_tps": {
+          "estimate": 0.4696969696969697,
+          "ci_lower": 0.35382352941176476,
+          "ci_upper": 0.5735354387656701
+        },
+        "pr_auc_tps": {
+          "estimate": 0.4171293660350007,
+          "ci_lower": 0.30722390576317554,
+          "ci_upper": 0.5753737804523071
+        }
+      }
+    }
+  ]
+}

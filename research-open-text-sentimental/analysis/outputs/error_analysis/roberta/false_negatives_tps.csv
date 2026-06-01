@@ -1,0 +1,56 @@
+reddit_id,subreddit,gold,pred,score_tps,title,corrected_label,label_name_hint,correct
+1nqixzh,chrome,1,0,0.3681350648403168,My chrome randomly freezes every after a few hours ever since I upgraded my Mac(M1) to MacOS Tahoe,1,TPS,False
+1o16z1v,immich,1,0,0.4903829991817474,Immich_Server in Container Manager Stopped Unexpectedly constantly after updating to V2.0.0,1,TPS,False
+1p9x65b,Android,1,0,0.4399878978729248,Samsung green lines issue is back! Users claim issue started after update,1,TPS,False
+1nuo3on,immich,1,0,0.3680469989776611,Unable to upgrade to the latest version server,1,TPS,False
+1s52c8t,transformers,1,0,0.0334187857806682,"Missing Link Ultra Magnus might be one of my favorite toys this year, especially after constantly disappointing updates",1,TPS,False
+1o0vrgp,immich,1,0,0.4068069756031036,Updated to 1.10.6 and cannot see pictures anymore,1,TPS,False
+1pf32mo,windows,1,0,0.3185994923114776,Microsoft wants to fix app updates on Windows 11 — previews new update orchestrator platform designed make them invisible,1,TPS,False
+1nxiv7z,comfyui,1,0,0.4440681040287018,"Quick Update, Fixed the chin issue, Instructions are given in the description",1,TPS,False
+1nwqgvm,Wordpress,1,0,0.3579449951648712,Can't login to wordpress website anymore,1,GDS,False
+1ppl4nv,Bitcoin,1,0,0.384120225906372,Can't be unseen,1,GDS,False
+1ozp5qj,angular,1,0,0.3997369110584259,I still can't get used to it 😀,1,GDS,False
+1orjqw2,Bitcoin,1,0,0.3330235183238983,Can't argue,1,GDS,False
+1ohaa1n,Bitcoin,1,0,0.2330671697854995,You just can't unsee it,1,GDS,False
+1pd74y8,linux,1,0,0.3551819026470184,X.Org Server's xkbcomp Updated For Four Security Issues Dating Back Years,1,GDS,False
+1oualms,linux,1,0,0.2190805226564407,"Firefox 145.0, See All New Features, Updates and Fixes",1,GDS,False
+1s2d096,firefox,1,0,0.3522256016731262,"Firefox 149.0, See All New Features, Updates and Fixes",1,GDS,False
+1oualta,firefox,1,0,0.3967030346393585,"Firefox 145.0, See All New Features, Updates and Fixes",1,GDS,False
+1osqjus,godot,1,0,0.2699252963066101,"Godot's shader preview punishing bad code, crashing computer",1,GDS,False
+1qof4q5,firefox,1,0,0.3538984358310699,"Firefox 147.0.2, See All New Features, Updates and Fixes",1,GDS,False
+1oiao86,firefox,1,0,0.4772527813911438,"Firefox 144.0.2, See All New Features, Updates and Fixes",1,GDS,False
+1qmk1ih,comfyui,1,0,0.3600362241268158,"Who is the culprit here? (pic shows all the extension I added + the deprecated legacy API error). Afaik none of those can be updated further so, can I manually edit some files to fix it myself? Thanks...",1,GDS,False
+1nqabbo,transformers,1,0,0.1225800588726997,"""...Now kiss!"" ""Uhhh, Lord Megatron?"" ""What is it, Shockwave? Can't you see I'm busy?""",1,GDS,False
+1n4bo7c,bun,1,0,0.3471955955028534,AI overviews will never fail to amaze me,1,GDS,False
+1s4927w,HomeNetworking,1,0,0.3031632006168365,If ain’t broke don’t fix it,1,GDS,False
+1nx30l4,vscode,1,0,0.2091599702835083,I AM CRASHING OUT,1,GDS,False
+1q2smca,Bitcoin,1,0,0.3192286491394043,Never fails…,1,GDS,False
+1nnvsoh,chrome,1,0,0.3694762587547302,Google Search Engine not working,1,GDS,False
+1nngrep,Android,1,0,0.3531002700328827,Upvote this issue to get JPEG XL back into Chrome again,1,GDS,False
+1npqevt,chrome,1,0,0.3795806169509887,Chrome running on background. Can't terminate the task. What's happening??,1,GDS,False
+1nzj2ic,google,1,0,0.4562617242336273,Google fail,1,GDS,False
+1nnrs05,google,1,0,0.4969941079616546,"This never happened before, until this month. Now it happens every day. I can't think of anything I've done differently.",1,GDS,False
+1p1ccv4,MicrosoftEdge,1,0,0.4458379745483398,"Where's the ""new tab"" button?! Edge on Android is so broken it's not funny.",1,GDS,False
+1r66kb9,MicrosoftEdge,1,0,0.2556451857089996,[Bug][Android] look at 3-Button navigation bar. Wonders of Edge on Android.,1,GDS,False
+1onnoh7,Android,1,0,0.4848447442054748,"Android November security update is out, fixes two vulnerabilities",1,GDS,False
+1of5rsv,transformers,1,0,0.1138213798403739,I can't be the only one who has thought of this figure...,1,GDS,False
+1nw13o2,chrome,1,0,0.2721435725688934,I'm tired of this issue in chrome,1,GDS,False
+1npcivg,transformers,1,0,0.3399974405765533,Packaging error?,1,GDS,False
+1qhs7lf,transformers,1,0,0.1188514456152916,HE CAN'T KEEP GETTING AWAY WITH THIS SCRAP!!!😭,1,GDS,False
+1qscg7w,Android,1,0,0.296141117811203,EU warns Google: Gemini cannot be the only AI with deep Android integration (Updated: Statement),1,GDS,False
+1m1d94j,openssl,1,0,0.3715168535709381,TLS is failing error:0A0000C6:SSL routines::packet length too long,1,GDS,False
+1p0cbx4,comfyui,1,0,0.3551123142242431,i keep getting this error in qwen image edit.,1,GDS,False
+1ryzf7h,homeassistant,1,0,0.3596439063549042,"If you enable ""live notifications for all apps"" in android developer settings, you can get HA live notifications as a chip in your status bar and in the Now Bar. It unfortunately doesn't work if you have an image in the notification.",1,GDS,False
+1pfc58t,comfyui,1,0,0.4916534125804901,Anyone know which node pack I need to update to fix this nastiness?,1,GDS,False
+1p9t2b3,transformers,1,0,0.3566980361938476,"Haul from comiccon today, but I can't transform them because I broke my arm earlier this week :(",1,GDS,False
+1pp1ivu,Android,1,0,0.1745614558458328,Android is fixing the most annoying part of taking scrolling screenshots [Auto delete OG screenshot if scrolling screenshot is taken],1,GDS,False
+1np7ve4,neovim,1,0,0.3645137250423431,Autocommand doesn't work,1,GDS,False
+1nqu3ag,typescript,1,0,0.3296472132205963,"Pipetype: TypeScript Unions, JavaScript Bitwise Operators, and My Favorite Failed Experiment",1,GDS,False
+1nuhb2n,firefox,1,0,0.3545892834663391,Ctrl + Tab not working,1,GDS,False
+1r3x2hb,anime,1,0,0.0310238730162382,A double victory(Chivalry of a Failed Knight),1,GDS,False
+1njsd5y,Syncthing,1,0,0.3662325441837311,"Three way, three device Sync - any issues to be wary of?",1,GDS,False
+1p7y4ac,Bitcoin,1,0,0.3192539513111114,Can't believe he got it all wrong.,1,GDS,False
+1pzq59v,godot,1,0,0.4331357181072235,do u have opinion on if parent node should handle all the code or if code should be broken up,1,GDS,False
+1p1t93s,immich,1,0,0.3624675571918487,This was driving me crazy! I have 2 servers that felt broken smh,1,GDS,False
+1ow2abx,Android,1,0,0.3316976428031921,"Lenovo says upcoming Android PCs will have ""limited desktop features, app compatibility issues"" and more problems when compared to Windows PCs",1,GDS,False
+1qeuyn4,linux,1,0,0.1920209378004074,"curl to discontinue its HackerOne / bug bounty due to ""too strong incentives to find and make up 'problems' in bad faith that cause overload and abuse.""",1,GDS,False

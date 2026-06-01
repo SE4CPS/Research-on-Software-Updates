@@ -1,0 +1,74 @@
+{
+  "fold_metrics": [
+    {
+      "accuracy": 0.856353591160221,
+      "f1_macro": 0.6346273291925466,
+      "f1_tps": 0.35,
+      "precision_tps": 0.6363636363636364,
+      "recall_tps": 0.2413793103448276,
+      "pr_auc_tps": 0.5343189180854457
+    },
+    {
+      "accuracy": 0.8397790055248618,
+      "f1_macro": 0.45645645645645644,
+      "f1_tps": 0.0,
+      "precision_tps": 0.0,
+      "recall_tps": 0.0,
+      "pr_auc_tps": 0.4050196061435915
+    },
+    {
+      "accuracy": 0.8444444444444444,
+      "f1_macro": 0.4578313253012048,
+      "f1_tps": 0.0,
+      "precision_tps": 0.0,
+      "recall_tps": 0.0,
+      "pr_auc_tps": 0.3536245274375127
+    }
+  ],
+  "aggregate": {
+    "accuracy_mean": 0.8468590137098424,
+    "accuracy_std": 0.008547036375201478,
+    "f1_macro_mean": 0.5163050369834026,
+    "f1_macro_std": 0.10247241673399046,
+    "f1_tps_mean": 0.11666666666666665,
+    "f1_tps_std": 0.20207259421636903,
+    "precision_tps_mean": 0.21212121212121213,
+    "precision_tps_std": 0.36740471675703457,
+    "recall_tps_mean": 0.08045977011494253,
+    "recall_tps_std": 0.13936040980439243,
+    "pr_auc_tps_mean": 0.43098768388885,
+    "pr_auc_tps_std": 0.09310408959462951
+  },
+  "bootstrap_oof": {
+    "accuracy": {
+      "estimate": 0.8468634686346863,
+      "ci_lower": 0.8173431734317343,
+      "ci_upper": 0.8782287822878229
+    },
+    "f1_macro": {
+      "estimate": 0.5301183425772151,
+      "ci_lower": 0.4805319276386726,
+      "ci_upper": 0.584298975959175
+    },
+    "f1_tps": {
+      "estimate": 0.14432989690721648,
+      "ci_lower": 0.04819277108433735,
+      "ci_upper": 0.240060606060606
+    },
+    "pr_auc_tps": {
+      "estimate": 0.3615868500923064,
+      "ci_lower": 0.2681355564552383,
+      "ci_upper": 0.47178256660474094
+    }
+  },
+  "params": {
+    "name": "roberta",
+    "text_column": "text_raw",
+    "model_name": "roberta-base",
+    "max_length": 128,
+    "epochs": 2,
+    "batch_size": 8,
+    "learning_rate": 2e-05,
+    "device": "mps"
+  }
+}

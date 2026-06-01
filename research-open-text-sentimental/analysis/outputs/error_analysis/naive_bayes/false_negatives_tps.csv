@@ -1,0 +1,34 @@
+reddit_id,subreddit,gold,pred,score_tps,title,corrected_label,label_name_hint,correct
+1p9x65b,Android,1,0,0.3602668803505949,Samsung green lines issue is back! Users claim issue started after update,1,TPS,False
+1s52c8t,transformers,1,0,0.2347356491043549,"Missing Link Ultra Magnus might be one of my favorite toys this year, especially after constantly disappointing updates",1,TPS,False
+1pf32mo,windows,1,0,0.3026459597145666,Microsoft wants to fix app updates on Windows 11 — previews new update orchestrator platform designed make them invisible,1,TPS,False
+1oetmbo,linux,1,0,0.4448070787151759,Ubuntu 25.10 Unattended Upgrades Broken Due To Rust Coreutils Bug,1,TPS,False
+1nxiv7z,comfyui,1,0,0.3944953190759996,"Quick Update, Fixed the chin issue, Instructions are given in the description",1,TPS,False
+1ppl4nv,Bitcoin,1,0,0.3086330019738384,Can't be unseen,1,GDS,False
+1ozp5qj,angular,1,0,0.3505827644386974,I still can't get used to it 😀,1,GDS,False
+1orjqw2,Bitcoin,1,0,0.2726862271392792,Can't argue,1,GDS,False
+1ohaa1n,Bitcoin,1,0,0.4877679950259406,You just can't unsee it,1,GDS,False
+1pd74y8,linux,1,0,0.443437385970132,X.Org Server's xkbcomp Updated For Four Security Issues Dating Back Years,1,GDS,False
+1oualms,linux,1,0,0.4968392339770703,"Firefox 145.0, See All New Features, Updates and Fixes",1,GDS,False
+1osqjus,godot,1,0,0.4549300209288197,"Godot's shader preview punishing bad code, crashing computer",1,GDS,False
+1nqabbo,transformers,1,0,0.3091184396624002,"""...Now kiss!"" ""Uhhh, Lord Megatron?"" ""What is it, Shockwave? Can't you see I'm busy?""",1,GDS,False
+1s4927w,HomeNetworking,1,0,0.3794597177637398,If ain’t broke don’t fix it,1,GDS,False
+1q2smca,Bitcoin,1,0,0.2666464453240164,Never fails…,1,GDS,False
+1nngrep,Android,1,0,0.4829971290582578,Upvote this issue to get JPEG XL back into Chrome again,1,GDS,False
+1nzj2ic,google,1,0,0.3501037140436141,Google fail,1,GDS,False
+1of5rsv,transformers,1,0,0.2494922566669218,I can't be the only one who has thought of this figure...,1,GDS,False
+1npcivg,transformers,1,0,0.3311192764861571,Packaging error?,1,GDS,False
+1qhs7lf,transformers,1,0,0.2298590736024773,HE CAN'T KEEP GETTING AWAY WITH THIS SCRAP!!!😭,1,GDS,False
+1qscg7w,Android,1,0,0.3290808601823421,EU warns Google: Gemini cannot be the only AI with deep Android integration (Updated: Statement),1,GDS,False
+1ryzf7h,homeassistant,1,0,0.4522654241799881,"If you enable ""live notifications for all apps"" in android developer settings, you can get HA live notifications as a chip in your status bar and in the Now Bar. It unfortunately doesn't work if you have an image in the notification.",1,GDS,False
+1ns8l1d,pytorch,1,0,0.3671761720411656,Accidentally installed CUDA 13.0 and now cant run PyTorch due to compatibility issues. What do i do?,1,GDS,False
+1p9t2b3,transformers,1,0,0.3620651825038576,"Haul from comiccon today, but I can't transform them because I broke my arm earlier this week :(",1,GDS,False
+1pp1ivu,Android,1,0,0.3799518518813511,Android is fixing the most annoying part of taking scrolling screenshots [Auto delete OG screenshot if scrolling screenshot is taken],1,GDS,False
+1nqu3ag,typescript,1,0,0.3325315821207474,"Pipetype: TypeScript Unions, JavaScript Bitwise Operators, and My Favorite Failed Experiment",1,GDS,False
+1r3x2hb,anime,1,0,0.1993501825531144,A double victory(Chivalry of a Failed Knight),1,GDS,False
+1njsd5y,Syncthing,1,0,0.3724296029306264,"Three way, three device Sync - any issues to be wary of?",1,GDS,False
+1p7y4ac,Bitcoin,1,0,0.3845498870106746,Can't believe he got it all wrong.,1,GDS,False
+1pzq59v,godot,1,0,0.3688241534803639,do u have opinion on if parent node should handle all the code or if code should be broken up,1,GDS,False
+1ow2abx,Android,1,0,0.2798628840802827,"Lenovo says upcoming Android PCs will have ""limited desktop features, app compatibility issues"" and more problems when compared to Windows PCs",1,GDS,False
+1q37ef7,chrome,1,0,0.4291024640828283,Any chance Chrome will finally fix their Dark Mode for Web Content in 2026?!,1,GDS,False
+1qeuyn4,linux,1,0,0.3308179745786967,"curl to discontinue its HackerOne / bug bounty due to ""too strong incentives to find and make up 'problems' in bad faith that cause overload and abuse.""",1,GDS,False

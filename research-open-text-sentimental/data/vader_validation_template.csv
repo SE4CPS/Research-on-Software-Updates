@@ -1,0 +1,26 @@
+post_id,subreddit,title,url,vader_title_label,vader_title_compound,vader_author_mean,vader_author_bucket,human_sentiment
+1o094i5,Wordpress,How to optimize my wordpress site for performance especially LCP FCP,https://reddit.com/r/Wordpress/comments/1o094i5/how_to_optimize_my_wordpress_site_for_performance/,Positive,0.4939,0.2533,Positive,Neutral
+1o076os,comfyui,Wan2.2 Animate in HuggingFace is far superior. Why?,https://reddit.com/r/comfyui/comments/1o076os/wan22_animate_in_huggingface_is_far_superior_why/,Positive,0.5423,0.1609,Positive,Positive
+1o03zht,neovim,At this point I have almost 100 colorschemes to choose from... suggest some to make the number 100,https://reddit.com/r/neovim/comments/1o03zht/at_this_point_i_have_almost_100_colorschemes_to/,Positive,0.0772,0.328,Positive,Neutral
+1nzvr4t,comfyui,⚡ Compact Wan Workflow — Simplify Your Setup (with support for Low VRAM 6–8GB) 🚀,https://reddit.com/r/comfyui/comments/1nzvr4t/compact_wan_workflow_simplify_your_setup_with/,Positive,0.1531,0.4567,Positive,Positive
+1nznnb8,comfyui,Qwen image edit giving weird results? Untuck this man's shirt please!,https://reddit.com/r/comfyui/comments/1nznnb8/qwen_image_edit_giving_weird_results_untuck_this/,Positive,0.5093,-0.2858,Negative,Negative
+1nzmlzo,vscode,"Built a VS Code extension that tracks WHAT you're doing, not just how long (creating vs debugging vs refactoring vs exploring)",https://reddit.com/r/vscode/comments/1nzmlzo/built_a_vs_code_extension_that_tracks_what_youre/,Positive,0.296,0.1483,Positive,Positive
+1nzk6tz,cprogramming,Best books for C programming language for someone who knows the basics of C++,https://reddit.com/r/cprogramming/comments/1nzk6tz/best_books_for_c_programming_language_for_someone/,Positive,0.6369,0.4915,Positive,Neutral
+1nzjdcl,PHP,Opinions Welcome - ParagonIE Open Source Software,https://reddit.com/r/PHP/comments/1nzjdcl/opinions_welcome_paragonie_open_source_software/,Positive,0.4588,0.3212,Positive,Neutral
+1o00j91,PHP,Old WordPress site with PHP errors — fix it or start from scratch?,https://reddit.com/r/PHP/comments/1o00j91/old_wordpress_site_with_php_errors_fix_it_or/,Negative,-0.34,-0.1259,Negative,Negative
+1o00hoo,transformers,"Is it a bad thing that one of the only movie toys that I actually want, is this thing 😅",https://reddit.com/r/transformers/comments/1o00hoo/is_it_a_bad_thing_that_one_of_the_only_movie_toys/,Negative,-0.1779,0.3833,Positive,Positive
+1nzvpp6,transformers,I'm not sure why people are complaining about Studio Devastator's scale...,https://reddit.com/r/transformers/comments/1nzvpp6/im_not_sure_why_people_are_complaining_about/,Negative,-0.4141,0.1605,Positive,Neutral
+1nztk3j,linux,Linux Means Less Pain,https://reddit.com/r/linux/comments/1nztk3j/linux_means_less_pain/,Negative,-0.4601,0.2965,Positive,Positive
+1nzl7im,comfyui,What's wrong with this setup?,https://reddit.com/r/comfyui/comments/1nzl7im/whats_wrong_with_this_setup/,Negative,-0.4767,0.3429,Positive,Negative
+1nzl1nj,Python,Why is Python type hinting so maddening compared to other implementations?,https://reddit.com/r/Python/comments/1nzl1nj/why_is_python_type_hinting_so_maddening_compared/,Negative,-0.6269,-0.099,Negative,Negative
+1nzga86,Wordpress,Something wrong with my social previews HELPPPPP!,https://reddit.com/r/Wordpress/comments/1nzga86/something_wrong_with_my_social_previews_helppppp/,Negative,-0.5255,0.4225,Positive,Negative
+1nzf1c5,rustdesk,Rustdesk for Android is not in play store?,https://reddit.com/r/rustdesk/comments/1nzf1c5/rustdesk_for_android_is_not_in_play_store/,Negative,-0.2584,0.2911,Positive,Neutral
+1o085tj,Python,"I pushed Python to 20,000 requests sent/second. Here's the code and kernel tuning I used.",https://reddit.com/r/Python/comments/1o085tj/i_pushed_python_to_20000_requests_sentsecond/,Neutral,0,0.4598,Positive,Positive
+1o07gac,transformers,That’s just Prime…,https://reddit.com/r/transformers/comments/1o07gac/thats_just_prime/,Neutral,0,0.2337,Positive,Neutral
+1o010s9,rust,[Media] I built a Markdown to PDF editor with Tauri and the Typst engine!,https://reddit.com/r/rust/comments/1o010s9/media_i_built_a_markdown_to_pdf_editor_with_tauri/,Neutral,0,0.4457,Positive,Positive
+1nzs99q,rust,fibonacci-numbers crate with self-recursive dependencies,https://reddit.com/r/rust/comments/1nzs99q/fibonaccinumbers_crate_with_selfrecursive/,Neutral,0,-0.1068,Negative,Neutral
+1nzrv0u,Bitcoin,126k baby,https://reddit.com/r/Bitcoin/comments/1nzrv0u/126k_baby/,Neutral,0,0.4897,Positive,Positive
+1nzrf0j,comfyui,Carl - Wan 2.2 Animate,https://reddit.com/r/comfyui/comments/1nzrf0j/carl_wan_22_animate/,Neutral,0,0.2359,Positive,Neutral
+1nzqzcl,immich,I made a tool for extracting media info from WhatsApp and pushing that to Immich,https://reddit.com/r/immich/comments/1nzqzcl/i_made_a_tool_for_extracting_media_info_from/,Neutral,0,0.5804,Positive,Positive
+1nzmoql,Bitcoin,3 months earning bitcoin back instead of points on CC.,https://reddit.com/r/Bitcoin/comments/1nzmoql/3_months_earning_bitcoin_back_instead_of_points/,Neutral,0,0.2091,Positive,Positive
+1nzkodk,laravel,i've built the world’s strictest laravel/php starter kit..,https://reddit.com/r/laravel/comments/1nzkodk/ive_built_the_worlds_strictest_laravelphp_starter/,Neutral,0,0.2563,Positive,Positive

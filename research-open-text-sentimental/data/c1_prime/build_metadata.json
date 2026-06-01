@@ -1,0 +1,16 @@
+{
+  "name": "ReleaseTrain-TPSGDS-542-Trajectories",
+  "version": "1.0",
+  "built_at_utc": "2026-05-25T23:23:25.653482+00:00",
+  "n_labeled": 542,
+  "n_built": 542,
+  "n_missing_raw": 0,
+  "sentiment": "VADER compound",
+  "role_separation": "is_submitter or author match; author_description as first author point",
+  "comment_order": "created_utc ascending",
+  "labels_path": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/updated_labeled_dataset_unique.csv",
+  "raw_dir": "/Users/manumathewjiss/Documents/Research-on-Software-Updates/research-open-text-sentimental/tps_gds_classification/data/raw",
+  "missing_reddit_ids": [],
+  "n_missing_list_truncated": false,
+  "tier_note": "Use trajectory_eligible flag for strict cohort; full 542 for population stats."
+}

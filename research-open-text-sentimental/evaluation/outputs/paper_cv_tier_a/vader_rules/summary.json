@@ -1,0 +1,86 @@
+{
+  "fold_metrics": [
+    {
+      "accuracy": 0.2786885245901639,
+      "f1_macro": 0.2738095238095238,
+      "f1_tps": 0.3333333333333333,
+      "precision_tps": 0.2,
+      "recall_tps": 1.0,
+      "pr_auc_tps": 0.2205387205387205
+    },
+    {
+      "accuracy": 0.32786885245901637,
+      "f1_macro": 0.3271455474845305,
+      "f1_tps": 0.3492063492063492,
+      "precision_tps": 0.21153846153846154,
+      "recall_tps": 1.0,
+      "pr_auc_tps": 0.2141051435433687
+    },
+    {
+      "accuracy": 0.3770491803278688,
+      "f1_macro": 0.3768817204301075,
+      "f1_tps": 0.36666666666666664,
+      "precision_tps": 0.22448979591836735,
+      "recall_tps": 1.0,
+      "pr_auc_tps": 0.2348492245963196
+    },
+    {
+      "accuracy": 0.29508196721311475,
+      "f1_macro": 0.29432337906914174,
+      "f1_tps": 0.2711864406779661,
+      "precision_tps": 0.16326530612244897,
+      "recall_tps": 0.8,
+      "pr_auc_tps": 0.15741541699960498
+    },
+    {
+      "accuracy": 0.23333333333333334,
+      "f1_macro": 0.2255892255892256,
+      "f1_tps": 0.30303030303030304,
+      "precision_tps": 0.17857142857142858,
+      "recall_tps": 1.0,
+      "pr_auc_tps": 0.18586370789553164
+    }
+  ],
+  "aggregate": {
+    "accuracy_mean": 0.30240437158469946,
+    "accuracy_std": 0.053868252682061475,
+    "f1_macro_mean": 0.2995498792765058,
+    "f1_macro_std": 0.05679303447141919,
+    "f1_tps_mean": 0.32468461858292363,
+    "f1_tps_std": 0.037978850437152725,
+    "precision_tps_mean": 0.19557299843014128,
+    "precision_tps_std": 0.024715965953442692,
+    "recall_tps_mean": 0.96,
+    "recall_tps_std": 0.08944271909999157,
+    "pr_auc_tps_mean": 0.2025544427147091,
+    "pr_auc_tps_std": 0.030886559158386992
+  },
+  "bootstrap_oof": {
+    "accuracy": {
+      "estimate": 0.3026315789473684,
+      "ci_lower": 0.25320723684210533,
+      "ci_upper": 0.35526315789473684
+    },
+    "f1_macro": {
+      "estimate": 0.3018761644785303,
+      "ci_lower": 0.25,
+      "ci_upper": 0.3542646737771868
+    },
+    "f1_tps": {
+      "estimate": 0.3248407643312102,
+      "ci_lower": 0.2593475647712881,
+      "ci_upper": 0.39131089575694084
+    },
+    "pr_auc_tps": {
+      "estimate": 0.201725762847628,
+      "ci_lower": 0.1498278978062904,
+      "ci_upper": 0.25958820837195445
+    }
+  },
+  "params": {
+    "name": "vader_rules",
+    "text_column": "text_raw",
+    "neutral_band": 0.15,
+    "rule_style": "technical_first"
+  }
+}

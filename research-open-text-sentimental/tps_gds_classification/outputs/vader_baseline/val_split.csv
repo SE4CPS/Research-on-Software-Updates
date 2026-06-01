@@ -1,0 +1,758 @@
+text,text_raw,reddit_id,num_comments_in_post,_id,subreddit,label
+new link goes to an old page that doesn t excist anymore go to settings gt permalinks and hit save to flush the links if that doesn t work check for a redirect in your plugins htaccess or hosting panel also clear your cache that usually fixes it i was wanted to suggest a 301 re direct but fear that might be too easy what am i missing is this on individual buttons and links edit the slug in the new page s settings that should fix it you can also edit the page name slightly eg about to about us or something like that hope this helps,"New link goes to an old page that doesn’t excist anymore
+Go to Settings &gt; Permalinks and hit Save to flush the links. If that doesn’t work, check for a redirect in your plugins, .htaccess, or hosting panel. Also clear your cache. That usually fixes it.
+I was wanted to suggest a 301 re-direct, but fear that might be too easy.
+
+What am I missing?
+Is this on individual buttons and links? Edit the slug in the new page’s settings. That should fix it.
+
+You can also edit the page name slightly eg About to About us or something like that.
+
+Hope this helps",1nnq16o,3,68d194ad79796ed590073047,Wordpress,0
+mcp servers for cms this changes everything i think even more than the idea of cms having agents inside their interface having a mcp server that is easy to work with makes a cms super useful for instance if i can model content easily from the mcp now when i m creating a website or app that needs a new model or an update to a model i can just get my coding agent to take care of it for me don t forget to add this field to the model and update my typescript interfaces similarly if a user wants to do something like a find replace with langauge that doesn t fit within an organizations language guide sometimes those guide files are really huge they can just upload the file search their cms content for stuff that doesn t match and replace it mcp servers allow the user to be in control and to do whatever it is that they need to do i think it changes the cms landscape completely yes i ve been using the directus cms for few years and it s latest version now supports mcp this is absolutely a fantastic feature to have wait is there an agent for let s say wordpress to implement in backend yep taking your data to where people are so they can have multi platform ai interactions custom mcp is way more useful than a chat bot trapped inside crm i don t think we need chat interfaces for everything i have been pondering this question for a bit now is the concept of a website even needed anymore you could upload all of your marketing materials sales info support document etc into the mcp then have a very simple homepage where the user asks it questions or what they are looking for and ai dynamically creates a page with completely customized information followed with prompted questions like do you want to hear about this good point when you create an mcp server it should be more than just a wrapper around the api most api s are super generic and sometimes need very specific inputs the additional work of creating an mcp server and doing all the work to document the schemas for ai makes it much more likely to get good results why would a cms need a mcp server when you can simply connect with other ai api endpoints mcp servers asking for r empowerd check this out i am proud what we are doing in kontent ai i actually saw a demo of this in montreal from martin your vp of product i m cto of agility cms so i talked about it with him very exciting time for cms,"MCP Servers for CMS - this changes everything
+I think even more than the idea of CMS having agents inside their interface, having a MCP server that is easy to work with makes a CMS SUPER useful.
+
+For instance, if I can model content easily from the MCP, now when I'm creating a website or app that needs a new model (or an update to a model) I can just get my coding agent to take care of it for me. ""Don't forget to add this field to the model and update my typescript interfaces.""
+
+Similarly, if a user wants to do something like a find-replace with langauge that doesn't fit within an organizations language guide (sometimes those guide files are REALLY huge), they can just upload the file, search their CMS content for stuff that doesn't match, and replace it.  
+
+MCP servers allow the USER to be in control and to do whatever it is that they need to do. I think it changes the CMS landscape completely.
+yes, I’ve been using the directus cms for few years, and it’s latest version now supports MCP, this is absolutely a fantastic feature to have
+Wait, is there an agent for let‘s say wordpress to implement in backend?
+Yep. Taking your data to where people are so they can have multi platform ai interactions, custom mcp is way more useful than a chat bot trapped inside crm.
+I don’t think we need chat interfaces for everything.
+I have been pondering this question for a bit now.  Is the concept of a website even needed anymore?  You could upload all of your marketing materials, sales info, support document, etc into the MCP, then have a very simple “homepage” where the user asks it questions or what they are looking for and ai dynamically creates a page with completely customized information.  Followed with prompted questions like - do you want to hear about this?
+Good point - when you create an MCP server it should be more than just a wrapper around the API.  Most API's are super generic, and sometimes need very specific inputs.  The additional work of creating an MCP Server and doing all the work to document the schemas for AI makes it much more likely to get good results.
+Why would a CMS need a MCP server when you can simply connect with other AI API endpoints / MCP servers?
+
+Asking for /r/Empowerd
+check this out. I am proud what we are doing in kontent.ai https://kontent.ai/features/agentic-cms/
+I actually saw a demo of this in Montreal from Martin (your VP of Product).  I'm CTO of Agility CMS so I talked about it with him - very exciting time for CMS!",1noj307,9,68dc220dcd215d1b99b070c0,cms,0
+is it supposed to be this way or just bad design after updating to tahoe i notice some lags between some apps i e when clicking on file in the finder quickly heated and some designs are not pleasant to the eyes at all edited adding my mac info apple m2 pro i also saw this today but remember it was white before not sure why it s showing red this company is overrun by marketing people and you see the results of software stack falling apart bug reports are being ignored totally unacceptable for company that has this amount of cash as a general consumer please tell apple what you think it s bad code no designer would ever handoff mocks with a red label on a blue button yeah i think i posted about this some years ago i deleted all my posts a few months ago dark mode has always had dark red on dark grey so it s absolutely impossible to read i ve filled multiple bugs in each version of macos and not a single one got read so i stopped posting bugs reports as didn t see the point in dark mode it shows that red against dark grey virtually unreadable has been since 2020 good to know they have updated it to make this the same i recall seeing someone running into a similar red colour text issue in a previous macos version probably sonoma or sequoia in that case i think the cause was a bad choice of colours in dark mode tahoe in general seems to be lacking polish and quality control to me it looks like it got rushed out before the devs had time to properly finish their job if it came from the pit of tahoe it s all bad i wouldn t really blame devs the issue is probably due to bad colour choices for light dark mode and a lack of testing to verify that things look as intended if anything the current visual state of tahoe is due designers making an unnecessary and ill thought out visual redesign and apple then rushing it out before the devs are done,"Is it supposed to be this way? or just bad design?
+After updating to Tahoe, i notice some lags between some apps (i.e. when clicking on file in the finder), quickly heated, and some designs are not pleasant to the eyes at all.
+
+  
+Edited: Adding my mac info: Apple M2 Pro
+I also saw this today, but remember it was white before. Not sure why it’s showing red!
+This company is overrun by marketing people and you see the results of software stack falling apart. Bug reports are being ignored. Totally unacceptable for company that has this amount of cash. As a general consumer please tell Apple what you think [https://www.apple.com/feedback/macos/](https://www.apple.com/feedback/macos/)
+It’s bad code. No designer would **ever** handoff mocks with a red label on a blue button.
+Yeah I think I posted about this some years ago (I deleted all my posts a few months ago). Dark mode has always had dark red on dark grey so it's absolutely impossible to read. I've filled multiple bugs in each version of macOS and not a single one got read, so I stopped posting bugs reports as didn't see the point.
+In dark mode it shows that red against dark grey, virtually unreadable, (has been since 2020) good to know they have updated it to make this the same!
+I recall seeing someone running into a similar red colour text issue, in a previous macOS version (probably Sonoma or Sequoia). In that case I think the cause was a bad choice of colours in dark mode. 
+
+Tahoe in general seems to be lacking polish and quality control, to me it looks like it got rushed out before the devs had time to properly finish their job.
+If it came from the pit of Tahoe, it’s all bad.
+I wouldn't really blame devs, the issue is probably due to bad colour choices for light/dark mode and a lack of testing, to verify that things look as intended.
+
+If anything the current visual state of Tahoe, is due designers making an unnecessary and ill-thought-out visual redesign, and Apple then rushing it out before the devs are done.",1ntcan7,8,68da5f69cd215d1b99b01621,MacOS,0
+do u have opinion on if parent node should handle all the code or if code should be broken up start with the parent suffer and split to smaller scripts suffer again and create a hybrid multilayer solution this is generally my heuristic it s too easy to get into the weeds engineering things just make stuff work and when it gets large delegate away the stuff that makes sense giving a script to every node is overkill giving every action to one script is overkill the balance is somewhere in the middle but only experimentation finds it usually i try to break it up because i hate parsing super long scripts but if the nodes interact a lot and i don t anticipate this ending up as a 2000 line monster i might put it all in the parent depends on what your doing why refactor all the time when you can do it right from the start small modular scrips with signals are almost always the best approach it prevents code repetition and your project gets more future and bug proof this is the whole philosophy behind godot s node system when would u use one over the other what defines a good object oriented design pattern and when to use which one is actually quite a large subject and it s hard to give a good answer because the answer is it depends some things i think about when deciding siblings should probably not communicate with each other so if i m tempted to write code where siblings are coupled i likely need to use a different pattern one where a parent node orchestrates operations between siblings children should probably not be manipulating their parents this will make maintenance later a nightmare because then who knows what is changing what so if i m writing code where a child modifies something in it s parent i need to use a different pattern of course these are just godot specific i still try to apply normal oop rules where i can such as encapsulation as an example if i have some parent that has an animated child the child should probably handle animating itself and expose an interface where the parent can manipulate the animation only in a valid way say a character holding a bow the character doesn t care about how the bow is animated just about when it s animation plays so the bow should provide its parent the character an interface to invoke the animation behavior and be notified when it s done without requiring the character to know anything about how the animation works however each scene works though in my view it is usually the case that the root level of some tree or subtree ought to be providing the external api to that tree or subtree that is to say scenes ought to be as small and reusable as possible while still doing their job therefore it seems to me that the root level node in a resource will always have some script attached however this is not really a design philosophy it is more of an empirical pattern that seems to arise out of general oop principles applied to godot there are limits and where you draw that line is largely personal preference if you have a button with a label child that displays extra text on top and you need to set the text from logic in the button are you really going to make a new script to set the text or would you just call label text text every node handling their own logic is not the point of oop and composition drawing the line at each node is completely arbitrary nodes can be extremely simple or extremely complex that is how the engine classes differentiate their functionality the chance that the game objects your game needs maps 1 1 onto the functionality of engine objects is not likely saying this needs it s own script because it s its own node has nothing to do with the design of your program the goal is to isolate the functionality you need into a single object even if it includes e g a couple of label nodes an animation player etc i almost exclusively use a pattern where children manages their parent and it s working better than any other approach for me for instance i have a death respawn component that checks the position of the parent and respawns it elsewhere if it goes under the killzone map holes during development i have another component that i can inject to a node in order to allow the node to be moved with the controller keyboard i can do that in debug and control anything for testing etc some of them components are state machines managing animations and input is a common recurring theme here its a nice pattern in godot because in godot you cannot mixin subclasses so as soon as you extend the node using its correct type say static body then you cannot add it to a characterbody or any other kind of node that doesn t subclass staticbody this means that you end up writing a staticbody script and a characterbody script that do the same thing annoying glue code fixed with the component pattern these are added to the nodes at runtime programmatically the advantage of doing it programmatically is that i can build assets scenes for their graphics animations collisions and let the code inject and manage their behavior this means my graphic artist doesn t have to think about linking any custom script which becomes the job of the programmer generally each node handling it s own logic is best doing everything in 1 script kinda defeats the point of godot an engine designed primarily for composition,"do u have opinion on if parent node should handle all the code or if code should be broken up
+Start with the parent, suffer, and split to smaller scripts. Suffer again, and create a hybrid multilayer solution
+This is generally my heuristic. It's too easy to get into the weeds engineering things. Just make stuff work, and when it gets large, delegate away the stuff that makes sense.
+
+Giving a script to every node is overkill. Giving every action to one script is overkill. The balance is somewhere in the middle but only experimentation finds it.
+Usually I try to break it up, because I hate parsing super long scripts, but if the nodes interact a lot and I don't anticipate this ending up as a 2000-line monster, I might put it all in the parent
+Depends on what your doing
+Why refactor all the time when you can do it right from the start... 
+
+Small modular scrips with signals are almost always the best approach. 
+It prevents code repetition and your project gets more future and bug proof.
+
+This is the whole philosophy behind Godot's node system
+when would u use one over the other
+What defines a good object oriented design pattern, and when to use which one, is actually quite a large subject, and it's hard to give a good answer, because the answer is: ***it depends.***
+
+Some things I think about when deciding:
+
+* Siblings should probably not communicate with each other. So if I'm tempted to write code where siblings are coupled, I likely need to use a different pattern: one where a parent node orchestrates operations between siblings
+
+* Children should probably not be manipulating their parents. This will make maintenance later a nightmare (because then who knows what is changing what), so if I'm writing code where a child modifies something in it's parent, I need to use a different pattern.
+
+Of course, these are just godot specific. I still try to apply normal OOP rules where I can, such as encapsulation. As an example, if I have some parent that has an animated child, the child should probably handle animating itself, and expose an interface where the parent can manipulate the animation only in a valid way (say, a character holding a bow. The character doesn't care about how the bow is animated, just about when it's animation plays. So the bow should provide its parent, the character, an interface to invoke the animation behavior and be notified when it's done, without requiring the character to know anything about how the animation works).
+
+However each scene works, though, in my view, it is usually the case that the root level of some tree or subtree ought to be providing the external API to that tree or subtree. That is to say: Scenes ought to be as small and reusable as possible, while still doing their job. Therefore, it seems to me that the root level node in a resource will always have some script attached. However, this is not really a design philosophy: It is more of an empirical pattern that seems to arise out of general OOP principles applied to godot.
+There are limits, and where you draw that line is largely personal preference.
+
+If you have a Button with a Label child that displays extra text on top, and you need to set the text from logic in the button, are you really going to make a new script to set the text? Or would you just call \`$Label.text = ""text""\`
+
+Every node handling their own logic is not the point of OOP (and composition). Drawing the line at ""each node"" is completely arbitrary. Nodes can be extremely simple, or extremely complex. That is how the engine classes differentiate their functionality. The chance that the game objects your game needs maps 1:1 onto the functionality of engine objects is not likely. Saying ""this needs it's own script because it's its own node"" has nothing to do with the design of your program. The goal is to isolate the functionality you need into a single object, even if it includes e.g. a couple of label nodes, an animation player, etc.
+I almost exclusively use a pattern where children manages their parent and it's working better than any other approach for me.
+
+For instance, I have a death/respawn component that checks the position of the parent and respawns it elsewhere if it goes under the killzone (map holes during development).
+
+I have another component that I can inject to a node in order to allow the node to be moved with the controller/keyboard. I can do that in debug and control anything for testing/etc. 
+
+Some of them components are state machines (managing animations and input is a common recurring theme here). 
+
+Its a nice pattern in Godot because in Godot, you cannot mixin subclasses. So as soon as you extend the node using its correct type (say, Static Body), then you cannot add it to a CharacterBody or any other kind of node that doesn't subclass StaticBody. This means that you end up writing a StaticBody script and a CharacterBody script that do the same thing... Annoying glue code, fixed with the component pattern.
+
+These are added to the nodes at runtime, programmatically. The advantage of doing it programmatically is that I can build assets/scenes for their graphics/animations/collisions and let the code inject and manage their behavior. This means my graphic artist doesn't have to think about linking any custom script, which becomes the job of the programmer.
+Generally, each node handling it's own logic is best. Doing everything in 1 script kinda defeats the point of Godot, [an engine designed primarily for composition](https://docs.godotengine.org/en/stable/getting_started/introduction/godot_design_philosophy.html).",1pzq59v,79,695435ed5312e2275d79bba0,godot,1
+there should be an option to show local time in imessage conversations as you can see by the image this person shared their location therefore the local time is displayed this is not a privacy issue and is actually a good idea good idea yup that s the idea also happy cake day back when you used to sit down at a computer to send instant messages you could be available or away or set a custom status that everyone would see under your name on their buddy list these statuses disappeared when everything went mobile because your phone was always on you but just because i have my phone on me doesn t mean i m always available i miss the concept of status and i don t think do not disturb or focus modes come close i d much rather be able to signal to people that it s a good time to chat either manually or automatically based on time of day focus mode etc than share my time zone time is one factor but there are plenty of others it s just frustrating because there s no acknowledgement or indication of whether a suggestion is ever reviewed or approved it feels like sending feedback into a void assuming the shared time is only shared if the user enables it a fantastic idea cakes and candles my man i assume just like how it currently shows your friends city country it would only show if you already share location having said that this feature is only useful if you have a weak geographic sense chances are you can estimate a close enough time zone with the city your friend is in this is a great idea i am living in another country for a few years and this would make it easier to communicate with my friend back home agreed,"There should be an option to show local time in iMessage conversations.
+As you can see by the image this person shared their location therefore the local time is displayed. This is not a privacy issue and is actually a good idea
+Good idea! [https://www.apple.com/feedback/](https://www.apple.com/feedback/)
+Yup! That’s the idea. Also, happy cake day!
+Back when you used to sit down at a computer to send instant messages, you could be ""available"" or ""away"" or set a custom status that everyone would see under your name on their buddy list. These statuses disappeared when everything went mobile because your phone was always on you but just because I have my phone on me doesn't mean I'm always available! I miss the concept of ""status"" and I don't think Do Not Disturb or focus modes come close.
+
+I'd much rather be able to signal to people that it's a good time to chat, either manually or automatically based on time of day, focus mode, etc., than share my time zone. Time is one factor but there are plenty of others.
+It's just frustrating because there's no acknowledgement or indication of whether a suggestion is ever reviewed or approved. It feels like sending feedback into a void.
+Assuming the shared time is only shared if the user enables it, a fantastic idea.
+cakes and candles my man
+I assume, just like how it currently shows your friends city country, it would only show if you already share location.
+
+Having said that, this feature is only useful if you have a weak geographic sense. Chances are you can estimate a close enough time zone with the city your friend is in.
+This is a great idea. I am living in another country for a few years, and this would make it easier to communicate with my friend back home.
+Agreed",1py4066,29,695300e35312e2275d799d19,ios,0
+haul from comiccon today but i can t transform them because i broke my arm earlier this week nooo here s wishing you a quick recovery ah no big deal just pop your ball joint back in oh wait people don t work like that hope you re on the mend soon who broke it for you i mean you got like 6 toys i hope you enjoy legacy tfa optimus when you heal up i got him earlier this week and i love him so much oh no i wish you a good recovery i hope they put mando up for that price on the website hope you recover soon sorry about your arm op but that s a solid haul i wish retailers over here would discount overcharge twenty quid is a great price i checked was like i m sure this is a lot more online lol gosh dang that s a good price for overcharge hope you have a speedy recovery friend,"Haul from comiccon today, but I can't transform them because I broke my arm earlier this week :(
+Nooo! Here's wishing you a quick recovery!
+Ah no big deal, just pop your ball joint back in.
+
+Oh wait, people don't work like that.  Hope you're on the mend soon!
+Who broke it for you? I mean, you got like 6 toys.
+I hope you enjoy Legacy TFA Optimus when you heal up, I got him earlier this week and I love him so much!
+Oh no, I wish you a good recovery
+I hope they put mando up for that price on the website 👀
+Hope you recover soon
+Sorry about your arm Op, but that’s a solid haul. I wish retailers over here would discount Overcharge, twenty quid is a great price.
+I checked, was like 'I'm sure this is a lot more online"" lol.
+Gosh dang that's a good price for overcharge. Hope you have a speedy recovery friend 💜",1p9t2b3,15,692b3c2568f38e42360cb3f6,transformers,1
+lt gc gt turns into lt g gt if i wait a second neovim waits a specific amount of time h timeoutlen default 1 second after pressing any key while typing a mapping if no new key is pressed during that time neovim thinks that user finished typing a mapping and executes already pressed key one of the reasons is to account for conflicting mappings i e when one of the mappings is a prefix of another like in case of gc and gcc which are different mappings for historical reasons the comment line is a dedicated gcc mapping when you type only gc and wait neovim executes gc mapping and stops waiting for possible future gcc in turn gc is an operator which means that it waits for the user to type textobject or motion like aw ip etc operators in vim neovim are implemented through the h g built in keys which is why you see it appear on screen it means that neovim is waiting for you to type a textobject or motion try to comment current line or ip to comment current paragraph hope this helps help pages for timeoutlen in options txt g in map txt h help amp nbsp lt query gt amp nbsp about mistake donate reply amp nbsp rescan amp nbsp to amp nbsp check amp nbsp the amp nbsp comment amp nbsp again reply amp nbsp stop amp nbsp to amp nbsp stop amp nbsp getting amp nbsp replies amp nbsp to amp nbsp your amp nbsp comments hey thanks for the reply and it made me understand stuff clearly i ve read the defaults lua and comment lua to see how it works i just left it alone and added a keybind for lt c gt that invokes gcc either in insert or normal mode,"&lt;gc&gt; turns into &lt;g@&gt; if I wait a second
+Neovim waits a specific amount of time (`:h 'timeoutlen'`, default 1 second) after pressing any key while typing a mapping. If no new key is pressed during that time, Neovim thinks that user finished typing a mapping and executes already pressed key.
+
+
+One of the reasons is to account for ""conflicting"" mappings, i.e. when one of the mappings is a prefix of another. Like in case of `gc` and `gcc`, which are different mappings (for historical reasons the ""comment line"" is a dedicated `gcc` mapping).
+
+
+When you type only `gc` and wait, Neovim executes `gc` mapping and stops waiting for possible future `gcc`.
+
+
+In turn, `gc` is an operator which means that it waits for the user to type textobject or motion (like `aw`, `ip`, etc.). Operators in Vim/Neovim are implemented through the `:h g@` built-in keys, which is why you see it appear on screen. It means that Neovim is waiting for you to type a textobject or motion. Try `_` to comment current line or `ip` to comment current paragraph.
+
+
+Hope this helps.
+Help pages for:
+
+* [`'timeoutlen'`](https://neovim.io/doc/user/options.html#%27timeoutlen%27) in _options.txt_
+* [`g@`](https://neovim.io/doc/user/map.html#g%40) in _map.txt_
+
+
+---
+
+^\`:\(h|help\)&amp;nbsp;&lt;query&gt;\`&amp;nbsp;| [^(about)](https://github.com/heraldofsolace/VimHelpBot) ^(|) [^(mistake?)](https://github.com/heraldofsolace/VimHelpBot/issues/new/choose) ^(|) [^(donate)](https://liberapay.com/heraldofsolace/donate) ^(|) ^Reply&amp;nbsp;'rescan'&amp;nbsp;to&amp;nbsp;check&amp;nbsp;the&amp;nbsp;comment&amp;nbsp;again ^(|) ^Reply&amp;nbsp;'stop'&amp;nbsp;to&amp;nbsp;stop&amp;nbsp;getting&amp;nbsp;replies&amp;nbsp;to&amp;nbsp;your&amp;nbsp;comments
+hey thanks for the reply, and it made me understand stuff clearly. I've read the _defaults.lua and _comment.lua to see how it works.
+
+I just left it alone and added a keybind for &lt;C-_&gt; that invokes gcc either in insert or normal mode",1nrjstu,3,68d78384cd215d1b99affcf0,neovim,0
+we have no idea how bad things have really gotten that doesn t even account for shrinkflation 6 2 bms per hour sounds like a medical problem you should get that checked out and not only this but since ingredient quality is worse these days i am fr taking roughly 91 bms per hour after some micky ds a big mac cost 1 60 in 1980 takes like 1 minute to google price before and after bulk of forced minimum wage increases and see that it has nothing to do with that stop being so dumb it s too bad we can t have 1980 prices and today s wages that would be a super duper deal one of my biggest takeaways from reading fiat food is that everyone from all financial backgroundd buys food all the time making minetary inflation harder to obfuscate when selling food aside from the pressure on firms to shrinkflate inflation also incentives them to cut corners and costs when it comes to the ingredients passing less nutritious final products to their customers we also had and continue to have a noteworthy obesity issue in the united states yes the total lack of those happening has everything to do with this oh yeah great chart but in 80s a big mac was around 1 50 and did you ever payed 8 dollars for a big mac but yeah great chart that s not at all the point of this metric,"We have no idea how bad things have really gotten.
+That doesn't even account for shrinkflation.
+6.2 BMs per hour sounds like a medical problem. You should get that checked out.
+And not only this but since ingredient quality is worse these days, I am fr taking roughly .91 BMs per hour after some micky ds.
+A Big Mac cost $1.60 in 1980.
+Takes like 1 minute to google price before and after bulk of forced minimum wage increases and see that it has nothing to do with that.  Stop being so dumb
+It's too bad we can't have 1980 prices and today's wages, that would be a SUPER DUPER deal!
+One of my biggest takeaways from reading Fiat Food, is that everyone from all financial backgroundd buys food all the time, making minetary inflation harder to obfuscate when selling food. 
+
+Aside from the pressure on firms to shrinkflate, inflation also incentives them to cut corners and costs when it comes to the ingredients. Passing less nutritious final products to their customers. 
+
+ We also had and continue to have a noteworthy obesity issue in the United states.
+Yes, the total lack of those happening has everything to do with this.
+Oh yeah great chart but in 80s a big mac was around 1.50$ and did you ever payed 8$ dollars for a big mac ?  But yeah great chart.
+That’s not at all the point of this metric.",1pebeih,63,69320aa868f38e42360d48eb,Bitcoin,0
+lenovo says upcoming android pcs will have limited desktop features app compatibility issues and more problems when compared to windows pcs i don t see how it wouldn t be true i m confused on what people expect from day 1 if the specs are good enough then the linux environment winlator and or gamehub will bridge the gap for power users that insist on buying an android pc alternative headline lenovo to release alpha android pc hardware so the community of tech enthusiasts will hopefully do the work for them of making it something the average person would pay 1000 1500 for android pc vs steam machine also this is really a mixed group of problems because these are also all things that directly cause a lot of the issues windows is having today if android laptops can t use smb or run 32 bit x86 apps last updated in 2005 i think i ll live as long as actually modern apps end up running here eventually for gaming steam machine using the deck as the proof since android pc is unproven for everything else my money on the steam machine but i am not betting all of my guacamoles on it stop this nonsense just upstream the support to the mainline kernel i ll happily run normal linux distro on a compact and quiet machine so basically don t buy it over an android tablet well i will not buy it but what i would expect 1 10 20 years of new android versions including kernel de and so on don t know how to search for the picture but someone explained it and showed a picture where android 13 can mean android 13 de with android 11 kernel with other mixes because samsung wishes it so 2 full safetynet compatibility device has 4k display or capability than netflix better delivers 4k streams so basically a chromebook this makes it an excellent choice for users who want to repurpose older pcs or laptops i hope this means i can use it on a copiliot pc,"Lenovo says upcoming Android PCs will have ""limited desktop features, app compatibility issues"" and more problems when compared to Windows PCs
+I don't see how it wouldn't be true.
+I'm confused on what people expect from day 1.   
+  
+If the specs are good enough, then the Linux environment, Winlator and/or Gamehub will bridge the gap for power users that insist on buying an Android PC.
+Alternative headline: Lenovo to release alpha Android PC hardware so the community of tech enthusiasts will hopefully do the work for them of making it something the average person would pay $1000-$1500 for.
+Android PC vs Steam Machine
+Also this is really a mixed group of ""problems"", because these are also all things that directly cause a lot of the issues Windows is having today. If Android laptops can't use SMB or run 32 bit x86 apps last updated in 2005 I *think* I'll live as long as actually modern apps end up running here eventually.
+For gaming? Steam Machine, using the Deck as the proof since Android PC is unproven. 
+
+For everything else, my money on the Steam Machine but I am not betting all of my guacamoles on it.
+Stop this nonsense. Just upstream the support to the mainline kernel, I'll happily run normal Linux distro on a compact and quiet machine.
+So basically don't buy it? over an android tablet?
+Well, I will not buy it, but what I would expect:  
+1) 10-20 years of new Android versions, including Kernel, DE and so on.  
+Don't know how to search for the picture, but someone explained it and showed a picture, where Android 13 can mean Android 13 DE with Android 11 Kernel with other mixes, because Samsung wishes it so  
+2) Full SafetyNet compatibility. Device has 4k display or capability, than Netflix better delivers 4k streams
+So basically a chromebook
+
+""*This makes it an excellent choice for users who want to repurpose older PCs or laptops""*
+
+*I hope this means i can use it on a copiliot PC*",1ow2abx,16,69160686abf4fbe3e312fc60,Android,1
+got my ss86 prowl juuuust right sigh if only they gave him orange light piping oof hasbro really needs to make new datsun bros molds that earth rise mold needs to go i ll probably pop his head apart and repaint the eyes it s definitely missing that je ne sais quoi been also considering getting a smoke effect from marvel legends to give him the smoking mouth instruments of destruuuuctiooon reminds me of the good old days when i got prowl as my first g1 and generations figure just to see him getting brutally murdered once i finally saw the movie ahh lovely childhood traumas perfect just need the toyhax stickers in the eyes now just need a fog machine behind him with the studio series back drop and some leds and you can relive your childhood trauma daily beautiful haha childhood trauma surfaces,"Got my SS86 Prowl juuuust right.
+sigh if only they gave him orange light piping
+Oof hasbro really needs to make new Datsun bros molds. That earth rise mold needs to go
+I'll probably pop his head apart and repaint the eyes. It's definitely missing that je ne sais quoi. Been also considering getting a smoke effect from marvel legends to give him the smoking mouth.
+instruments of destruuuuctiooon
+Reminds me of the good old days when I got Prowl as my first g1 and generations figure, just to see him getting brutally murdered once I finally saw the movie. 
+
+
+Ahh... lovely childhood traumas...
+Perfect. Just need the Toyhax stickers in the eyes
+Now just need a fog machine behind him with the studio series back drop and some.LEDS and you can relive your childhood trauma daily.
+Beautiful.
+Haha..... [*childhood trauma surfaces*](https://www.tfw2005.com/boards/attachments/prowl-gif.29972301/)",1nq82np,9,68d56deccd215d1b99afc7a9,transformers,0
+omg guys please someone help i can not even log into my youtube account it s not even an internet related issue i have full wifi bars and absolutely no addon turning on off real time protection doesn t even work nothing works whats happening please oh a little late i tried to but while downloading firefox i restarted the laptop and after panicking for a little the issue just went away somehow well still really apprieciate for noticing my post though can you login to youtube via edge or firefox thank you for your submission to r chrome we hope you ll find the help you need once you ve found a solution to your issue please comment solved under this comment to mark the post as solved thanks i am a bot and this action was performed automatically please contact the moderators of this subreddit message compose to r chrome if you have any questions or concerns,"Omg, guys please someone HELP...I can NOT even log into my youtube account, it's not even an internet related issue! I have full wifi bars and absolutely no addon, turning on off real-time protection doesn't even work, nothing works!
+WHATS HAPPENING?? PLEASE??
+Oh a little late, I tried to but while downloading Firefox I restarted the laptop, and after panicking for a little, the issue just...went away somehow?. Well, still really apprieciate for noticing my post though!
+Can you login to YouTube via Edge or Firefox?
+Thank you for your submission to /r/Chrome! We hope you'll find the help you need. Once you've found a solution to your issue, please comment ""**!solved**"" under this comment to mark the post as solved. Thanks!
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/chrome) if you have any questions or concerns.*",1nu8jf9,3,68dbb0cdcd215d1b99b02dd2,chrome,1
+lol well i m the lowest iq holder and i say it s going to 210 000 in 44 days i wasn t sure but seeing a picture of an asian man has convinced me selling my remaining kidney to go all in well i am retard iq hodler and say it s going to 205 000 in 43 days does he lose any iq points if he s incorrect i predict we re back up over 95k by end of month while btc is a great asset anyone predicting a 2 3 2 4x in 45 days who has 100 of their money in that asset is not likely actually as smart as they claim to be even if their bet hits the bullseye dead on 100 we really are cooked nah just a reminder dunning kruger is alive and well despite intelligence if it was certain that bitcoin would go to 225k in 45 days it would already be at 225k,"lol
+Well, I'm the LOWEST IQ HOLDER and I say it's going to $210,000 in 44 days!
+I wasn't sure, but seeing a picture of an Asian man has convinced me.  Selling my remaining kidney to go all in.
+Well, I am retard IQ hodler and say it’s going to $205,000 in 43 days!
+Does he lose any IQ points if he's incorrect
+I predict we’re back up over 95k by end of month
+While BTC is a great asset, anyone predicting a 2.3-2.4x in 45 days who has 100% of their money in that asset is not likely actually as smart as they claim to be, even if their bet hits the bullseye dead on.
+100%
+We really are cooked
+Nah, just a reminder Dunning-Kruger is alive and well despite intelligence.
+If it was certain that bitcoin would go to $225k in 45 days, it would already be at \~$225k",1ozmsya,168,691b68df323fac3ca6082c57,Bitcoin,0
+i m tired of this issue in chrome everything was going well the download speed was good and it reached 1 1 gb out of 1 22 gb but then it stopped i don t know why or what happened but it s really irritating this has happened to me so many times now i can t resume it because i barely have any data left why chrome whyyy i switched to other browsers for downloading because of this but i m having a bad time since i chose chrome for this download and if i pause it for some time it fails what should i do next huh how am i getting my data back offcial apk seems very official and safe how long did you give it i don t know but that makes me think it s running some kind of malware or antivirus scan so you re in the habit of downloading questionable apk files you have limited data allocation and it s chrome s fault when a download fails why are you downloading such large files in the first place and on cellular data no less connect to wifi and it s up to the server you re downloading from if it supports pausing and resuming downloads or not thank you for your submission to r chrome we hope you ll find the help you need once you ve found a solution to your issue please comment solved under this comment to mark the post as solved thanks i am a bot and this action was performed automatically please contact the moderators of this subreddit message compose to r chrome if you have any questions or concerns,"I'm tired of this issue in chrome
+Everything was going well - the download speed was good, and it reached 1.1 GB out of 1.22 GB, but then it stopped. I don't know why or what happened, but it's really irritating. This has happened to me so many times. Now I can't resume it because I barely have any data left. Why, Chrome, whyyy? I switched to other browsers for downloading because of this, but I'm having a bad time since I chose Chrome for this download. And if I pause it for some time, it fails. What should I do next, huh? How am I getting my data back?
+“offcial.apk” seems very official and safe
+How long did you give it? I don't know, but that makes me think it's running some kind of malware or antivirus scan
+So you're in the habit of downloading questionable apk files, you have limited data allocation, and it's Chrome's fault when a download fails?
+Why are you downloading such large files in the first place, and on cellular data no less? Connect to wifi. And it's up to the server you're downloading from if it supports pausing and resuming downloads or not.
+Thank you for your submission to /r/Chrome! We hope you'll find the help you need. Once you've found a solution to your issue, please comment ""**!solved**"" under this comment to mark the post as solved. Thanks!
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/chrome) if you have any questions or concerns.*",1nw13o2,5,68de6fe8cd215d1b99b09849,chrome,1
+need help with diagnostic floating window vim opt updatetime 300 vim diagnostic config virtual text false float max width 90 wrap true source always border single vim api nvim create autocmd cursorhold desc show diagnostic message for line under cursor group vim api nvim create augroup lsp diagnostic clear true callback function vim diagnostic open float nil scope line end i m trying to get a diagnostic window whenever my cursor is on the line with error it works but if i move forwards or backwards on this line then the window closes and reopens need help to make the window remain open as long as i m on the error line and stop flickering on move this is a flaky solution because the only documented options for h vim diagnostic open float are h vim diagnostic opts float but since it passes its opts to h vim lsp util open floating preview which it uses under the hood to show the floating window you can technically use the close events option from h vim lsp util open floating preview opts with a value of somecustomevent to avoid it from closing on other events h cursormoved h cursormovedi and h insertcharpre by default and then you would need to create your own custom somecustomevent with h nvim exec autocmds that only fires when the cursor moves outside of the current line that you could do by listening to the aforementioned h cursormoved event and only firing your event if the correct conditions are met it s not exactly what you asked but tiny inline diagnostics might be another way to achieve what you re looking for or using built in virtual text or line h vim diagnostic config seems interesting this seems feasible thanks help pages for vim diagnostic open float in diagnostic txt vim diagnostic opts float in diagnostic txt vim lsp util open floating preview in lsp txt vim lsp util open floating preview opts in lsp txt cursormoved in autocmd txt cursormovedi in autocmd txt insertcharpre in autocmd txt nvim exec autocmds in api txt h help amp nbsp lt query gt amp nbsp about mistake donate reply amp nbsp rescan amp nbsp to amp nbsp check amp nbsp the amp nbsp comment amp nbsp again reply amp nbsp stop amp nbsp to amp nbsp stop amp nbsp getting amp nbsp replies amp nbsp to amp nbsp your amp nbsp comments,"Need help with diagnostic floating window
+vim.opt.updatetime = 300
+    
+    vim.diagnostic.config({
+      virtual_text = false,
+      float = {
+        max_width = 90,
+        wrap = true,
+        source = ""always"",
+        border = ""single"",
+      }
+    })
+    
+    vim.api.nvim_create_autocmd(""CursorHold"", {
+      desc = ""Show diagnostic message for line under cursor"",
+      group = vim.api.nvim_create_augroup(""lsp_diagnostic"", {clear = true}),
+      callback = function() 
+        vim.diagnostic.open_float(nil, {scope = ""line""})
+      end
+    })
+
+I'm trying to get a diagnostic window whenever my cursor is on the line with error. It works, but if I move forwards or backwards on this line, then the window closes and reopens.  
+Need help to make the window remain open as long as I'm on the error line and stop flickering on move.
+This is a flaky solution because the only documented options for `:h vim.diagnostic.open_float()` are `:h vim.diagnostic.Opts.Float`. But, since it passes its `opts` to `:h vim.lsp.util.open_floating_preview()` (which it uses under the hood to show the floating window), you can **technically** use the `close_events` option from `:h vim.lsp.util.open_floating_preview.Opts` with a value of `{'SomeCustomEvent'}` to avoid it from closing on other events (`:h CursorMoved`, `:h CursorMovedI` and `:h InsertCharPre`  by default). And then you would need to create your own custom `SomeCustomEvent` with `:h nvim_exec_autocmds()` that only fires when the cursor moves outside of the current line (that you could do by listening to the aforementioned `:h CursorMoved` event and only firing your event if the correct conditions are met).
+It's not exactly what you asked, but tiny-inline-diagnostics might be another way to achieve what you're looking for:
+
+https://github.com/rachartier/tiny-inline-diagnostic.nvim
+Or using built-in virtual text (or line) `:h vim.diagnostic.config()`
+Seems interesting!
+This seems feasible. Thanks!
+Help pages for:
+
+* [`vim.diagnostic.open_float()`](https://neovim.io/doc/user/diagnostic.html#vim.diagnostic.open_float%28%29) in _diagnostic.txt_
+* [`vim.diagnostic.Opts.Float`](https://neovim.io/doc/user/diagnostic.html#vim.diagnostic.Opts.Float) in _diagnostic.txt_
+* [`vim.lsp.util.open_floating_preview()`](https://neovim.io/doc/user/lsp.html#vim.lsp.util.open_floating_preview%28%29) in _lsp.txt_
+* [`vim.lsp.util.open_floating_preview.Opts`](https://neovim.io/doc/user/lsp.html#vim.lsp.util.open_floating_preview.Opts) in _lsp.txt_
+* [`CursorMoved`](https://neovim.io/doc/user/autocmd.html#CursorMoved) in _autocmd.txt_
+* [`CursorMovedI`](https://neovim.io/doc/user/autocmd.html#CursorMovedI) in _autocmd.txt_
+* [`InsertCharPre`](https://neovim.io/doc/user/autocmd.html#InsertCharPre) in _autocmd.txt_
+* [`nvim_exec_autocmds()`](https://neovim.io/doc/user/api.html#nvim_exec_autocmds%28%29) in _api.txt_
+
+
+---
+
+^\`:\(h|help\)&amp;nbsp;&lt;query&gt;\`&amp;nbsp;| [^(about)](https://github.com/heraldofsolace/VimHelpBot) ^(|) [^(mistake?)](https://github.com/heraldofsolace/VimHelpBot/issues/new/choose) ^(|) [^(donate)](https://liberapay.com/heraldofsolace/donate) ^(|) ^Reply&amp;nbsp;'rescan'&amp;nbsp;to&amp;nbsp;check&amp;nbsp;the&amp;nbsp;comment&amp;nbsp;again ^(|) ^Reply&amp;nbsp;'stop'&amp;nbsp;to&amp;nbsp;stop&amp;nbsp;getting&amp;nbsp;replies&amp;nbsp;to&amp;nbsp;your&amp;nbsp;comments",1nxhm28,6,68e0a231cd215d1b99b0fc06,neovim,0
+motorola is getting away with zero os updates thanks to regulatory loophole wow all the media online repeated the claim that they had to provide 5 years of software updates but the law only says that they have to be free for 5 years not that they need to provide them pretty disappointing software support for android phones will continue to suck going forward interesting how there was a thread about this very same topic posted here yesterday that seems to have been removed i personally don t see any problem only offering security updates in fact i d bet many people would just that rather than have big android updates that slow down the phone even more 5 years of security updates is more than enough for low end phones google provides 7 years of updates now with updates every month android can be a shit show with so many oems releasing buggy modifications and no updates but if you go with real android from google it s a fantastic experience it was removed because the person was using it to direct traffic to their own blogspam site real talk most android os updates feel more like nice reskins than anything meaty and worthwhile for phones these days app architecture has stayed the same phone works fine and it was originally tuned and configured for that os version anyway why risk a bad os update when everything behind it is capable of running fine never understood the complaint of old os version bad when there s like 50 launchers to change the look of the phone and newer os features don t always run nice on older hardware anyway or they re just not stand out features yeah since android 12 there isn t any significant change in android look and every android update feels like minor change android updates has been stagnant for a while to the point it really doesn t matter what version you are on as long as apps runs fine the only reasonable complaints for updates are security patches and bug fixes not every change can be seen many are api changes for developers supporting very old devices is work that new apps frequently skip current devices are good enough that they could last for 10 years with a battery swap at some point we shouldn t have to dump them for lack of updates alone do have any data showing that updates make phone slower or is it just personal feeling so it s ewaste,"Motorola is getting away with zero OS updates thanks to regulatory loophole
+Wow, all the media online repeated the claim that they had to provide 5 years of software updates. But the law only says that they have to be free for 5 years, not that they need to provide them. Pretty disappointing, software support for Android phones will continue to suck going forward.
+Interesting how there was a thread about this very same topic posted here yesterday that seems to have been removed.
+I personally don't see any problem only offering security updates. In fact I'd bet many people would just that rather than have big android updates that slow down the phone even more. 5 years of security updates is more than enough for low end phones.
+Google provides 7 years of updates now, with updates every month. Android can be a shit show with so many OEMs releasing buggy modifications and no updates, but if you go with ""real"" Android from Google, it's a fantastic experience.
+It was removed because the person was using it to direct traffic to their own blogspam site.
+Real talk most android OS updates feel more like nice reskins than anything meaty and worthwhile for phones these days.
+
+App architecture has stayed the same, phone works fine and it was originally tuned and configured for that OS version anyway, why risk a bad OS update when everything behind it is capable of running fine? 
+
+Never understood the complaint of ""old OS version bad"" when there's like 50 launchers to change the look of the phone and newer OS features don't always run nice on older hardware anyway. Or they're just not stand-out features.
+Yeah since android 12 there isn't any significant change in android look, and every android update feels like minor change. 
+
+Android updates has been stagnant for a while to the point it really doesn't matter what version you are on as long as apps runs fine. 
+
+The only reasonable complaints for updates are security patches and bug fixes.
+Not every change can be seen, many are API changes for developers. Supporting (very) old devices is work that new apps frequently skip. Current devices are good enough that they could last for 10+ years (with a battery swap at some point), we shouldn't have to dump them for lack of updates alone
+Do have any data showing that updates make phone slower or is it just personal feeling?
+So it's ewaste?",1qrykct,59,697dd8a2b4222f3fa046eed0,Android,0
+switching to m series hello fellows i m currently using 2017 macbook pro 13 16 gb 256 gb it becomes quite sluggish at times mostly when i m on zoom or video calls and trying to do a task it takes time and start to heat up as well therefore i m considering upgrading to a m chip series but not sure which one i should go with i can afford m2 pro and may be m3 as well but which would be better overall in terms of speed performance etc buy what you can afford the newer without sacrificing what you actually need like storage or ram the better for longevity if you re coming from a 2017 machine the speed increase is massive and you wouldn t even be able to make the machines work so hard that you d reach the point where the difference between the m2 or m3 matters talking only about speed assuming that you d do what you usually do on your 2017 pro just buy an air you might not even blip the processors hard enough and never make the fans in a pro turn on and you basically just forked over more money for more ports and a better screen and a useless fan any apple silicon macbook will be a vast improvement if your heaviest usage is video calls you really don t need anything more powerful than an m1 macbook air power isn t the only thing to consider though some models have nicer screens for watching movies some models support more external monitors some models have more ports etc so maybe tell us about your needs in there areas and we might be able to help you narrow things down macbook pro with m2 pro is generally more powerful for demanding tasks like 3d work or heavy multi threaded workloads while the standard m3 macbook pro offers a solid more energy efficient option for lighter professional or everyday tasks,"Switching to M series
+Hello fellows,
+I’m currently using 2017 MacBook Pro 13”, 16 GB, 256 GB. It becomes quite sluggish at times, mostly when I’m on Zoom or video calls and trying to do a task, it takes time and start to heat up as well. 
+Therefore, I’m considering upgrading to a M chip series but not sure which one I should go with. I can afford M2 pro and may be M3 as well but which would be better overall in terms of speed, performance, etc.
+Buy what you can afford; the newer (without sacrificing what you actually need like storage or RAM) the better for longevity.
+
+If you’re coming from a 2017 machine, the speed increase is massive and you wouldn’t even be able to make the machines work so hard that you’d reach the point where the difference between the M2 or M3 matters. 
+
+Talking only about speed, assuming that you’d do what you usually do on your 2017 Pro, just buy an Air; you might not even blip the processors hard enough and never make the fans in a Pro turn on and you basically just forked over more money for more ports and a better screen and a useless fan.
+Any Apple silicon MacBook will be a vast improvement. If your heaviest usage is video calls, you really don’t need anything more powerful than an M1 MacBook Air. 
+
+Power isn’t the only thing to consider, though. Some models have nicer screens for watching movies, some models support more external monitors, some models have more ports, etc. So maybe tell us about your needs in there areas and we might be able to help you narrow things down.
+MacBook Pro with M2 Pro is generally more powerful for demanding tasks like 3D work or heavy multi-threaded workloads, while the standard M3 MacBook Pro offers a solid, more energy-efficient option for lighter professional or everyday tasks.",1nw9rwz,3,68dec53bcd215d1b99b09b4d,MacOS,0
+firefox 145 0 see all new features updates and fixes mkv support is huge the tab list when hovering over a group is such a small tweak but such a huge usability improvement at the same time great idea i hope they keep adding little features like that to tab groups to make them the best the can be double click on tab to expand and collapse pls copy link to highlight is a cool feature but i m not sure about the name i don t really have a better idea but to me the name does not really explain what it does all those contributed to this love you folks and thank you for your efforts i hope firefox get a better wallpaper section like google chrome firefox code contributors and volunteers unsung heroes of open source and freedom is this satire the password sidebar is a god send for me i have to open password page way to often hope it s better tested then the pdf support was this is how every single big release should be many improvements and not just a few here s what the difference looks like it s pretty minimal imo but others may disagree ignore the cropping differencs it s not 1 to 1,"Firefox 145.0, See All New Features, Updates and Fixes
+MKV support is huge
+The tab list when hovering over a group is such a small tweak but such a huge usability improvement at the same time. Great idea. I hope they keep adding little features like that to tab groups to make them the best the can be. (double click on tab to expand and collapse pls 🙏)
+
+""Copy Link to Highlight"" is a cool feature but I'm not sure about the name. I don't really have a better idea but to me the name does not really explain what it does.
+All those contributed to this, love you folks and thank you for your efforts.
+I hope Firefox get a better wallpaper section like Google Chrome.
+Firefox code contributors and volunteers, unsung heroes of open source and freedom.
+Is this satire?
+The password sidebar is a god send for me, i have to open password page way to often....
+Hope it's better tested then the PDF support was.
+This is how every single big release should be; MANY improvements and not just a few.
+[Here's what the difference looks like](https://i.imgur.com/x3isxK7.png).
+
+It's pretty minimal imo but others may disagree.
+
+Ignore the cropping differencs, it's not 1-to-1.",1oualta,55,6913480847f1ccac3c715e4c,firefox,1
+classic 90s star wars games become playable again on modern pcs and even linux with new lucasarts emulator update so you don t have to read they re talking about this emulator and they added these games to its 4 0 release willow 1989 monopoly star wars 1997 star wars x wing vs tie fighter 1997 star wars droid works 1998 star wars rogue squadron 3d 1998 star wars rebellion supremacy 1998 star wars episode i the gungan encounter 1999 star wars yoda s challenge activity center 1999 star wars pit droids 1999 star wars anakin s speedway 1999 star wars episode i racer 1999 star wars episode i the phantom menace 1999 star wars x wing alliance 1999 star wars early learning activity center 2000 star wars math jabba s game galaxy 2000 star wars jar jar s journey 2000 the more you know oh man x wing vs tie fighter was absolutely balling gt star wars jar jar s journey 2000 what the frak is this mate try x wing what sort of wine chateaueuf du pape i a few years back did try reinstalling monopoly star wars with wine and couldn t get it working this is great news star wars rogue squadron 3d loved that one star wars rebel assault 1 or 2 oh man star wars droid works is one of the first computer games i can remember playing as a kid wonderful i have original discs laying around for several of these would be fun to try getting some running again,"Classic 90s Star Wars games become playable again on modern PCs and even Linux with new LucasArts emulator update
+So you don't have to read:
+
+They're talking about [this emulator](https://dreamm.aarongiles.com/docs/v40/#intro-games), and they added these games to its 4.0 release:
+
+Willow (1989)    
+Monopoly Star Wars (1997)    
+Star Wars: X-Wing vs. TIE Fighter (1997)    
+Star Wars Droid Works (1998)    
+Star Wars: Rogue Squadron 3D (1998)    
+Star Wars: Rebellion (Supremacy) (1998)    
+Star Wars Episode I: The Gungan Encounter (1999)    
+Star Wars: Yoda’s Challenge Activity Center (1999)    
+Star Wars: Pit Droids (1999)    
+Star Wars: Anakin’s Speedway (1999)    
+Star Wars Episode I: Racer (1999)    
+Star Wars Episode I: The Phantom Menace (1999)    
+Star Wars: X-Wing Alliance (1999)    
+Star Wars: Early Learning Activity Center (2000)    
+Star Wars Math: Jabba’s Game Galaxy (2000)    
+Star Wars: Jar Jar’s Journey (2000)    
+    
+*The more you know.*
+Oh man. X wing Vs Tie Fighter was absolutely balling
+&gt;  Star Wars: Jar Jar’s Journey (2000) 
+
+What the frak is this
+Mate, try X-Wing :)
+What sort of wine?  Chateaueuf Du Pape?
+I a few years back did try reinstalling Monopoly Star Wars with Wine and couldn’t get it working… this is great news
+Star Wars: Rogue Squadron 3D
+
+Loved that one!
+Star Wars: Rebel Assault 1 or 2
+Oh man, Star Wars Droid Works is one of the first computer games I can remember playing as a kid.
+Wonderful! I have original discs laying around for several of these. Would be fun to try getting some running again.",1rkienz,17,69a8269614360ffebe048de0,linux,0
+bixby to get a major ai upgrade with one ui 8 5 ai ai ai ai wouldn t it be nice to not hear this word ever again ai itself isn t the problem it s the gap between marketing promises and actual everyday usefulness if it quietly improves workflows great if it s just another buzzword people tune out fast so will this be for all devices or s26 only hmmm yet you clicked this post and had to leave a comment about bixby bixby will never succeed bixby has always been an assistant strange that it didn t include an ai mode before and listen i d like to think that these are universally bad but sometimes they aren t exactly this they talk a lot about it but where is real life usage simple ok google turn on x or y isn t even working well bixby still exists if they can make it have all gemini features without the chatbot layout and just make it like normal assistant that existed before ai slop era then ill be happy i could not care less,"Bixby to get a major AI upgrade with One UI 8.5
+AI AI AI AI
+
+Wouldn't it be nice to not hear this word ever again?
+AI itself isn’t the problem.
+It’s the gap between marketing promises and actual everyday usefulness.
+If it quietly improves workflows, great.
+If it’s just another buzzword, people tune out fast.
+So will this be for all devices or s26 only? Hmmm
+Yet you clicked this post and had to leave a comment about bixby
+Bixby will never succeed.
+Bixby has always been an assistant. Strange that it didn't include an AI mode before. And, listen, i'd like to think that these are universally bad, but sometimes they aren't.
+Exactly this, they talk a lot about it, but where is real life usage? Simple ok Google turn on x or y isn't even working well.
+Bixby still exists?
+if they can make it have all gemini features without the chatbot layout and just make it like normal assistant that existed before ai slop era then ill be happy
+I could not care less",1q8gl2v,12,69619caa5312e2275d818dc4,Android,0
+i cant watch youtube and other videos guys i need help i use chrome as a browser and it suddenly dosent work on videos when i open the video i can hear the vioces but i cant see the video i tried closed extensions reset modem reset pc and chrome is latest version but i still cant fix the problem can u help me how can i fix that i am also having this issue as of 02 10 25 turning off hardware acceleration gets it to work but with single digit framerates all other browsers are unaffected just did an update and the video i play all the time in the background rain etc just keeps showing this video is unavailable error code 4 no matter what i do or whether my adblockers are on or off can you share your chrome gpu contents on if you re on m140 updating to m141 may resolve the issue thank you for your submission to r chrome we hope you ll find the help you need once you ve found a solution to your issue please comment solved under this comment to mark the post as solved thanks i am a bot and this action was performed automatically please contact the moderators of this subreddit message compose to r chrome if you have any questions or concerns,"I cant watch youtube and other videos.
+Guys i need help. i use chrome as a browser and it suddenly dosent work on videos. when i open the video i can hear the vioces but i cant see the video. i tried closed extensions, reset modem, reset pc and chrome is latest version but i still cant fix the problem. can u help me, how can i fix that?
+I am also having this issue as of 02/10/25. Turning off hardware acceleration gets it to work, but with single digit framerates. All other browsers are unaffected.
+Just did an update and the video I play all the time in the background (Rain, etc...) just keeps showing 'This video is unavailable' Error code 4 no matter what I do or whether my adblockers are on or off.
+Can you share your chrome://gpu contents on [https://crbug.com/448970702](https://crbug.com/448970702) ? If you're on M140, updating to M141 may resolve the issue.
+Thank you for your submission to /r/Chrome! We hope you'll find the help you need. Once you've found a solution to your issue, please comment ""**!solved**"" under this comment to mark the post as solved. Thanks!
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/chrome) if you have any questions or concerns.*",1nwgz8q,4,68defcc1cd215d1b99b0bb10,chrome,0
+quick update fixed the chin issue instructions are given in the description quick update in image crop by mask set base resolution more then 512 add 5 padding and in pixel perfect resolution select crop and resize updated workflow is uploaded here seinfeld wouldn t like her she s got man hands gif giphy av0ohegtzplso still pretty cool all the proportions skull size jaw width shoulders etc are also beefed up this will be ironed out whenever aside from face expression can you single out your head and then have the control net rig for the body does animate allow for control net maybe that will produce a big head mode look that s my actual beard which lora for adding the beard s it would be very appreciated if you could share the workflow on some service that is anonymously accessible like pastebin which is often used on this sub for this exact purpose his preference is for teenage hands i came to see this thank you for posting the workflow same as the input video this one was 1080,"Quick Update, Fixed the chin issue, Instructions are given in the description
+Quick Update: In image crop by mask set base resolution more then 512, add 5 padding, and In pixel perfect resolution select crop and resize.   
+
+
+updated workflow is uploaded [here](https://www.patreon.com/posts/quick-update-on-140406129?utm_medium=clipboard_copy&amp;utm_source=copyLink&amp;utm_campaign=postshare_creator&amp;utm_content=join_link)
+Seinfeld wouldn’t like her. She’s got man hands!
+![gif](giphy|Av0OHEGtZPLSo)
+
+Still pretty cool, All the proportions, skull size, jaw width, shoulders etc are also beefed up. This will be ironed out whenever. Aside from face expression. Can you single out your head and then have the control net rig for the body? Does Animate allow for control net? Maybe that will produce a big head mode look.
+😂😂 That's my actual beard
+Which Lora for adding the beard? /s
+It would be very appreciated if you could share the workflow on some service that is anonymously accessible, like pastebin, which is often used on this sub for this exact purpose.
+
+[https://pastebin.com/](https://pastebin.com/)
+His preference is for [teenage hands.](https://www.reddit.com/r/HistoricalCapsule/comments/1l8smym/just_39_year_old_jerry_seinfeld_and_his_17_year/)
+😂😂😂 I came to see this.
+Thank you for posting the workflow!
+🤣🤣
+same as the input video, this one was 1080",1nxiv7z,26,68e0a1c4cd215d1b99b0fbf8,comfyui,1
+have you ever had some figures or a set of figures that you want to see re released with some updates new materials paint schemes etc i could live with the current snapdragon but apeface absolutely needs a redo without that godawful pearlescent plastic and battle damage i d like to see a retro reissue of the horrorcons especially apeface without the battle damage other than that maybe mirage with the ability to mount his shoulder cannon i have been desperate for apeface to get a rerelease with normal plastic to match snapdragon but i fear he has to be made of that horrible milky clear maybe nylon because so much of his transformation is just flexing plastic i love the design but it s badly let down by just how bad the white plastic looks a lot of the thrilling 30 designs springer windblade road buster whirl etc would be great with some minor improvements in posability and better qc just like they did with the ss86 arcee that pretty much fixed the majority of the issues with the original def apeface without the paint and better plastic man for real i ve had these guys in my amazon and ebay carts for the longest price keeps going up regularly so i need to just pull the trigger potp chonklita 1 love the design but her knees and hollow legs are bothersome to handle her front landing gear also irks me probably way more than it should being way too near the tip of the jet nose her combiner and prime master features overall hurt her base tobot and vehilce modes a bunch modern articulation would be really nice on her too i d love a retread of animated lockdown his engineering is nearly perfect the only thing that figure really needs is improved leg articulation wrists and maybe better plastic siege hound i just want him earth rise wheel jack but actually do color the duocons battletrap and skytread i regret missing the first and skipping the second,"Have you ever had some figures or a set of figures that you want to see re-released with some updates? (New materials, paint schemes, etc)
+I could live with the current Snapdragon but Apeface absolutely needs a redo without that godawful pearlescent plastic and battle damage.
+I'd like to see a retro reissue of the horrorcons, especially Apeface without the battle damage.
+
+Other than that, maybe Mirage with the ability to mount his shoulder cannon?
+I have been desperate for Apeface to get a rerelease with normal plastic to match Snapdragon. But I fear he has to be made of that horrible milky clear (maybe nylon?) because so much of his transformation is just flexing plastic. I love the design, but it’s badly let down by just how bad the white plastic looks.
+A lot of the thrilling 30 designs - springer, windblade, road buster, whirl, etc would be great with some minor improvements in posability and better QC. Just like they did with the ss86 arcee. That pretty much fixed the majority of the issues with the original
+def apeface without the paint and better plastic
+Man for real. I’ve had these guys in my Amazon and eBay carts for the longest. Price keeps going up regularly so I need to just pull the trigger
+POTP Chonklita-1
+
+Love the design, but her knees and hollow legs are bothersome to handle. 
+
+Her front landing gear also irks me (probably way more than it should) being way too near the tip of the jet nose. 
+
+Her combiner and prime master features overall hurt her base tobot and vehilce modes a bunch.
+
+Modern articulation would be really nice on her too.
+I'd love a retread of Animated Lockdown. His engineering is nearly perfect, the only thing that figure really needs is improved leg articulation, wrists, and maybe better plastic.
+Siege hound, I just want him
+
+Earth rise wheel Jack but actually do color
+The Duocons Battletrap and Skytread, I regret missing the first and skipping the second.",1owmz9e,19,691721b2323fac3ca6073a4f,transformers,0
+my google account keeps logging out multiple times a day for almost a year it constantly tell me to verify and when it s not i can t even use my email i always verify so why does this keep happening thank you for your submission to r chrome we hope you ll find the help you need once you ve found a solution to your issue please comment solved under this comment to mark the post as solved thanks i am a bot and this action was performed automatically please contact the moderators of this subreddit message compose to r chrome if you have any questions or concerns can you please share some screenshots,"My Google Account keeps logging out multiple times a day for almost a year. It constantly tell me to verify and when it's not I can't even use my email. I always verify so why does this keep happening?
+Thank you for your submission to /r/Chrome! We hope you'll find the help you need. Once you've found a solution to your issue, please comment ""**!solved**"" under this comment to mark the post as solved. Thanks!
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/chrome) if you have any questions or concerns.*
+Can you please share some screenshots
+https://preview.redd.it/orludjare70g1.png?width=1080&amp;format=png&amp;auto=webp&amp;s=7159394e4e46c2477a5e78af2b70f118bd6080f1",1ose42w,3,69106c3f47f1ccac3c7137c8,chrome,1
+installing on old laptop installs fine then boots to this other distros installed just fine fedora is the only one that is broken okay got it commenting here so it helps someone on the grub bootloader screen when you first boot the machine before you select fedora linux press e then add nomodeset specifically to the line that has the word linux on it if you put nomodeset on any other line it will not work it has to be on that line specifically which i cannot find mentioned anywhere looks like nvidia drivers issues but i haven t worked with systems with discrete gpu from 2022 so can t help with troubleshooting acer nitro 5 i have this machine right now gave it to my little brother and i couldn t managed to boot in to fedora 43 kde because as far as i know there are some issues with nvidia right now so i went with the best choice that is based of fedora immutable bazzite cause they have an nvidia iso right out of the box zero issues as of now wait 5 10 minutes new drivers are loading instaling once you do this i highly suggest following the nvidia install guide here i did this on my msi laptop with a 3060 and it runs great the reasoning behind this not working is simply because of a driver incompatibility once you get past the driver installation everything should be smooth sailing yup you re right it s an issue with nvidia drivers when booting quickly tap your laptops specific function button to go into bios and change the setting from discrete gpu to dynamic gpu that way the when it hits the not updated drivers and shows the black screen it falls back onto your igpu to install the proprietary drivers from akmods while booting i ve faced this ever since i hopped on fedora lol until funny enough all the old kernels weren t booting and i decided to switch to the dynamic gpu if you have amd nvidia hybrid graphics this is likely an sddm race condition bug that is present in the release isos of fedora 43 it should be fixed if you simply manage to boot the system and update it but i ve heard mixed results on whether the bug is actually fixed or not i ve simply switched to plasma login manager in my system and it works without issues change value of secure boot on bios settings there s an issue installing current version of fedora 43 on nvidia i think the issue is nouveau drivers boot into terminal mode install the proper nvidia drivers wait for the to compile and restart it s what i had to do a couple of months ago which de are you using i think you re ok with kde because you setup a user account at install gnome will be screwed because you have to setup the account on first boot which you can t do edit sorry missed the post where you said you resolved it it s wild that this issue is still there i was encountering it 2 months ago pretty sure that s the issue i had too i also recently switched to the plasma login manager and no issues since either d,"Installing on old laptop. Installs fine, then boots to this. Other distros installed just fine, fedora is the only one that is broken
+okay got it. Commenting here so it helps someone
+
+On the GRUB bootloader screen when you first boot the machine, before you select fedora linux, press e
+
+Then add
+
+nomodeset
+
+SPECIFICALLY TO THE LINE THAT HAS THE WORD “LINUX” ON IT
+
+if you put nomodeset on ANY OTHER LINE it will not work. It has to be on that line specifically which I cannot find mentioned anywhere.
+Looks like Nvidia drivers issues. But I haven't worked with systems with discrete gpu from 2022, so can't help with troubleshooting
+Acer Nitro 5? I have this machine right now (gave it to my little brother) and I couldn't managed to boot in to Fedora 43 KDE because as far as I know there are some issues with NVIDIA right now, so I went with the best choice that is based of Fedora - Immutable Bazzite, 'cause they have an nvidia iso right out of the box. Zero issues as of now.
+Wait 5-10 minutes, new drivers are loading/instaling
+Once you do this I highly suggest following the NVIDIA install guide here:https://github.com/Comprehensive-Wall28/Nvidia-Fedora-Guide
+
+I did this on my MSI laptop with a 3060 and it runs great!
+
+The reasoning behind this not working is simply because of a driver incompatibility. Once you get past the driver installation, everything should be smooth sailing.
+Yup you're right, it's an issue with Nvidia drivers, when booting quickly tap your laptops specific function button to go into bios and change the setting from discrete GPU to dynamic GPU.. That way the when it hits the ""not-updated"" drivers and shows the black screen it falls back onto your iGPU to install the proprietary drivers from akmods while booting
+
+I've faced this ever since I hopped on fedora lol, until funny enough all the old kernels weren't booting and I decided to switch to the dynamic GPU
+If you have AMD/Nvidia hybrid graphics this is likely an [SDDM race condition bug](https://github.com/sddm/sddm/issues/1917) that is present in the release ISOs of Fedora 43. It should be fixed if you simply manage to boot the system and update it, but I've heard mixed results on whether the bug is actually fixed or not. I've simply switched to plasma-login-manager in my system and it works without issues
+Change value of secure boot on bios settings
+There’s an issue installing current version of Fedora 43 on nVidia (I think the issue is Nouveau drivers).
+
+Boot into terminal mode, install the proper nVidia drivers, wait for the to compile and restart. It’s what I had to do a couple of months ago. Which DE are you using? I think you’re Ok with KDE because you setup a user account at install. Gnome will be screwed because you have to setup the account on first boot (which you can’t do).
+
+Edit: sorry, missed the post where you said you resolved it. It’s wild that this issue is still there, I was encountering it 2 months ago!
+Pretty sure that’s the issue I had too, I also recently switched to the plasma-login-manager, and no issues since either :D",1rkch52,17,69a7d26614360ffebe0486e4,Fedora,1
+microsoft prepares major windows 11 feature drop with new start menu taskbar updates and more new features expected to roll out next month all features ai i presume it doesn t matter no pathetic cosmetic changes can compensate for the bloating for forcing ai into everything for the complete disrespect for customers gt now their app previews will display with a pretty animation that makes windows 11 feel a little more complete they have learned absolutely fucking nothing the start menu is gone you just click the start button and copilot knows what you wish to launch or it will decide for you have you considered reformatting this complaint with copilot what are they going to break now can i just fukkin move the taskbar to the side of the screen again please it s the highest voted piece of feedback on the insider hub and they ve just ignored it for years all i wanted was a search function that doesn t suck hopefully the new start menu and ui is fully win32 again for improved performance instead of that slow javascript crap windows core elements should never use high level frameworks users interact with it all the time you want it to be as lightweight as possible,"Microsoft prepares major Windows 11 feature drop with new Start menu, Taskbar updates, and more | New features expected to roll out next month
+All features AI I presume
+It doesn't matter. No pathetic cosmetic changes can compensate for the bloating, for forcing AI into everything, for the complete disrespect for customers.
+&gt;Now, their app previews will display with a pretty animation that makes Windows 11 feel a little more complete.
+
+...they have learned absolutely fucking nothing.
+The start menu is gone. You just click the start button and Copilot knows what you wish to launch or it will decide for you.
+Have you considered reformatting this complaint with Copilot??
+What are they going to break now?
+Can I just fukkin move the taskbar to the side of the screen again!!! Please!
+It's the highest-voted piece of feedback on the Insider Hub, and they've just ignored it for years...
+All I wanted was a search function that doesn't suck.
+Hopefully the new Start menu and UI is fully Win32 again for improved performance, instead of that slow JavaScript crap.
+
+Windows core elements should NEVER use high level frameworks. Users interact with it all the time, you want it to be as lightweight as possible.",1oe5t8b,35,68fb8cdc3466f3b61cf1a6fe,microsoft,0
+rid15 wasn t a bad show it just wasn t a good prime sequel i can never hate it because the figures were awesome and the designs more so but not calling it perfect i remember when i saw they were doing a figure of bisk and thought oh oh you are bringing creativity to help table that s true and i think the big problem is that it came at an odd time in the life of the franchise in the leadup to 2015 hasbro began getting rid of the one size fits all approach to the brand and started targeting different things at different audiences prime was designed as a flagship show for the hub network and aimed to carry over some of the older audience from the movies while rescue bots popped up to appeal to younger kids the toys also started becoming more and more separated with generations shifting to target the older teen adult market that was playing the video games and reading the comics while the toyline for prime got simpler and simpler and by the end of beast hunters was selling upscaled cyberverse commanders as voyagers in 2015 they also changed the age rating on the toys rather than being almost universally for ages 5 generations figures were for ages 8 while rid2015 toys were for ages 6 and rescue bots stuff continued being for 3 the intent seems to have been for transformers to have a tiered age system where fans would grow out of one segment of the brand and move on to something else so the kids who watched prime were seemingly expected to just move on to the new movies while rid was actually made for the kids who had been watching rescue bots and were now a little older it s definitely a bizarre decision to make a direct sequel to something that s not for the original show s audience but it s not like transformers hasn t done something like that before beast machines and i think now that we re a decade out the kids who were the right age for rid are starting to come out of the woodwork and it might have a better reputation in the future its certainly better as its own thing compared to a prime sequel but as its own thing its kinda not great still arguably without the connections to prime i think the show would be far worse the starscream mini arc and the soundwave episode in season 2 were pretty decent for what they were but solely because the show finally decided to commit to being a proper sequel to the show before i know the show undermines a lot of what came before so no argument to be had that it s a bad prime sequel but being a bad prime sequel probably still trumps over being a forgettable bad show no no it s also a bad show as a person who defends rid15 and thinks tfp was kind of a bad show rid15 also just fails on its own merits as well it was also pretty bad yeah if it was a stand alone show it probably would have been received better no it was a bad show on its own and even worse sequel i agree it s a perfectly fine kids show that i wouldn t have a problem with in the same vein as rescue bots but since it s a direct sequel to prime i have issues mainly the characterization of returning characters not mentioning previous characters and the trope of everything our heroes worked for meant nothing thing also i just don t like grimlock i agree,"RID15 wasn't a bad show, it just wasn't a good Prime sequel.
+I can never hate it because the figures were awesome and the designs more so.
+
+
+But not calling it perfect.
+
+
+I remember when I saw they were doing a figure of Bisk and thought ""Oh, oh you are bringing creativity to help table.""
+That's true, and I think the big problem is that it came at an odd time in the life of the franchise.
+
+In the leadup to 2015, Hasbro began getting rid of the ""one size fits all"" approach to the brand and started targeting different things at different audiences. Prime was designed as a flagship show for the Hub network, and aimed to carry over some of the older audience from the movies, while Rescue Bots popped up to appeal to younger kids.
+
+The toys also started becoming more and more separated, with Generations shifting to target the older teen / adult market that was playing the video games and reading the comics, while the toyline for Prime got simpler and simpler, and by the end of Beast Hunters was selling upscaled Cyberverse Commanders as Voyagers.
+
+In 2015, they also changed the age rating on the toys. Rather than being almost universally for ages 5+, Generations figures were for ages 8+, while RID2015 toys were for ages 6+, and Rescue Bots stuff continued being for 3+.
+
+The intent seems to have been for Transformers to have a tiered age system, where fans would grow out of one segment of the brand and move on to something else. So the kids who watched Prime were seemingly expected to just move on to the new movies, while RID was actually made for the kids who had been watching Rescue Bots, and were now a little older.
+
+It's definitely a bizarre decision to make a direct sequel to something that's *not* for the original show's audience, but it's not like Transformers hasn't done something like that before (Beast Machines), and I think now that we're a decade out, the kids who *were* the right age for RID are starting to come out of the woodwork and it might have a better reputation in the future.
+its certainly better as its own thing compared to a prime sequel, but as its own thing? its kinda not great still
+Arguably without the connections to Prime, I think the show would be far worse. 
+The Starscream mini-arc and the Soundwave episode in season 2 were pretty decent for what they were, but solely because the show finally decided to commit to being a proper sequel to the show before. 
+I know the show undermines a lot of what came before, so no argument to be had that it’s a bad Prime sequel.
+But being a bad Prime sequel probably still trumps over being a forgettable bad show.
+No no, it's also a bad show
+
+As a person who defends RID15 and thinks TFP was kind of a bad show, RID15 also just fails on its own merits as well
+It was also pretty bad.
+Yeah if it was a stand alone show it probably would have been received better
+No it was a bad show on its own, and even worse sequel
+I agree, It’s a perfectly fine kids show that I wouldn’t have a problem with in the same vein as Rescue Bots, but since it’s a direct sequel to Prime I have issues. Mainly the characterization of returning characters, not mentioning previous characters, and the trope of “everything our heroes worked for meant nothing” thing.
+
+Also I just don’t like Grimlock.
+I agree.",1o0not3,36,68e578bcf45799e69d7418d5,transformers,0
+rustdesk fails to connect yes it does likewise when i ping the ip address it pings just fine thanks if you ping the domain name of your rustdesk server does it return the correct ip their support is very good i ve had a couple minor issues along the way they they ve helped with thanks very much for the reply risaw1981 yes the clients i am usually trying to connect to are on the same network as the host i am trying to connect from outside the network i will check out nat loop back i am not familiar with it yes i have opened the ports required per the rustdesk documentation are the clients that are failing to connect on the same network as your server if so look in to nat loop back you also must make sure you open the correct ports on your firewall router where your rustdesk server is connected,"RustDesk Fails to Connect
+Yes. It does. Likewise, when I ping the IP address, it pings just fine.  Thanks
+If you ping the domain name of your RustDesk server does it return the correct IP? Their support is very good. I’ve had a couple minor issues along the way they they’ve helped with.
+Thanks very much for the reply, Risaw1981. Yes, the clients I am usually trying to connect to are on the same network as the host. I am trying to connect from outside the network. I will check out NAT Loop back. I am not familiar with it. Yes, I have opened the ports required per the RustDesk documentation.
+Are the clients that are failing to connect on the same network as your server? If so look in to NAT loop back. You also must make sure you open the correct ports on your firewall/router where your RustDesk server is connected.",1nkoul4,4,68cd13c379796ed59006fe5a,rustdesk,1
+google verify always uses the first number are you aware of how it works you access your financial data it pops a message on your phone asking if you are doing it when you choose yes it then says to select the number of 3 it is supposed to be random which number it chosen could be 1 2 or 3 in my case it is always the first number see the pic i attached i just generated this number it gave me was 9 it always is whatever is first on this list this is a great find should definitely be reported and checked to be fixed if it s always the first number shown it renders that specific 2fa to be ineffective at least the one confirming from a choice of 3 numbers on other devices what behaviour are you expecting exactly the first number is the default 2fa number the others are simply backups,"Google Verify ALWAYS Uses the First Number
+?? Are you aware of how it works? You access your financial data, it pops a message on your phone asking if you are doing it. When you choose ""yes"", it then says to select the number (of 3). It is supposed to be random which number it chosen. Could be 1, 2, or 3. In my case, it is ALWAYS the first number. 
+
+See the pic I attached. I just generated this. Number it gave me was ""9"". It ALWAYS is whatever is first on this list. 
+
+https://preview.redd.it/nnd8o7tuwwqf1.png?width=429&amp;format=png&amp;auto=webp&amp;s=af03706c2e6dafd9450b48a69d9fee978dd76d6b
+This is a great find! Should definitely be reported and checked to be fixed.
+
+If it's always the first number shown, it renders that specific 2FA to be ineffective (at least the one confirming from a choice of 3 numbers on other devices)
+What behaviour are you expecting, exactly? The first number is the default 2FA number, the others are simply backups.",1nogcov,3,68d2aeac79796ed590074aed,google,0
+oc combiner wars overlord bisected and thrown into the void between past and future the once mighty overlord s mind and body were shattered and scattered across time and space his enemies thought him finished for good but the strange temporal energies bombarding overlord s broken form have somehow created an even more unhinged monster an engine of destruction capable of breaking the barriers between timelines and dimensions for now the being called overlord can only muster two semi cogent thoughts become whole and kill wreckers as it seemingly at random barrels into new timelines in search of its missing parts through trial and error brutally dismantling any of infinity s countless springers and impactors found in its path whew this was a doozy of a project i m fairly new to customizing tfs so this was a huge learning experience with lots of trial error and heartache but huge thanks to ariel lemon fakebuster83 wherever you are for designing the overlord heads when shapeways was a thing those pieces are amazing i ordered them years ago intending to do this project totally inspired by their work all credit to them for the idea and i finally found the courage to do it longest of longshots but if anyone here has a line to ariel lemon these days or somehow got access to the stl files for those overlord heads back in the days i d be forever in your debt you can t see it here but the base of the combiner head was cracked in the process making it very unstable so i m obviously keen to replace it buuut it might just be a one of a kind piece now that shapeways is dead materials cw cyclonus and silverbolt dreamwave computron upgrade kit ariel lemon fakebuster83 overlord heads printed before shapeways went under valejo and tamiya paints the idea of overlord becoming a combiner is both awesome and nightmare fuel nice job my guy nice silverbolt retool stay tuned i ve got a couple extra cw brawls and blastoffs i have plans for that is amazing only way to improve it use a tank for one of the limbs the superieon bots in that order feels wrong like just not right i mean at that point just custom them into hydra buster for better matching decepticons run thin in masterforce so i could see a brawl repaint to represent the tank as one limb and a rook custom as doubleclouder this is how you execute a custom absolutely gorgeous paint work i presume masking and airbrush the line work is so crisp very nice work could use dreadwing and darkwind as limbs not sure on who else maybe club spinister and needlenose they were part of the same line at least but does he tank this this is really awesome like this is ni jocking really good work even if it was just made on a 3d printer it still looks official like an official figure good work,"[OC] Combiner Wars Overlord
+""Bisected and thrown into the void between past and future, the once mighty Overlord's mind and body were shattered and scattered across time and space.
+
+His enemies thought him finished for good, but the strange temporal energies bombarding Overlord's broken form have somehow created an even more unhinged monster, an engine of destruction capable of breaking the barriers between timelines and dimensions.
+
+For now, the being called Overlord can only muster two semi-cogent thoughts: 'BECOME WHOLE' and 'KILL WRECKERS' as it seemingly at random barrels into new timelines in search of its missing parts through trial and error, brutally dismantling any of infinity's countless Springers and Impactors found in its path.""
+
+Whew...this was a doozy of a project. I'm fairly new to customizing tfs, so this was a huge learning experience with lots of trial, error, and heartache.
+
+BUT, huge thanks to Ariel Lemon/fakebuster83, wherever you are for, designing the overlord heads when shapeways was a thing. Those pieces are amazing! I ordered them YEARS ago intending to do this project (totally inspired by their work, all credit to them for the idea), and I finally found the courage to do it.
+
+Longest of longshots, but if anyone here has a line to Ariel Lemon these days or somehow got access to the stl files for those overlord heads back in the days, I'd be forever in your debt. You can't see it here, but the base of the combiner head was cracked in the process making it very unstable, so I'm obviously keen to replace it. Buuut it might just be a one-of-a-kind piece now that shapeways is dead.
+
+Materials:
+- CW Cyclonus and Silverbolt
+- Dreamwave Computron Upgrade Kit
+- Ariel Lemon (fakebuster83) Overlord Heads printed before Shapeways went under.
+- Valejo and Tamiya Paints
+The idea of Overlord becoming a combiner is both awesome and nightmare fuel. Nice job, my guy!
+nice Silverbolt retool
+Stay tuned, I've got a couple extra CW Brawls and Blastoffs I have plans for 😁
+That is amazing! Only way to improve it... use a tank for one of the limbs
+The superieon bots in that order feels wrong... like... just not right.
+I mean - at that point, just custom them into Hydra/Buster for better matching. 
+
+Decepticons run thin in Masterforce, so I could see a Brawl repaint to represent the Tank as one limb and a Rook Custom as DoubleClouder.
+**THIS is how you execute a custom!**
+
+Absolutely GORGEOUS paint work! I presume masking and airbrush? The line work is so crisp.
+Very nice work. Could use Dreadwing and Darkwind as limbs... not sure on who else, maybe club Spinister and Needlenose? They were part of the same line at least.
+But does he Tank?
+This... this is really awesome! Like, this is, ni jocking, REALLY good work, even if it was just made on a 3D printer. It still looks official, like an official figure.Good work 👍",1nzjypu,11,68e3eef0f45799e69d73fec8,transformers,0
+can t believe he got it all wrong why this is so funny i can t believe i see this exact meme posted every day cuz buy bitcoin is that the yellow guy from clash royale there goes dinner be thankful you don t have paper hands,"Can't believe he got it all wrong.
+Why this is so funny? 😆
+I can't believe I see this exact meme posted every day.
+cuz buy bitcoin
+😂😂😂😂😂👍👌
+Is that the yellow guy from clash royale
+There goes dinner… Be thankful you don’t have paper hands.",1p7y4ac,6,69285fa668f38e42360c5e1e,Bitcoin,1
+motorola edge 70 review gsmarena it seems like a good phone such a shame that motorola doesn t give a longer software support pros great looking incredibly grip tough build superb oled top notch battery life fast to charge all three cameras do well for photos and videos selfie as well clean and fast android os plenty of ai integration comes bundled with a magsafe compatible case in some markets cons somewhat expensive at launch comes with a mid range chipset shallow sounding speakers six years of security updates are more than enough for a mid range phone no optical zoom 4 6 is pretty nice since this gonna be a 400 500 phone if this gets the usual motorola msrp pricing tactic but that s provided it s 4 full os update and not just some android version number 1 i m still doubtful that even the major players flagship promising 6 7 years update are even gonna pull through especially with the new ai this ai that with their stringent ram requirement imo the best test might be if when android desktop mode is released which company is going to adapt it properly to which model such pretty colors compared to the iphone air or s25 edges ridiculous color options saw it in the shop it s a really nice phone in the hand good thing 99 of all people in the entire world does not give a single flying fuck about updates as they do not matter whatsoever gt the motorola edge 70 is powered by a si c 4 800mah battery an impressive capacity given the slim profile just for comparison the galaxy s25 edge comes with a 3 900mah cell the iphone air 3 149mah absolutely love how it s become customary to shit on the air s battery capacity yet this thing barely beats with 1650mah extra and it actually doesn t it only gets a better score because it can call longer lol,"Motorola Edge 70 review - GSMArena
+It seems like a good phone, such a shame that Motorola doesn't give a longer software support
+# Pros
+
+* Great-looking, incredibly grip, tough build.
+* Superb OLED.
+* Top-notch battery life, fast to charge.
+* All three cameras do well for photos and videos, selfie as well.
+* Clean and fast Android OS, plenty of AI integration.
+* Comes bundled with a MagSafe compatible case (in some markets).
+
+# Cons
+
+* Somewhat expensive at launch.
+* Comes with a mid-range chipset.
+* Shallow-sounding speakers.
+Six years of security updates are more than enough for a mid range phone.
+no optical zoom
+4+6 is pretty nice since this gonna be a $400-500 phone if this gets the usual Motorola msrp pricing tactic   
+But that's provided it's 4 full OS update and not just some android version number +1   
+
+I'm still doubtful that even the major players flagship *promising* 6-7 years update are even gonna pull through. Especially with the new AI this AI that with their stringent ram requirement
+
+Imo the best test might be if/when android desktop mode is released, which company is going to adapt it properly to which model
+Such pretty colors, compared to the iphone air or S25 edges ridiculous color options.
+Saw it in the shop. It's a really nice phone in the hand.
+Good thing 99% of all people in the entire world does not give a single flying fuck about updates, as they do not matter whatsoever...
+\&gt;The Motorola Edge 70 is powered by a Si/C 4,800mAh battery, an impressive capacity given the slim profile. Just for comparison - the Galaxy S25 Edge comes with a 3,900mAh cell, the iPhone Air - 3,149mAh.
+
+  
+Absolutely love how it's become customary to shit on the Air's battery capacity, yet this thing *barely* beats\*, with 1650mAh extra! 
+
+  
+\*and it actually doesn't, it only gets a better score, because it can call longer, lol",1p6tr4c,9,6926652168f38e42360aefb7,Android,0
+if you ve got tubeblock remove it tubeblock adblock for youtube was a chrome extension that i downloaded after youtube began to show the you get to see 3 videos ad free before you ll will not be able to use youtube bs since at the time ublock was on yt hit list after ublock was officially done i downloaded ublock lite now i still had tubeblock it had worked for a bit but i soon forgot about it well today my chrome decided to fudge up stuff wasn t loading correctly google was bare bones and a few times i got a pop up saying chrome is out of date and to download the newest version so i clicked it and what was odd is that a exe was downloaded i know 100 the only time you get a chrome exe is when you go onto internet explorer to download chrome lol and all updates are done automatically through the browser so i knew right away not to run this exe so i deleted it not long after just searching on google kept taking me to blocked pages and underlined links on words would take me to a blocked url site so i knew i had adware after installing melwarebytes i began to get notifications of attempted redirecting to random sus sites at first both melwarebytes and my antivirus wasn t picking anything up it was odd so only other way it could be would be my extensions i didn t have any that randomly showed up so i turned each one off one at a time at this stage just typing google was taking me to a blocked site each time however when i disabled tubeblock it all cleared up enabling it again bam mess i did a bit of digging and tubeblock was removed from the store back in april 2025 and it seems like the extension has been compromised if you ve got it installed and nothing has happened to you yet please remove it how did i know it was this extension internet explorer was fine when i did my search while chrome was a mess so i knew i didn t have an actual virus on my pc but a infected chrome extension i don t know why people would ever use no name extensions to do things when there s much more popular and reputable extensions already out there internet explorer lol how old is your pc the same thing happened to me but i clicked on the exe am i infected thank you for posting this i wondered what the hell was wrong with my browser mine actually went so far as to interfer with my wifi lol all is well now and i ve reported the extension just use ublock bro at the time it had 2m downloads with a 4 5 star review any extension can become malware or adware yep any information you ve entered into websites or anything has been stolen so i recommend you deep scan your pc and run malwarebytes and change all your passwords np i had no idea the extension was removed i had downloaded ublock lite not long after i downloaded tubeblock and well just forgot about tubeblock i ve only used explorer to download chrome,"If You've Got TubeBlock, remove it!
+TubeBlock - Adblock For YouTube
+
+Was a Chrome extension that I downloaded after YouTube began to show the ""You get to see 3 videos ad free before you'll will not be able to use youtube bs"" Since at the time uBlock was on YT hit list. 
+
+After uBlock was officially done, I downloaded uBlock Lite. Now I still had TubeBlock, it had worked for a bit but I soon forgot about it. 
+
+Well today my Chrome decided to fudge up, stuff wasn't loading correctly, google was bare bones and a few times I got a pop up saying ""Chrome is out of date"" and to download the newest version, so I clicked it and what was odd is that a exe was downloaded. I know 100% the only time you get a chrome exe is when you go onto internet explorer to download chrome... lol.. and all updates are done automatically through the browser so I knew right away not to run this exe... so I deleted it. 
+
+Not long after, just searching on google kept taking me to blocked pages and underlined links on words would take me to a blocked url site... so I knew I had adware, after installing Melwarebytes, I began to get notifications of attempted redirecting to random sus sites. 
+
+At first both Melwarebytes and my antivirus wasn't picking anything up... it was odd. So only other way it could be would be my extensions. 
+
+I didn't have any that randomly showed up, so I turned each one off one at a time. At this stage just typing google was taking me to a blocked site each time. 
+
+However, when I disabled TubeBlock, it all cleared up.... enabling it again... BAM mess..
+
+  
+I did a bit of digging and TubeBlock was removed from the store back in April 2025.. and it seems like the extension has been compromised. If you've got it installed and nothing has happened to you yet, please remove it. 
+
+How did I know it was this extension? Internet Explorer was fine when I did my search... while Chrome was a mess.. so I knew I didn't have an actual virus on my pc but a infected Chrome extension.
+I don't know why people would ever use no name extensions to do things when there's much more popular and reputable extensions already out there.
+Internet Explorer? Lol, how old is your PC?
+The same thing happened to me, but I clicked on the .exe, am I infected? :(
+Thank you for posting this. I wondered what the hell was wrong with my browser. Mine actually went so far as to interfer with my wifi lol. All is well now and I've reported the extension.
+Just use Ublock bro
+At the time it had 2M downloads with a 4.5 star review. Any extension can become malware or adware
+yep. Any information you've entered into websites or anything has been stolen. So I recommend you deep scan your pc and run Malwarebytes and change all your passwords
+Np! I had no idea the extension was removed, I had downloaded uBlock Lite not long after I downloaded TubeBlock... and well just forgot about TubeBlock.
+I've only used Explorer to download Chrome...",1nubrx1,9,68dbcd77cd215d1b99b02ef4,chrome,0
+wnw lunch break score found at a local comic shop neat i m glad he transforms into a tank his becoming a gun never made sense in scale to the other characters even as a kid in the 80s that always bugged me sweet find megatron is oddly uncommon i only got mine through a preorder because i haven t seen him at all locally not just a gun a gun that shrinks to fit starscream s hand i d been hunting megs for a while and had no luck i walked into a local comic shop near my office and found him finally i saw him once at target and bought him immediately which was a good move since i haven t seen him anywhere else since eatin good i see p hi there if you re looking for information about reading the transformers comics this faq page might be of help i am a bot and this action was performed automatically please contact the moderators of this subreddit message compose to r transformers if you have any questions or concerns,"WNW Lunch Break Score! Found at a local comic shop.
+Neat!  I'm glad he transforms into a tank.  His becoming a gun never made sense in scale to the other characters.  Even as a kid in the 80s that always bugged me.
+Sweet find! Megatron is oddly uncommon, I only got mine through a preorder because I haven't seen him at ALL locally.
+Not just a gun! A gun that shrinks to fit Starscream's hand.
+I'd been hunting megs for a while and had no luck. I walked into a local comic shop near my office and found him. Finally.
+I saw him once at Target, and bought him immediately. Which was a good move, since I haven't seen him *anywhere* else since.
+Eatin' good, I see :P
+Hi there -- If you're looking for information about reading the Transformers comics, this FAQ page might be of help: [https://reddit.com/r/transformers/wiki/faq/comics](/r/transformers/wiki/faq/comics)
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/transformers) if you have any questions or concerns.*",1pddpxr,7,69309f2068f38e42360d1f19,transformers,0
+if you don t believe me or don t get it i don t have time to try to convince you sorry satoshi nakamoto 2020 was 5 years ago it s worse now now do 2025 at 4400 shit man 2020 still feels like it was last year on the bitcointalk forum in a completely different context he was responding to a comment about scalability and the 10 minute average confirmation time not about monetary inflation quote from satoshi on july 29 2010 02 00 38 am gt i outline how a payment processor could verify payments well enough actually really well much lower fraud rate than credit cards in something like 10 seconds or less if you don t believe me or don t get it i don t have time to try to convince you sorry if you can t come up with an original thought better to say nothing than to take a well known quote from a completely different context and falsely imply that it supports your theme u na3than i dont get this at all so maybe somebody can explain people claim that when bitcoin goes up that its really the value of the fiat dropping so what does it mean when bitcoin crashes or goes way down down that mean the value of the fiat is going up funny how often this quote ends up on memes made in an attempt to convince people it really puts things into perspective same ounce of gold but the amount of cash needed around it keeps growing hard not to reflect on what actually holds value over time that same 20 67 from 1933 would be worth 411 51 in 2020 where did he say that,"“If you don't believe me or don't get it, I don't have time to try to convince you, sorry.” ― Satoshi Nakamoto
+2020 was 5 years ago, it’s worse now!
+Now do 2025 at $4400.
+shit man .. 2020 still feels like it was last year
+On the Bitcointalk forum ... in a COMPLETELY different context. He was responding to a comment about scalability and the 10 minute average confirmation time, NOT about monetary inflation.
+
+[Quote from: satoshi on July 29, 2010, 02:00:38 AM](https://bitcointalk.org/index.php?topic=532.msg6306#msg6306)
+
+&gt; I outline how a payment processor could verify payments well enough, actually really well (much lower fraud rate than credit cards), in something like 10 seconds or less. **If you don't believe me or don't get it, I don't have time to try to convince you, sorry.**
+""If you can't come up with an original thought, better to say nothing than to take a well-known quote from a [completely different context](https://bitcointalk.org/index.php?topic=532.msg6306#msg6306) and falsely imply that it supports your theme."" ― u/Na3than
+I dont get this at all so maybe somebody can explain. People claim that when bitcoin goes up that its really the value of the fiat dropping. So what does it mean when bitcoin crashes or goes way down? Down that mean the value of the fiat is going up?
+Funny how often this quote ends up on memes made in an attempt to convince people.
+It really puts things into perspective. Same ounce of gold, but the amount of cash needed around it keeps growing. Hard not to reflect on what actually holds value over time.
+That same $20.67 from 1933 would be worth $411.51 in 2020
+where did he say that?",1pprjyf,30,69440f2f5312e2275d74fc36,Bitcoin,0
+keep for now button not working can t re enable ublock origin help console error attached use ubo lite or any other mv3 extension instead of dragging out your suffering even more than it already has been or just change browsers thank you for your submission to r chrome we hope you ll find the help you need once you ve found a solution to your issue please comment solved under this comment to mark the post as solved thanks i am a bot and this action was performed automatically please contact the moderators of this subreddit message compose to r chrome if you have any questions or concerns first every time it s shut down i am switching to ubol until i find a way to re activate it second this is the first time i ve hit a wall like this so it s not exactly been suffering like you think it s been up to this point it s always been a simple google search and then switching it back on and finally i m determined to keep ublock origin on my family s chrome browsers for as long as there are still ways to keep re activating it because ublock origin is objectively the superior adblocker and they are not willing to switch browsers like i am if you know how to get around it do tell otherwise please refrain from trying to shut me down don t think i didn t consider these things already before posting,"""Keep For Now"" Button Not Working --- Can't Re-Enable uBlock Origin. Help? (Console Error Attached""
+Use UBO lite or any other mv3 extension instead of dragging out your suffering even more than it already has been. Or just change browsers.
+Thank you for your submission to /r/Chrome! We hope you'll find the help you need. Once you've found a solution to your issue, please comment ""**!solved**"" under this comment to mark the post as solved. Thanks!
+
+
+*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/chrome) if you have any questions or concerns.*
+First, every time it's shut down, I AM switching to uBOL until I find a way to re-activate it.
+
+Second, this is the first time I've hit a wall like this, so it's not exactly been ""suffering"" like you think it's been. Up to this point it's always been a simple google search and then switching it back on.
+
+And finally, I'm determined to keep uBlock Origin on my family's chrome browsers for as long as there are still ways to keep re-activating it, because uBlock Origin is objectively the superior adblocker and they are not willing to switch browsers like I am.
+
+If you know how to get around it, do tell. Otherwise, please refrain from trying to shut me down.
+
+Don't think I didn't consider these things already before posting.",1pb0n21,3,692cfcb768f38e42360cd0e2,chrome,1
+android s march canary update is live and here s everything we ve spotted so far wow finally bringing back the separate mobile data and wifi toggles from android 11 insane that it took this long for common sense to click again if this change is not optional meaning they keep a merged internet tile this change is as bad as it was back then merging them to me one tile makes more sense for toggles i rarely touch but want to have accessible quickly others need both please give us options google now we can make tiles smaller since a16 i m less bothered as we can fit both into one original tile space that was my main issue with separating them again unifying them opened up another toggle space which i d desperately wanted the tiles were huge and we only had a choice of 8 originally which was really restrictive but now that s doubled to 16 there s a lot more freedom to have what you need on the first page still wish they d just keep the option though i ve genuinely seen people say it shouldn t be an option though as well like imagine advocating for less choice weirdos i want to know what s new underhood like android 17 new camera lenses smooth transitions in pixel honest question but what is the use case i m so excited for the app bubble feature is this feature support all 3rd party app and this update will come to a16 or a17,"Android's March Canary update is live and here's everything we've spotted so far
+Wow, finally bringing back the separate mobile data and wifi toggles from Android 11. Insane that it took this long for common sense to click again.
+If this change is not optional, meaning they keep a merged Internet tile, this change is as bad as it was back then merging them. To me one tile makes more sense for toggles I rarely touch but want to have accessible quickly. Others need both. Please give us options Google.
+Now we can make tiles smaller since A16 I'm less bothered, as we can fit both into one original tile space, that was my main issue with separating them again - unifying them opened up another toggle space which I'd desperately wanted. The tiles were huge and we only had a choice of 8 originally which was really restrictive but now that's doubled to 16 there's a lot more freedom to have what you need on the first page
+
+Still wish they'd just keep the option though, I've genuinely seen people say it shouldn't be an option though as well 😂 like imagine advocating for less choice, weirdos
+I want to know what's new ""underhood"" - like Android 17 new camera lenses smooth transitions in Pixel
+Honest question but what is the use case?
+I'm so excited for the App bubble feature. is this feature support all 3rd party app ? 🤔
+and this update will come to A16 or A17 ?",1rz3tji,6,69bd9387ace01fe6e260ec7f,Android,0
+thrive progress update 10 04 25 i m so glad terrain is getting added i was worried it would slip through the cracks before 1 0 0 and i think it is vital to helping this game reach new audiences it is visually interesting helps separate the patches and adds a lot of strategy that wouldnt be in the game otherwise glad you re looking forward to it the main reason it can be implemented now is because devonhalstondraedle last month and started providing the models i guess we decided not to mention it in this one but complex organic molecules were discovered coming from enceladus by a group of scientists looking through the data we received from cassini sick,"Thrive Progress Update 10/04/25
+I'm so glad terrain is getting added. I was worried it would slip through the cracks before 1.0.0, and I think it is vital to helping this game reach new audiences. It is visually interesting, helps separate the patches, and adds a lot of strategy that wouldnt be in the game otherwise.
+Glad you're looking forward to it! The main reason it can be implemented now is because DevonHalstonDraedle last month and started providing the models.
+I guess we decided not to mention it in this one but complex organic molecules were discovered coming from Enceladus by a group of scientists looking through the data we received from Cassini
+Sick!!!",1nxx55q,4,68ff11c33466f3b61cf1d38b,thrive,0
+who is the culprit here pic shows all the extension i added the deprecated legacy api error afaik none of those can be updated further so can i manually edit some files to fix it myself thanks this is what console says at launch gt adding extra search path checkpoints d ai data models stablediffusion adding extra search path diffusers d ai data models diffusers adding extra search path loras d ai data models lora adding extra search path loras d ai data models lycoris adding extra search path clip d ai data models textencoders adding extra search path clip vision d ai data models clipvision adding extra search path embeddings d ai data models embeddings adding extra search path vae d ai data models vae adding extra search path vae approx d ai data models approxvae adding extra search path controlnet d ai data models controlnet adding extra search path controlnet d ai data models t2iadapter adding extra search path gligen d ai data models gligen adding extra search path upscale models d ai data models esrgan adding extra search path upscale models d ai data models realesrgan adding extra search path upscale models d ai data models swinir adding extra search path hypernetworks d ai data models hypernetwork adding extra search path ipadapter d ai data models ipadapter adding extra search path ipadapter d ai data models ipadapters15 adding extra search path ipadapter d ai data models ipadaptersxl adding extra search path prompt expansion d ai data models promptexpansion adding extra search path ultralytics d ai data models ultralytics adding extra search path ultralytics bbox d ai data models ultralytics bbox adding extra search path ultralytics segm d ai data models ultralytics segm adding extra search path sams d ai data models sams adding extra search path diffusion models d ai data models diffusionmodels prestartup times for custom nodes 0 0 seconds d ai data packages comfyui custom nodes rgthree comfy checkpoint files will always be loaded safely total vram 4096 mb total ram 15711 mb pytorch version 2 10 0 cu130 set vram state to normal vram device cuda 0 nvidia geforce rtx 3050 laptop gpu cudamallocasync using async weight offloading with 2 streams enabled pinned memory 7070 0 working around nvidia conv3d memory bug found comfy kitchen backend eager available true disabled false unavailable reason none capabilities apply rope apply rope1 dequantize nvfp4 dequantize per tensor fp8 quantize nvfp4 quantize per tensor fp8 scaled mm nvfp4 found comfy kitchen backend triton available false disabled true unavailable reason importerror no module named triton capabilities found comfy kitchen backend cuda available true disabled false unavailable reason none capabilities apply rope apply rope1 dequantize nvfp4 dequantize per tensor fp8 quantize nvfp4 quantize per tensor fp8 scaled mm nvfp4 using pytorch attention python version 3 12 11 main jul 23 2025 00 32 20 msc v 1944 64 bit amd64 comfyui version 0 10 0 comfyui frontend version 1 36 14 prompt server web root d ai data packages comfyui venv lib site packages comfyui frontend package static import times for custom nodes 0 0 seconds d ai data packages comfyui custom nodes websocket image save py 0 0 seconds d ai data packages comfyui custom nodes image captioning in comfyui main 0 0 seconds d ai data packages comfyui custom nodes lora training in comfy main 0 0 seconds d ai data packages comfyui custom nodes efficiency nodes ed 0 0 seconds d ai data packages comfyui custom nodes comfyui wd14 tagger 0 0 seconds d ai data packages comfyui custom nodes comfyui custom scripts 0 0 seconds d ai data packages comfyui custom nodes efficiency nodes comfyui 0 1 seconds d ai data packages comfyui custom nodes rgthree comfy context impl sqliteimpl will assume non transactional ddl assets scan roots models completed in 0 044s created 0 skipped existing 112 total seen 113 starting server to see the gui go to and yes i can do sdxl stuff with my setup don t ask it s just a warning that you can safely ignore to my knowledge you can t fix it since there is no migration path or stable frontend apis defined yet open dev tools of your browser go to network tab search for the js for example ui js hover over the initiator column it will tell you the culprit but as someone said before me don t worry too much yet is just a warning and can be ignored,"Who is the culprit here? (pic shows all the extension I added + the deprecated legacy API error). Afaik none of those can be updated further so, can I manually edit some files to fix it myself? Thanks...
+This is what console says at launch:  
+  
+&gt; Adding extra search path checkpoints D:\AI\Data\Models\StableDiffusion  
+Adding extra search path diffusers D:\AI\Data\Models\Diffusers  
+Adding extra search path loras D:\AI\Data\Models\Lora  
+Adding extra search path loras D:\AI\Data\Models\LyCORIS  
+Adding extra search path clip D:\AI\Data\Models\TextEncoders  
+Adding extra search path clip_vision D:\AI\Data\Models\ClipVision  
+Adding extra search path embeddings D:\AI\Data\Models\Embeddings  
+Adding extra search path vae D:\AI\Data\Models\VAE  
+Adding extra search path vae_approx D:\AI\Data\Models\ApproxVAE  
+Adding extra search path controlnet D:\AI\Data\Models\ControlNet  
+Adding extra search path controlnet D:\AI\Data\Models\T2IAdapter  
+Adding extra search path gligen D:\AI\Data\Models\GLIGEN  
+Adding extra search path upscale_models D:\AI\Data\Models\ESRGAN  
+Adding extra search path upscale_models D:\AI\Data\Models\RealESRGAN  
+Adding extra search path upscale_models D:\AI\Data\Models\SwinIR  
+Adding extra search path hypernetworks D:\AI\Data\Models\Hypernetwork  
+Adding extra search path ipadapter D:\AI\Data\Models\IpAdapter  
+Adding extra search path ipadapter D:\AI\Data\Models\IpAdapters15  
+Adding extra search path ipadapter D:\AI\Data\Models\IpAdaptersXl  
+Adding extra search path prompt_expansion D:\AI\Data\Models\PromptExpansion  
+Adding extra search path ultralytics D:\AI\Data\Models\Ultralytics  
+Adding extra search path ultralytics_bbox D:\AI\Data\Models\Ultralytics\bbox  
+Adding extra search path ultralytics_segm D:\AI\Data\Models\Ultralytics\segm  
+Adding extra search path sams D:\AI\Data\Models\Sams  
+Adding extra search path diffusion_models D:\AI\Data\Models\DiffusionModels  
+Prestartup times for custom nodes:  
+0.0 seconds: D:\AI\Data\Packages\ComfyUI\custom_nodes\rgthree-comfy  
+Checkpoint files will always be loaded safely.  
+Total VRAM 4096 MB, total RAM 15711 MB  
+pytorch version: 2.10.0+cu130  
+Set vram state to: NORMAL_VRAM  
+Device: cuda:0 NVIDIA GeForce RTX 3050 Laptop GPU : cudaMallocAsync  
+Using async weight offloading with 2 streams  
+Enabled pinned memory 7070.0  
+working around nvidia conv3d memory bug.  
+Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_nvfp4']}  
+Found comfy_kitchen backend triton: {'available': False, 'disabled': True, 'unavailable_reason': ""ImportError: No module named 'triton'"", 'capabilities': []}  
+Found comfy_kitchen backend cuda: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['apply_rope', 'apply_rope1', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'scaled_mm_nvfp4']}  
+Using pytorch attention  
+Python version: 3.12.11 (main, Jul 23 2025, 00:32:20) [MSC v.1944 64 bit (AMD64)]  
+ComfyUI version: 0.10.0  
+ComfyUI frontend version: 1.36.14  
+[Prompt Server] web root: D:\AI\Data\Packages\ComfyUI\venv\Lib\site-packages\comfyui_frontend_package\static  
+Import times for custom nodes:  
+0.0 seconds: D:\AI\Data\Packages\ComfyUI\custom_nodes\websocket_image_save.py  
+0.0 seconds: D:\AI\Data\Packages\ComfyUI\custom_nodes\Image-Captioning-in-ComfyUI-main  
+0.0 seconds: D:\AI\Data\Packages\ComfyUI\custom_nodes\Lora-Training-in-Comfy-main  
+0.0 seconds: D:\AI\Data\Packages\ComfyUI\custom_nodes\efficiency-nodes-ED  
+0.0 seconds: D:\AI\Data\Packages\ComfyUI\custom_nodes\ComfyUI-WD14-Tagger  
+0.0 seconds: D:\AI\Data\Packages\ComfyUI\custom_nodes\ComfyUI-Custom-Scripts  
+0.0 seconds: D:\AI\Data\Packages\ComfyUI\custom_nodes\efficiency-nodes-comfyui  
+0.1 seconds: D:\AI\Data\Packages\ComfyUI\custom_nodes\rgthree-comfy  
+Context impl SQLiteImpl.  
+Will assume non-transactional DDL.  
+Assets scan(roots=['models']) completed in 0.044s (created=0, skipped_existing=112, total_seen=113)  
+Starting server  
+To see the GUI go to: http://127.0.0.1:8188  
+  
+(and yes, I can do SDXL stuff with my setup, don't ask)
+It's just a warning that you can safely ignore.
+To my knowledge you can't ""fix"" it since there is no migration path or stable frontend APIs defined (yet).
+open dev-tools of your browser, go to ""Network"" tab, search for the js (for example ui.js), hover over the ""Initiator"" column, it will tell you the culprit. 
+
+https://preview.redd.it/niy6pcbv8ifg1.png?width=681&amp;format=png&amp;auto=webp&amp;s=f0a6a87975b9abbfd5a671f984976126ffcb59e0
+
+But as someone said before me, don't worry too much (yet), is just a warning and can be ignored.",1qmk1ih,3,6976284e034576c5a987496b,comfyui,1
+does my house built 20 years ago compatible with a nest it should work although you may or may not need to add a c wire you appear to have a spare blue tire tucked back in the wall so it s possible it might already be connected on the other end otherwise if you have access to the air handler you should be able to find where the thermostat wire bundle connected and hook up blue to the c terminal inconclusive totally agree with your comment about the google ecosystem the only advantage that i ve found to nest is that it can do power stealing and work without a c wire but given that the op has spare wires they ve got other options like ecobee and sensi my house was built in 1900 and we have a nest it works fine the only issue that s happened once or twice in the 5 years we ve had it is that we do not have a c wire which is meant to supply consistent power to the nest on consecutive bitter cold days if the heat is turning on frequently it drains the nest battery to the point where you may have to pop it off the wall and charge it for a bit same wiring as my last two homes both built in the late 90s and it works just fine no c wire in either home bigger question is unless you are already invested in it do you really want to jump into the google home ecosystem it sucks i went all in on it in 2020 and after spending a lot of money i m slowly trying to work my way back out of it app sucks support sucks and too expensive it s an afterthought for google have you tried this,"Does my house built 20 years ago compatible with a Nest?
+It should work, although you may or may not need to add a C wire. You appear to have a spare blue tire tucked back in the wall, so it's possible it might already be connected on the other end, otherwise if you have access to the air handler you should be able to find where the thermostat wire bundle connected and hook up blue to the C terminal.
+Inconclusive
+Totally agree with your comment about the Google ecosystem.  The ONLY advantage that I've found to Nest is that it can do power-stealing and work without a C-Wire.   But given that the OP has spare wires, they've got other options like Ecobee and Sensi.
+My house was built in 1900 and we have a Nest. It works fine. The only issue that’s happened once or twice in the 5 years we’ve had it is that we do not have a C-wire which is meant to supply consistent power to the Nest. On consecutive bitter cold days, if the heat is turning on frequently it drains the nest battery to the point where you may have to pop it off the wall and charge it for a bit.
+Same wiring as my last two homes, both built in the late 90s and it works just fine. No C-wire in either home. Bigger question is, unless you are already invested in it, do you really want to jump into the Google Home ecosystem ? It sucks. I went all in on it in 2020 and after spending a lot of money I’m slowly trying to work my way back out of it. App sucks, support sucks and too expensive. It’s an afterthought for Google.
+[https://store.google.com/intl/en\_us/widget/compatibility/thermostat/](https://store.google.com/intl/en_us/widget/compatibility/thermostat/)
+
+Have you tried...this????",1qykwcg,6,69889ddcf8b09305bc8c74f2,Nest,0

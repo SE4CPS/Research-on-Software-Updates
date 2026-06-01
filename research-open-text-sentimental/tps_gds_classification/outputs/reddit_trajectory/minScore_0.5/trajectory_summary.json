@@ -1,0 +1,846 @@
+{
+  "url": "https://releasetrain.io/api/reddit/query/filter?minComments=3&minScore=0.5",
+  "slug": "minScore_0.5",
+  "filters": {
+    "minComments": 3,
+    "minScore": 0.5,
+    "maxScore": null,
+    "limit": 100
+  },
+  "total_posts": 42,
+  "threads_scored": 42,
+  "aggregate": {
+    "per_step": {
+      "0": {
+        "n": 42,
+        "mean_compound": -0.021300000000000003,
+        "std_compound": 0.42679932164001966,
+        "label_pct": {
+          "Positive": 23.80952380952381,
+          "Neutral": 45.23809523809524,
+          "Negative": 30.952380952380953
+        }
+      },
+      "1": {
+        "n": 42,
+        "mean_compound": 0.32674285714285717,
+        "std_compound": 0.4743548762682384,
+        "label_pct": {
+          "Positive": 64.28571428571429,
+          "Neutral": 16.666666666666668,
+          "Negative": 19.047619047619047
+        }
+      },
+      "2": {
+        "n": 42,
+        "mean_compound": 0.12093809523809523,
+        "std_compound": 0.4222827606916061,
+        "label_pct": {
+          "Positive": 42.857142857142854,
+          "Neutral": 35.714285714285715,
+          "Negative": 21.428571428571427
+        }
+      },
+      "3": {
+        "n": 42,
+        "mean_compound": 0.1213452380952381,
+        "std_compound": 0.4811478355143889,
+        "label_pct": {
+          "Positive": 42.857142857142854,
+          "Neutral": 23.80952380952381,
+          "Negative": 33.333333333333336
+        }
+      },
+      "4": {
+        "n": 32,
+        "mean_compound": 0.19984375,
+        "std_compound": 0.4670120400866957,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 25.0,
+          "Negative": 25.0
+        }
+      },
+      "5": {
+        "n": 28,
+        "mean_compound": 0.2120642857142857,
+        "std_compound": 0.35169538789604127,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 39.285714285714285,
+          "Negative": 10.714285714285714
+        }
+      },
+      "6": {
+        "n": 24,
+        "mean_compound": 0.0189125,
+        "std_compound": 0.34764333412337517,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 33.333333333333336,
+          "Negative": 33.333333333333336
+        }
+      },
+      "7": {
+        "n": 20,
+        "mean_compound": 0.243645,
+        "std_compound": 0.3580402511939126,
+        "label_pct": {
+          "Positive": 55.0,
+          "Neutral": 35.0,
+          "Negative": 10.0
+        }
+      },
+      "8": {
+        "n": 19,
+        "mean_compound": -0.09026842105263158,
+        "std_compound": 0.46866229122183106,
+        "label_pct": {
+          "Positive": 36.8421052631579,
+          "Neutral": 26.31578947368421,
+          "Negative": 36.8421052631579
+        }
+      },
+      "9": {
+        "n": 16,
+        "mean_compound": 0.09925625,
+        "std_compound": 0.4072719177170671,
+        "label_pct": {
+          "Positive": 31.25,
+          "Neutral": 37.5,
+          "Negative": 31.25
+        }
+      },
+      "10": {
+        "n": 15,
+        "mean_compound": 0.24237999999999998,
+        "std_compound": 0.2970662399757558,
+        "label_pct": {
+          "Positive": 53.333333333333336,
+          "Neutral": 40.0,
+          "Negative": 6.666666666666667
+        }
+      },
+      "11": {
+        "n": 15,
+        "mean_compound": 0.14303333333333335,
+        "std_compound": 0.37669817921277804,
+        "label_pct": {
+          "Positive": 40.0,
+          "Neutral": 33.333333333333336,
+          "Negative": 26.666666666666668
+        }
+      },
+      "12": {
+        "n": 12,
+        "mean_compound": 0.127525,
+        "std_compound": 0.4704666355952708,
+        "label_pct": {
+          "Positive": 66.66666666666667,
+          "Neutral": 0.0,
+          "Negative": 33.333333333333336
+        }
+      },
+      "13": {
+        "n": 12,
+        "mean_compound": 0.07802500000000001,
+        "std_compound": 0.41563151373341906,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 16.666666666666668,
+          "Negative": 33.333333333333336
+        }
+      },
+      "14": {
+        "n": 10,
+        "mean_compound": -0.018550000000000004,
+        "std_compound": 0.34971140458955585,
+        "label_pct": {
+          "Positive": 40.0,
+          "Neutral": 30.0,
+          "Negative": 30.0
+        }
+      },
+      "15": {
+        "n": 10,
+        "mean_compound": 0.22970000000000002,
+        "std_compound": 0.4287231204402207,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 30.0,
+          "Negative": 20.0
+        }
+      },
+      "16": {
+        "n": 10,
+        "mean_compound": 0.34261,
+        "std_compound": 0.3688566481710747,
+        "label_pct": {
+          "Positive": 60.0,
+          "Neutral": 30.0,
+          "Negative": 10.0
+        }
+      },
+      "17": {
+        "n": 10,
+        "mean_compound": 0.40175,
+        "std_compound": 0.3356557142370736,
+        "label_pct": {
+          "Positive": 80.0,
+          "Neutral": 10.0,
+          "Negative": 10.0
+        }
+      },
+      "18": {
+        "n": 8,
+        "mean_compound": -0.08331250000000001,
+        "std_compound": 0.37681953717097794,
+        "label_pct": {
+          "Positive": 37.5,
+          "Neutral": 12.5,
+          "Negative": 50.0
+        }
+      },
+      "19": {
+        "n": 8,
+        "mean_compound": 0.21365,
+        "std_compound": 0.3841899692860291,
+        "label_pct": {
+          "Positive": 75.0,
+          "Neutral": 12.5,
+          "Negative": 12.5
+        }
+      },
+      "20": {
+        "n": 7,
+        "mean_compound": -0.042842857142857134,
+        "std_compound": 0.418030589643331,
+        "label_pct": {
+          "Positive": 28.571428571428573,
+          "Neutral": 42.857142857142854,
+          "Negative": 28.571428571428573
+        }
+      },
+      "21": {
+        "n": 6,
+        "mean_compound": 0.07610000000000001,
+        "std_compound": 0.47704313920930325,
+        "label_pct": {
+          "Positive": 66.66666666666667,
+          "Neutral": 0.0,
+          "Negative": 33.333333333333336
+        }
+      },
+      "22": {
+        "n": 6,
+        "mean_compound": 0.19178333333333333,
+        "std_compound": 0.296787956947193,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 33.333333333333336,
+          "Negative": 16.666666666666668
+        }
+      },
+      "23": {
+        "n": 6,
+        "mean_compound": 0.15118333333333334,
+        "std_compound": 0.36462854805343414,
+        "label_pct": {
+          "Positive": 66.66666666666667,
+          "Neutral": 0.0,
+          "Negative": 33.333333333333336
+        }
+      },
+      "24": {
+        "n": 5,
+        "mean_compound": 0.23774,
+        "std_compound": 0.33062781855131307,
+        "label_pct": {
+          "Positive": 60.0,
+          "Neutral": 20.0,
+          "Negative": 20.0
+        }
+      },
+      "25": {
+        "n": 5,
+        "mean_compound": -0.07986,
+        "std_compound": 0.5435884421140685,
+        "label_pct": {
+          "Positive": 40.0,
+          "Neutral": 0.0,
+          "Negative": 60.0
+        }
+      },
+      "26": {
+        "n": 4,
+        "mean_compound": -0.085,
+        "std_compound": 0.14722431864335458,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 75.0,
+          "Negative": 25.0
+        }
+      },
+      "27": {
+        "n": 4,
+        "mean_compound": 0.033299999999999996,
+        "std_compound": 0.37461760503211805,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 25.0,
+          "Negative": 25.0
+        }
+      },
+      "28": {
+        "n": 4,
+        "mean_compound": -0.10625,
+        "std_compound": 0.352700046073147,
+        "label_pct": {
+          "Positive": 25.0,
+          "Neutral": 25.0,
+          "Negative": 50.0
+        }
+      },
+      "29": {
+        "n": 4,
+        "mean_compound": 0.11399999999999999,
+        "std_compound": 0.6990777245771747,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 25.0,
+          "Negative": 25.0
+        }
+      },
+      "30": {
+        "n": 4,
+        "mean_compound": -0.19442500000000001,
+        "std_compound": 0.41685581065279637,
+        "label_pct": {
+          "Positive": 25.0,
+          "Neutral": 0.0,
+          "Negative": 75.0
+        }
+      },
+      "31": {
+        "n": 4,
+        "mean_compound": 0.24707500000000002,
+        "std_compound": 0.22058505587414576,
+        "label_pct": {
+          "Positive": 75.0,
+          "Neutral": 25.0,
+          "Negative": 0.0
+        }
+      },
+      "32": {
+        "n": 4,
+        "mean_compound": 0.30605,
+        "std_compound": 0.5520977381768558,
+        "label_pct": {
+          "Positive": 75.0,
+          "Neutral": 0.0,
+          "Negative": 25.0
+        }
+      },
+      "33": {
+        "n": 4,
+        "mean_compound": 0.22275,
+        "std_compound": 0.5207040642245843,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 25.0,
+          "Negative": 25.0
+        }
+      },
+      "34": {
+        "n": 4,
+        "mean_compound": 0.14322500000000002,
+        "std_compound": 0.7067236389671708,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 25.0,
+          "Negative": 25.0
+        }
+      },
+      "35": {
+        "n": 4,
+        "mean_compound": 0.22212500000000002,
+        "std_compound": 0.36998610362417667,
+        "label_pct": {
+          "Positive": 25.0,
+          "Neutral": 75.0,
+          "Negative": 0.0
+        }
+      },
+      "36": {
+        "n": 4,
+        "mean_compound": -0.009150000000000002,
+        "std_compound": 0.2986467938887006,
+        "label_pct": {
+          "Positive": 25.0,
+          "Neutral": 50.0,
+          "Negative": 25.0
+        }
+      },
+      "37": {
+        "n": 4,
+        "mean_compound": 0.058450000000000016,
+        "std_compound": 0.3031548902788804,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 25.0,
+          "Negative": 25.0
+        }
+      },
+      "38": {
+        "n": 4,
+        "mean_compound": 0.12912500000000002,
+        "std_compound": 0.4189639804028504,
+        "label_pct": {
+          "Positive": 75.0,
+          "Neutral": 0.0,
+          "Negative": 25.0
+        }
+      },
+      "39": {
+        "n": 4,
+        "mean_compound": -0.043675000000000005,
+        "std_compound": 0.2992229718370567,
+        "label_pct": {
+          "Positive": 25.0,
+          "Neutral": 50.0,
+          "Negative": 25.0
+        }
+      },
+      "40": {
+        "n": 4,
+        "mean_compound": 0.218675,
+        "std_compound": 0.37995240738150354,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 25.0,
+          "Negative": 25.0
+        }
+      },
+      "41": {
+        "n": 4,
+        "mean_compound": 0.1135,
+        "std_compound": 0.5662320239972303,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 0.0,
+          "Negative": 50.0
+        }
+      },
+      "42": {
+        "n": 4,
+        "mean_compound": 0.084125,
+        "std_compound": 0.36680260614532173,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 0.0,
+          "Negative": 50.0
+        }
+      },
+      "43": {
+        "n": 4,
+        "mean_compound": -0.382225,
+        "std_compound": 0.3857565448245823,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 50.0,
+          "Negative": 50.0
+        }
+      },
+      "44": {
+        "n": 4,
+        "mean_compound": 0.03082499999999999,
+        "std_compound": 0.3181503761981117,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 25.0,
+          "Negative": 25.0
+        }
+      },
+      "45": {
+        "n": 3,
+        "mean_compound": 0.20803333333333335,
+        "std_compound": 0.42623108234331714,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 33.333333333333336,
+          "Negative": 33.333333333333336
+        }
+      },
+      "46": {
+        "n": 3,
+        "mean_compound": 0.0028333333333333335,
+        "std_compound": 0.00400693842672377,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 100.0,
+          "Negative": 0.0
+        }
+      },
+      "47": {
+        "n": 3,
+        "mean_compound": -0.075,
+        "std_compound": 0.19299839377569958,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 0.0,
+          "Negative": 66.66666666666667
+        }
+      },
+      "48": {
+        "n": 3,
+        "mean_compound": 0.13396666666666665,
+        "std_compound": 0.18945747690591563,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 66.66666666666667,
+          "Negative": 0.0
+        }
+      },
+      "49": {
+        "n": 3,
+        "mean_compound": 0.5787333333333333,
+        "std_compound": 0.2733439388186409,
+        "label_pct": {
+          "Positive": 100.0,
+          "Neutral": 0.0,
+          "Negative": 0.0
+        }
+      },
+      "50": {
+        "n": 3,
+        "mean_compound": 0.2687,
+        "std_compound": 0.1930478179104856,
+        "label_pct": {
+          "Positive": 66.66666666666667,
+          "Neutral": 33.333333333333336,
+          "Negative": 0.0
+        }
+      },
+      "51": {
+        "n": 3,
+        "mean_compound": 0.7244,
+        "std_compound": 0.13924395857630592,
+        "label_pct": {
+          "Positive": 100.0,
+          "Neutral": 0.0,
+          "Negative": 0.0
+        }
+      },
+      "52": {
+        "n": 3,
+        "mean_compound": 0.21723333333333333,
+        "std_compound": 0.53046530727487,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 33.333333333333336,
+          "Negative": 33.333333333333336
+        }
+      },
+      "53": {
+        "n": 3,
+        "mean_compound": 0.22223333333333334,
+        "std_compound": 0.17981554128853516,
+        "label_pct": {
+          "Positive": 66.66666666666667,
+          "Neutral": 33.333333333333336,
+          "Negative": 0.0
+        }
+      },
+      "54": {
+        "n": 3,
+        "mean_compound": -0.007266666666666681,
+        "std_compound": 0.26875814819689137,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 33.333333333333336,
+          "Negative": 33.333333333333336
+        }
+      },
+      "55": {
+        "n": 3,
+        "mean_compound": 0.007300000000000001,
+        "std_compound": 0.6537994646678751,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 0.0,
+          "Negative": 66.66666666666667
+        }
+      },
+      "56": {
+        "n": 3,
+        "mean_compound": -0.0794,
+        "std_compound": 0.11228855685242374,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 66.66666666666667,
+          "Negative": 33.333333333333336
+        }
+      },
+      "57": {
+        "n": 3,
+        "mean_compound": -0.00573333333333334,
+        "std_compound": 0.7251260135697488,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 0.0,
+          "Negative": 66.66666666666667
+        }
+      },
+      "58": {
+        "n": 3,
+        "mean_compound": 0.3063,
+        "std_compound": 0.24431824873853913,
+        "label_pct": {
+          "Positive": 66.66666666666667,
+          "Neutral": 33.333333333333336,
+          "Negative": 0.0
+        }
+      },
+      "59": {
+        "n": 3,
+        "mean_compound": -0.14846666666666666,
+        "std_compound": 0.24810406866653537,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 0.0,
+          "Negative": 66.66666666666667
+        }
+      },
+      "60": {
+        "n": 3,
+        "mean_compound": 0.15669999999999998,
+        "std_compound": 0.6935304511459224,
+        "label_pct": {
+          "Positive": 66.66666666666667,
+          "Neutral": 0.0,
+          "Negative": 33.333333333333336
+        }
+      },
+      "61": {
+        "n": 3,
+        "mean_compound": 0.16463333333333333,
+        "std_compound": 0.23282669281869056,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 66.66666666666667,
+          "Negative": 0.0
+        }
+      },
+      "62": {
+        "n": 3,
+        "mean_compound": -0.33190000000000003,
+        "std_compound": 0.025392518583236302,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 0.0,
+          "Negative": 100.0
+        }
+      },
+      "63": {
+        "n": 3,
+        "mean_compound": -0.22203333333333333,
+        "std_compound": 0.5977647604943678,
+        "label_pct": {
+          "Positive": 33.333333333333336,
+          "Neutral": 0.0,
+          "Negative": 66.66666666666667
+        }
+      },
+      "64": {
+        "n": 2,
+        "mean_compound": -0.1343,
+        "std_compound": 0.5362,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 0.0,
+          "Negative": 50.0
+        }
+      },
+      "65": {
+        "n": 2,
+        "mean_compound": 0.47185,
+        "std_compound": 0.19865,
+        "label_pct": {
+          "Positive": 100.0,
+          "Neutral": 0.0,
+          "Negative": 0.0
+        }
+      },
+      "66": {
+        "n": 2,
+        "mean_compound": 0.6533,
+        "std_compound": 0.10460000000000003,
+        "label_pct": {
+          "Positive": 100.0,
+          "Neutral": 0.0,
+          "Negative": 0.0
+        }
+      },
+      "67": {
+        "n": 2,
+        "mean_compound": 0.57125,
+        "std_compound": 0.33685,
+        "label_pct": {
+          "Positive": 100.0,
+          "Neutral": 0.0,
+          "Negative": 0.0
+        }
+      },
+      "68": {
+        "n": 2,
+        "mean_compound": 0.2891,
+        "std_compound": 0.5851,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 0.0,
+          "Negative": 50.0
+        }
+      },
+      "69": {
+        "n": 2,
+        "mean_compound": 0.23835,
+        "std_compound": 0.23835,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 50.0,
+          "Negative": 0.0
+        }
+      },
+      "70": {
+        "n": 2,
+        "mean_compound": -0.4393,
+        "std_compound": 0.03740000000000002,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 0.0,
+          "Negative": 100.0
+        }
+      },
+      "71": {
+        "n": 2,
+        "mean_compound": 0.0,
+        "std_compound": 0.0,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 100.0,
+          "Negative": 0.0
+        }
+      },
+      "72": {
+        "n": 2,
+        "mean_compound": 0.2997,
+        "std_compound": 0.2997,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 50.0,
+          "Negative": 0.0
+        }
+      },
+      "73": {
+        "n": 2,
+        "mean_compound": 0.172,
+        "std_compound": 0.1462,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 50.0,
+          "Negative": 0.0
+        }
+      },
+      "74": {
+        "n": 2,
+        "mean_compound": 0.0,
+        "std_compound": 0.0,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 100.0,
+          "Negative": 0.0
+        }
+      },
+      "75": {
+        "n": 2,
+        "mean_compound": 0.38585,
+        "std_compound": 0.38585,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 50.0,
+          "Negative": 0.0
+        }
+      },
+      "76": {
+        "n": 2,
+        "mean_compound": 0.07945,
+        "std_compound": 0.28175,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 0.0,
+          "Negative": 50.0
+        }
+      },
+      "77": {
+        "n": 2,
+        "mean_compound": 0.40435,
+        "std_compound": 0.40435,
+        "label_pct": {
+          "Positive": 50.0,
+          "Neutral": 50.0,
+          "Negative": 0.0
+        }
+      },
+      "78": {
+        "n": 2,
+        "mean_compound": 0.76615,
+        "std_compound": 0.05654999999999999,
+        "label_pct": {
+          "Positive": 100.0,
+          "Neutral": 0.0,
+          "Negative": 0.0
+        }
+      },
+      "79": {
+        "n": 2,
+        "mean_compound": -0.39459999999999995,
+        "std_compound": 0.254,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 0.0,
+          "Negative": 100.0
+        }
+      },
+      "80": {
+        "n": 2,
+        "mean_compound": 0.0,
+        "std_compound": 0.0,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 100.0,
+          "Negative": 0.0
+        }
+      },
+      "81": {
+        "n": 1,
+        "mean_compound": -0.4767,
+        "std_compound": 0.0,
+        "label_pct": {
+          "Positive": 0.0,
+          "Neutral": 0.0,
+          "Negative": 100.0
+        }
+      }
+    },
+    "max_steps": 82,
+    "opening_mean_compound": -0.021300000000000003,
+    "final_in_thread_mean_compound": 0.15321904761904762,
+    "median_thread_length": 7.0,
+    "delta_first_to_last": {
+      "n": 42,
+      "mean": 0.17451904761904763,
+      "std": 0.5523826103423394
+    }
+  },
+  "conclusion": "Endpoint `minScore_0.5` (filters: {'minComments': 3, 'minScore': 0.5, 'maxScore': None, 'limit': 100}) Posts in payload: 42; threads with at least one scored text: 42. Mean compound on opening text (title + description) \u2248 -0.021. Mean compound on each thread's final text (last comment or opening if no comments) \u2248 0.153. Median thread length (scored texts): 7.0. For threads with \u22652 scored texts, mean (final\u2212opening) compound = 0.175 (std 0.552, n=42). Trajectory tends to move slightly more positive from opening to final comment in this sample."
+}

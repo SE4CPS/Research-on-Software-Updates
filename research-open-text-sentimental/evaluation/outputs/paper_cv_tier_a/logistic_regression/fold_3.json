@@ -1,0 +1,23 @@
+{
+  "fold": 3,
+  "metrics": {
+    "accuracy": 0.8360655737704918,
+    "f1_macro": 0.5965608465608465,
+    "f1_tps": 0.2857142857142857,
+    "precision_tps": 0.5,
+    "recall_tps": 0.2,
+    "pr_auc_tps": 0.5593073593073594
+  },
+  "confusion_matrix": [
+    [
+      49,
+      2
+    ],
+    [
+      8,
+      2
+    ]
+  ],
+  "n_train": 243,
+  "n_test": 61
+}
