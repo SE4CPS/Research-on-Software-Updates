@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Virtual environments — including one created in-place at the project
+# root (python -m venv .), which produces bin/, lib/, pyvenv.cfg directly
+# here rather than inside a venv/ subfolder.
+bin/
+lib/
+lib64/
+pyvenv.cfg
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db

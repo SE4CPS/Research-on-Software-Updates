@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Node / TypeScript (softwareUpdateAgent/)
+node_modules/
+dist/
+build/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
