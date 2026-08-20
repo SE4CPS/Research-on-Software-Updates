@@ -8,6 +8,8 @@ pipeline — see disclosed choices at the top of `train_and_evaluate.py`
 (label-reduction rule, 80/20 split, `CountVectorizer` features, near-default
 hyperparameters).
 
+Built with AI assistance (Claude).
+
 ## Results (80/20 split)
 
 | Classifier | Component Type | Security Risk | Release Type |
