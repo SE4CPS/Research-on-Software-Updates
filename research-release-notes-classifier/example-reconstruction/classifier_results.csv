@@ -1,0 +1,8 @@
+Classifier,Component Type (this run),Component Type (paper),Security Risk (this run),Security Risk (paper),Release Type (this run),Release Type (paper)
+(majority-class baseline),18.0%,,52.5%,,45.0%,
+Multinomial Naive Bayes,66.0% (+48.0 pts),72%,96.5% (+44.0 pts),92%,55.5% (+10.5 pts),Incorrect
+SVM (Linear Kernel),78.5% (+60.5 pts),77%,99.0% (+46.5 pts),94%,56.0% (+11.0 pts),Incorrect
+Logistic Regression,77.0% (+59.0 pts),88%,98.5% (+46.0 pts),99%,57.5% (+12.5 pts),Incorrect
+Random Forest,72.0% (+54.0 pts),77%,99.0% (+46.5 pts),94%,60.0% (+15.0 pts),Incorrect
+Gradient Boosting,81.5% (+63.5 pts),70%,99.5% (+47.0 pts),94%,56.5% (+11.5 pts),Incorrect
+K-Nearest Neighbors,52.0% (+34.0 pts),58%,88.5% (+36.0 pts),81%,44.0% (+-1.0 pts),Incorrect
