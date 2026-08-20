@@ -6,7 +6,6 @@ Supplementary materials for:
 > **"Triage Software Update Impact via Release Notes Classification."**
 > *Procedia Computer Science*, Vol. 238, pp. 618-622, 2024.
 > DOI: [10.1016/j.procs.2024.06.069](https://doi.org/10.1016/j.procs.2024.06.069)
-> Open-access PDF: <https://publications.polymtl.ca/59770/1/59770_Triage_software.pdf>
 
 ## Dataset
 
