@@ -5,92 +5,66 @@ Supplementary materials for:
 > Solomon Berhe, Vanessa Khan, Omhier Khan, Nathan Pader, Ali Zain Farooqi, Marc Maynard, Foutse Khomh.
 > **"Triage Software Update Impact via Release Notes Classification."**
 > *Procedia Computer Science*, Vol. 238, pp. 618-622, 2024.
-> DOI: [10.1016/j.procs.2024.06.069](https://doi.org/10.1016/j.procs.2024.06.069)
+> DOI: [10.1016/j.procs.2024.06.069](https://doi.org/10.1016/j.procs.2024.06.069) · paper PDF included in this repo.
 
-## Dataset
-
-The 1,000-release-note dataset used in the paper is on Hugging Face:
+**Dataset:** the 1,000-release-note dataset used in the paper is on Hugging Face:
 <https://huggingface.co/datasets/sberhe/2023-1000-software-release-notes>
 
-## What's in this repo
+## What's here
 
-`classifiers/` contains the **keyword/rule-based classifiers** currently used
-in production (part of the [releasetrain.io](https://releasetrain.io/)
-pipeline) for the paper's three label categories:
+The paper's pipeline is: *release notes &rarr; labels &rarr; train six classifiers
+(Naive Bayes, SVM, Logistic Regression, Random Forest, Gradient Boosting, KNN)
+&rarr; evaluate*. `classifiers/` contains only the **labeling step** — the
+keyword/rule-based logic that assigns each release note its category, not the
+six classifiers themselves (that training/evaluation code hasn't been located
+in any repo searched so far).
 
-| File | Category | Notes |
+| File | Paper category | What it does |
 |---|---|---|
-| `classify_component_type.py` | Component Type | ~28 categories (OS, browser, database, API, framework, cloud, mobile, etc.), each a keyword list |
-| `classify_security_type.py` | Security Risk | Security, privacy, legal, compliance, fraud, identity/access, cloud security categories; also force-labels `SECURITY` when a version's `isCve` flag is true |
-| `classify_breaking_type.py` | *see note below* | Failure/impact categories (Critical Failure, Limited Functionality, Performance Issues, Compatibility Issues, etc.) plus a regex-based major-version-bump detector (`x.0` / `x.0.0` → "Breaking Update") |
+| `classify_component_type.py` | Component Type | ~28 keyword-matched categories (OS, browser, database, API, cloud, mobile, etc.) |
+| `classify_security_type.py` | Security Risk | Security/privacy/legal/compliance keyword categories; force-labels `SECURITY` when `isCve` is true |
+| `classify_breaking_type.py` | Release Type *(see caveat)* | Failure/impact keyword categories + a regex that flags `x.0`/`x.0.0` version bumps as breaking |
 
-Each script's classification logic is a simple substring/keyword match per
-category (see `classify_text()` in each file) — this is the "keyword-based"
-labeling approach referenced in the paper, not manual annotation.
+## Caveats
 
-### Important caveats
-
-- **This is the current, evolved production version of the classifiers, not
-  the exact original 2024 code.** This repo's own history starts March 2025 —
-  over a year after the paper's data collection — and the keyword lists have
-  been revised since (categories added, bugs fixed). Treat it as a faithful
-  reconstruction of the methodology, not a byte-for-byte snapshot of what
-  generated the paper's exact reported numbers.
-- **Naming mismatch on the third category:** the paper reports a **"Release
-  Type"** category; the closest live equivalent in this codebase is named
-  **"Breaking Type."** The two are related (both describe the character/impact
-  of a release) but have not been confirmed to use an identical label
-  taxonomy. Treat the mapping as provisional.
-- **The original unsupervised step** (K-Means clustering used earlier in the
-  pipeline) is preserved in git history in a different repo:
+- **Not the exact 2024 code.** This is the current production version of the
+  labeler (history starts March 2025, over a year after the paper); keyword
+  lists have since been revised. Treat it as a faithful reconstruction of the
+  methodology, not a byte-for-byte snapshot.
+- **"Breaking Type" vs. "Release Type":** the paper's third category is named
+  Release Type; this codebase's closest live equivalent is named Breaking
+  Type. Related, but not confirmed to be an identical label taxonomy.
+- **The paper itself reports Release Type classification failed** — Table 1
+  shows all six classifiers scored "Incorrect" on it, with the discussion
+  section attributing this to ambiguous labels (`.0.0`, `major`, `breaking`,
+  `dependency`) causing over/underfitting. Worth knowing going in.
+- **K-Means clustering step** (an earlier, unsupervised part of the pipeline)
+  survives in a different repo's git history:
   [`se4cps/Research-on-Software-Updates`](https://github.com/se4cps/Research-on-Software-Updates),
-  commit `cb8ffc9` (2024-01-06), folder `cluster-top-50/` (later removed in a
-  2025-08 reorganization — recoverable via `git log --all -- cluster-top-50`).
-- **The supervised classifier training code** for the six models reported in
-  the paper (Logistic Regression, Naive Bayes, SVM, Random Forest, Gradient
-  Boosting, KNN) was not found in any repository, public or private, searched
-  so far. If you locate it, please open an issue/PR.
+  commit `cb8ffc9` (2024-01-06), folder `cluster-top-50/`.
 
-## Setup
+## Usage
+
+No dependencies, no database — pure Python standard library:
+
+```python
+from classifiers.classify_component_type import classify_text as classify_component
+
+classify_component("Fixed a memory leak in the Chrome extension API.")
+# -> ['BROWSER', 'API']
+```
+
+Or run any file directly to see it classify a sample string:
 
 ```
-pip install -r requirements.txt
-cp .env.example .env   # fill in your own MongoDB connection string
 python classifiers/classify_component_type.py
 python classifiers/classify_security_type.py
 python classifiers/classify_breaking_type.py
 ```
 
-Each script expects a MongoDB database (`releasetrain`) with `versions` and
-`reddit` collections shaped roughly like:
-
-```jsonc
-// versions
-{
-  "versionId": "...",
-  "versionReleaseNotes": "...",
-  "versionSearchTags": ["...", "..."],
-  "versionReleaseDate": "YYYYMMDD",
-  "isCve": false,
-  "classification": {}
-}
-
-// reddit
-{
-  "redditId": "...",
-  "title": "...",
-  "tags": ["...", "..."],
-  "created_utc": "YYYYMMDD",
-  "classification": {}
-}
-```
-
-No live database is required to read/reuse the `categories_*` keyword
-dictionaries and `classify_text()` functions directly — that's the part most
-useful for reproducing the paper's labeling methodology outside of this
-pipeline.
+To label the full Hugging Face dataset, load it and apply the relevant
+`classify_text()` to each release note's text.
 
 ## License
 
-MIT — see [LICENSE](LICENSE). The paper itself is CC BY-NC-ND; link to it
-rather than redistributing modified copies.
+MIT — see [LICENSE](LICENSE). The paper is CC BY-NC-ND.
