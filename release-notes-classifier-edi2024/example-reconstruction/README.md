@@ -20,7 +20,7 @@ Built with AI assistance (Claude).
 | Random Forest | 72.0% | 99.0% | 60.0% |
 | Gradient Boosting | 81.5% | 99.5% | 56.5% |
 | K-Nearest Neighbors | 52.0% | 88.5% | 44.0% |
-| *(majority-class baseline: guessing the most common label)* | 18.0% (`APP`) | 52.5% (`NOT_SECURITY`) | 45.0% (`PATCH`) |
+| *(majority-class baseline)* | 18.0% (`APP`) | 52.5% (`NOT_SECURITY`) | 45.0% (`PATCH`) |
 | **Paper's Table 1** | 58–88% | 81–99% | Incorrect (all six) |
 
 Cohen's Kappa (chance-adjusted agreement) tells a clearer story than raw
