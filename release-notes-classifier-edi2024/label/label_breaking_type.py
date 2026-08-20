@@ -6,11 +6,11 @@ Keyword-based classifier for update impact / breaking-change severity.
 NOTE ON NAMING: the paper (Berhe et al., "Triage Software Update Impact via
 Release Notes Classification," Procedia Computer Science, 2024) reports a
 "Release Type" category. This script's current name in production is
-"Breaking Type" — it is the closest live equivalent, but has not been
+"Breaking Type": it is the closest live equivalent, but has not been
 confirmed to use the exact same label taxonomy as the paper's original
 "Release Type". Treat the mapping as provisional; see README.
 
-Pure classification logic, no external dependencies — pass any release-note
+Pure classification logic, no external dependencies. Pass any release-note
 text to classify_text() for the keyword-category labels, or
 detect_breaking_version() to flag a major version bump (x.0 / x.0.0) as a
 "Breaking Update" independent of keyword matching.

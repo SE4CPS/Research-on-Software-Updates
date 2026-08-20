@@ -5,7 +5,7 @@ Keyword-based classifier for "Component Type" (see Berhe et al., "Triage
 Software Update Impact via Release Notes Classification," Procedia Computer
 Science, 2024).
 
-Pure classification logic, no external dependencies — pass any release-note
+Pure classification logic, no external dependencies. Pass any release-note
 text to classify_text() and get back the matching component category labels.
 """
 

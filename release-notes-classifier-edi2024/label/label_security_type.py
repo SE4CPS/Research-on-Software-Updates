@@ -5,7 +5,7 @@ Keyword-based classifier for "Security Risk" (see Berhe et al., "Triage
 Software Update Impact via Release Notes Classification," Procedia Computer
 Science, 2024).
 
-Pure classification logic, no external dependencies — pass any release-note
+Pure classification logic, no external dependencies. Pass any release-note
 text to classify_text() and get back the matching security-related category
 labels (plus the text with matched keywords bolded, for inspection). If you
 independently know a release is tied to a CVE, force-add "SECURITY" to its
@@ -88,7 +88,7 @@ def classify_text(text, is_cve=False):
     Return (labels, highlighted_text) for the Security Risk category.
 
     `is_cve`: pass True if you separately know this release note is tied to a
-    CVE — the production pipeline force-adds "SECURITY" (and drops "UNKNOWN")
+    CVE. The production pipeline force-adds "SECURITY" (and drops "UNKNOWN")
     in that case.
     """
     if not text:

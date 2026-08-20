@@ -1,13 +1,13 @@
 # Release Notes Classification
 
-Supplementary code for the paper — citation, PDF, dataset link, full context:
+Supplementary code for the paper. Citation, PDF, dataset link, full context:
 <https://se4cps.github.io/lab/research/>
 
 ## What's here
 
-`label/` — keyword/rule-based labeling logic for Component Type, Security
-Risk, and Release Type (`label_breaking_type.py`). No model is trained;
-this is tagging logic, not the paper's six classifiers.
+`label/` contains keyword/rule-based labeling logic for Component Type,
+Security Risk, and Release Type (`label_breaking_type.py`). No model is
+trained; this is tagging logic, not the paper's six classifiers.
 
 | File | Category |
 |---|---|
@@ -17,24 +17,24 @@ this is tagging logic, not the paper's six classifiers.
 
 `example-reconstruction/` trains and evaluates all six classifiers from
 Table 1 against the real dataset using these labels, compared to the
-paper's results — see its own README.
+paper's results. See its own README.
 
 ## Caveats
 
-- Not the exact 2024 code — current production labeler; keyword lists
+- Not the exact 2024 code. Current production labeler; keyword lists
   revised since.
 - "Breaking Type" vs. the paper's "Release Type": related, not confirmed
   identical.
 - Paper reports Release Type failed for all six classifiers (Table 1:
-  "Incorrect") — `example-reconstruction/` explains why.
-- The original six-classifier training code isn't included here;
+  "Incorrect"). `example-reconstruction/` explains why.
+- The original six-classifier training code isn't included here.
   `example-reconstruction/` is a disclosed rebuild, not a recovery.
 - The earlier K-Means clustering step is in this repo's own git history,
   commit `cb8ffc9` (2024-01-06), folder `cluster-top-50/` (since removed).
 
 ## Usage
 
-No dependencies, no database — pure Python standard library:
+No dependencies, no database. Pure Python standard library:
 
 ```python
 from label.label_component_type import classify_text as label_component
@@ -51,4 +51,4 @@ python label/label_breaking_type.py
 
 ## License
 
-MIT — see [LICENSE](LICENSE). The paper is CC BY-NC-ND.
+MIT. See [LICENSE](LICENSE). The paper is CC BY-NC-ND.

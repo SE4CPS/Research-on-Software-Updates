@@ -1,3 +1,3 @@
-# No external dependencies — the classifiers use only the Python standard
+# No external dependencies. The classifiers use only the Python standard
 # library (re). This file is kept as a placeholder in case you add pandas/
 # etc. to run classification over the Hugging Face dataset directly.

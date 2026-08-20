@@ -1,7 +1,7 @@
 """
 Release Type classification by semantic-versioning position: MAJOR / MINOR /
 PATCH, inferred directly from each note's own version number (no version
-history needed — this is a heuristic based on trailing zeros, matching
+history needed. This is a heuristic based on trailing zeros, matching
 common semver convention: a release ending in .0.0 is treated as a major
 bump, ending in .0 (but not .0.0) as minor, anything else as patch).
 """
