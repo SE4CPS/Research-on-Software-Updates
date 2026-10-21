@@ -26,7 +26,7 @@ flowchart TD
   AG["Fleet aggregator: dedup shared decisions, surface conflicts"]
   W["Wave scheduler: canary first, halt on failure"]
   O["Outcome agent: re-inventory, diff expected vs actual"]
-  TEL[("Telemetry: tokens, latency, retries, guardrail hits")]
+  TEL["Telemetry: tokens, latency, retries, guardrail hits"]
 
   M1 --> Q
   M2 --> Q
@@ -36,12 +36,12 @@ flowchart TD
   C --> T
   T --> G
   G --> V
-  V -- "yes: retry with the exact violation, then deterministic sort" --> T
+  V -- "yes: retry, then deterministic sort" --> T
   V -- no --> AG
   AG --> W
   W --> O
-  O -- "outcomes feed stability scores + regression cases" --> Q
-  LOOP -.-> TEL
+  O -- "outcomes feed stability and regression cases" --> Q
+  G -.-> TEL
   AG -.-> TEL
 ```
 
