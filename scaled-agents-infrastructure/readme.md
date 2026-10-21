@@ -6,6 +6,45 @@
 - Scale two axes: managed machines (containers with SBOMs) and agent runtime (queue plus workers)
 - Measure what breaks, what it costs, and what only appears at scale
 
+## Architecture
+
+```mermaid
+flowchart TD
+  subgraph FLEET["Managed fleet: Docker machines with SBOMs"]
+    M1[Machine 1]
+    M2[Machine 2]
+    MN[Machine N]
+  end
+  Q[[Job queue]]
+  subgraph LOOP["Agent worker: one triage iteration"]
+    E["Enrich facts: versions, CVEs, KEV, stability (rules)"]
+    C["Classify EO 14028 category (rules, then LLM)"]
+    T["Triage: update order + reasoning (LLM)"]
+    G["Guardrail check: pairwise constraints (rules)"]
+    V{Violation?}
+  end
+  AG["Fleet aggregator: dedup shared decisions, surface conflicts"]
+  W["Wave scheduler: canary first, halt on failure"]
+  O["Outcome agent: re-inventory, diff expected vs actual"]
+  TEL[("Telemetry: tokens, latency, retries, guardrail hits")]
+
+  M1 --> Q
+  M2 --> Q
+  MN --> Q
+  Q --> E
+  E --> C
+  C --> T
+  T --> G
+  G --> V
+  V -- "yes: retry with the exact violation, then deterministic sort" --> T
+  V -- no --> AG
+  AG --> W
+  W --> O
+  O -- "outcomes feed stability scores + regression cases" --> Q
+  LOOP -.-> TEL
+  AG -.-> TEL
+```
+
 ## Research
 
 - Consistency: same facts on N machines, same answer everywhere?
