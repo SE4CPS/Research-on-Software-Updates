@@ -56,3 +56,9 @@ graph LR
     FE5["5) Release Notes Generator [todo]"]
     FEEntry --> FE1 & FE2 & FE3 & FE4 & FE5
   end
+
+---
+
+## License
+
+MIT. See [LICENSE](LICENSE).
