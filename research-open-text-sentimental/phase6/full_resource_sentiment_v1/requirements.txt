@@ -1,0 +1,7 @@
+# Workstream 1: pin the saved package release, not a live PyPI upgrade.
+vaderSentiment==3.3.2
+pytest>=7.0
+pandas>=2.0
+numpy>=1.26
+# Install the archived 0.2.1 tarball rather than downloading a different build:
+#   pip install ../../phase2/new_sources/package/releasetrain_sentiment-0.2.1.tar.gz

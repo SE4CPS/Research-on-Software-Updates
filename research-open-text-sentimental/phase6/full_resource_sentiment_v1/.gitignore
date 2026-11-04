@@ -1,0 +1,16 @@
+.venv/
+.venv_*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+src/full_resource_sentiment_v1.egg-info/
+local_normalized/
+.DS_Store
+restricted/
+vendor/
+tmp/
+.cache/
+.mplconfig/

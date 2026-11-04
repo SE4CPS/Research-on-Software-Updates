@@ -1,0 +1,148 @@
+{
+  "nonempty_body": {
+    "title": "Update broke my build",
+    "author": "op_user",
+    "author_description": "Nothing compiles since 3.2.0",
+    "comments": [
+      {"author": "op_user", "body": "Known issue, fix coming soon", "is_submitter": true, "created_utc": "2026-01-01T00:02:00"},
+      {"author": "other", "body": "Same here, very annoying", "is_submitter": false, "created_utc": "2026-01-01T00:03:00"}
+    ]
+  },
+  "empty_body_title_only": {
+    "title": "Update broke my build",
+    "author": "op_user",
+    "author_description": "",
+    "comments": []
+  },
+  "comments_key_absent": {
+    "title": "Title only",
+    "author": "op_user",
+    "author_description": "A body is present."
+  },
+  "comments_empty_array": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "A body is present.",
+    "comments": []
+  },
+  "empty_comment_body": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "Body text",
+    "comments": [
+      {"author": "other", "body": "   ", "is_submitter": false, "created_utc": "2026-01-01T00:01:00"},
+      {"author": "other", "body": "Same here, very annoying", "is_submitter": false, "created_utc": "2026-01-01T00:02:00"}
+    ]
+  },
+  "author_by_is_submitter": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "Body",
+    "comments": [
+      {"author": "different_name", "body": "Thanks for the heads up", "is_submitter": true, "created_utc": "2026-01-01T00:01:00"}
+    ]
+  },
+  "author_by_name_match": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "Body",
+    "comments": [
+      {"author": "op_user", "body": "Thanks for the heads up", "is_submitter": false, "created_utc": "2026-01-01T00:01:00"}
+    ]
+  },
+  "blank_author_names": {
+    "title": "Title",
+    "author": "",
+    "author_description": "Body",
+    "comments": [
+      {"author": "", "body": "The table is made of wood.", "is_submitter": false, "created_utc": "2026-01-01T00:01:00"}
+    ]
+  },
+  "conflicting_role_fields": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "Body",
+    "comments": [
+      {"author": "someone_else", "body": "Thanks for the heads up", "is_submitter": true, "created_utc": "2026-01-01T00:01:00"}
+    ]
+  },
+  "out_of_order_timestamps": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "Body",
+    "comments": [
+      {"author": "a", "body": "late", "is_submitter": false, "created_utc": "2026-01-01T00:03:00"},
+      {"author": "b", "body": "early", "is_submitter": false, "created_utc": "2026-01-01T00:01:00"},
+      {"author": "c", "body": "mid", "is_submitter": false, "created_utc": "2026-01-01T00:02:00"}
+    ]
+  },
+  "equal_timestamps": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "Body",
+    "comments": [
+      {"author": "a", "body": "first stored", "is_submitter": false, "created_utc": "2026-01-01T00:01:00"},
+      {"author": "b", "body": "second stored", "is_submitter": false, "created_utc": "2026-01-01T00:01:00"}
+    ]
+  },
+  "missing_timestamp": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "Body",
+    "comments": [
+      {"author": "a", "body": "has time", "is_submitter": false, "created_utc": "2026-01-01T00:02:00"},
+      {"author": "b", "body": "no time", "is_submitter": false}
+    ]
+  },
+  "duplicate_ids": [
+    {"redditId": "abc123", "title": "one", "author_description": "a"},
+    {"redditId": "abc123", "title": "two", "author_description": "b"},
+    {"redditId": "zzz999", "title": "three", "author_description": "c"}
+  ],
+  "genuine_neutral_zero": {
+    "title": "The table is made of wood.",
+    "author": "op_user",
+    "author_description": "The table is made of wood.",
+    "comments": [
+      {"author": "other", "body": "The table is made of wood.", "is_submitter": false, "created_utc": "2026-01-01T00:01:00"}
+    ]
+  },
+  "no_observed_reply": {
+    "title": "The table is made of wood.",
+    "author": "op_user",
+    "author_description": "I love this update, everything works perfectly!",
+    "comments": []
+  },
+  "three_author_comments": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "Body",
+    "comments": [
+      {"author": "op_user", "body": "one", "is_submitter": true, "created_utc": "2026-01-01T00:01:00"},
+      {"author": "op_user", "body": "two", "is_submitter": true, "created_utc": "2026-01-01T00:02:00"},
+      {"author": "op_user", "body": "three", "is_submitter": true, "created_utc": "2026-01-01T00:03:00"}
+    ]
+  },
+  "four_author_comments": {
+    "title": "Title",
+    "author": "op_user",
+    "author_description": "Body",
+    "comments": [
+      {"author": "op_user", "body": "one", "is_submitter": true, "created_utc": "2026-01-01T00:01:00"},
+      {"author": "op_user", "body": "two", "is_submitter": true, "created_utc": "2026-01-01T00:02:00"},
+      {"author": "op_user", "body": "three", "is_submitter": true, "created_utc": "2026-01-01T00:03:00"},
+      {"author": "op_user", "body": "four", "is_submitter": true, "created_utc": "2026-01-01T00:04:00"}
+    ]
+  },
+  "handcalc_thread": {
+    "title": "Update broke my build",
+    "author": "dev1",
+    "author_description": "Nothing compiles since 3.2.0",
+    "comments": [
+      {"author": "dev1", "body": "Known issue, fix coming soon", "is_submitter": true, "created_utc": "2026-01-01T00:01:00"},
+      {"author": "user2", "body": "Same here, very annoying", "is_submitter": false, "created_utc": "2026-01-01T00:02:00"},
+      {"author": "dev1", "body": "Thanks for the heads up", "is_submitter": true, "created_utc": "2026-01-01T00:03:00"},
+      {"author": "user3", "body": "Still broken for me too", "is_submitter": false, "created_utc": "2026-01-01T00:04:00"}
+    ]
+  }
+}

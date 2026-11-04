@@ -1,0 +1,133 @@
+{
+  "synth-version-change": {
+    "synthetic_id": "synth-version-change",
+    "title": "Android 16 QPR1 brick loop after install",
+    "body": "I installed Android 16 QPR1 last night and the phone now boot-loops. Rolling back the firmware update recovered it.",
+    "comments": []
+  },
+  "synth-news-update": {
+    "synthetic_id": "synth-news-update",
+    "title": "Daily news update: local election results",
+    "body": "Here is this morning's news update. No software is discussed. Turnout was higher than last year.",
+    "comments": []
+  },
+  "synth-bug-no-update": {
+    "synthetic_id": "synth-bug-no-update",
+    "title": "Calculator app crashes when dividing by zero",
+    "body": "The stock calculator closes every time I enter 1/0. I have not changed versions or installed a patch.",
+    "comments": []
+  },
+  "synth-comment-only-update": {
+    "synthetic_id": "synth-comment-only-update",
+    "title": "Why is my sourdough so sour?",
+    "body": "I followed a 24-hour ferment and the loaf tastes like vinegar. Looking for hydration tips.",
+    "comments": [
+      {
+        "author": "other_user",
+        "body": "Unrelated, but the iOS 26.1 update also ruined my keyboard."
+      }
+    ]
+  },
+  "synth-multiple-updates": {
+    "synthetic_id": "synth-multiple-updates",
+    "title": "Two patches in one week",
+    "body": "Chrome 130.0.6723.70 and Windows 11 KB5046617 both shipped this week. The Windows patch is the one that broke printing.",
+    "comments": []
+  },
+  "synth-body-removed-intact-title": {
+    "synthetic_id": "synth-body-removed-intact-title",
+    "title": "iOS 18.2 made Safari crash on launch",
+    "body": "[removed]",
+    "comments": []
+  },
+  "synth-both-removed": {
+    "synthetic_id": "synth-both-removed",
+    "title": "[removed]",
+    "author_description": "[deleted]",
+    "comments": []
+  },
+  "synth-quotes-removed": {
+    "synthetic_id": "synth-quotes-removed",
+    "title": "Why do some comments show [removed] after an edit?",
+    "body": "I am asking about the placeholder text, not reporting a deleted post. This is still my original writing.",
+    "comments": []
+  },
+  "synth-pii": {
+    "synthetic_id": "synth-pii",
+    "title": "Need help after macOS 15.1",
+    "body": "Email me at alex.fake@example.test, see https://example.test/patch, call 415-555-0100, ping u/fake_handle or /u/other_handle and reddit.com/user/third_handle",
+    "comments": []
+  },
+  "synth-not-relevant-null-evidence": {
+    "synthetic_id": "synth-not-relevant-null-evidence",
+    "title": "Weekend hiking recap",
+    "body": "We hiked the ridge and ate sandwiches. Nothing about software.",
+    "comments": []
+  },
+  "synth-long-text": {
+    "synthetic_id": "synth-long-text",
+    "title": "Long note",
+    "body": "placeholder",
+    "comments": []
+  },
+  "synth-malformed": {
+    "synthetic_id": "synth-malformed",
+    "title": "Firmware 3.2.1 kernel panic",
+    "body": "Device panic after flashing firmware 3.2.1 from the vendor site.",
+    "comments": []
+  },
+  "synth-refusal": {
+    "synthetic_id": "synth-refusal",
+    "title": "App Store 4.0 release notes",
+    "body": "The App Store 4.0 release changed receipt validation.",
+    "comments": []
+  },
+  "synth-missing-field": {
+    "synthetic_id": "synth-missing-field",
+    "title": "Ubuntu 24.10 upgrade stalled",
+    "body": "do-release-upgrade to Ubuntu 24.10 stops at 47 percent.",
+    "comments": []
+  },
+  "synth-bad-evidence": {
+    "synthetic_id": "synth-bad-evidence",
+    "title": "WatchOS 11.1 drain",
+    "body": "Battery drain started after WatchOS 11.1.",
+    "comments": []
+  },
+  "synth-timeout-then-ok": {
+    "synthetic_id": "synth-timeout-then-ok",
+    "title": "Kindle firmware 5.18.1",
+    "body": "The Kindle firmware 5.18.1 update is stuck at installing.",
+    "comments": []
+  },
+  "synth-timeout-exhaust": {
+    "synthetic_id": "synth-timeout-exhaust",
+    "title": "Router firmware 1.0.12",
+    "body": "Mesh nodes offline after firmware 1.0.12.",
+    "comments": []
+  },
+  "synth-duplicate-a": {
+    "synthetic_id": "synth-duplicate",
+    "title": "First copy",
+    "body": "First copy body mentioning Windows 12 insider build 26100.",
+    "comments": []
+  },
+  "synth-duplicate-b": {
+    "synthetic_id": "synth-duplicate",
+    "title": "Second copy",
+    "body": "Second copy should never be classified.",
+    "comments": []
+  },
+  "synth-protected-outcome": {
+    "synthetic_id": "synth-protected-outcome",
+    "title": "Harmless title",
+    "body": "Harmless body",
+    "human_relevant": "relevant"
+  },
+  "synth-unclear": {
+    "synthetic_id": "synth-unclear",
+    "title": "it broke",
+    "body": "after the thing",
+    "comments": []
+  }
+}
