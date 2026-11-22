@@ -1,64 +1,26 @@
-# releasetrain.io: Software Ecosystem Framework
+# Research on Software Updates
 
-Architecture overview, data flow, frontend modules, and a complete API reference for **releasetrain.io**.  
-The platform ingests ecosystem signals (GitHub, CVE/NVD, Reddit), enriches and classifies updates, and exposes them via a clean API and triage UI.
+Student research projects built on [releasetrain.io](https://releasetrain.io), the lab's software-update platform. One folder per project, named `topic-githubhandle`.
 
----
+| Project | Author | Question | Artifacts |
+|---|---|---|---|
+| [Reddit CVE detection](reddit-cve-detection-therohantilwani/) | therohantilwani | How far ahead of NVD does Reddit mention a CVE? | code, data, HTML dashboard |
+| [Reddit sentiment trajectories](reddit-sentiment-manumathewjiss/) | manumathewjiss | Do an update's author and its commenters feel differently over time? | code, data, charts, poster |
+| [Dashboard data quality](dashboard-quality-vydpnguyen/) | vydpnguyen | Are releasetrain.io's dashboards internally consistent? | poster |
 
-## Quick Links
+## Project folder
 
--  **Live:** <https://releasetrain.io/>
--  **Client:** <https://github.com/SE4CPS/releasetrain-client>
--  **Project Board:** <https://github.com/orgs/SE4CPS/projects/24>
+```
+topic-handle/
+  README.md     question, method, result, how to run
+  poster.pdf    when there is one
+  scripts/      code
+  data/         inputs
+  results/      outputs, charts
+```
 
----
+## Working here
 
-## System Architecture
-
-```mermaid
-graph LR
-  A["a) Bot1 (GitHub) [online]"] --> D["d) MongoDB Data Lake [atlas]"]
-  B["b) Bot2 (CVE/NVD) [online]"] --> D
-  C["c) Bot3 (Reddit) [online]"] --> D
-
-  Note1["Improve data quality [ongoing]"] --> D
-
-  subgraph E_SG["e) AI / ML"]
-    direction LR
-    Type["Type [ok]"]
-    Security["Security [ok]"]
-    Breaking["Breaking [ok]"]
-    Sentimental["Sentiment [todo]"]
-    RAG["LLM / RAG [pilot]"]
-    Type --> E["Classified Output"]
-    Security --> E
-    Breaking --> E
-    Sentimental --> E
-    RAG --> E
-  end
-
-  subgraph Azure["g) Azure Cloud"]
-    AZ["gpt-4o"] <--> RAG
-  end
-
-  E <--> Agent[" Agentic AI (LLM+API+DB+Rules)"]
-  Agent <--> D
-  Agent <--> F["f) Backend API (Express)"]
-
-  F <--> FEEntry["Frontend Router"]
-
-  subgraph H["h) Frontend"]
-    direction LR
-    FE1["1) Ecosystem Graph Architecture [ok]"]
-    FE2["2) Ecosystem UML Architecture [ok]"]
-    FE3["3) Ecosystem Software Updates [ok]"]
-    FE4["4) Triage Buttons [ok]"]
-    FE5["5) Release Notes Generator [todo]"]
-    FEEntry --> FE1 & FE2 & FE3 & FE4 & FE5
-  end
-
----
-
-## License
-
-MIT. See [LICENSE](LICENSE).
+- [Team agreement](TEAM-AGREEMENT.md): meetings, backlog, how to sign.
+- Platform: [releasetrain-client](https://github.com/SE4CPS/releasetrain-client), API reference at [releasetrain.io/?view=docs](https://releasetrain.io/?view=docs).
+- License: [MIT](LICENSE).
