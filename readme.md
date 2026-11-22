@@ -1,4 +1,4 @@
-# ReleaseTrain.io — Software Ecosystem Framework
+# releasetrain.io: Software Ecosystem Framework
 
 Architecture overview, data flow, frontend modules, and a complete API reference for **releasetrain.io**.  
 The platform ingests ecosystem signals (GitHub, CVE/NVD, Reddit), enriches and classifies updates, and exposes them via a clean API and triage UI.
